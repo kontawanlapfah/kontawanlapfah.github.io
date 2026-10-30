@@ -15,10 +15,10 @@ m.place(5.5, m.whoosh(.9, .05), .3); m.place(5.6, m.thud(48, 1.2, 4), .3)   # ti
 # 2-4. the doorway: night outside, lamp inside
 m.bed(9.6, 52.3, m.night, .08); m.bed(9.6, 52.3, m.crackle, .14); m.bed(9.6, 44, m.wind, .05)
 m.place(30.9, m.thud(140, .2, 25), .25)                   # bread set on the threshold
-m.place(36.6, m.creak(3.2), .12)                          # the door swings slowly
-m.place(39.8, m.click(.05), .3)                           # it stops short of the latch
+m.place(36.6, m.creak(4.6), .12)                          # the door swings slowly
+m.place(41.2, m.click(.05), .3)                           # it stops short of the latch
 for i in range(8):                                        # footsteps leaving in the dark
-    m.place(41.9 + i * .3, m.step(False), .12 * (1 - i / 9), pan=.2 + i * .08)
+    m.place(41.7 + i * .3, m.step(False), .12 * (1 - i / 9), pan=.2 + i * .08)
 for i in range(6):                                        # Hawa's small steps behind him
     m.place(44.7 + i * .33, m.step(), .14, pan=-.4 + i * .06)
 m.place(48.6, m.rustle(.7), .2)                           # he kneels and holds her

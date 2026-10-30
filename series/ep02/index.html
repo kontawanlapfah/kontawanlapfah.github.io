@@ -181,7 +181,7 @@ KIT.episode({
     // 2. doorway
     KIT.updLantern('dl', t);
     const laugh = t > 15.6 && t < 17.2 ? Math.sin(t * 40) * 3 : 0;
-    const leave = ease((t - 41.8) / 2.2);
+    const leave = ease((t - 41.6) / 2.4);
     attr('dHar', 'transform', `translate(${730 + 260 * leave} ${1090 + laugh}) scale(.82)`);
     attr('dHar', 'opacity', 1 - leave);
     KIT.harithEyes('dh', ease((t - 29.1) / .6));
@@ -189,7 +189,7 @@ KIT.episode({
     attr('dBreadG', 'transform', `translate(${730} ${lerp(880, 1072, put)})`);
     attr('dh' + 'Arms', 'transform', `translate(0 ${60 * Math.sin(Math.PI * clamp((t - 30.2) / 1.6))})`);
     KIT.updSteam('ds', 3, t, 90, 1);
-    const c = .92 * ease((t - 36.6) / 3.2);                              // the door swings shut, a gap stays
+    const c = .92 * ease((t - 36.6) / 4.6);                              // the door swings shut, a gap stays
     const fx = lerp(1010, 560, c), ty = lerp(250, 300, c), by = lerp(1140, 1090, c);
     attr('dPanel', 'points', `900,300 ${fx},${ty} ${fx},${by} 900,1090`);
     const hk = clamp((t - 44.6) / 2);                                     // Hawa walks up behind him
