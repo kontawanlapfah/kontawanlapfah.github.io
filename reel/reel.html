@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Dajjal Reel</title>
+<style>
+@font-face { font-family: "Sans"; src: url(fonts/noto-sans-thai-thai-400-normal.woff2); font-weight: 400; }
+@font-face { font-family: "Sans"; src: url(fonts/noto-sans-thai-thai-700-normal.woff2); font-weight: 700; }
+@font-face { font-family: "Serif"; src: url(fonts/noto-serif-thai-thai-700-normal.woff2); font-weight: 700; }
+@font-face { font-family: "Amiri"; src: url(fonts/amiri-arabic-400-normal.woff2); font-weight: 400; }
+@font-face { font-family: "Amiri"; src: url(fonts/amiri-arabic-700-normal.woff2); font-weight: 700; }
+
+:root { --gold: #e6c27a; --ink: #f3ede0; --dim: #a9a291; --fire: #ff7a3c; --water: #6cc3ff; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #05060c; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Sans", sans-serif; color: var(--ink); }
+#bg { position: absolute; inset: 0; }
+.scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 90px; text-align: center; opacity: 0; }
+.el { opacity: 0; will-change: transform, opacity; }
+.kicker { font-size: 40px; color: var(--gold); font-weight: 700; margin-bottom: 36px; }
+.title { font-family: "Serif"; font-size: 150px; color: var(--gold); line-height: 1.2; text-shadow: 0 0 60px rgba(230,194,122,.35); }
+.big { font-size: 64px; font-weight: 700; line-height: 1.5; }
+.mid { font-size: 50px; line-height: 1.6; }
+.small { font-size: 38px; line-height: 1.6; color: var(--dim); }
+.ar { font-family: "Amiri"; direction: rtl; font-size: 84px; line-height: 1.7; color: var(--gold); font-weight: 700; }
+.src { margin-top: 44px; display: inline-block; font-size: 34px; color: var(--gold); border: 2px solid rgba(230,194,122,.5); border-radius: 40px; padding: 10px 34px; }
+.gap { height: 44px; }
+.hl { color: var(--gold); }
+.kfr { font-family: "Amiri"; font-size: 300px; font-weight: 700; color: var(--gold); direction: rtl; display: flex; gap: 70px; line-height: 1.2; }
+.kfr span { opacity: 0; text-shadow: 0 0 80px rgba(230,194,122,.7); }
+.bars { width: 100%; display: flex; flex-direction: column; gap: 26px; margin: 40px 0 10px; }
+.bar { display: grid; grid-template-columns: 170px 1fr 270px; align-items: center; gap: 20px; text-align: left; font-size: 36px; }
+.bar .track { height: 54px; border-radius: 27px; background: rgba(255,255,255,.07); overflow: hidden; }
+.bar .fill { height: 100%; border-radius: 27px; background: linear-gradient(90deg, #8b6a2f, var(--gold)); width: 0; }
+.bar .lab { color: var(--gold); font-weight: 700; }
+.sources { text-align: center; font-size: 34px; line-height: 1.75; color: var(--ink); }
+.sources b { color: var(--gold); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="bg" width="1080" height="1920"></canvas>
+
+  <!-- 1 -->
+  <section class="scene" data-start="0" data-dur="6">
+    <div class="el kicker" data-in="0.2">ฟิตนะฮ์ที่ยิ่งใหญ่ที่สุด</div>
+    <div class="el title" data-in="0.5">ดัจญาล</div>
+    <div class="gap"></div>
+    <div class="el mid" data-in="1.6">“ไม่มีสิ่งใด ตั้งแต่การสร้างอาดัม<br>จนถึงวันกิยามะฮ์<br>ที่ใหญ่ยิ่งไปกว่า<span class="hl">ดัจญาล</span>”</div>
+    <div class="el src" data-in="2.6">เศาะฮีห์มุสลิม 2946</div>
+  </section>
+
+  <!-- 2 -->
+  <section class="scene" data-start="6" data-dur="6">
+    <svg class="el" data-in="0.1" width="900" height="260" viewBox="0 0 900 260" id="lanterns"></svg>
+    <div class="gap"></div>
+    <div class="el big" data-in="0.8">นบีทุกท่าน<br>ได้เตือนประชาชาติของตน</div>
+    <div class="el mid" data-in="1.8" style="margin-top:24px">ถึง “ผู้ตาบอดข้างเดียว <span class="hl">ผู้โกหก</span>”</div>
+    <div class="el src" data-in="2.6">บุคอรี 7131 · มุสลิม 2933</div>
+  </section>
+
+  <!-- 3 -->
+  <section class="scene" data-start="12" data-dur="7">
+    <div class="el ar" data-in="0.3">أَلَا إِنَّهُ أَعْوَرُ<br>وَإِنَّ رَبَّكُمْ لَيْسَ بِأَعْوَرَ</div>
+    <div class="gap"></div>
+    <div class="el big" data-in="1.4">“เขาตาบอด<br>แต่พระเจ้าของพวกท่าน<br><span class="hl">ไม่ได้ตาบอด</span>”</div>
+    <div class="el src" data-in="2.2">บุคอรี 7131</div>
+    <div class="gap"></div>
+    <div class="el small" data-in="3.6">ตาข้างขวาบอด ราวกับผลองุ่นที่ปูดลอยขึ้นมา<br>(บุคอรี 3439 · มุสลิม 169)</div>
+  </section>
+
+  <!-- 4 -->
+  <section class="scene" data-start="19" data-dur="6">
+    <div class="el mid" data-in="0.2">ระหว่างดวงตาทั้งสองของเขา เขียนไว้ว่า</div>
+    <div class="kfr" id="kfr"><span data-in="0.9">ك</span><span data-in="1.3">ف</span><span data-in="1.7">ر</span></div>
+    <div class="el big" data-in="2.4">ผู้ศรัทธาทุกคนจะอ่านออก</div>
+    <div class="el small" data-in="2.9">ทั้งผู้ที่อ่านเขียนได้ และอ่านเขียนไม่ได้</div>
+    <div class="el src" data-in="3.4">มุสลิม 2933 · 2934</div>
+  </section>
+
+  <!-- 5 -->
+  <section class="scene" data-start="25" data-dur="7">
+    <div class="el big" data-in="0.2">เขามี<span style="color:var(--water)">น้ำ</span>และ<span style="color:var(--fire)">ไฟ</span>มาด้วย</div>
+    <svg width="860" height="420" viewBox="0 0 860 420" id="wf" style="margin:30px 0">
+      <g id="wfL" transform="translate(215 210)"></g>
+      <g id="wfR" transform="translate(645 210)"></g>
+    </svg>
+    <div class="el mid" data-in="2.2">สิ่งที่ผู้คนเห็นว่าเป็น<span style="color:var(--fire)">ไฟ</span><br>แท้จริงคือ<span style="color:var(--water)">น้ำเย็น</span></div>
+    <div class="el mid" data-in="3.2" style="margin-top:18px">สิ่งที่ผู้คนเห็นว่าเป็น<span style="color:var(--water)">น้ำ</span><br>แท้จริงคือ<span style="color:var(--fire)">ไฟที่แผดเผา</span></div>
+    <div class="el src" data-in="4.0">บุคอรี 3450 · มุสลิม 2934</div>
+  </section>
+
+  <!-- 6 -->
+  <section class="scene" data-start="32" data-dur="7">
+    <div class="el big" data-in="0.2">เขาอยู่บนแผ่นดิน <span class="hl">40 วัน</span></div>
+    <div class="bars">
+      <div class="bar el" data-in="0.9"><span>วันหนึ่ง</span><div class="track"><div class="fill" data-in="1.0" data-w="100"></div></div><span class="lab">เท่ากับ 1 ปี</span></div>
+      <div class="bar el" data-in="1.6"><span>วันหนึ่ง</span><div class="track"><div class="fill" data-in="1.7" data-w="40"></div></div><span class="lab">เท่ากับ 1 เดือน</span></div>
+      <div class="bar el" data-in="2.3"><span>วันหนึ่ง</span><div class="track"><div class="fill" data-in="2.4" data-w="18"></div></div><span class="lab">เท่ากับ 1 สัปดาห์</span></div>
+      <div class="bar el" data-in="3.0"><span>วันที่เหลือ</span><div class="track"><div class="fill" data-in="3.1" data-w="4"></div></div><span class="lab">เหมือนวันปกติ</span></div>
+    </div>
+    <div class="el mid" data-in="3.8">และวันที่เหลือ<br>เหมือนวันทั่วไปของพวกท่าน</div>
+    <div class="el src" data-in="4.4">มุสลิม 2937</div>
+  </section>
+
+  <!-- 7 -->
+  <section class="scene" data-start="39" data-dur="5">
+    <svg class="el" data-in="0.1" width="860" height="360" viewBox="0 0 860 360" id="cities"></svg>
+    <div class="el big" data-in="0.6">ไม่มีเมืองใดที่เขาจะไม่เหยียบย่าง<br>ยกเว้น<span class="hl">มักกะฮ์</span>และ<span class="hl">มะดีนะฮ์</span></div>
+    <div class="el small" data-in="1.8" style="margin-top:20px">ทุกช่องทางเข้าเมืองมีมลาอิกะฮ์ยืนเรียงแถวเฝ้าอยู่</div>
+    <div class="el src" data-in="2.4">บุคอรี 1881</div>
+  </section>
+
+  <!-- 8 -->
+  <section class="scene" data-start="44" data-dur="6">
+    <svg class="el" data-in="0.1" width="700" height="560" viewBox="0 0 700 560" id="gate"></svg>
+    <div class="el big" data-in="1.0">ท่านนบีอีซา บุตรมัรยัม (อ.)</div>
+    <div class="el mid" data-in="1.8">จะตามจนทันเขาที่<span class="hl">ประตูเมืองลุด</span><br>แล้วสังหารเขา</div>
+    <div class="el src" data-in="2.8">มุสลิม 2937</div>
+  </section>
+
+  <!-- 9 -->
+  <section class="scene" data-start="50" data-dur="8">
+    <div class="el kicker" data-in="0.1">การป้องกันตนเอง</div>
+    <svg class="el" data-in="0.2" width="520" height="260" viewBox="0 0 520 260" id="book"></svg>
+    <div class="el mid" data-in="0.8" style="margin-top:20px">ผู้ใดท่องจำ <span class="hl">10 อายะฮ์แรก</span><br>ของซูเราะฮ์อัลกะฮ์ฟ์<br>จะได้รับการคุ้มครองจากดัจญาล</div>
+    <div class="el src" data-in="1.6" style="margin-top:22px">มุสลิม 809</div>
+    <div class="gap"></div>
+    <div class="el mid" data-in="3.4">หลังตะชะฮ์ฮุดในละหมาด<br>ขอความคุ้มครองต่ออัลลอฮ์<br>จาก<span class="hl">ฟิตนะฮ์ของอัลมะซีหฺ อัดดัจญาล</span></div>
+    <div class="el src" data-in="4.2" style="margin-top:22px">มุสลิม 588</div>
+  </section>
+
+  <!-- 10 -->
+  <section class="scene" data-start="58" data-dur="4.5">
+    <div class="el kicker" data-in="0.1">แหล่งอ้างอิง</div>
+    <div class="el sources" data-in="0.4">
+      <b>เศาะฮีห์อัลบุคอรี</b><br>1881 · 3439 · 3450 · 7131<br>
+      <b>เศาะฮีห์มุสลิม</b><br>169 · 588 · 809 · 2933 · 2934 · 2937 · 2946
+    </div>
+    <div class="gap"></div>
+    <div class="el small" data-in="0.9">ข้อความภาษาไทยเป็นความหมายโดยสรุปของหะดีษ</div>
+    <div class="gap"></div>
+    <div class="el title" data-in="1.4" style="font-size:80px">วัลลอฮุอะอ์ลัม</div>
+    <div class="el small" data-in="1.8">อัลลอฮ์ทรงรู้ดียิ่ง</div>
+  </section>
+</div>
+
+<script>
+const TOTAL = 62.5, FADE = 0.5;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const scenes = [...document.querySelectorAll('.scene')];
+
+// ---- static SVG builders ----
+const NS = 'http://www.w3.org/2000/svg';
+function svg(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; }
+
+const lan = document.getElementById('lanterns');
+const lanterns = [];
+for (let i = 0; i < 7; i++) {
+  const g = svg('g', { transform: `translate(${70 + i * 126} 130)` }, lan);
+  svg('line', { x1: 0, y1: -120, x2: 0, y2: -62, stroke: '#6b5a39', 'stroke-width': 3 }, g);
+  const glow = svg('circle', { r: 70, fill: 'url(#lg)', opacity: 0 }, g);
+  svg('path', { d: 'M-26 -60 h52 l10 18 v62 l-10 18 h-52 l-10 -18 v-62z', fill: '#1a1710', stroke: '#c9a45e', 'stroke-width': 4 }, g);
+  const flame = svg('ellipse', { cx: 0, cy: 8, rx: 12, ry: 22, fill: '#ffd88a', opacity: 0 }, g);
+  lanterns.push({ glow, flame });
+}
+const defs = svg('defs', {}, lan);
+const rg = svg('radialGradient', { id: 'lg' }, defs);
+svg('stop', { offset: '0', 'stop-color': '#ffcf70', 'stop-opacity': .55 }, rg);
+svg('stop', { offset: '1', 'stop-color': '#ffcf70', 'stop-opacity': 0 }, rg);
+
+const DROP = 'M0 -120 C 40 -60 80 -10 80 40 A 80 80 0 0 1 -80 40 C -80 -10 -40 -60 0 -120z';
+const FLAME = 'M0 -130 C 30 -80 90 -40 70 40 C 60 90 20 110 0 110 C -20 110 -60 90 -70 40 C -85 -20 -40 -40 -20 -90 C -10 -60 0 -50 10 -40 C 15 -70 5 -100 0 -130z';
+const wfL = document.getElementById('wfL'), wfR = document.getElementById('wfR');
+function wfPair(g, outer, inner, outerColor, innerColor) {
+  const o = svg('path', { d: outer, fill: outerColor }, g);
+  const i = svg('path', { d: inner, fill: innerColor, transform: 'scale(0)' }, g);
+  return { o, i };
+}
+const L = wfPair(wfL, FLAME, DROP, '#ff7a3c', '#6cc3ff');   // looks like fire -> cool water
+const R = wfPair(wfR, DROP, FLAME, '#6cc3ff', '#ff7a3c');   // looks like water -> burning fire
+const wfLabels = [svg('text', { x: 215, y: 400, 'text-anchor': 'middle', fill: '#a9a291', 'font-size': 34, 'font-family': 'Sans' }, document.getElementById('wf')),
+                  svg('text', { x: 645, y: 400, 'text-anchor': 'middle', fill: '#a9a291', 'font-size': 34, 'font-family': 'Sans' }, document.getElementById('wf'))];
+
+const cities = document.getElementById('cities');
+const cityRings = [];
+[['มักกะฮ์', 240], ['มะดีนะฮ์', 620]].forEach(([name, x]) => {
+  const rings = [0, 1, 2].map(k => svg('circle', { cx: x, cy: 150, r: 60 + k * 30, fill: 'none', stroke: '#e6c27a', 'stroke-width': 3, opacity: 0 }, cities));
+  svg('circle', { cx: x, cy: 150, r: 26, fill: '#e6c27a' }, cities);
+  svg('text', { x, y: 330, 'text-anchor': 'middle', fill: '#e6c27a', 'font-size': 40, 'font-weight': 700, 'font-family': 'Sans' }, cities).textContent = name;
+  cityRings.push(rings);
+});
+
+const gate = document.getElementById('gate');
+const gdefs = svg('defs', {}, gate);
+const gg = svg('radialGradient', { id: 'gg', cy: '0.7' }, gdefs);
+svg('stop', { offset: '0', 'stop-color': '#fff1c9', 'stop-opacity': 1 }, gg);
+svg('stop', { offset: '1', 'stop-color': '#e6c27a', 'stop-opacity': 0 }, gg);
+const gateLight = svg('rect', { x: 230, y: 160, width: 240, height: 380, fill: 'url(#gg)', opacity: 0 }, gate);
+svg('path', { d: 'M60 540 V200 H140 V120 H560 V200 H640 V540 H470 V300 A120 120 0 0 0 230 300 V540z', fill: '#14120d', stroke: '#c9a45e', 'stroke-width': 4 }, gate);
+for (let i = 0; i < 6; i++) svg('rect', { x: 150 + i * 72, y: 92, width: 40, height: 28, fill: '#14120d', stroke: '#c9a45e', 'stroke-width': 3 }, gate);
+
+const book = document.getElementById('book');
+const bdefs = svg('defs', {}, book);
+const bg2 = svg('radialGradient', { id: 'bg2' }, bdefs);
+svg('stop', { offset: '0', 'stop-color': '#ffe3a0', 'stop-opacity': .7 }, bg2);
+svg('stop', { offset: '1', 'stop-color': '#ffe3a0', 'stop-opacity': 0 }, bg2);
+const bookGlow = svg('ellipse', { cx: 260, cy: 120, rx: 260, ry: 130, fill: 'url(#bg2)', opacity: 0 }, book);
+svg('path', { d: 'M260 220 C 200 190 110 185 40 200 V60 C 110 45 200 50 260 80z', fill: '#1d1a12', stroke: '#e6c27a', 'stroke-width': 4 }, book);
+svg('path', { d: 'M260 220 C 320 190 410 185 480 200 V60 C 410 45 320 50 260 80z', fill: '#1d1a12', stroke: '#e6c27a', 'stroke-width': 4 }, book);
+for (let k = 0; k < 4; k++) {
+  svg('line', { x1: 70, y1: 95 + k * 25, x2: 230, y2: 108 + k * 22, stroke: '#6b5a39', 'stroke-width': 3 }, book);
+  svg('line', { x1: 290, y1: 108 + k * 22, x2: 450, y2: 95 + k * 25, stroke: '#6b5a39', 'stroke-width': 3 }, book);
+}
+
+// ---- background: stars + dunes ----
+const ctx = document.getElementById('bg').getContext('2d');
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const stars = Array.from({ length: 220 }, () => ({ x: rnd() * 1080, y: rnd() * 1400, r: rnd() * 2.2 + .4, p: rnd() * 6.28, s: rnd() * 1.5 + .5 }));
+function drawBg(t) {
+  const g = ctx.createLinearGradient(0, 0, 0, 1920);
+  g.addColorStop(0, '#04050b'); g.addColorStop(.6, '#0c0e1d'); g.addColorStop(1, '#1a140c');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920);
+  for (const s of stars) {
+    ctx.globalAlpha = .35 + .65 * (.5 + .5 * Math.sin(t * s.s + s.p));
+    ctx.fillStyle = '#fff6df'; ctx.beginPath(); ctx.arc((s.x - t * 4 * s.s + 1080) % 1080, s.y, s.r, 0, 6.29); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  const dune = (base, amp, phase, color) => {
+    ctx.fillStyle = color; ctx.beginPath(); ctx.moveTo(0, 1920);
+    for (let x = 0; x <= 1080; x += 20) ctx.lineTo(x, base + Math.sin(x / 260 + phase + t * .03) * amp + Math.sin(x / 90 + phase) * amp * .25);
+    ctx.lineTo(1080, 1920); ctx.fill();
+  };
+  dune(1700, 40, 0, '#120f0a'); dune(1790, 30, 2, '#0a0806');
+}
+
+// ---- frame ----
+function setFrame(t) {
+  drawBg(t);
+  for (const sc of scenes) {
+    const st = +sc.dataset.start, du = +sc.dataset.dur, lt = t - st;
+    const vis = lt < 0 || lt > du ? 0 : Math.min(clamp(lt / FADE), clamp((du - lt) / FADE));
+    sc.style.opacity = st === 0 && lt < FADE ? clamp(lt / .3) : vis;
+    sc.style.display = vis > 0 || (st === 0 && lt >= 0 && lt < du) ? 'flex' : 'none';
+    if (sc.style.display === 'none') continue;
+    sc.querySelectorAll('.el, .kfr span').forEach(e => {
+      const k = ease((lt - +e.dataset.in) / .7);
+      e.style.opacity = k;
+      e.style.transform = e.parentElement.classList.contains('kfr') ? `scale(${1.4 - .4 * k})` : `translateY(${(1 - k) * 40}px)`;
+    });
+    sc.querySelectorAll('.fill').forEach(e => { e.style.width = (+e.dataset.w * ease((lt - +e.dataset.in) / 1.2)) + '%'; });
+  }
+  // scene-specific motion
+  const l2 = t - 6;
+  lanterns.forEach((L2, i) => { const k = ease((l2 - 0.4 - i * 0.25) / .5); L2.glow.setAttribute('opacity', k * (.8 + .2 * Math.sin(t * 6 + i))); L2.flame.setAttribute('opacity', k); });
+  const l5 = t - 25, rev = ease((l5 - 1.0) / 1.0);
+  [L, R].forEach(p => { p.o.setAttribute('opacity', 1 - rev * .75); p.i.setAttribute('transform', `scale(${rev * .78})`); });
+  wfLabels[0].textContent = rev < .5 ? 'ที่เห็นว่าเป็นไฟ' : 'คือน้ำเย็น';
+  wfLabels[1].textContent = rev < .5 ? 'ที่เห็นว่าเป็นน้ำ' : 'คือไฟที่แผดเผา';
+  const l7 = t - 39;
+  cityRings.forEach(rs => rs.forEach((r, k) => r.setAttribute('opacity', ease((l7 - .6 - k * .3) / .5) * (.35 + .25 * Math.sin(t * 3 - k)))));
+  gateLight.setAttribute('opacity', ease((t - 44 - 0.6) / 2));
+  bookGlow.setAttribute('opacity', ease((t - 50 - 0.4) / 1.5) * (.85 + .15 * Math.sin(t * 2)));
+}
+window.setFrame = setFrame;
+window.TOTAL = TOTAL;
+const q = new URLSearchParams(location.search);
+if (q.has('t')) setFrame(+q.get('t'));
+else if (!q.has('render')) { const t0 = performance.now(); (function loop() { setFrame(((performance.now() - t0) / 1000) % TOTAL); requestAnimationFrame(loop); })(); }
+</script>
+</body>
+</html>
