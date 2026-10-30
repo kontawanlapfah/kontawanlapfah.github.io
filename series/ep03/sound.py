@@ -37,7 +37,7 @@ m.bed(46.5, 55.7, m.room, .05); m.bed(46.5, 55.7, m.wind, .04)
 for i in range(7):
     m.place(56.3 + i * .2, m.hp(m.noise(.25), .4) * m.env_exp(.25, .05), .035)
 m.bed(55.5, 63.7, m.room, .05)
-m.place(61.0, m.thud(220, .12, 35), .08)                  # crumbs on the plate
+m.place(60.2, m.thud(220, .12, 35), .06)                  # a fingertip on the empty plate
 # 8. fever: quiet room, Salma's hand
 m.bed(63.5, 72.7, m.room, .05)
 m.place(64.0, m.rustle(.8), .14)
