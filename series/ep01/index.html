@@ -33,6 +33,8 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
 .nw { white-space: nowrap; }
 .disc { white-space: nowrap; font-size: 34px; line-height: 1.65; color: var(--ink); }
 .refs { margin-top: 44px; font-size: 32px; color: var(--gold); border: 2px solid rgba(233,196,126,.5); border-radius: 40px; padding: 12px 34px; }
+.logoimg { width: 640px; height: 640px; border-radius: 48px; box-shadow: 0 24px 70px rgba(0,0,0,.7); }
+.follow { margin-top: 60px; font-size: 62px; font-weight: 700; color: var(--gold); }
 .logo { margin-top: 60px; font-family: "Serif"; font-size: 54px; color: var(--gold); }
 </style>
 </head>
@@ -68,12 +70,17 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
     <div class="logo">สี่สิบวันของอาดัม</div>
   </div>
 
+  <div class="overlay" id="outro">
+    <img class="logoimg" src="../shared/logo.png" alt="ก่อนตะวันลับฟ้า">
+    <div class="follow">กดติดตามและแชร์ต่อ</div>
+  </div>
+
   <div id="caps"></div>
 </div>
 
 <script>
 // ---------- timeline (seconds) ----------
-const TOTAL = 103;
+const TOTAL = 107.5;
 const SCENES = [            // id, start, end
   ['sA', 0, 9], ['sB', 9, 17], ['sC', 17, 29], ['sD', 29, 41.5], ['sE', 41.5, 49],
   ['sB', 49, 53], ['sF', 53, 58], ['sG', 58, 79],
@@ -103,8 +110,8 @@ const CAPS = [
   [83, 87.5, 'big', 'ผมควรรับขนมปังก้อนนั้นไว้<br>หรือควรปิดประตูใส่เพื่อนที่รักที่สุด?'],
   [87.5, 91, 'big', 'แล้ว “เขา” ที่ฮาริสพูดถึง…<br>คือใครกันแน่?'],
 ];
-const OVERLAYS = [['title', 5.5, 9.4], ['cta', 91.3, 96.5], ['disc', 96.5, 103]];
-const KEYS = [[1, 1], [7, 2], [11, 3], [23, 4], [36, 5], [47, 6], [51, 7], [56, 8], [64, 9], [76, 10], [80, 11], [82, 12], [86, 13], [93, 14], [100, 15]];
+const OVERLAYS = [['title', 5.5, 9.4], ['cta', 91.3, 96.5], ['disc', 96.5, 103], ['outro', 103, 107.5]];
+const KEYS = [[1, 1], [7, 2], [11, 3], [23, 4], [36, 5], [47, 6], [51, 7], [56, 8], [64, 9], [76, 10], [80, 11], [82, 12], [86, 13], [93, 14], [100, 15], [105.5, 16]];
 
 // ---------- helpers ----------
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -124,18 +131,30 @@ const salma = (x, y) => `
     <ellipse cx="0" cy="-345" rx="44" ry="52" fill="#c99a7b"/>
     <path d="M-50 -350 C-52 -410 52 -410 50 -350 C46 -395 -46 -395 -50 -350Z" fill="#56707a"/>
   </g>`;
-const hawaHeld = (x, y) => `
-  <g transform="translate(${x} ${y})" id="hawa">
-    <path d="M-60 0 C-66 -70 -50 -120 0 -126 C50 -120 66 -70 60 0Z" fill="#a8583f"/>
-    <circle cx="0" cy="-160" r="40" fill="#c99a7b"/>
-    <path d="M-42 -160 C-46 -214 46 -214 42 -160 C30 -190 -30 -190 -42 -160Z" fill="#2a1a12"/>
+// Hawa, five years old: stands about as tall as her seated mother, hair past the shoulders.
+// Origin is between her feet; legs and arms are separate groups so she can walk.
+const hawaStand = () => `
+  <g id="hawaW">
+    <path d="M-50 -272 C-64 -210 -62 -165 -50 -140 L50 -140 C62 -165 64 -210 50 -272Z" fill="#2a1a12"/>
+    <g id="hLegL"><rect x="-26" y="-122" width="22" height="114" rx="10" fill="#c99a7b"/><ellipse cx="-17" cy="-6" rx="19" ry="9" fill="#5a2f22"/></g>
+    <g id="hLegR"><rect x="4" y="-122" width="22" height="114" rx="10" fill="#c99a7b"/><ellipse cx="17" cy="-6" rx="19" ry="9" fill="#5a2f22"/></g>
+    <g id="hArmL"><rect x="-50" y="-228" width="18" height="98" rx="9" fill="#c99a7b"/></g>
+    <g id="hArmR"><rect x="32" y="-228" width="18" height="98" rx="9" fill="#c99a7b"/></g>
+    <path d="M-34 -234 C-42 -190 -62 -140 -68 -102 L68 -102 C62 -140 42 -190 34 -234Z" fill="#a8583f"/>
+    <path d="M-34 -234 L-50 -205 L-32 -200Z M34 -234 L50 -205 L32 -200Z" fill="#a8583f"/>
+    <rect x="-9" y="-252" width="18" height="22" fill="#c99a7b"/>
+    <circle cx="0" cy="-286" r="38" fill="#c99a7b"/>
+    <path d="M-42 -280 C-52 -342 52 -342 42 -280 C36 -312 -36 -312 -42 -280Z" fill="#2a1a12"/>
   </g>`;
 const hawaAsleep = (x, y) => `
   <g transform="translate(${x} ${y})" id="hawa2">
-    <path d="M-10 -40 C40 -66 170 -60 200 -30 C210 -6 170 10 120 10 L0 8 C-20 0 -24 -26 -10 -40Z" fill="#a8583f"/>
-    <circle cx="-44" cy="-36" r="38" fill="#c99a7b"/>
-    <path d="M-80 -30 C-96 -80 -20 -96 -8 -54 C-30 -70 -60 -66 -80 -30Z" fill="#2a1a12"/>
-    <path d="M-60 -34 q8 6 16 0" stroke="#5a3a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M-60 -50 C-120 -40 -150 10 -120 50 C-90 70 -50 40 -30 0Z" fill="#2a1a12"/>
+    <rect x="215" y="-30" width="125" height="20" rx="10" fill="#c99a7b"/><rect x="215" y="-10" width="118" height="20" rx="10" fill="#c99a7b"/>
+    <ellipse cx="342" cy="-20" rx="9" ry="13" fill="#5a2f22"/><ellipse cx="335" cy="0" rx="9" ry="13" fill="#5a2f22"/>
+    <path d="M0 -44 C60 -60 210 -54 232 -28 C242 -2 214 14 176 14 L10 12 C-14 4 -18 -30 0 -44Z" fill="#a8583f"/>
+    <circle cx="-44" cy="-32" r="38" fill="#c99a7b"/>
+    <path d="M-82 -26 C-98 -82 -16 -100 -4 -52 C-28 -70 -58 -66 -82 -26Z" fill="#2a1a12"/>
+    <path d="M-62 -30 q8 6 16 0" stroke="#5a3a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
   </g>`;
 const bread = (x, y, s = 1, fresh = true) => `
   <g transform="translate(${x} ${y}) scale(${s})">
@@ -191,15 +210,16 @@ S('sB', `
   <circle cx="760" cy="350" r="3" fill="#cfd8ff"/><circle cx="880" cy="400" r="2" fill="#cfd8ff"/><circle cx="740" cy="520" r="2" fill="#cfd8ff"/>
   <rect id="glowRect" width="1080" height="1920" fill="url(#glowB)"/>
   <rect x="80" y="1020" width="560" height="70" rx="20" fill="#5a2f22"/>
-  <g id="heldPair">${salma(330, 1060)}${hawaHeld(330, 1030)}
-    <path d="M200 -40 C230 20 330 40 440 -10" transform="translate(0 1000)" stroke="#3d4f57" stroke-width="44" fill="none" stroke-linecap="round"/></g>
-  <g id="asleepPair" opacity="0">${salma(300, 1060)}<rect x="160" y="950" width="300" height="110" rx="40" fill="#3d4f57"/>${hawaAsleep(300, 960)}</g>
+  <g id="heldPair">${salma(330, 1060)}</g>
+  <g id="asleepPair" opacity="0">${salma(260, 1060)}<rect x="120" y="950" width="300" height="110" rx="40" fill="#3d4f57"/>${hawaAsleep(250, 962)}</g>
   <rect x="610" y="880" width="380" height="26" rx="6" fill="#5c3a22"/>
   <rect x="640" y="906" width="20" height="180" fill="#3e2716"/><rect x="940" y="906" width="20" height="180" fill="#3e2716"/>
   <ellipse cx="840" cy="874" rx="120" ry="16" fill="#d9cdb8"/>
   ${bread(840, 852, .55, false)}
   <rect x="680" y="790" width="34" height="92" rx="4" fill="#efe3c8"/>
-  <ellipse id="flameB" cx="697" cy="770" rx="11" ry="24" fill="#ffd27a"/>`);
+  <ellipse id="flameB" cx="697" cy="770" rx="11" ry="24" fill="#ffd27a"/>
+  <g id="awakeHawa">${hawaStand()}</g>
+  <path id="hugArm" d="M392 812 C440 850 478 905 512 892" stroke="#3d4f57" stroke-width="34" fill="none" stroke-linecap="round" opacity="0"/>`);
 
 // ---------- scene C: phone clip of a blurred crowd ----------
 seed = 5;
@@ -318,6 +338,7 @@ document.querySelectorAll('#stH0,#stH1,#stH2,#stH3').forEach(e => e.dataset.y = 
 S('sH2', `<defs><radialGradient id="warmH2"><stop offset="0" stop-color="#ffbf70" stop-opacity=".35"/><stop offset="1" stop-color="#ffbf70" stop-opacity="0"/></radialGradient></defs>
   <rect width="1080" height="1920" fill="#120c08"/><circle cx="540" cy="760" r="560" fill="url(#warmH2)"/>
   <g transform="rotate(-12 540 760)">
+    <path d="M300 640 C230 860 250 1060 340 1140 L740 1140 C830 1060 850 860 780 640Z" fill="#2a1a12"/>
     <circle cx="540" cy="760" r="250" fill="#c99a7b"/>
     <path d="M290 760 C270 500 520 420 690 470 C800 520 820 640 790 700 C740 600 560 560 420 620 C360 660 320 700 300 800Z" fill="#2a1a12"/>
     <path d="M440 790 q30 22 60 0 M580 790 q30 22 60 0" stroke="#5a3a2a" stroke-width="7" fill="none" stroke-linecap="round"/>
@@ -370,6 +391,14 @@ function setFrame(t) {
   attr('glowRect', 'opacity', .85 + Math.sin(t * 9) * .08);
   attr('heldPair', 'opacity', t < 49 ? 1 : 0); attr('asleepPair', 'opacity', t < 49 ? 0 : 1);
   attr('heldPair', 'transform', `translate(0 ${Math.sin(t * 1.6) * 3})`);
+  attr('awakeHawa', 'opacity', t < 49 ? 1 : 0);
+  const wk = clamp((t - 9.3) / 3), walking = wk > 0 && wk < 1, ph = (t - 9.3) * 2 * Math.PI * 1.3;
+  const sw = walking ? Math.sin(ph) * 20 : 0, bob = walking ? -Math.abs(Math.sin(ph)) * 7 : 0;
+  const lean = -5 * ease((t - 12.4) / .6);
+  attr('hawaW', 'transform', `translate(${720 - 252 * ease(wk)} ${1082 + bob}) rotate(${lean})`);
+  attr('hLegL', 'transform', `rotate(${sw} -15 -122)`); attr('hLegR', 'transform', `rotate(${-sw} 15 -122)`);
+  attr('hArmL', 'transform', `rotate(${-sw * .8} -41 -226)`); attr('hArmR', 'transform', `rotate(${sw * .8 + 14 * ease((t - 12.4) / .6)} 41 -226)`);
+  attr('hugArm', 'opacity', t < 49 ? ease((t - 12.4) / .6) : 0);
   $('sB').querySelector('svg').style.transform = `scale(${1.02 + ((t > 49 ? t - 49 : t - 9) * .005)})`;
 
   // C: progress bar, shared clips spreading around the phone

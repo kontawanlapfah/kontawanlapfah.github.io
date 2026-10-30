@@ -7,7 +7,7 @@ Usage: python3 sound.py out.wav [voiceover.wav]
 import sys, wave
 import numpy as np
 
-SR, TOTAL = 44100, 103.0
+SR, TOTAL = 44100, 107.5
 rng = np.random.default_rng(7)
 n = int(SR * TOTAL)
 L = np.zeros(n); R = np.zeros(n)
@@ -68,7 +68,7 @@ bed(41.5, 49, room, .05); bed(41.5, 49, crackle, .18)
 bed(49, 53, room, .05); bed(49, 53, crackle, .25)
 bed(53, 54.6, room, .05, .3)              # near-silence before the knocks
 bed(58, 79, night, .10, .8); bed(58, 79, wind, .06, .8)
-bed(91.5, 103, room, .03, 1.5)
+bed(91.5, 107.5, room, .03, 1.5)
 
 # --- spot effects cued to the picture ----------------------------------------
 def tone(f0, f1, sec, decay):
@@ -79,6 +79,10 @@ def thud(f, sec, decay):
     return np.sin(2 * np.pi * f * k) * np.exp(-k * decay)
 def whoosh(sec, a=.3):
     k = int(sec * SR); return hp(lp(noise(sec), a), .02) * np.hanning(k)
+
+# B: small footsteps as Hawa walks to her mother (9.3-12.3s)
+for i in range(8):
+    place(9.5 + i * .385, lp(noise(.06), .3) * np.exp(-np.arange(int(.06 * SR)) / 300), .18, pan=.3 - i * .06)
 
 # A: the single water drop and its splash on dry ground (drop lands 2.2s)
 place(2.2, tone(1500, 600, .3, 20), .30)
@@ -119,6 +123,9 @@ while s < 90.8:
     place(s, thud(55, .25, 18), .55); place(s + .18, thud(48, .25, 22), .35)
     beat = max(.55, beat * .96); s += beat
 place(79, whoosh(1.0, .04), .25)
+
+# page logo end card: soft air hit as it lands
+place(102.9, whoosh(.8, .05), .25); place(103.1, thud(52, 1.0, 5), .25)
 
 # --- mix ---------------------------------------------------------------------
 mix = np.stack([L, R], 1)
