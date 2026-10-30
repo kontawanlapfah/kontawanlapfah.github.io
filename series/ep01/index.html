@@ -34,11 +34,12 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
 .disc { white-space: nowrap; font-size: 34px; line-height: 1.65; color: var(--ink); }
 .refs { margin-top: 44px; font-size: 32px; color: var(--gold); border: 2px solid rgba(233,196,126,.5); border-radius: 40px; padding: 12px 34px; }
 #outro { position: absolute; inset: 0; opacity: 0; }
-#outroSvg { position: absolute; inset: 0; }
-#btns { position: absolute; left: 0; right: 0; top: 1150px; display: flex; justify-content: center; align-items: center; gap: 22px; }
-.obtn { position: relative; overflow: hidden; display: flex; align-items: center; gap: 14px; padding: 18px 40px; border-radius: 60px; font-size: 52px; font-weight: 700; color: #2a1d3a; background: linear-gradient(180deg, #ffe2a6, #e9a45e); box-shadow: 0 10px 30px rgba(0,0,0,.45); opacity: 0; }
-.oand { font-size: 46px; color: var(--ink); opacity: 0; }
-.rip { position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; margin: -20px; border-radius: 50%; background: rgba(255,255,255,.7); opacity: 0; }
+#outroDim { position: absolute; inset: 0; background: rgba(8,6,12,.62); }
+#popup { position: absolute; left: 0; right: 0; top: 470px; display: flex; flex-direction: column; align-items: center; }
+#logoWrap { position: relative; width: 470px; height: 470px; }
+#logoRing { position: absolute; inset: 0; border-radius: 50%; border: 8px solid rgba(255,236,200,.55); }
+#logoImg { position: absolute; inset: 38px; width: 394px; height: 394px; border-radius: 50%; object-fit: cover; box-shadow: 0 14px 40px rgba(0,0,0,.45); }
+#subPill { margin-top: 44px; padding: 16px 46px; border-radius: 60px; background: #3b2a4f; color: #ffe8bf; font-family: "Serif", serif; font-size: 50px; font-weight: 700; letter-spacing: .5px; box-shadow: 0 10px 28px rgba(0,0,0,.4); }
 .logo { margin-top: 60px; font-family: "Serif"; font-size: 54px; color: var(--gold); }
 </style>
 </head>
@@ -75,36 +76,10 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
   </div>
 
   <div id="outro">
-    <svg id="outroSvg" viewBox="0 0 1080 1920" width="1080" height="1920">
-      <defs>
-        <radialGradient id="obg" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#5a3f6e"/><stop offset=".45" stop-color="#2a1d3a"/><stop offset="1" stop-color="#0b0812"/></radialGradient>
-        <linearGradient id="oring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe2a6"/><stop offset=".5" stop-color="#e9a45e"/><stop offset="1" stop-color="#b86a3e"/></linearGradient>
-        <linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-        <clipPath id="logoClip"><circle cx="540" cy="720" r="300"/></clipPath>
-        <radialGradient id="halo"><stop offset="0" stop-color="#ffcf8a" stop-opacity=".5"/><stop offset="1" stop-color="#ffcf8a" stop-opacity="0"/></radialGradient>
-      </defs>
-      <rect width="1080" height="1920" fill="url(#obg)"/>
-      <path d="M0 1240 C220 1180 420 1230 640 1200 C820 1176 960 1120 1080 1130 L1080 1920 L0 1920Z" fill="#b8704f" opacity=".55"/>
-      <path d="M0 1330 C260 1290 520 1350 760 1310 C900 1290 1000 1270 1080 1280 L1080 1920 L0 1920Z" fill="#d9a465" opacity=".45"/>
-      <g id="sparks"></g>
-      <circle id="halo" cx="540" cy="720" r="520" fill="url(#halo)"/>
-      <g id="pulses"><circle cx="540" cy="720" r="300" fill="none" stroke="#ffd79a" stroke-width="4"/><circle cx="540" cy="720" r="300" fill="none" stroke="#ffd79a" stroke-width="4"/><circle cx="540" cy="720" r="300" fill="none" stroke="#ffd79a" stroke-width="4"/></g>
-      <g id="ringOuter"><circle cx="540" cy="720" r="372" fill="none" stroke="url(#oring)" stroke-width="6" stroke-dasharray="40 18" pathLength="1000"/></g>
-      <g id="ringInner"><circle cx="540" cy="720" r="334" fill="none" stroke="#ffe2a6" stroke-width="3" opacity=".8"/>
-        ${Array.from({ length: 12 }, (_, i) => `<circle cx="${540 + Math.cos(i * Math.PI / 6) * 334}" cy="${720 + Math.sin(i * Math.PI / 6) * 334}" r="${i % 3 ? 5 : 9}" fill="#ffe2a6"/>`).join('')}</g>
-      <g id="logoG">
-        <circle cx="540" cy="720" r="312" fill="#0b0812"/>
-        <g clip-path="url(#logoClip)">
-          <image href="../shared/logo.png" x="240" y="420" width="600" height="600"/>
-          <rect id="shine" x="0" y="380" width="200" height="700" fill="url(#shineG)" transform="rotate(20 540 720)"/>
-        </g>
-        <circle cx="540" cy="720" r="304" fill="none" stroke="#ffe2a6" stroke-width="8"/>
-      </g>
-    </svg>
-    <div id="btns">
-      <div class="obtn" id="bFollow"><svg viewBox="0 0 24 24" width="46" height="46"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8a2.5 2.5 0 0 0 2.4 2Zm7-6V11a7 7 0 0 0-5.5-6.8V3.5a1.5 1.5 0 0 0-3 0v.7A7 7 0 0 0 5 11v5l-2 2v1h18v-1Z" fill="currentColor"/></svg>กดติดตาม<span class="rip"></span></div>
-      <div class="oand" id="bAnd">และ</div>
-      <div class="obtn" id="bShare"><svg viewBox="0 0 24 24" width="46" height="46"><path d="M14 5l7 7-7 7v-4.2c-5 0-8.4 1.6-11 5.2 1-5 4-10 11-11Z" fill="currentColor"/></svg>แชร์ต่อ<span class="rip"></span></div>
+    <div id="outroDim"></div>
+    <div id="popup">
+      <div id="logoWrap"><div id="logoRing"></div><img id="logoImg" src="../shared/logo.png" alt="ก่อนตะวันลับฟ้า"></div>
+      <div id="subPill">Subscribe • Follow</div>
     </div>
   </div>
 
@@ -117,7 +92,7 @@ const TOTAL = 107.5;
 const SCENES = [            // id, start, end
   ['sA', 0, 9], ['sB', 9, 17], ['sC', 17, 29], ['sD', 29, 41.5], ['sE', 41.5, 49],
   ['sB', 49, 53], ['sF', 53, 58], ['sG', 58, 79],
-  ['sH1', 79, 81.2], ['sH2', 81.2, 83], ['sH3', 83, 91],
+  ['sH1', 79, 81.2], ['sH2', 81.2, 83], ['sH3', 83, 91], ['sB', 102.6, 108],
 ];
 // Narration: verbatim from the series document, EP1 (Hook / script / cliffhanger).
 const CAPS = [
@@ -390,45 +365,16 @@ S('sH3', `<rect width="1080" height="1920" fill="#000"/><rect y="520" width="108
   <rect y="520" width="1080" height="440" fill="#000" opacity=".25"/>${eye(300, 'L')}${eye(780, 'R')}`);
 
 // ---------- captions & overlays ----------
-seed = 23;
-$('sparks').innerHTML = Array.from({ length: 22 }, (_, i) => {
-  const a = rnd() * Math.PI * 2, r = 380 + rnd() * 260, s = 6 + rnd() * 12;
-  return `<path class="spk" data-p="${rnd() * 6.3}" data-s="${1.5 + rnd() * 2}" data-x="${540 + Math.cos(a) * r}" data-y="${720 + Math.sin(a) * r * 1.05}" d="M0 ${-s} Q0 0 ${s} 0 Q0 0 0 ${s} Q0 0 ${-s} 0 Q0 0 0 ${-s}Z" fill="#ffe2a6"/>`;
-}).join('');
-const back = x => { x = clamp(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };   // overshoot
+const back = x => { x = clamp(x); const c = 1.2; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };   // light overshoot
 function updOutro(t) {
   const u = t - 103;
-  $('outro').style.opacity = clamp(u / .35);
+  $('outro').style.opacity = clamp(u / .4);
   if (u < 0) return;
-  const k = back(u / .9);
-  attr('logoG', 'transform', `translate(540 720) rotate(${-120 * (1 - ease(u / .9))}) scale(${k}) translate(-540 -720)`);
-  attr('halo', 'opacity', .6 + .25 * Math.sin(u * 3));
-  attr('ringOuter', 'transform', `rotate(${u * 40} 540 720)`);
-  attr('ringInner', 'transform', `rotate(${-u * 25} 540 720) translate(540 720) scale(${back((u - .2) / .8)}) translate(-540 -720)`);
-  const oc = document.querySelector('#ringOuter circle');
-  oc.setAttribute('stroke-dashoffset', 1000 * (1 - ease((u - .2) / 1)));
-  oc.setAttribute('stroke-dasharray', u < 1.2 ? `${1000 * ease((u - .2) / 1)} 1000` : '40 18');
-  document.querySelectorAll('#pulses circle').forEach((c, i) => {
-    const p = ((u - .8 - i * .37) % 1.1 + 1.1) % 1.1 / 1.1, on = u > .8 + i * .37;
-    c.setAttribute('r', 300 + 240 * p); c.setAttribute('opacity', on ? (1 - p) * .7 : 0);
-  });
-  attr('shine', 'x', -300 + 1400 * ease((u - 1.1) / .8));
-  document.querySelectorAll('#sparks .spk').forEach(sp => {
-    const tw = Math.max(0, Math.sin(u * +sp.dataset.s * 2 + +sp.dataset.p));
-    sp.setAttribute('opacity', tw * clamp((u - .5) / .5));
-    sp.setAttribute('transform', `translate(${sp.dataset.x} ${sp.dataset.y}) scale(${.4 + tw}) rotate(${u * 30})`);
-  });
-  [['bFollow', 1.5], ['bAnd', 1.75], ['bShare', 1.95]].forEach(([id, s]) => {
-    const e = $(id), q = clamp((u - s) / .5);
-    e.style.opacity = q; e.style.transform = `translateY(${(1 - q) * 60}px) scale(${q ? back(q) : 0})`;
-  });
-  [['bFollow', 2.7], ['bShare', 3.3]].forEach(([id, s]) => {             // a tap on each button
-    const d = u - s, e = $(id), r = e.querySelector('.rip');
-    const press = d > 0 && d < .25 ? 1 - Math.abs(d - .125) / .125 * 1 : 0;
-    if (d > 0) e.style.transform = `scale(${1 - .08 * press})`;
-    r.style.opacity = d > 0 ? clamp(1 - d / .6) : 0; r.style.transform = `scale(${1 + 10 * clamp(d / .6)})`;
-    if (d > 0) e.style.filter = `brightness(${1 + .25 * clamp(1 - Math.abs(d - .3) / .5)})`;
-  });
+  const lg = $('logoWrap'), pill = $('subPill');
+  lg.style.opacity = clamp((u - .15) / .3); lg.style.transform = `scale(${.86 + .14 * back((u - .15) / .5)})`;
+  $('logoRing').style.opacity = clamp((u - .4) / .4);
+  const q = clamp((u - .7) / .4);
+  pill.style.opacity = q; pill.style.transform = `translateY(${(1 - ease(q)) * 22}px)`;
 }
 
 $('caps').innerHTML = CAPS.map(([a, b, cls, txt], i) => `<div class="cap ${cls}" id="cap${i}">${txt}</div>`).join('');
@@ -473,7 +419,7 @@ function setFrame(t) {
   attr('hLegL', 'transform', `rotate(${sw} -15 -122)`); attr('hLegR', 'transform', `rotate(${-sw} 15 -122)`);
   attr('hArmL', 'transform', `rotate(${-sw * .8} -41 -226)`); attr('hArmR', 'transform', `rotate(${sw * .8 + 14 * ease((t - 12.4) / .6)} 41 -226)`);
   attr('hugArm', 'opacity', t < 49 ? ease((t - 12.4) / .6) : 0);
-  $('sB').querySelector('svg').style.transform = `scale(${1.02 + ((t > 49 ? t - 49 : t - 9) * .005)})`;
+  $('sB').querySelector('svg').style.transform = `scale(${1.02 + ((t > 49 ? Math.min(t - 49, 4) : t - 9) * .005)})`;
 
   // C: progress bar, shared clips spreading around the phone
   attr('progC', 'width', 420 * clamp((t - 17) / 12));

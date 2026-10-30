@@ -124,13 +124,9 @@ while s < 90.8:
     beat = max(.55, beat * .96); s += beat
 place(79, whoosh(1.0, .04), .25)
 
-# page logo end card: logo spins in, shine, buttons pop, two taps
-place(102.8, whoosh(1.0, .06), .35); place(103.75, thud(60, 1.0, 6), .35)
-place(104.1, hp(noise(.7), .5) * np.hanning(int(.7 * SR)), .06)                 # shine sweep shimmer
-for s in (104.5, 104.75, 104.95):                                                 # buttons pop in
-    place(s, thud(320, .12, 40) + hp(noise(.12), .5) * np.exp(-np.arange(int(.12 * SR)) / 200) * .3, .16)
-for s in (105.7, 106.3):                                                          # taps
-    place(s, hp(noise(.04), .4) * np.exp(-np.arange(int(.04 * SR)) / 150), .3); place(s + .02, thud(500, .1, 45), .12)
+# page logo pop-up: one soft pop as it appears
+place(103.15, thud(260, .15, 30), .14); place(103.15, hp(noise(.08), .5) * np.exp(-np.arange(int(.08 * SR)) / 200), .035)
+place(103.7, thud(380, .1, 40), .07)
 
 # --- mix ---------------------------------------------------------------------
 mix = np.stack([L, R], 1)
