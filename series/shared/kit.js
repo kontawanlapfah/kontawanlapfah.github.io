@@ -168,6 +168,7 @@ KIT.episode = cfg => {
   const ids = [...new Set(cfg.scenes.map(s => s[0]))];
   stage.insertAdjacentHTML('afterbegin', ids.map(id => `<section class="scene" id="${id}"><svg viewBox="0 0 1080 1920"></svg></section>`).join('') + '<div id="shade"></div>');
   stage.insertAdjacentHTML('beforeend', `
+    <div id="titleDim"></div>
     <div class="overlay" id="title"><div class="t-series">สี่สิบวัน<br>ของอาดัม</div><div class="t-ep">ตอนที่ ${cfg.num}</div><div class="t-name">${cfg.name}</div><div class="t-latin">THE ERA OF DAJJAL</div></div>
     <div class="overlay" id="cta"><div class="cta">${cfg.cta}</div></div>
     <div class="overlay" id="disc"><div class="disc-h">คำเตือน</div>
@@ -178,6 +179,11 @@ KIT.episode = cfg => {
       ${(cfg.tags || []).map(([a, b, txt], i) => `<div class="tag" id="tag${i}"><span>${txt}</span></div>`).join('')}</div>
     <img id="mark" src="../shared/logo-mark.png" alt="ก่อนตะวันลับฟ้า">`);
   cfg.build();
+  // each source tag holds one height for its whole window: the tallest caption it sits over
+  (cfg.tags || []).forEach(([a, b], i) => {
+    const h = Math.max(70, ...cfg.caps.map(([ca, cb], j) => (ca < b && cb > a) ? $('cap' + j).offsetHeight : 0));
+    $('tag' + i).style.bottom = (h + 16) + 'px';
+  });
 
   const [t0, t1] = cfg.title, [c0, c1] = cfg.ctaWin, [d0, d1] = cfg.discWin, o0 = cfg.outroAt, END = cfg.total;
   function frame(t) {
@@ -192,19 +198,22 @@ KIT.episode = cfg => {
     }
     for (const id in vis) $(id).style.opacity = vis[id];
     $('shade').style.opacity = t < c0 - .3 ? 1 : 0;
-    let active = null;
+    // one motion for every caption: fade in with a short rise, fade out in place, never overlapping
     cfg.caps.forEach(([a, b], i) => {
-      const k = a === 0 ? (t < b ? clamp((b - t) / .3) : 0) : win(t, a, b, .3);
-      const c = $('cap' + i); c.style.opacity = k; c.style.transform = `translateY(${(1 - k) * 16}px)`;
-      if (k > .5) active = c;
+      const kin = a === 0 ? 1 : clamp((t - a) / .3), kout = clamp((b - t) / .22);
+      const c = $('cap' + i); c.style.opacity = Math.min(kin, kout); c.style.transform = `translateY(${(1 - ease(kin)) * 14}px)`;
     });
-    (cfg.tags || []).forEach(([a, b], i) => {
-      const g = $('tag' + i), k = win(t, a, b, .3);
-      g.style.opacity = k; g.style.bottom = ((active ? active.offsetHeight : 70) + 14) + 'px';
-    });
+    (cfg.tags || []).forEach(([a, b], i) => { $('tag' + i).style.opacity = Math.min(clamp((t - a) / .3), clamp((b - t) / .22)); });
+    // cards: lines come in one after another with the same rise, leave together without moving
     [['title', t0, t1], ['cta', c0, c1], ['disc', d0, d1]].forEach(([id, a, b]) => {
-      const k = win(t, a, b, .5); $(id).style.opacity = k; $(id).style.transform = `translateY(${(1 - k) * 24}px)`;
+      const box = $(id), out = clamp((b - t) / .4);
+      box.style.opacity = t > a - .1 && t < b ? 1 : 0;
+      [...box.children].forEach((el, j) => {
+        const kin = clamp((t - a - j * .14) / .45);
+        el.style.opacity = Math.min(kin, out); el.style.transform = `translateY(${(1 - ease(kin)) * 18}px)`;
+      });
     });
+    $('titleDim').style.opacity = .7 * Math.min(clamp((t - t0 + .2) / .5), clamp((t1 - t) / .4));
     const u = t - o0;                                                           // closing pop-up
     $('outro').style.opacity = clamp(u / .4);
     const lg = $('logoWrap'), pill = $('subPill');
