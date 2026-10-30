@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>EP02 ขนมปังจากค่ายของเขา</title>
+<link rel="stylesheet" href="../shared/kit.css">
+</head>
+<body>
+<div id="stage"></div>
+<script src="../shared/kit.js"></script>
+<script src="audio/warp.js" onerror="void 0"></script>
+<script>
+// Narration: verbatim from the series document, EP2 (Hook / script / cliffhanger).
+// One caption per line: align.py reads this list.
+const CAPS = [
+  [0, 5.6, '', 'กลิ่นขนมปังทำให้ลูกสาวผมตื่น…<br>และนั่นคือเสียงที่ทำให้การตัดสินใจครั้งนี้<br>ยากที่สุดในชีวิตผม'],
+  [9.6, 12.6, '', 'ผมไม่ได้รับขนมปังก้อนนั้น'],
+  [12.6, 15.6, '', 'ผมถามฮาริสว่า “เขาคือใคร?”'],
+  [15.6, 20.6, 'q', '<span class="n">ฮาริสหัวเราะเบา ๆ</span><br>“เขาคือคนที่ทุกคนรอคอยไง อาดัม<br>เขาเลี้ยงดูคนที่เชื่อเขา”'],
+  [20.6, 25, '', 'คำพูดนั้นทำให้ผมขนลุก<br>ผมนึกถึงข้อความเสียงของแม่<br>และสามอายะฮ์ที่ผมท่องได้'],
+  [25, 29, 'q', '“ถ้าขนมปังนี้มาจากเขา…<br>บ้านผมรับไม่ได้หรอก ฮาริส”'],
+  [29, 32.5, '', 'ตาของเพื่อนผมเปลี่ยนไปทันที<br>เขาวางขนมปังลงบนธรณีประตู'],
+  [32.5, 36.5, 'q', '“แกจะปล่อยให้ลูกอดตาย<br>เพราะความดื้อเหรอ?”'],
+  [36.5, 39.5, '', 'ผมปิดประตูอย่างช้า ๆ'],
+  [39.5, 44.5, '', 'ผ่านช่องประตู ผมเห็นเขายืนนิ่งอยู่นาน<br>ก่อนจะเดินหายไปในความมืด'],
+  [44.5, 48.5, 'q', '<span class="n">แล้วเสียงเล็ก ๆ ก็ดังขึ้นข้างหลังผม</span><br>“บาบา… หนูได้กลิ่นขนมปัง”'],
+  [48.5, 52, '', 'ผมกอดฮาวาไว้แน่น<br>และไม่กล้าตอบลูก'],
+  [52, 56.5, '', 'เช้าวันต่อมา ผมไปหาชัยค์ยะห์ยาที่มัสยิด<br>ท่านฟังผมเล่าจบ แล้วบอกว่า'],
+  [56.5, 62, 'q', '“ท่านนบี <span class="saw">ﷺ</span> สอนว่า<br>ใครได้ยินข่าวของดัจญาล<br>ให้อยู่ให้ห่างจากเขา'],
+  [62, 65.5, 'q', 'เพราะจะมีคนที่ไปหาเขา<br>โดยคิดว่าตัวเองศรัทธามั่นคง'],
+  [65.5, 69, 'q', 'แต่สุดท้ายกลับตามเขาไป<br>เพราะสิ่งคลุมเครือที่เขาทำให้เห็น”'],
+  [69, 72.5, '', 'แล้วท่านก็จับมือผม'],
+  [72.5, 78.5, 'q', '“ท่องสิบอายะฮ์ให้ครบนะ อาดัม<br>และอย่าลืมขอความคุ้มครอง<br>จากฟิตนะฮ์ของดัจญาล<br>ทุกครั้งก่อนให้สลามในละหมาด”'],
+  [78.5, 81.5, '', 'คืนนั้นผมท่องได้ห้าอายะฮ์'],
+  [81.5, 86, '', 'เช้าวันต่อมา ผมละหมาดศุบห์<br>แล้วนั่งท่องอัลกะฮ์ฟีต่อ'],
+  [86, 90, '', 'ผมเงยหน้าขึ้น<br>ดวงอาทิตย์อยู่เหนือหลังคาบ้านฝั่งตรงข้าม'],
+  [90, 95, '', 'ผมท่องต่ออีกนาน…<br>นาฬิกาข้อมือของผมเดินไปแล้วเก้าชั่วโมง'],
+  [95, 99, '', 'แต่ดวงอาทิตย์ยังอยู่ตรงที่เดิม<br>ไม่ขยับเลยแม้แต่นิดเดียว'],
+  [99, 102.5, 'big', 'เกิดอะไรขึ้นกับท้องฟ้า?'],
+  [102.5, 107, 'big', 'และถ้าดวงอาทิตย์ไม่ตกอีกเลย…<br>ผมจะรู้ได้อย่างไร<br>ว่าเมื่อไหร่ต้องละหมาด?'],
+];
+// Sources shown above the lines that carry a hadith (the document marks the shaykh's words as a paraphrase).
+const TAGS = [
+  [56.5, 69, 'ถ่ายทอดความหมายจากหะดีษ · สุนันอบีดาวูด 4319'],
+  [72.5, 78.5, 'เศาะฮีห์มุสลิม 809 · เศาะฮีห์มุสลิม 588'],
+];
+
+function build() {
+  // ---- 1a. bread close-up ----
+  KIT.S('sBread', `<defs><radialGradient id="bw"><stop offset="0" stop-color="#ffbf70" stop-opacity=".5"/><stop offset="1" stop-color="#ffbf70" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="#0d0907"/><circle cx="540" cy="760" r="520" fill="url(#bw)"/>
+    ${KIT.bread(540, 800, 2.6, true)}${KIT.steam('bs', 540, 640, 4)}`);
+
+  // ---- 1b. Hawa's eyes open in the dark ----
+  KIT.S('sEyes', `<defs><radialGradient id="ew" cx="15%" cy="40%" r="80%"><stop offset="0" stop-color="#ffbf70" stop-opacity=".22"/><stop offset="1" stop-color="#ffbf70" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="#060408"/><rect width="1080" height="1920" fill="url(#ew)"/>
+    <g transform="rotate(-6 540 760)" opacity=".9">
+      <path d="M300 640 C230 860 250 1060 340 1140 L740 1140 C830 1060 850 860 780 640Z" fill="#1a100b"/>
+      <circle cx="540" cy="760" r="250" fill="#7a5a48"/>
+      <path d="M290 760 C270 500 520 420 690 470 C800 520 820 640 790 700 C740 600 560 560 420 620 C360 660 320 700 300 800Z" fill="#1a100b"/>
+      <path id="eClosed" d="M440 790 q30 22 60 0 M580 790 q30 22 60 0" stroke="#3a2418" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <g id="eOpen" opacity="0">
+        <ellipse cx="470" cy="790" rx="34" ry="22" fill="#e9dccb"/><ellipse cx="610" cy="790" rx="34" ry="22" fill="#e9dccb"/>
+        <g id="eIris"><circle cx="470" cy="790" r="16" fill="#2a160c"/><circle cx="610" cy="790" r="16" fill="#2a160c"/>
+        <circle cx="476" cy="784" r="5" fill="#fff" opacity=".8"/><circle cx="616" cy="784" r="5" fill="#fff" opacity=".8"/></g>
+      </g>
+    </g>`);
+
+  // ---- 2-4. the doorway: lamp on Adam's side, dark on Harith's ----
+  KIT.S('sDoor', `<defs><linearGradient id="dn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070c18"/><stop offset="1" stop-color="#152236"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="#1a120c"/><rect y="1090" width="1080" height="830" fill="#0f0a07"/>
+    ${KIT.lantern('dl', 150, 520)}
+    <rect x="560" y="300" width="340" height="790" fill="url(#dn)"/>
+    <g id="dHar" transform="translate(730 1090) scale(.82)">${KIT.harith('dh')}</g>
+    <g id="dBreadG">${KIT.bread(0, 0, .48, true)}${KIT.steam('ds', 0, -24, 3)}</g>
+    <polygon id="dPanel" points="" fill="#5a3a22" stroke="#2c1b0f" stroke-width="12"/>
+    <rect x="548" y="288" width="364" height="812" fill="none" stroke="#2c1b0f" stroke-width="24"/>
+    <g id="dHawa">${KIT.hawa('dhw')}</g>
+    <g id="dAdam" transform="translate(330 1092)">${KIT.adam('da')}</g>
+    <g id="dKneel" transform="translate(300 1092)" opacity="0">${KIT.adamKneel('dk')}
+      <path d="M-30 -300 C-90 -280 -140 -250 -150 -200" stroke="#cdbb9a" stroke-width="34" fill="none" stroke-linecap="round"/></g>`);
+
+  // ---- 5. old mosque in the morning ----
+  seed = 4;
+  const birds = Array.from({ length: 6 }, (_, i) => `<path class="bird" data-i="${i}" d="M-14 0 Q-7 -8 0 0 Q7 -8 14 0" stroke="#3a3a48" stroke-width="3" fill="none"/>`).join('');
+  KIT.S('sMosque', `<defs><linearGradient id="ms" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fb3d1"/><stop offset=".6" stop-color="#f1d6a6"/><stop offset="1" stop-color="#f6c48a"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#ms)"/><circle cx="210" cy="820" r="70" fill="#fff1cf" opacity=".9"/>
+    <g fill="#c9b38f" stroke="#a48d68" stroke-width="4">
+      <rect x="150" y="700" width="640" height="420"/>
+      <path d="M300 700 a170 170 0 0 1 340 0Z" fill="#d8c39a"/>
+      <rect x="820" y="420" width="70" height="700"/><rect x="805" y="560" width="100" height="22"/><path d="M820 420 l35 -70 l35 70Z" fill="#d8c39a"/>
+    </g>
+    <line x1="470" y1="530" x2="470" y2="470" stroke="#a48d68" stroke-width="5"/><circle cx="470" cy="462" r="8" fill="#a48d68"/>
+    ${[0, 1, 2, 3, 4].map(i => `<path d="M${200 + i * 120} 1120 v-150 a40 40 0 0 1 80 0 v150Z" fill="#5e4a34"/>`).join('')}
+    <rect y="1118" width="1080" height="802" fill="#b89a72"/>
+    <g id="birds">${birds}</g>`);
+
+  // ---- 5b. inside: the shaykh and Adam, seen from behind ----
+  KIT.S('sInside', `<rect width="1080" height="1920" fill="#e6d6b8"/>
+    ${[0, 1, 2, 3].map(i => `<path d="M${40 + i * 270} 1000 v-460 a110 110 0 0 1 220 0 v460Z" fill="#f7ecd2"/><rect x="${20 + i * 270}" y="420" width="22" height="600" fill="#cdb894"/>`).join('')}
+    ${[0, 1, 2].map(i => `<polygon points="${170 + i * 270},430 ${250 + i * 270},430 ${420 + i * 270},1300 ${120 + i * 270},1300" fill="#fff8e6" opacity=".18"/>`).join('')}
+    <rect y="1000" width="1080" height="920" fill="#7a2a26"/>
+    ${[0, 1, 2, 3, 4, 5].map(i => `<rect y="${1040 + i * 120}" width="1080" height="10" fill="#9a4a3e"/>`).join('')}
+    <g id="iCam"><g transform="translate(380 1075) scale(.92)">${KIT.adamBack('ia')}</g><g transform="translate(690 1085)">${KIT.sheikhBack('is')}</g></g>`);
+
+  // ---- 6. hands ----
+  KIT.S('sHands', `<defs><radialGradient id="hw"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".35"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="#3a2a1e"/><circle cx="540" cy="760" r="600" fill="url(#hw)"/>
+    <rect x="-40" y="700" width="380" height="170" rx="40" fill="#cdbb9a"/>
+    <path d="M320 720 h230 a40 40 0 0 1 0 80 h-30 a30 30 0 0 1 0 60 h-200Z" fill="#c48d6a"/>
+    <g id="hElder">
+      <rect x="760" y="560" width="400" height="190" rx="50" fill="#ece6d8"/>
+      <path d="M770 600 C700 600 560 620 470 680 C440 700 450 740 490 740 C560 730 620 720 640 760 C600 790 520 800 470 820 C440 840 460 880 500 876 C620 860 720 840 780 760Z" fill="#a8775a"/>
+      <path d="M560 690 q20 10 40 0 M600 790 q20 10 40 0 M690 700 q16 8 32 0" stroke="#7a4f38" stroke-width="4" fill="none"/>
+    </g>
+    <g id="hElder2"><rect x="760" y="880" width="400" height="170" rx="50" fill="#ece6d8"/>
+      <path d="M770 910 C700 900 600 890 520 880 C480 878 470 920 510 930 C600 950 690 960 780 990Z" fill="#a8775a"/></g>`);
+
+  // ---- 7. five of ten verses ----
+  let lines = '';
+  for (let k = 0; k < 9; k++) lines += `<path d="M300 ${640 + k * 46} q40 -10 80 0 t80 0 t80 0" stroke="#8f7d60" stroke-width="5" fill="none" opacity=".55"/><path d="M600 ${640 + k * 46} q40 -10 80 0 t80 0 t80 0" stroke="#8f7d60" stroke-width="5" fill="none" opacity=".55"/>`;
+  KIT.S('sDots', `<defs><radialGradient id="gw"><stop offset="0" stop-color="#ffbf70" stop-opacity=".45"/><stop offset="1" stop-color="#ffbf70" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="#22160d"/><circle cx="540" cy="800" r="620" fill="url(#gw)"/>
+    ${KIT.dots('vd', 500)}
+    <path d="M260 560 Q540 520 540 560 Q540 520 820 560 L820 1080 Q540 1040 540 1080 Q540 1040 260 1080Z" fill="#1d4a3a"/>
+    <path d="M280 580 Q530 545 530 580 L530 1050 Q410 1025 280 1050Z" fill="#efe4c9"/><path d="M550 580 Q550 545 800 580 L800 1050 Q670 1025 550 1050Z" fill="#efe4c9"/>${lines}`);
+
+  // ---- 8. dawn at the window; the sun climbs over the roof opposite, then stays ----
+  let roofs = '';
+  seed = 9; for (let x = 120; x < 960;) { const w = 90 + rnd() * 120, h = 120 + rnd() * 160; roofs += `<rect x="${x}" y="${1000 - h}" width="${w}" height="${h}"/>`; x += w - 4; }
+  KIT.S('sDawn', `<defs><linearGradient id="dsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f86b4"/><stop offset=".7" stop-color="#f3c08a"/><stop offset="1" stop-color="#ffd9a0"/></linearGradient>
+      <radialGradient id="sunG"><stop offset="0" stop-color="#fff2c8"/><stop offset=".3" stop-color="#ffe2a0" stop-opacity=".8"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+      <clipPath id="winC"><rect x="170" y="270" width="740" height="730"/></clipPath></defs>
+    <rect width="1080" height="1920" fill="#2a1f1a"/>
+    <g clip-path="url(#winC)"><rect x="170" y="270" width="740" height="730" fill="url(#dsky)"/>
+      <rect id="dDark" x="170" y="270" width="740" height="730" fill="#0d1226" opacity=".6"/>
+      <circle id="sunGlow" cx="640" cy="640" r="260" fill="url(#sunG)"/><circle id="sun" cx="640" cy="640" r="62" fill="#fff4d6"/>
+      <g fill="#3a2e2a">${roofs}</g></g>
+    <rect x="160" y="260" width="760" height="750" fill="none" stroke="#4a3424" stroke-width="22"/>
+    <path d="M540 260 V1010 M160 635 H920" stroke="#4a3424" stroke-width="12"/>
+    <polygon id="dRay" points="170,1000 910,1000 1080,1600 0,1600" fill="#ffd9a0" opacity=".1"/>
+    <rect x="300" y="1040" width="480" height="140" rx="10" fill="#6b2a2a"/><rect x="320" y="1060" width="440" height="100" rx="6" fill="none" stroke="#b5654a" stroke-width="4"/>
+    <g transform="translate(540 1130) scale(.95)">${KIT.adamBack('wa')}</g>`);
+
+  // ---- 9. time-lapse on the wristwatch ----
+  KIT.S('sWatch', `<rect width="1080" height="1920" fill="#20160f"/>
+    <path d="M-40 840 C200 760 700 740 1120 780 L1120 1060 C700 1080 200 1060 -40 1000Z" fill="#c48d6a"/>
+    <rect x="420" y="380" width="240" height="880" rx="30" fill="#4a3424"/>
+    ${KIT.watch('ww', 540, 820, 250)}`);
+}
+
+KIT.episode({
+  num: 2, name: 'ขนมปังจากค่ายของเขา',
+  total: 124.3, title: [5.6, 9.6], ctaWin: [107.3, 113.3], discWin: [113.3, 119.8], outroAt: 119.8,
+  cta: '“คุณคิดว่าอาดัมตัดสินใจถูกไหม<br><b>ที่ปิดประตูใส่เพื่อน?</b><br>คอมเมนต์บอกกันด้วย<br>แล้วกดติดตามและแชร์ไว้<br>ตอนหน้าท้องฟ้าจะไม่เหมือนเดิมอีกต่อไป”',
+  refs: 'หลักฐานหลัก: สุนันอบีดาวูด 4319<br>เศาะฮีห์มุสลิม 588',
+  scenes: [
+    ['sBread', 0, 2.8], ['sEyes', 2.8, 9.8, { cut: false }], ['sDoor', 9.6, 52.3],
+    ['sMosque', 52, 56.8], ['sInside', 56.5, 69.2], ['sHands', 69, 78.7], ['sDots', 78.5, 81.7],
+    ['sDawn', 81.5, 90.2], ['sWatch', 90, 93.5, { cut: true }], ['sDawn', 93.5, 96, { cut: true }],
+    ['sWatch', 96, 98, { cut: true }], ['sDawn', 98, 107, { cut: true }],
+    ['sDawn', 119.4, 125],
+  ],
+  caps: CAPS, tags: TAGS,
+  keys: [[1, 1], [4.5, 2], [7.5, 3], [14, 4], [27, 5], [31, 6], [41, 7], [46.5, 8], [50.5, 9], [54, 10], [60, 11], [71, 12], [76, 13], [80, 14], [84, 15], [88, 16], [92, 17], [97, 18], [104, 19], [110, 20], [116, 21], [122, 22]],
+  build,
+  draw(t) {
+    // 1. bread steam; Hawa's eyes open towards the smell
+    KIT.updSteam('bs', 4, t, 260);
+    KIT.zoom('sBread', t < 3 ? 1 + t * .02 : 1.05);
+    const op = ease((t - 3.5) / .35);
+    attr('eClosed', 'opacity', 1 - op); attr('eOpen', 'opacity', op);
+    attr('eOpen', 'transform', `translate(0 790) scale(1 ${op}) translate(0 -790)`);
+    attr('eIris', 'transform', `translate(${-14 * ease((t - 4.6) / .6)} 0)`);
+    KIT.zoom('sEyes', 1 + clamp(t - 2.8, 0, 7) * .012);
+
+    // 2. doorway
+    KIT.updLantern('dl', t);
+    const laugh = t > 15.6 && t < 17.2 ? Math.sin(t * 40) * 3 : 0;
+    const leave = ease((t - 41.8) / 2.2);
+    attr('dHar', 'transform', `translate(${730 + 260 * leave} ${1090 + laugh}) scale(.82)`);
+    attr('dHar', 'opacity', 1 - leave);
+    KIT.harithEyes('dh', ease((t - 29.1) / .6));
+    const put = ease((t - 30.2) / 1.1);                                   // bread from his hands to the threshold
+    attr('dBreadG', 'transform', `translate(${730} ${lerp(880, 1072, put)})`);
+    attr('dh' + 'Arms', 'transform', `translate(0 ${60 * Math.sin(Math.PI * clamp((t - 30.2) / 1.6))})`);
+    KIT.updSteam('ds', 3, t, 90, 1);
+    const c = .92 * ease((t - 36.6) / 3.2);                              // the door swings shut, a gap stays
+    const fx = lerp(1010, 560, c), ty = lerp(250, 300, c), by = lerp(1140, 1090, c);
+    attr('dPanel', 'points', `900,300 ${fx},${ty} ${fx},${by} 900,1090`);
+    const hk = clamp((t - 44.6) / 2);                                     // Hawa walks up behind him
+    KIT.poseHawa('dhw', lerp(-80, 150, ease(hk)), 1092, t, hk > 0 && hk < 1, t > 48.8 ? 4 * ease((t - 48.8) / .5) : 0);
+    attr('dHawa', 'opacity', t > 44.4 ? 1 : 0);
+    const kneel = ease((t - 48.6) / .5);
+    attr('dAdam', 'opacity', 1 - kneel); attr('dKneel', 'opacity', kneel);
+    KIT.zoom('sDoor', t < 44.5 ? 1 + (t - 9.6) * .003 : 1.1);
+
+    // 5. mosque
+    document.querySelectorAll('#sMosque .bird').forEach(b => {
+      const i = +b.dataset.i, x = ((t - 52) * (40 + i * 6) + i * 160) % 1200 - 60, y = 380 + i * 34 + Math.sin(t * 2 + i) * 10;
+      b.setAttribute('transform', `translate(${x} ${y}) scale(1 ${.6 + .4 * Math.sin(t * 9 + i)})`);
+    });
+    KIT.zoom('sMosque', 1 + clamp(t - 52, 0, 5) * .01);
+    attr('iCam', 'transform', `translate(540 1000) scale(${1 + clamp(t - 56.5, 0, 13) * .012}) translate(-540 -1000)`);
+
+    // 6. the shaykh takes Adam's hand
+    const hold = ease((t - 69.3) / 1.0);
+    attr('hElder', 'transform', `translate(${(1 - hold) * 260} ${(1 - hold) * -60})`);
+    attr('hElder2', 'transform', `translate(${(1 - hold) * 300} ${(1 - hold) * 60})`);
+    KIT.zoom('sHands', 1 + clamp(t - 69, 0, 10) * .008);
+
+    // 7. five verses
+    KIT.setDots('vd', 5, t, 79.2);
+
+    // 8-9. the sun rises, then stays put while the watch races nine hours
+    const rise = ease((t - 82) / 6);
+    const sy = lerp(900, 600, rise);
+    attr('sun', 'cy', sy); attr('sunGlow', 'cy', sy); attr('dDark', 'opacity', .6 * (1 - rise));
+    attr('dRay', 'opacity', .04 + .1 * rise);
+    KIT.zoom('sDawn', t < 98 ? 1 : 1 + Math.min(t - 98, 9) * .02);
+    const hrs = t < 90 ? 5.5 : t < 93.5 ? lerp(5.5, 11, ease((t - 90) / 3.5)) : t < 96 ? 11 : t < 98 ? lerp(11, 14.5, ease((t - 96) / 2)) : 14.5;
+    KIT.setWatch('ww', hrs, t < 90 || t > 98 ? t : hrs * 3600);
+    attr('wws', 'opacity', t > 90 && t < 98 ? .25 : 1);
+  },
+});
+</script>
+</body>
+</html>
