@@ -1,6 +1,8 @@
-"""Preview soundtrack for EP01, synthesized so every render matches the picture.
-Placeholder only: replace with voiceover, music and real foley for the final cut.
-Usage: python3 sound.py out.wav
+"""EP01 sound design, synthesized so every render matches the picture.
+
+Foley and ambience only (no melodic instruments), cued to the timeline in
+index.html. Mixed low so a voiceover can sit on top.
+Usage: python3 sound.py out.wav [voiceover.wav]
 """
 import sys, wave
 import numpy as np
@@ -8,80 +10,126 @@ import numpy as np
 SR, TOTAL = 44100, 103.0
 rng = np.random.default_rng(7)
 n = int(SR * TOTAL)
-t = np.arange(n) / SR
-out = np.zeros(n)
+L = np.zeros(n); R = np.zeros(n)
 
-def at(sec, sig, gain=1.0):
-    i = int(sec * SR)
-    j = min(n, i + len(sig))
-    out[i:j] += sig[: j - i] * gain
+def place(sec, sig, gain=1.0, pan=0.0):
+    i = int(sec * SR); j = min(n, i + len(sig))
+    L[i:j] += sig[: j - i] * gain * (1 - max(0, pan))
+    R[i:j] += sig[: j - i] * gain * (1 + min(0, pan))
 
-def env(length, a, r):
-    k = int(length * SR); e = np.ones(k)
-    ia, ir = int(a * SR), int(r * SR)
-    e[:ia] = np.linspace(0, 1, ia); e[k - ir:] = np.linspace(1, 0, ir)
+def ar(k, a, r):
+    """attack/release envelope of k samples"""
+    e = np.ones(k); ia, ir = int(a * SR), int(r * SR)
+    if ia: e[:ia] = np.linspace(0, 1, ia)
+    if ir: e[k - ir:] = np.minimum(e[k - ir:], np.linspace(1, 0, ir))
     return e
 
-def lowpass(x, alpha):
-    y = np.empty_like(x); acc = 0.0
-    for i, v in enumerate(x):
-        acc += alpha * (v - acc); y[i] = acc
-    return y
+def lp(x, a):
+    """one-pole low-pass, vectorised via cumulative filter"""
+    from scipy.signal import lfilter
+    return lfilter([a], [1, a - 1], x)
 
-# dry wind bed under the story (0-91s), breathing slowly
-wind = lowpass(rng.standard_normal(int(91 * SR)), 0.02)
-wind *= (0.6 + 0.4 * np.sin(np.arange(len(wind)) / SR * 0.35)) * env(91, 2, 1.5)
-at(0, wind / np.abs(wind).max(), 0.10)
+def hp(x, a):
+    return x - lp(x, a)
 
-# low drone that tightens towards the cliffhanger
-for f, g in ((55, .05), (82.4, .03)):
-    d = np.sin(2 * np.pi * f * t[: int(91 * SR)]) * env(91, 4, .05)
-    at(0, d, g)
+def noise(sec):
+    return rng.standard_normal(int(sec * SR))
 
-# single water drop at 2.2s
-k = np.arange(int(.35 * SR)) / SR
-drop = np.sin(2 * np.pi * (1400 - 2600 * k) * k) * np.exp(-k * 22)
-at(2.2, drop, .35)
+def span(a, b):
+    return int(a * SR), int(b * SR)
 
-# clips spreading (25.2s): soft whooshes
+def bed(a, b, sig_fn, gain, fade=0.6):
+    k = int((b - a) * SR); place(a, sig_fn(b - a)[:k] * ar(k, fade, fade), gain)
+
+# --- ambience beds per location ---------------------------------------------
+def wind(sec):          # dry desert wind, slow gusts
+    x = lp(noise(sec), .015); x /= np.abs(x).max()
+    tt = np.arange(len(x)) / SR
+    return x * (.55 + .45 * np.sin(tt * .5) * np.sin(tt * .23 + 1))
+def room(sec):          # quiet room tone
+    x = lp(noise(sec), .03); return x / np.abs(x).max()
+def crackle(sec):       # candle: sparse tiny ticks over a soft hiss
+    k = int(sec * SR); x = lp(noise(sec), .2) * .15
+    for _ in range(int(sec * 6)):
+        i = rng.integers(0, k - 400); x[i:i + 300] += hp(noise(300 / SR), .5)[:300] * np.exp(-np.arange(300) / 40) * rng.uniform(.3, 1)
+    return x
+def murmur(sec):        # muffled crowd from a phone speaker
+    tt = np.arange(int(sec * SR)) / SR
+    x = sum(lp(noise(sec), .08) * (.5 + .5 * np.sin(tt * rng.uniform(2, 6) + rng.uniform(0, 6))) for _ in range(6))
+    x = hp(lp(x, .12), .02); return x / np.abs(x).max()
+def night(sec):         # night outside the open door
+    x = lp(noise(sec), .01); return x / np.abs(x).max()
+
+bed(0, 9, wind, .16, 1.0)                 # A dry city
+bed(9, 17, room, .05); bed(9, 17, crackle, .25)
+bed(17, 29, room, .04); bed(17.4, 29, murmur, .07)
+bed(29, 41.5, room, .04)
+bed(41.5, 49, room, .05); bed(41.5, 49, crackle, .18)
+bed(49, 53, room, .05); bed(49, 53, crackle, .25)
+bed(53, 54.6, room, .05, .3)              # near-silence before the knocks
+bed(58, 79, night, .10, .8); bed(58, 79, wind, .06, .8)
+bed(91.5, 103, room, .03, 1.5)
+
+# --- spot effects cued to the picture ----------------------------------------
+def tone(f0, f1, sec, decay):
+    k = np.arange(int(sec * SR)) / SR
+    return np.sin(2 * np.pi * (f0 * k + (f1 - f0) * k * k / (2 * sec))) * np.exp(-k * decay)
+def thud(f, sec, decay):
+    k = np.arange(int(sec * SR)) / SR
+    return np.sin(2 * np.pi * f * k) * np.exp(-k * decay)
+def whoosh(sec, a=.3):
+    k = int(sec * SR); return hp(lp(noise(sec), a), .02) * np.hanning(k)
+
+# A: the single water drop and its splash on dry ground (drop lands 2.2s)
+place(2.2, tone(1500, 600, .3, 20), .30)
+place(2.22, hp(noise(.08), .3) * np.exp(-np.arange(int(.08 * SR)) / 300), .10)
+# title card: low air hit
+place(5.4, whoosh(.9, .05), .35); place(5.5, thud(48, 1.2, 4), .35)
+# C: thumb taps play, clips fly out
+place(17.3, hp(noise(.03), .4) * np.hanning(int(.03 * SR)), .25)
 for i in range(10):
-    w = lowpass(rng.standard_normal(int(.3 * SR)), .2) * np.hanning(int(.3 * SR))
-    at(25.2 + i * .18, w, .08)
-
-# signal lost: three falling blips
-for i, s in enumerate((39.65, 39.3, 38.95)):
-    k = np.arange(int(.12 * SR)) / SR
-    at(s, np.sin(2 * np.pi * (880 - i * 180) * k) * np.exp(-k * 25), .12)
-
-# three slow knocks on wood
+    place(25.2 + i * .18, whoosh(.35, .25), .07, pan=(-.6 if i % 2 else .6))
+# D: voice message play tap, then signal drops bar by bar
+place(32.9, hp(noise(.03), .4) * np.hanning(int(.03 * SR)), .25)
+for i, s in enumerate((38.95, 39.3, 39.65, 40.0)):
+    place(s, tone(900 - i * 120, 700 - i * 120, .1, 30), .07)
+# E: page turn, then the watch ticks on every second the hand moves
+place(41.6, hp(lp(noise(.5), .3), .05) * np.hanning(int(.5 * SR)), .25)
+for s in range(42, 49):
+    place(s, hp(noise(.012), .6) * np.exp(-np.arange(int(.012 * SR)) / 60), .22, pan=.5)
+for i in range(3):                         # three verses light up
+    place(45.8 + i * .35, hp(noise(.25), .4) * np.exp(-np.arange(int(.25 * SR)) / 2000), .05)
+# F: three slow knocks on wood, felt through the door
 for s in (55, 56.2, 57.4):
-    k = np.arange(int(.25 * SR)) / SR
-    knock = (np.sin(2 * np.pi * 110 * k) + .6 * np.sin(2 * np.pi * 190 * k)) * np.exp(-k * 30)
-    knock += lowpass(rng.standard_normal(len(k)), .3) * np.exp(-k * 60) * .8
-    at(s, knock, .55)
-
-# door creak 58.0-59.4
+    k = np.arange(int(.3 * SR)) / SR
+    knock = thud(105, .3, 28) + .5 * thud(180, .3, 40) + lp(noise(.3), .25) * np.exp(-k * 70) * .9
+    place(s, knock, .65)
+# G: latch, creaking hinge, drips, steam hiss
+place(57.95, hp(noise(.05), .3) * np.exp(-np.arange(int(.05 * SR)) / 200), .25)
 k = np.arange(int(1.4 * SR)) / SR
-creak = np.sign(np.sin(2 * np.pi * (70 + 40 * np.sin(k * 5)) * k)) * np.hanning(len(k))
-at(58, lowpass(creak, .08), .10)
+creak = np.sign(np.sin(2 * np.pi * (60 + 30 * np.sin(k * 4.5)) * k)) * np.hanning(len(k))
+place(58.05, lp(creak, .06), .10)
+for i in range(44):                        # drips land in rhythm with the visual loop
+    place(59 + i * .47 + rng.random() * .15, tone(2200, 1400, .08, 55), .05, pan=rng.uniform(-.3, .3))
+bed(59, 79, lambda s: hp(noise(s), .3), .012)
+# whisper line lands closer: room drops away at 74s
+# H: heartbeat speeds up under the dilemma, then the cut to black is silent
+beat, s = 1.0, 79.2
+while s < 90.8:
+    place(s, thud(55, .25, 18), .55); place(s + .18, thud(48, .25, 22), .35)
+    beat = max(.55, beat * .96); s += beat
+place(79, whoosh(1.0, .04), .25)
 
-# water drips from Harith (58-79)
-for i in range(40):
-    s = 59 + i * .5 + rng.random() * .3
-    k = np.arange(int(.12 * SR)) / SR
-    at(s, np.sin(2 * np.pi * (1800 + rng.random() * 600) * k) * np.exp(-k * 50), .04)
-
-# tension swell into the cut to black at 91s
-k = np.arange(int(12 * SR)) / SR
-swell = (np.sin(2 * np.pi * 110 * k) + np.sin(2 * np.pi * 116.5 * k)) * (k / 12) ** 2
-at(79, swell, .10)
-
-# soft pad under the CTA and disclaimer
-k = np.arange(int(11.5 * SR)) / SR
-pad = sum(np.sin(2 * np.pi * f * k) for f in (220, 277.2, 329.6)) * env(11.5, 1.5, 2)
-at(91.5, pad, .025)
-
-out /= max(1e-9, np.abs(out).max()) / 0.8
-pcm = (np.repeat(out[:, None], 2, axis=1) * 32767).astype(np.int16)
+# --- mix ---------------------------------------------------------------------
+mix = np.stack([L, R], 1)
+mix[span(91, 91.5)[0]:span(91, 91.5)[1]] *= 0                       # hard silence on the cut
+if len(sys.argv) > 2:                                                # optional voiceover on top, ducked bed
+    with wave.open(sys.argv[2]) as w:
+        vo = np.frombuffer(w.readframes(w.getnframes()), np.int16).reshape(-1, w.getnchannels()).astype(float) / 32767
+        if w.getframerate() != SR: raise SystemExit('voiceover must be 44.1 kHz wav')
+    vo = vo.mean(1)[:n]; env = lp(np.abs(vo), .002) * 6
+    mix *= (1 - np.clip(env, 0, .5))[:, None] if len(env) == n else 1
+    mix[: len(vo)] += vo[:, None] * .9
+mix /= max(1e-9, np.abs(mix).max()) / .8
 with wave.open(sys.argv[1], 'wb') as w:
-    w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(pcm.tobytes())
+    w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((mix * 32767).astype(np.int16).tobytes())

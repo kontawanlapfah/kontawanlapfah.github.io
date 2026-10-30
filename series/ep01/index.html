@@ -20,6 +20,7 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
 #caps { position: absolute; left: 70px; right: 70px; bottom: 600px; text-align: center; }
 .cap { position: absolute; left: 0; right: 0; bottom: 0; opacity: 0; font-size: 46px; line-height: 1.5; text-shadow: 0 2px 12px rgba(0,0,0,.9); }
 .cap.q { color: var(--gold); font-style: italic; }
+.cap .n { color: var(--ink); font-style: normal; }
 .cap.big { font-size: 54px; font-weight: 700; color: var(--gold); }
 .overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 90px; opacity: 0; }
 .t-series { font-family: "Serif"; font-size: 120px; color: var(--gold); line-height: 1.25; text-shadow: 0 0 50px rgba(233,196,126,.35), 0 4px 20px rgba(0,0,0,.8); }
@@ -29,7 +30,8 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
 .cta { font-size: 52px; line-height: 1.6; }
 .cta b { color: var(--gold); }
 .disc-h { font-size: 40px; color: var(--gold); font-weight: 700; margin-bottom: 22px; }
-.disc { font-size: 34px; line-height: 1.65; color: var(--ink); }
+.nw { white-space: nowrap; }
+.disc { white-space: nowrap; font-size: 34px; line-height: 1.65; color: var(--ink); }
 .refs { margin-top: 44px; font-size: 32px; color: var(--gold); border: 2px solid rgba(233,196,126,.5); border-radius: 40px; padding: 12px 34px; }
 .logo { margin-top: 60px; font-family: "Serif"; font-size: 54px; color: var(--gold); }
 </style>
@@ -56,13 +58,13 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
   </div>
 
   <div class="overlay" id="cta">
-    <div class="cta">“ถ้าเป็นคุณ<br><b>คุณจะรับขนมปังก้อนนั้นไหม?</b><br>คอมเมนต์บอกกันด้วย<br>และอย่าลืมกดติดตามกับแชร์เรื่องนี้<br>เพื่อรอติดตามตอนต่อไป”</div>
+    <div class="cta">“ถ้าเป็นคุณ<br><b>คุณจะรับขนมปังก้อนนั้นไหม?</b><br>คอมเมนต์บอกกันด้วย<br>และอย่าลืมกดติดตามและแชร์เรื่องนี้<br>เพื่อไม่ให้พลาดตอนต่อไป”</div>
   </div>
 
   <div class="overlay" id="disc">
     <div class="disc-h">คำเตือน</div>
-    <div class="disc">เรื่องราวนี้เป็นการจำลองสถานการณ์สมมติเพื่อการศึกษาและสร้างความเข้าใจเกี่ยวกับฟิตนะฮ์ของดัจญาล โดยมีการอ้างอิงข้อมูลจากอัลกุรอานและหะดีษที่เชื่อถือได้ ตัวละคร บทสนทนา และรายละเอียดบางส่วนเป็นจินตนาการเพื่อประกอบการเล่าเรื่อง ไม่ใช่เหตุการณ์จริงหรือคำรายงานทางศาสนา โปรดแยกแยะระหว่างหลักฐานทางศาสนากับส่วนที่เป็นเรื่องสมมติ</div>
-    <div class="refs">หลักฐานหลัก: บุคอรี 7131 · มุสลิม 809, 2937</div>
+    <div class="disc">เรื่องราวนี้เป็นการจำลองสถานการณ์สมมติ<br>เพื่อการศึกษาและสร้างความเข้าใจเกี่ยวกับฟิตนะฮ์ของดัจญาล<br>โดยมีการอ้างอิงข้อมูลจากอัลกุรอานและหะดีษที่เชื่อถือได้<br>ตัวละคร บทสนทนา และรายละเอียดบางส่วน<br>เป็นจินตนาการเพื่อประกอบการเล่าเรื่อง<br>ไม่ใช่เหตุการณ์จริงหรือคำรายงานทางศาสนา<br>โปรดแยกแยะระหว่างหลักฐานทางศาสนา<br>กับส่วนที่เป็นเรื่องสมมติ</div>
+    <div class="refs">หลักฐานหลัก: เศาะฮีห์อัลบุคอรี 7131<br>เศาะฮีห์มุสลิม 809, 2937</div>
     <div class="logo">สี่สิบวันของอาดัม</div>
   </div>
 
@@ -96,7 +98,7 @@ const CAPS = [
   [62, 66.5, '', 'เสื้อของเขาเปียกโชก<br>ในมือถือขนมปังอุ่น ๆ ส่งกลิ่นหอม'],
   [66.5, 70.5, '', 'ทั้งที่เมืองนี้ไม่มีใครเห็นขนมปังสด ๆ<br>มาหลายสัปดาห์แล้ว'],
   [70.5, 74, '', 'เขายิ้มให้ผม…<br>แต่แววตานั้นไม่ใช่ฮาริสคนเดิมที่ผมรู้จัก'],
-  [74, 79, 'q', '“ที่หมู่บ้านผม ฝนตกแล้วนะอาดัม”<br>เขากระซิบ<br>“เพราะ<u>เขา</u>สั่งให้ฟ้าตก”'],
+  [74, 79, 'q', '“ที่หมู่บ้านผม ฝนตกแล้วนะอาดัม”<br><span class="n">เขากระซิบ</span><br>“เพราะ<u>เขา</u>สั่งให้ฟ้าตก”'],
   [79, 83, '', 'ผมมองขนมปังในมือเพื่อน แล้วหันไปมอง<br>ลูกสาวที่ไม่ได้กินอิ่มมาหลายวัน…'],
   [83, 87.5, 'big', 'ผมควรรับขนมปังก้อนนั้นไว้<br>หรือควรปิดประตูใส่เพื่อนที่รักที่สุด?'],
   [87.5, 91, 'big', 'แล้ว “เขา” ที่ฮาริสพูดถึง…<br>คือใครกันแน่?'],
