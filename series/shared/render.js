@@ -30,7 +30,7 @@ const url = 'file://' + path.resolve(page_) + '?render=1';
     }
   } else {
     const fps = +(fpsArg || 30);
-    const total = await page.evaluate(() => TOTAL);
+    const total = await page.evaluate(() => window.TOTAL);
     const args = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-i', '-'];
     if (audio) args.push('-i', audio, '-c:a', 'aac', '-b:a', '160k', '-shortest');
     args.push('-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '20', '-movflags', '+faststart', out);

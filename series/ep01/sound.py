@@ -2,18 +2,24 @@
 
 Foley and ambience only (no melodic instruments), cued to the timeline in
 index.html. Mixed low so a voiceover can sit on top.
-Usage: python3 sound.py out.wav [voiceover.wav]
+Cues are written on the animation's own ("old") timeline; with a warp file
+they are moved onto the voiceover's timeline, so effects stay on their picture.
+Usage: python3 sound.py out.wav [audio/vo_placed.wav audio/warp.json]
 """
-import sys, wave
+import json, sys, wave
 import numpy as np
 
 SR, TOTAL = 44100, 107.5
+_old, _new = [0, TOTAL], [0, TOTAL]
+if len(sys.argv) > 3:
+    _w = json.load(open(sys.argv[3])); _old, _new = zip(*_w['anchors']); TOTAL = _w['total']
+W = lambda sec: float(np.interp(sec, _old, _new))
 rng = np.random.default_rng(7)
 n = int(SR * TOTAL)
 L = np.zeros(n); R = np.zeros(n)
 
 def place(sec, sig, gain=1.0, pan=0.0):
-    i = int(sec * SR); j = min(n, i + len(sig))
+    i = int(W(sec) * SR); j = min(n, i + len(sig))
     L[i:j] += sig[: j - i] * gain * (1 - max(0, pan))
     R[i:j] += sig[: j - i] * gain * (1 + min(0, pan))
 
@@ -39,7 +45,7 @@ def span(a, b):
     return int(a * SR), int(b * SR)
 
 def bed(a, b, sig_fn, gain, fade=0.6):
-    k = int((b - a) * SR); place(a, sig_fn(b - a)[:k] * ar(k, fade, fade), gain)
+    d = W(b) - W(a); k = int(d * SR); place(a, sig_fn(d)[:k] * ar(k, fade, fade), gain)
 
 # --- ambience beds per location ---------------------------------------------
 def wind(sec):          # dry desert wind, slow gusts
@@ -130,14 +136,14 @@ place(103.7, thud(380, .1, 40), .07)
 
 # --- mix ---------------------------------------------------------------------
 mix = np.stack([L, R], 1)
-mix[span(91, 91.5)[0]:span(91, 91.5)[1]] *= 0                       # hard silence on the cut
+mix[int(W(91) * SR):int(W(91.5) * SR)] *= 0                       # hard silence on the cut
 if len(sys.argv) > 2:                                                # optional voiceover on top, ducked bed
     with wave.open(sys.argv[2]) as w:
         vo = np.frombuffer(w.readframes(w.getnframes()), np.int16).reshape(-1, w.getnchannels()).astype(float) / 32767
         if w.getframerate() != SR: raise SystemExit('voiceover must be 44.1 kHz wav')
-    vo = vo.mean(1)[:n]; env = lp(np.abs(vo), .002) * 6
-    mix *= (1 - np.clip(env, 0, .5))[:, None] if len(env) == n else 1
-    mix[: len(vo)] += vo[:, None] * .9
+    vo = np.pad(vo.mean(1), (0, max(0, n - len(vo))))[:n]; env = lp(np.abs(vo), .002) * 6
+    mix *= (1 - np.clip(env, 0, .6))[:, None]                   # duck effects under the voice
+    mix += vo[:, None] * 2.2
 mix /= max(1e-9, np.abs(mix).max()) / .8
 with wave.open(sys.argv[1], 'wb') as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((mix * 32767).astype(np.int16).tobytes())
