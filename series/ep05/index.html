@@ -124,11 +124,18 @@ function build() {
     ${crowdBack}`);
 
   // ---- 9. Adam's hands, cold, gripping the roof ledge ----
-  KIT.S('sHands', `<defs>${SKY}</defs><rect width="1080" height="1920" fill="url(#sk)"/>
-    <rect y="700" width="1080" height="300" fill="#a8916c"/><rect y="980" width="1080" height="940" fill="#8a7458"/>
-    <g id="aHands"><path d="M-40 1100 C120 1000 260 960 380 940" stroke="#cdbb9a" stroke-width="100" fill="none" stroke-linecap="round"/><path d="M1120 1100 C960 1000 820 960 700 940" stroke="#cdbb9a" stroke-width="100" fill="none" stroke-linecap="round"/>
-      <rect x="330" y="900" width="140" height="110" rx="46" fill="#c48d6a"/><rect x="610" y="900" width="140" height="110" rx="46" fill="#c48d6a"/>
-      <path d="M350 930 h90 M350 960 h95 M630 930 h90 M630 960 h95" stroke="#a87a5e" stroke-width="5" stroke-linecap="round"/></g>
+  KIT.S('sHands', `<defs>${SKY}<linearGradient id="par" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b29a78"/><stop offset="1" stop-color="#8a7258"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#sk)"/>
+    <g fill="#9a8a74" opacity=".7">${[[40, 620, 180, 260], [260, 560, 140, 320], [760, 600, 200, 280], [900, 540, 160, 340]].map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`).join('')}</g>
+    <rect y="900" width="1080" height="1020" fill="#6e5a44"/>
+    <rect x="0" y="755" width="1080" height="150" fill="url(#par)"/>
+    ${[0, 1, 2, 3, 4, 5, 6].map(k => `<line x1="${k * 170 + 60}" y1="770" x2="${k * 170 + 60}" y2="905" stroke="#7e6850" stroke-width="3" opacity=".5"/>`).join('')}
+    <g id="aHands">
+      <path d="M-80 1500 C80 1200 230 950 370 775" stroke="#cdbb9a" stroke-width="110" fill="none" stroke-linecap="round"/>
+      <path d="M1160 1500 C1000 1200 850 950 710 775" stroke="#cdbb9a" stroke-width="110" fill="none" stroke-linecap="round"/>
+      <path d="M150 1150 C230 1000 300 880 350 820 M930 1150 C850 1000 780 880 730 820" stroke="#bba985" stroke-width="8" fill="none"/></g>
+    <rect x="0" y="735" width="1080" height="26" fill="#c4ac88"/>
+    <rect x="0" y="759" width="1080" height="10" fill="#6e5a44" opacity=".35"/>
     <rect id="chill" width="1080" height="1920" fill="#9fc3e0" opacity="0"/>`);
 
   // ---- 10a. the procession turns into Adam's alley; he stops under the roof (from above) ----
@@ -143,12 +150,27 @@ function build() {
     <g id="man2"><ellipse cx="0" cy="40" rx="60" ry="20" fill="#000" opacity=".25"/><ellipse rx="44" ry="30" fill="#14171d"/><circle id="m2head" r="20" fill="#0c0d10"/></g>`);
 
   // ---- 10b. low angle from the street up at Adam on the roof edge; cut before any face is seen ----
-  KIT.S('sUp', `<defs><linearGradient id="up" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfd6dc"/><stop offset="1" stop-color="#f3e6c6"/></linearGradient></defs>
-    <rect width="1080" height="1920" fill="url(#up)"/>
-    <polygon points="0,1920 0,900 380,620 700,620 1080,900 1080,1920" fill="#8a7458"/>
-    <rect x="340" y="560" width="400" height="70" fill="#7a6248"/>
-    <g transform="translate(540 600) scale(.75)">${KIT.adam('ua')}</g>
-    <polygon points="0,1920 0,900 380,620 380,660 40,940 40,1920" fill="#6e5a44"/>`);
+  // seen from the street: verticals converge on a point above the frame
+  const VP = [540, -300], P = (xb, y) => VP[0] + (xb - VP[0]) * (y - VP[1]) / (1920 - VP[1]);
+  const quad = (x0, x1, y0, y1, fill, extra = '') => `<polygon points="${P(x0, y0)},${y0} ${P(x1, y0)},${y0} ${P(x1, y1)},${y1} ${P(x0, y1)},${y1}" fill="${fill}" ${extra}/>`;
+  let wins = '';
+  [[-60, 220], [860, 1140]].forEach(([a, b]) => [[1700, 1900], [1240, 1400], [900, 1010]].forEach(([y0, y1]) => {
+    wins += quad(a, b, y0, y1, '#3a3a44') + quad(a + 18, b - 18, y0 + 14, y0 + 30, '#6a7a8a', 'opacity=".5"');
+  }));
+  KIT.S('sUp', `<defs><linearGradient id="up" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8d2da"/><stop offset="1" stop-color="#f3e6c6"/></linearGradient>
+      <linearGradient id="fac" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b8a07c"/><stop offset="1" stop-color="#6e5843"/></linearGradient>
+      <radialGradient id="glow" cx="50%" cy="0%" r="70%"><stop offset="0" stop-color="#fff8e6" stop-opacity=".9"/><stop offset="1" stop-color="#fff8e6" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="url(#up)"/><rect width="1080" height="900" fill="url(#glow)"/>
+    <polygon points="0,1920 0,240 ${P(-420, 420)},420 ${P(-420, 1920)},1920" fill="#5e4c3a"/>
+    <polygon points="1080,1920 1080,200 ${P(1500, 380)},380 ${P(1500, 1920)},1920" fill="#54443a"/>
+    ${quad(-200, 1280, 690, 1920, 'url(#fac)')}
+    ${Array.from({ length: 9 }, (_, k) => `<line x1="${P(-200 + k * 185, 690)}" y1="690" x2="${-200 + k * 185}" y2="1920" stroke="#5e4a36" stroke-width="2" opacity=".25"/>`).join('')}
+    ${wins}
+    <clipPath id="behindPar"><rect x="0" y="0" width="1080" height="556"/></clipPath><g clip-path="url(#behindPar)"><g transform="translate(540 760) scale(.75)">${KIT.adam('ua')}</g></g>
+    ${quad(-240, 1320, 548, 562, '#c9b28e')}
+    ${quad(-240, 1320, 562, 650, '#9a8264')}
+    ${quad(-260, 1340, 650, 690, '#4e3c2c')}
+    ${quad(-200, 1280, 690, 760, '#000', 'opacity=".22"')}`);
 }
 
 KIT.episode({
