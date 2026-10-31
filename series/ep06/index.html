@@ -76,41 +76,41 @@ const dajjal = p => `
     <path d="M0 0 C-6 40 -24 70 -10 82 L12 82" stroke="#9a5a44" stroke-width="7" fill="none" stroke-linecap="round"/>
     <path id="${p}Mouth" d="M-64 150 Q0 160 64 150" stroke="#6a2e22" stroke-width="10" fill="none" stroke-linecap="round"/>
   </g>`;
-// top of his head seen from above: a crown of tight curls on broad shoulders
-const crown = (p, s = 1) => `<g id="${p}" transform="scale(${s})"><ellipse cx="0" cy="40" rx="170" ry="70" fill="#000" opacity=".2"/>
-  <ellipse rx="150" ry="90" fill="#3a3430"/><circle r="70" fill="${HAIR}"/>${curls(0, 0, 60, 60, 0, Math.PI * 2 * .94, 14, 18)}${curls(0, 0, 28, 28, 0, Math.PI * 2 * .86, 6, 16)}</g>`;
-const topPerson = (c, arms) => `<ellipse rx="18" ry="12" fill="${c}"/>${arms ? `<path class="arms" d="M-14 -4 l-10 -26 M14 -4 l10 -26" stroke="${c}" stroke-width="7" stroke-linecap="round"/>` : ''}<circle r="9" fill="#2a1a12"/>`;
-const crowdField = (cls, n, sd, arms) => { seed = sd; let s = ''; for (let i = 0; i < n; i++) s += `<g class="${cls}" data-x="${rnd() * 1080}" data-y="${rnd() * 1100}" data-o="${rnd() * 6.28}">${topPerson(CROWD[i % 6], arms)}</g>`; return s; };
-const placeCrowd = (cls, t, bob, drift = 0) => document.querySelectorAll('.' + cls).forEach(g => {
-  const o = +g.dataset.o, y = (+g.dataset.y - drift * (t + o) + 4400) % 1100;
-  g.setAttribute('transform', `translate(${+g.dataset.x + Math.sin(t * 2 + o) * 3} ${y - Math.abs(Math.sin(t * 6 + o)) * bob})`);
-});
+// him from behind: broad back, ruddy neck, a head of tight curls
+const djBack = p => `<g id="${p}"><path d="M-130 0 C-142 -160 -122 -290 -72 -330 L72 -330 C122 -290 142 -160 130 0Z" fill="#3a3430"/>
+  <rect x="-28" y="-372" width="56" height="52" fill="${RUDDY}"/><ellipse cx="0" cy="-412" rx="64" ry="70" fill="${HAIR}"/>
+  ${curls(0, -412, 62, 66, 0, Math.PI * 2 * .94, 14, 17)}${curls(0, -418, 28, 30, 0, Math.PI * 2 * .8, 6, 15)}</g>`;
+// small round hands on the kit's figures
+const withHands = svg => svg.replace(/(<g id="\w+Arm[LR]"><rect x="(-?\d+)" y="-228" width="18" height="98" rx="9" fill="[^"]+"\/>)/g,
+  (m, a, x) => `${a}<circle cx="${+x + 9}" cy="-130" r="13" fill="${SKIN}"/>`);
+// Adam standing and Hawa, seen from behind (the backs of their heads)
+const adamBack = p => KIT.adam(p).replace(/<\/g>\s*$/, `<ellipse cx="-45" cy="-544" rx="9" ry="15" fill="${SKIN}"/><ellipse cx="45" cy="-544" rx="9" ry="15" fill="${SKIN}"/><ellipse cx="0" cy="-552" rx="45" ry="54" fill="${HAIR}"/></g>`);
+const hawaBack = p => withHands(KIT.hawa(p)).replace(/<\/g>\s*$/, `<path d="M-42 -300 C-52 -240 -58 -170 -50 -146 L50 -146 C58 -170 52 -240 42 -300 C30 -330 -30 -330 -42 -300Z" fill="${HAIR}"/></g>`);
+// a cheering figure from behind, arms up
+const backPerson = (x, y, s, c, i) => `<g class="cb" data-i="${i}" transform="translate(${x} ${y}) scale(${s})">
+  <g class="aL"><rect x="-46" y="-268" width="18" height="104" rx="9" fill="${c}"/></g><g class="aR"><rect x="28" y="-268" width="18" height="104" rx="9" fill="${c}"/></g>
+  <path d="M-42 0 C-48 -90 -42 -150 -30 -172 L30 -172 C42 -150 48 -90 42 0Z" fill="${c}"/><circle cy="-202" r="30" fill="#2a1a12"/></g>`;
 const SKY = `<linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9e2cf"/><stop offset="1" stop-color="#f6dca6"/></linearGradient>`;
 const roofFloor = `<rect y="0" width="1080" height="1920" fill="url(#sk)"/>
   <g fill="#9a8a74" opacity=".7">${[[40, 520, 180, 260], [260, 470, 140, 320], [760, 500, 200, 280], [900, 450, 160, 340]].map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`).join('')}</g>
   <rect y="760" width="1080" height="1160" fill="#a48c6c"/><rect y="700" width="1080" height="70" fill="#b29a78"/><rect y="690" width="1080" height="14" fill="#c4ac88"/>`;
+const shadow = (x, y, rx) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${rx * .16}" fill="#000" opacity=".18"/>`;
 // a soldier seen at night: dark figure, helmet, a torch held forward
 const soldier = (id, x, y, s = 1) => `<g id="${id}" transform="translate(${x} ${y}) scale(${s})"><path d="M-60 0 C-66 -150 -50 -250 -30 -280 L30 -280 C50 -250 66 -150 60 0Z" fill="#0d0f14"/>
-  <ellipse cy="-318" rx="40" ry="44" fill="#0d0f14"/><path d="M-46 -330 C-44 -380 44 -380 46 -330Z" fill="#161a22"/><rect x="40" y="-210" width="70" height="22" rx="10" fill="#0d0f14"/></g>`;
+  <ellipse cy="-318" rx="40" ry="44" fill="#0d0f14"/><path d="M-46 -330 C-44 -380 44 -380 46 -330Z" fill="#161a22"/><g id="${id}Arm"><rect x="20" y="-222" width="100" height="24" rx="12" fill="#0d0f14"/></g></g>`;
 
 function build() {
-  // ---- hook: Hawa's small hand holding her father's shirt hem ----
+  // ---- hook: on the roof, from behind: Hawa reaches up and holds her father's shirt ----
   KIT.S('sHook', `<defs>${SKY}</defs>${roofFloor}
-    <g transform="translate(0 -400)">
-    <path d="M140 -40 C120 400 110 900 150 1200 L940 1200 C980 900 960 400 940 -40Z" fill="#cdbb9a"/>
-    <path d="M150 1150 L940 1150" stroke="#b8a685" stroke-width="10"/>
-    <path d="M520 -40 C516 300 510 700 520 1150" stroke="#bba985" stroke-width="6" fill="none" opacity=".6"/>
-    <g id="hemPull"><path d="M560 1090 C600 1160 640 1200 650 1260 L740 1250 C720 1190 690 1140 650 1080Z" fill="#c4b190"/></g>
-    <g id="tinyHand"><path d="M760 1900 C740 1600 700 1420 680 1300" stroke="#a8583f" stroke-width="80" fill="none" stroke-linecap="round"/>
-      <ellipse cx="672" cy="1262" rx="44" ry="40" fill="${SKIN}"/>
-      ${[0, 1, 2, 3].map(k => `<rect x="${636 + k * 20}" y="${1220 + Math.abs(k - 1.5) * 6}" width="18" height="44" rx="9" fill="${SKIN}" stroke="#a87a5e" stroke-width="2"/>`).join('')}</g></g>`);
+    ${shadow(470, 1150, 150)}${shadow(700, 1150, 70)}
+    <g transform="translate(470 1150) scale(1.5)">${adamBack('ab0')}</g>
+    <g transform="translate(700 1150) scale(1.5)">${hawaBack('h0')}</g>
+    <path id="hemFold" d="M548 760 l14 34 l-20 4" stroke="#b8a685" stroke-width="5" fill="none" opacity="0"/>`);
 
-  // ---- the face, looking up from the alley below ----
-  KIT.S('sFace', `<rect width="1080" height="1920" fill="#b8a07a"/>
-    <rect x="0" y="0" width="230" height="1920" fill="#9a8a74"/><rect x="850" y="0" width="230" height="1920" fill="#9a8a74"/>
-    ${crowdField('fc', 46, 61, false)}
-    <g id="faceCam"><g id="crownWrap">${crown('dCrown', 2.2)}</g><g id="faceWrap">${dajjal('dj')}</g></g>
-    <rect id="eyeDim" width="1080" height="1920" fill="#000" opacity="0"/>`);
+  // ---- the face, looking up from the street below ----
+  KIT.S('sFace', `<defs><radialGradient id="fv" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#c9b08a"/><stop offset="1" stop-color="#8a7258"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="url(#fv)"/>
+    <g id="faceCam"><g id="faceWrap">${dajjal('dj')}</g></g>`);
 
   // ---- ك ف ر as a glowing graphic, centre screen ----
   KIT.S('sKfr', `<defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -119,28 +119,35 @@ function build() {
     <g font-family="Amiri" font-weight="700" font-size="260" fill="#f2c14e" text-anchor="middle" filter="url(#glow)">
       <text id="g1" x="800" y="710">ك</text><text id="g2" x="540" y="710">ف</text><text id="g3" x="280" y="710">ر</text></g>`);
 
-  // ---- the crowd below, cheering, as if no one sees anything ----
-  KIT.S('sCrowd', `<rect width="1080" height="1920" fill="#b8a07a"/>
-    <rect x="0" y="0" width="200" height="1920" fill="#9a8a74"/><rect x="880" y="0" width="200" height="1920" fill="#9a8a74"/>
-    ${crowdField('cc', 120, 71, true)}
-    <g transform="translate(540 560)">${crown('dCrown2', .55)}</g>`);
+  // ---- the crowd in the street, cheering, as if no one sees anything (from behind) ----
+  seed = 71;
+  const row = (y, s, n, cols, i0) => Array.from({ length: n }, (_, i) => backPerson(-30 + (i + .5) * 1140 / n + (rnd() - .5) * 30, y + (rnd() - .5) * 16, s, cols[i % cols.length], i0 + i)).join('');
+  KIT.S('sCrowd', `<defs>${SKY}</defs><rect width="1080" height="1920" fill="url(#sk)"/>
+    <polygon points="0,180 330,420 330,980 0,1100" fill="#9a8a74"/><polygon points="1080,160 750,420 750,980 1080,1100" fill="#8a7a66"/>
+    <rect x="60" y="560" width="90" height="120" fill="#6e5e4c" opacity=".6" transform="skewY(18)"/>
+    <polygon points="330,980 750,980 1080,1100 1080,1920 0,1920 0,1100" fill="#b89a72"/>
+    ${row(790, .62, 11, ['#8a7a8f', '#7f8f7a', '#9a8070', '#7a8a9a'], 0)}
+    <g id="djWalk">${djBack('db')}</g>
+    ${row(930, .85, 8, ['#6a5a72', '#5f7262', '#7a6250', '#5a6a7f'], 20)}
+    ${row(1090, 1.1, 6, ['#4a3e52', '#435246', '#5a4638', '#40495a'], 40)}`);
 
-  // ---- Hawa comes up the ladder behind him ----
-  KIT.S('sLadder', `<defs>${SKY}<clipPath id="hatch"><rect x="0" y="0" width="1080" height="1060"/></clipPath></defs>${roofFloor}
-    <path d="M520 1060 L860 1060 L900 1160 L480 1160Z" fill="#3a2a1c"/>
-    <rect x="600" y="820" width="16" height="250" fill="#6e4f33"/><rect x="764" y="820" width="16" height="250" fill="#6e4f33"/>
-    ${[860, 920, 980, 1040].map(y => `<rect x="600" y="${y}" width="180" height="12" fill="#6e4f33"/>`).join('')}
-    <g clip-path="url(#hatch)"><g id="hClimb">${KIT.hawa('h1')}</g></g>
-    <path d="M500 1060 L880 1060" stroke="#7a6248" stroke-width="10"/>`);
+  // ---- Hawa comes up the ladder through the roof hatch ----
+  KIT.S('sLadder', `<defs>${SKY}<clipPath id="hatch"><rect width="1080" height="1000"/></clipPath></defs>${roofFloor}
+    <path d="M250 1000 L830 1000 L900 1200 L180 1200Z" fill="#2a1d12"/>
+    <rect x="330" y="640" width="26" height="380" rx="8" fill="#6e4f33"/><rect x="724" y="640" width="26" height="380" rx="8" fill="#6e4f33"/>
+    ${[700, 800, 900].map(y => `<rect x="330" y="${y}" width="420" height="18" fill="#6e4f33"/>`).join('')}
+    <g clip-path="url(#hatch)"><g transform="translate(540 0) scale(2)">${withHands(KIT.hawa('h1'))}</g></g>
+    <path d="M236 1000 L844 1000" stroke="#7a6248" stroke-width="16"/>`);
 
   // ---- "Baba… it says kafir on his forehead" ----
-  KIT.S('sHawa', `<defs>${SKY}</defs>${roofFloor}
-    <g transform="translate(560 1120) scale(1.7)">${KIT.hawa('h2')}</g>`);
+  KIT.S('sHawa', `<defs>${SKY}</defs>${roofFloor}${shadow(540, 1250, 120)}
+    <g transform="translate(540 1250) scale(2.2)">${withHands(KIT.hawa('h2'))}</g>`);
 
   // ---- Adam turns to his daughter; she cannot read a single word ----
   KIT.S('sLook', `<defs>${SKY}</defs>${roofFloor}
-    <g transform="translate(330 1130) scale(1.25)">${KIT.adamKneel('ak1')}</g>
-    <g transform="translate(720 1130) scale(1.4)">${KIT.hawa('h3')}</g>`);
+    <clipPath id="waist1"><rect width="1080" height="1180"/></clipPath>
+    <g clip-path="url(#waist1)"><g transform="translate(430 1420) scale(2.1)">${KIT.adamKneel('ak1')}</g></g>
+    <g transform="translate(800 1420) scale(2.1)">${withHands(KIT.hawa('h3'))}</g>`);
 
   // ---- he pulls her close; behind them the crowd keeps cheering ----
   seed = 83;
@@ -151,44 +158,41 @@ function build() {
     <g fill="#9a8a74" opacity=".6">${[[20, 420, 200, 300], [700, 380, 180, 340], [880, 440, 220, 280]].map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`).join('')}</g>
     <g id="farCrowd" opacity=".75">${far}</g>
     <rect y="760" width="1080" height="1160" fill="#a48c6c"/><rect y="700" width="1080" height="70" fill="#b29a78"/><rect y="690" width="1080" height="14" fill="#c4ac88"/>
-    <circle id="hugGlow" cx="540" cy="800" r="560" fill="url(#hw)" opacity="0"/>
-    <g transform="translate(560 1160) scale(1.35)">
-      <g transform="translate(150 0)">${KIT.hawa('h4')}</g>
+    <circle id="hugGlow" cx="540" cy="760" r="560" fill="url(#hw)" opacity="0"/>
+    
+    <clipPath id="waist2"><rect width="1080" height="1180"/></clipPath>
+    <g clip-path="url(#waist2)"><g transform="translate(570 1440) scale(2.2)">
       ${KIT.adamKneel('ak2')}
-      <path d="M-30 -330 C40 -320 110 -280 170 -230" stroke="#cdbb9a" stroke-width="34" fill="none" stroke-linecap="round"/><circle cx="174" cy="-226" r="17" fill="${SKIN}"/>
-    </g>`);
-
-  // ---- he walks on with the procession (from above) ----
-  KIT.S('sAway', `<rect width="1080" height="1920" fill="#b8a07a"/>
-    <rect x="0" y="0" width="230" height="1920" fill="#9a8a74"/><rect x="850" y="0" width="230" height="1920" fill="#9a8a74"/>
-    ${crowdField('ac', 70, 91, false)}
-    <g id="awayMan">${crown('dCrown3', .6)}</g>`);
+      <g transform="translate(-30 0)">${hawaBack('h4')}</g>
+      <path d="M-104 -350 C-150 -270 -110 -215 -40 -212" stroke="#cdbb9a" stroke-width="32" fill="none" stroke-linecap="round"/><circle cx="-34" cy="-212" r="15" fill="${SKIN}"/>
+      <path d="M28 -352 C70 -300 60 -240 -4 -226" stroke="#cdbb9a" stroke-width="32" fill="none" stroke-linecap="round"/><circle cx="-10" cy="-225" r="15" fill="${SKIN}"/>
+    </g></g>`);
 
   // ---- night: soldiers going door to door with their torches ----
   seed = 101;
   let houses = '';
   [[-40, 300], [270, 340], [620, 280], [910, 320]].forEach(([x, w], i) => {
-    houses += `<rect x="${x}" y="${420 + (i % 2) * 40}" width="${w}" height="700" fill="${i === 1 ? '#262a36' : '#1e222c'}"/>
+    houses += `<rect x="${x}" y="${420 + (i % 2) * 40}" width="${w}" height="700" fill="${i === 1 ? '#2a2f3c' : '#1e222c'}"/>
       <rect id="${i === 1 ? 'door' : 'door' + i}" x="${x + w / 2 - 60}" y="900" width="120" height="220" fill="#3a2e24"/>
       <rect x="${x + 30}" y="${560 + (i % 2) * 40}" width="80" height="90" fill="#141720"/>`;
   });
   KIT.S('sNight', `<defs><linearGradient id="nt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0e18"/><stop offset="1" stop-color="#1c2236"/></linearGradient>
-      <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff6d8" stop-opacity=".55"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></linearGradient></defs>
+      <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff6d8" stop-opacity=".6"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></linearGradient></defs>
     <rect width="1080" height="1920" fill="url(#nt)"/>
     ${Array.from({ length: 30 }, () => `<circle cx="${rnd() * 1080}" cy="${rnd() * 380}" r="${1 + rnd() * 2}" fill="#dfe6f2" opacity="${.3 + rnd() * .5}"/>`).join('')}
     ${houses}<rect y="1120" width="1080" height="800" fill="#141720"/>
-    <polygon id="beamA" points="0,-20 900,-160 900,160 0,20" fill="url(#beam)"/>
-    <polygon id="beamB" points="0,-20 900,-160 900,160 0,20" fill="url(#beam)"/>
-    ${soldier('sol1', 0, 0, .9)}${soldier('sol2', 0, 0, .8)}`);
+    <polygon id="beamB" points="0,-14 760,-150 760,150 0,14" fill="url(#beam)"/>
+    ${soldier('sol1', 600, 1130, .9)}${soldier('sol2', 960, 1150, .85)}`);
 
-  // ---- inside: Adam opens the shutter a crack ----
+  // ---- inside: Adam, from behind, opens the shutter a crack ----
   KIT.S('sShutter', `<defs><linearGradient id="slit" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c8d4f0" stop-opacity=".0"/><stop offset=".5" stop-color="#e8eefa" stop-opacity=".9"/><stop offset="1" stop-color="#c8d4f0" stop-opacity="0"/></linearGradient></defs>
     <rect width="1080" height="1920" fill="#0e0c0b"/>
-    <rect x="240" y="260" width="600" height="760" fill="#2a1f17"/>
-    <rect id="slitLight" x="530" y="270" width="20" height="740" fill="url(#slit)"/>
-    <g id="shutL"><rect x="250" y="270" width="290" height="740" fill="#4a3626"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(k => `<rect x="270" y="${300 + k * 88}" width="250" height="14" fill="#3a2a1c"/>`).join('')}</g>
-    <g id="shutR"><rect x="540" y="270" width="290" height="740" fill="#4a3626"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(k => `<rect x="560" y="${300 + k * 88}" width="250" height="14" fill="#3a2a1c"/>`).join('')}</g>
-    <g id="peekHand"><path d="M1200 1300 C1000 1200 800 1050 700 900" stroke="#cdbb9a" stroke-width="90" fill="none" stroke-linecap="round"/><circle cx="696" cy="890" r="44" fill="${SKIN}"/></g>`);
+    <rect x="240" y="200" width="600" height="760" fill="#2a1f17"/>
+    <rect id="slitLight" x="530" y="210" width="20" height="740" fill="url(#slit)"/>
+    <g id="shutL"><rect x="250" y="210" width="290" height="740" fill="#4a3626"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(k => `<rect x="270" y="${240 + k * 88}" width="250" height="14" fill="#3a2a1c"/>`).join('')}</g>
+    <g id="shutR"><rect x="540" y="210" width="290" height="740" fill="#4a3626"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(k => `<rect x="560" y="${240 + k * 88}" width="250" height="14" fill="#3a2a1c"/>`).join('')}</g>
+    <g transform="translate(420 1180)"><path d="M-260 400 C-250 160 -190 70 -90 50 L90 50 C190 70 250 160 260 400Z" fill="#1c1714"/>
+      <ellipse cy="-60" rx="96" ry="110" fill="#1c1714"/><path id="rim" d="M60 -150 C100 -110 104 -40 90 10" stroke="#c8d4f0" stroke-width="8" fill="none" opacity="0"/></g>`);
 
   // ---- through the crack: Harith holding the list, torches sweeping toward the window ----
   KIT.S('sWin', `<defs><linearGradient id="nt2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0e18"/><stop offset="1" stop-color="#232a40"/></linearGradient>
@@ -213,83 +217,80 @@ KIT.episode({
   refs: 'หลักฐานหลัก: เศาะฮีห์อัลบุคอรี 7131, 3439<br>เศาะฮีห์มุสลิม 2933, 2934',
   scenes: [
     ['sHook', 0, 9.8], ['sFace', 9.6, 29.2], ['sKfr', 29, 32.7], ['sCrowd', 32.5, 36.7], ['sLadder', 36.5, 41.2],
-    ['sHawa', 41, 45.2], ['sLook', 45, 49.7], ['sHug', 49.5, 59.7], ['sFace', 59.5, 61.8], ['sAway', 61.6, 63.7],
+    ['sHawa', 41, 45.2], ['sLook', 45, 49.7], ['sHug', 49.5, 59.7], ['sFace', 59.5, 61.6, { cut: true }], ['sCrowd', 61.6, 63.7],
     ['sNight', 63.5, 69.2], ['sShutter', 69, 72.7], ['sWin', 72.5, 85, { hardOut: true }], ['sNight', 97.4, 102.5],
   ],
   caps: CAPS, tags: TAGS,
-  keys: [[2.5, 1], [7.5, 2], [11, 3], [12.8, 4], [17, 5], [21, 6], [24.5, 7], [28, 8], [31, 9], [34.5, 10], [39, 11], [43, 12], [47.5, 13], [52, 14], [57.5, 15], [60.6, 16], [62.8, 17], [66, 18], [71, 19], [74, 20], [78, 21], [83, 22], [88, 23], [94, 24], [100, 25]],
+  keys: [[2.5, 1], [7.5, 2], [10.6, 3], [12.8, 4], [17, 5], [21, 6], [24.5, 7], [28, 8], [31, 9], [34.5, 10], [38.5, 11], [43, 12], [47.5, 13], [52, 14], [57.5, 15], [60.6, 16], [62.8, 17], [66, 18], [71, 19], [74, 20], [78, 21], [83, 22], [88, 23], [94, 24], [100, 25]],
   build,
   draw(t) {
-    // hook: the hem tightens in her small hand
-    const g = ease((t - .6) / 1.4);
-    attr('tinyHand', 'transform', `translate(${(1 - g) * 120} ${(1 - g) * 260})`);
-    attr('hemPull', 'transform', `translate(${g * 18} ${g * 30})`);
-    KIT.zoom('sHook', 1 + Math.min(t, 10) * .006);
+    // hook: she reaches up and takes hold of the shirt; the cloth creases under her hand
+    KIT.poseHawa('h0', 0, 0, t, false);
+    const g = ease((t - .5) / 1.3);
+    attr('h0ArmL', 'transform', `rotate(${123 * g} -41 -226)`);
+    attr('hemFold', 'opacity', ease((t - 1.6) / .4));
+    KIT.zoom('sHook', 1 + Math.min(t, 10) * .008);
 
-    // the face. 9.6-12.6 he lifts his head (crown of curls gives way to the face);
-    // 14-19.5 slow push toward his right eye; 23-29 the three letters appear one by one;
-    // 59.5-61.6 the half-smile, then the head turns down and away.
-    const second = t > 50, lift = second ? 1 - ease((t - 60.8) / .8) : ease((t - 10.2) / 2.2);
-    attr('crownWrap', 'opacity', 1 - lift); attr('crownWrap', 'transform', `translate(540 ${560 - 60 * lift})`);
-    attr('faceWrap', 'opacity', lift); attr('faceWrap', 'transform', `translate(540 ${640 - 120 * (1 - lift)}) scale(1.45 ${1.45 * (.7 + .3 * lift)})`);
+    // the face. 9.7-11.9 he lifts his head into view from below; 14-19.5 slow push to his right eye;
+    // 25.6-27.4 the three letters appear one by one; 59.5-61.6 the half-smile, then his head drops out of view.
+    const second = t > 50;
+    const lift = second ? 1 - ease((t - 60.7) / .9) : ease((t - 9.7) / 2.2);
+    attr('faceWrap', 'transform', `translate(540 ${640 + 1000 * (1 - lift)}) rotate(${(1 - lift) * 6}) scale(1.45 ${1.45 * (.88 + .12 * lift)})`);
     const push = second ? 0 : ease((t - 14.2) / 3) - ease((t - 19.6) / 2.4);
-    { // plain camera: scale s about the eye, and slide the eye toward screen centre as we push
-      const s = 1 + push * .9, ex = 540 - 90 * 1.45, ey = 640 - 14 * 1.45, cx = lerp(ex, 540, push), cy = lerp(ey, 560, push);
+    { const s = 1 + push * .9, ex = 540 - 90 * 1.45, ey = 640 - 14 * 1.45, cx = lerp(ex, 540, push), cy = lerp(ey, 560, push);
       attr('faceCam', 'transform', `translate(${cx} ${cy}) scale(${s}) translate(${-ex} ${-ey})`); }
     ['K1', 'K2', 'K3'].forEach((k, i) => attr('dj' + k, 'opacity', second ? 1 : ease((t - 25.6 - i * .9) / .5)));
     attr('djKfr', 'style', `filter: drop-shadow(0 0 ${8 + 10 * Math.sin(t * 3) ** 2}px rgba(242,193,78,.75))`);
     const sm = second ? ease((t - 59.7) / .7) : 0;
     attr('djMouth', 'd', `M-64 150 Q0 ${160 - 4 * sm} ${64 + 8 * sm} ${150 - 34 * sm}`);
-    attr('djIris', 'transform', `translate(0 ${-6 * lift})`);
-    placeCrowd('fc', t, 4);
 
-    // ك ف ر glowing, one letter after another, then a slow breath of light
+    // ك ف ر glowing, one letter after another
     ['g1', 'g2', 'g3'].forEach((id, i) => { attr(id, 'opacity', ease((t - 29.1 - i * .35) / .45)); });
     KIT.zoom('sKfr', 1 + clamp(t - 29, 0, 4) * .02);
 
-    // the crowd below with arms up, bobbing
-    placeCrowd('cc', t, 10);
-    document.querySelectorAll('#sCrowd .arms').forEach((a, i) => a.setAttribute('transform', `scale(1 ${.7 + .3 * Math.sin(t * 7 + i)})`));
+    // the crowd from behind, arms up and waving; later he walks on up the street
+    document.querySelectorAll('#sCrowd .cb').forEach(c => {
+      const i = +c.dataset.i, w = Math.sin(t * 7 + i * 1.7) * 12;
+      c.querySelector('.aL').setAttribute('transform', `rotate(${-14 + w} -37 -168)`);
+      c.querySelector('.aR').setAttribute('transform', `rotate(${14 - w} 37 -168)`);
+    });
+    const walk = ease((t - 61.8) / 1.9);
+    attr('djWalk', 'transform', `translate(${540 + 30 * walk} ${800 - 120 * walk}) scale(${.9 - .35 * walk})`);
     KIT.zoom('sCrowd', 1 + clamp(t - 32.5, 0, 4) * .01);
 
-    // Hawa rises out of the hatch
-    const up = ease((t - 37) / 2.8);
-    KIT.poseHawa('h1', 690, 1360 - up * 300, t, false);
+    // Hawa climbs up out of the hatch
+    const up = ease((t - 36.8) / 2.8);
+    KIT.poseHawa('h1', 0, lerp(860, 500, up), t, t > 36.8 && t < 39.6);
 
     // Hawa points toward the street
     KIT.poseHawa('h2', 0, 0, t, false);
-    attr('h2ArmL', 'transform', `rotate(${130 * ease((t - 41.3) / .6)} -41 -226)`);
+    attr('h2ArmL', 'transform', `rotate(${125 * ease((t - 41.3) / .6)} -41 -226)`);
     KIT.zoom('sHawa', 1 + clamp(t - 41, 0, 4) * .01);
 
     // Adam turns and looks at her
     KIT.poseHawa('h3', 0, 0, t, false);
-    attr('ak1', 'transform', `rotate(${4 * ease((t - 45.4) / 1)} 0 0)`);
+    KIT.zoom('sLook', 1 + clamp(t - 45, 0, 5) * .01);
 
     // the hug: warmth grows as fear turns to certainty (55-59.5)
-    KIT.poseHawa('h4', 0, 0, t, false, -4);
+    KIT.poseHawa('h4', 0, 0, t, false);
     attr('hugGlow', 'opacity', ease((t - 55) / 3));
     document.querySelectorAll('#sHug .fa').forEach(f => f.querySelector('.farm').setAttribute('transform', `rotate(${12 * Math.sin(t * 6 + +f.dataset.o)} 10 -36)`));
     KIT.zoom('sHug', 1 + clamp(t - 49.5, 0, 10) * .008);
 
-    // he walks on up the alley with the procession
-    placeCrowd('ac', t, 4, 60);
-    attr('awayMan', 'transform', `translate(540 ${lerp(900, 420, ease((t - 61.6) / 2.2))})`);
-
-    // night: torches sweep, knocks shake the door
-    const sw = Math.sin((t - 63.5) * .9);
-    attr('sol1', 'transform', `translate(${lerp(-100, 220, ease((t - 63.5) / 4))} 1180) scale(.9)`);
-    attr('sol2', 'transform', `translate(${lerp(1180, 900, ease((t - 64) / 4))} 1190) scale(-.8 .8)`);
-    attr('beamA', 'transform', `translate(${lerp(-100, 220, ease((t - 63.5) / 4)) + 90} 980) rotate(${-14 + sw * 12})`);
-    attr('beamB', 'transform', `translate(${lerp(1180, 900, ease((t - 64) / 4)) - 90} 990) rotate(${194 - sw * 10})`);
-    const knock = [64.1, 64.5, 64.9, 66.4, 66.8, 67.2].reduce((a, k) => a + Math.max(0, 1 - Math.abs(t - k) / .08), 0);
+    // night: a soldier pounds on Adam's door, another sweeps his torch across the houses
+    const knock = [64.1, 64.5, 64.9, 66.4, 66.8, 67.2].reduce((a, k) => a + Math.max(0, 1 - Math.abs(t - k) / .1), 0);
+    attr('sol1', 'transform', `translate(600 1130) scale(-.9 .9)`);
+    attr('sol1Arm', 'transform', `rotate(${-18 + 24 * knock} 20 -210)`);
     attr('door', 'transform', `translate(${knock * 5} 0)`);
+    attr('sol2', 'transform', `translate(${lerp(1000, 880, ease((t - 63.5) / 5))} 1150) scale(-.85 .85)`);
+    attr('beamB', 'transform', `translate(${lerp(1000, 880, ease((t - 63.5) / 5)) - 90} 960) rotate(${190 + Math.sin((t - 63.5) * .8) * 9})`);
     KIT.zoom('sNight', 1 + clamp(t - 63.5, 0, 6) * .006);
 
     // the shutter opens a crack
     const op = ease((t - 69.6) / 1.6);
     attr('shutL', 'transform', `translate(${-op * 60} 0)`); attr('shutR', 'transform', `translate(${op * 60} 0)`);
     attr('slitLight', 'opacity', .3 + .7 * op); attr('slitLight', 'width', 20 + op * 120); attr('slitLight', 'x', 530 - op * 60);
-    attr('peekHand', 'transform', `translate(${-op * 40} 0)`);
+    attr('rim', 'opacity', .7 * op);
 
     // Harith with the list; torches sweep and finally swing into the window
     KIT.harithEyes('wh', .2);
