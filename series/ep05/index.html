@@ -212,11 +212,11 @@ KIT.episode({
     // 6. the river of people flows in along the road; the man at its centre
     const road = $('road'), L = road.getTotalLength();
     document.querySelectorAll('#sRiver .pp').forEach(p => {
-      const u = (+p.dataset.u + (t - 32.5) * .05) % 1, pt = road.getPointAtLength(L * (1 - u)), pt2 = road.getPointAtLength(Math.max(0, L * (1 - u) - 4));
+      const u = (+p.dataset.u + (t - 32.5) * .05) % 1, pt = road.getPointAtLength(L * u), pt2 = road.getPointAtLength(Math.min(L, L * u + 4));   // from the east (top right) into the city
       const nx = -(pt2.y - pt.y), ny = pt2.x - pt.x, nl = Math.hypot(nx, ny) || 1;
       p.setAttribute('transform', `translate(${pt.x + nx / nl * +p.dataset.v * 130} ${pt.y + ny / nl * +p.dataset.v * 130})`);
     });
-    const mp = road.getPointAtLength(L * (1 - ((t - 32.5) * .05 + .35) % 1));
+    const mp = road.getPointAtLength(L * (((t - 32.5) * .05 + .35) % 1));
     attr('man', 'transform', `translate(${mp.x} ${mp.y})`);
     attr('manRing', 'transform', `translate(${mp.x} ${mp.y})`); attr('manRing', 'opacity', .5 * ease((t - 37.2) / .8) * (t < 41 ? 1 : 0));
     KIT.zoom('sRiver', 1 + clamp(t - 32.5, 0, 9) * .006);
@@ -237,7 +237,7 @@ KIT.episode({
 
     // 10a. into the alley; he stops beneath the roof
     const ad = document.querySelectorAll('#sAlley .ap'), stop = ease((t - 62) / 3.5);
-    ad.forEach(p => { const u = (+p.dataset.u + (t - 62) * .06 * (1 - stop * .8)) % 1; p.setAttribute('transform', `translate(${540 + +p.dataset.v * 200} ${-60 + u * 2040})`); });
+    ad.forEach(p => { const u = (+p.dataset.u + (t - 62) * .06 * (1 - stop * .8)) % 1; p.setAttribute('transform', `translate(${540 + +p.dataset.v * 200} ${1980 - u * 2040})`); });   // same way as the man: up the alley
     attr('man2', 'transform', `translate(540 ${lerp(1500, 760, stop)})`);
     attr('m2head', 'transform', `translate(0 ${-8 * ease((t - 66.6) / 2)})`);   // the head tips back: we stay above it
 
