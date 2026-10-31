@@ -119,10 +119,14 @@ function build() {
 
   // ---- 5. Salma's hands wring a cloth that is almost dry; the bottle less than half ----
   KIT.S('sCloth', `<rect width="1080" height="1920" fill="#4a3a2c"/><circle cx="540" cy="760" r="560" fill="#6a5440" opacity=".6"/>
-    <g id="clothG"><path d="M380 700 C440 680 520 720 560 700 C600 680 660 720 700 700 L700 820 C640 840 600 800 560 820 C520 840 440 800 380 820Z" fill="#d9cdb8"/>
-      <path d="M330 640 C280 660 260 760 300 800 C340 830 400 800 400 760 L400 680Z" fill="#c99a7b"/>
-      <path d="M750 640 C800 660 820 760 780 800 C740 830 680 800 680 760 L680 680Z" fill="#c99a7b"/>
-      <rect x="140" y="620" width="200" height="140" rx="50" fill="#3d4f57"/><rect x="740" y="620" width="200" height="140" rx="50" fill="#3d4f57"/></g>
+    <g id="clothG">
+      <path d="M-40 1100 C80 980 220 880 330 820" stroke="#3d4f57" stroke-width="130" fill="none" stroke-linecap="round"/>
+      <path d="M1120 1100 C1000 980 860 880 750 820" stroke="#3d4f57" stroke-width="130" fill="none" stroke-linecap="round"/>
+      <path d="M360 740 C430 700 470 800 540 760 C610 720 650 820 720 780 L720 820 C650 860 610 760 540 800 C470 840 430 740 360 780Z" fill="#d9cdb8"/>
+      <path d="M420 730 L440 800 M480 760 L500 820 M580 740 L600 810 M640 760 L660 830" stroke="#bfb19a" stroke-width="5"/>
+      <g id="fistL"><rect x="270" y="700" width="130" height="140" rx="56" fill="#c99a7b"/><path d="M300 730 h70 M300 765 h75 M300 800 h70" stroke="#a87a5e" stroke-width="5" stroke-linecap="round"/></g>
+      <g id="fistR"><rect x="680" y="700" width="130" height="140" rx="56" fill="#c99a7b"/><path d="M710 730 h70 M705 765 h75 M710 800 h70" stroke="#a87a5e" stroke-width="5" stroke-linecap="round"/></g>
+    </g>
     ${[0, 1].map(i => `<ellipse class="dr" data-i="${i}" cx="${530 + i * 40}" cy="840" rx="7" ry="11" fill="#9fd3f0"/>`).join('')}
     <g id="bottle" opacity="0"><rect x="470" y="430" width="140" height="460" rx="40" fill="#cfe2ea" opacity=".55"/>
       <rect x="505" y="380" width="70" height="60" rx="10" fill="#cfe2ea" opacity=".6"/><rect x="498" y="360" width="84" height="30" rx="8" fill="#3a6a8a"/>
@@ -175,8 +179,6 @@ function build() {
       <rect x="350" y="680" width="70" height="140" fill="#c0392b"/><rect x="315" y="715" width="140" height="70" fill="#c0392b"/>
       <rect x="500" y="690" width="230" height="16" rx="8" fill="#b8ae9c"/><rect x="500" y="730" width="180" height="16" rx="8" fill="#b8ae9c"/><rect x="500" y="770" width="210" height="16" rx="8" fill="#b8ae9c"/>
       <g clip-path="url(#boxC)"><rect id="glint" x="0" y="540" width="120" height="340" fill="url(#gl2)" transform="skewX(-20)"/></g>
-      <path d="M330 820 C300 780 290 720 320 690 C350 670 360 720 350 760Z M750 820 C780 780 790 720 760 690 C730 670 720 720 730 760Z" fill="#8a6a58"/>
-      <path d="M330 820 C300 780 290 720 320 690 M750 820 C780 780 790 720 760 690" stroke="#7ea3c8" stroke-width="4" fill="none" opacity=".6"/>
     </g>`);
 }
 
@@ -216,7 +218,7 @@ KIT.episode({
 
     // 5. the cloth is wrung: two drops, then the bottle less than half full
     const wr = Math.sin(clamp((t - 35.4) / 2.4) * Math.PI * 3);
-    attr('clothG', 'transform', `translate(540 760) scale(${1 - .03 * Math.abs(wr)} 1) rotate(${wr * 2}) translate(-540 -760)`);
+    attr('fistL', 'transform', `rotate(${wr * 10} 335 770)`); attr('fistR', 'transform', `rotate(${-wr * 10} 745 770)`);   // the two fists twist against each other
     document.querySelectorAll('#sCloth .dr').forEach(d => { const p = clamp((t - 36.2 - d.dataset.i * .9) / .7); d.setAttribute('cy', 840 + p * 360); d.setAttribute('opacity', p > 0 && p < 1 ? 1 : 0); });
     const bt = ease((t - 38.6) / .6);
     attr('bottle', 'opacity', bt); attr('clothG', 'opacity', 1 - bt);
@@ -232,8 +234,7 @@ KIT.episode({
     KIT.zoom('sMemory', 1 + clamp(t - 47, 0, 6) * .012);
 
     // 8. standing in prayer, then sitting before the salam
-    const sit = ease((t - 55.6) / .6);
-    attr('pStand', 'opacity', 1 - sit); attr('pSit', 'opacity', sit);
+    attr('pStand', 'opacity', 1 - ease((t - 55.4) / .35)); attr('pSit', 'opacity', ease((t - 55.8) / .35));   // one pose out, then the next in: no double image
 
     // 9. the door: lamp, Harith's hands shake as he speaks
     KIT.updLantern('dl', t);
