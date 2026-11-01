@@ -86,7 +86,7 @@ function build() {
     <g transform="translate(250 1100) scale(.95)">${KIT.salma(0, 0)}</g>
     <g transform="translate(400 1100) scale(.95)">${KIT.adam('fa')}</g>
     <g transform="translate(530 1100) scale(.95)">${KIT.hawa('fh')}</g>
-    ${shadow(800, 1100, 70)}<g id="fHar" transform="translate(800 1100) scale(.95)">${harithStand('fr')}</g>`);
+    <g id="fHar" transform="translate(800 1100) scale(.95)">${shadow(0, 0, 74)}${harithStand('fr')}</g>`);
 
   // ---- the confession: close on Harith, huddled by a rock ----
   KIT.S('sConfess', `<defs><radialGradient id="cv" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="#b89a7a"/><stop offset="1" stop-color="#4a3a32"/></radialGradient></defs>
@@ -197,7 +197,8 @@ KIT.episode({
     KIT.zoom('sCry', 1 + Math.min(t, 10) * .006);
 
     // the foot of the mountain: Harith sways, thin and tired
-    attr('fHar', 'transform', `translate(800 1100) scale(.95) rotate(${Math.sin(t * 1.2) * 1}) `);
+    const hw = ease((t - 9.8) / 3.2), hb = hw > 0 && hw < 1 ? Math.abs(Math.sin(t * 4.5)) * 6 : 0;   // he walks in slowly and stops before them
+    attr('fHar', 'transform', `translate(${lerp(1040, 800, hw)} ${1100 - hb}) scale(.95) rotate(${(hw < 1 ? 2 : 0) + Math.sin(t * 1.2) * 1})`);
     KIT.zoom('sFoot', 1 + clamp(t - 9.6, 0, 10) * .006);
 
     // the confession: shoulders shake; at "he lowered his head" (28) the head drops
