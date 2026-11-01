@@ -243,12 +243,13 @@ KIT.episode({
 
     // the swap: the river turns to fire, the fire to cool water; then the fire side is the one to choose
     updWater('w3', t); updWater('w4', t); updFire('f3', 20, 520, 1060, 520, 6, t); updFire('f4', 560, 1060, 1060, 520, 6, t);
-    attr('swL', 'opacity', ease((t - 45) / 1.2)); attr('swR', 'opacity', ease((t - 47.6) / 1.2));
+    attr('swL', 'opacity', ease((t - 45) / 1.2)); attr('swR', 'opacity', ease((t - 46.6) / 1.1));
     attr('dimL', 'opacity', .55 * ease((t - 49.4) / .8)); attr('ringR', 'opacity', ease((t - 49.6) / .8));
 
     // lifting Hawa: she rises into his arms
     updFire('f5', 40, 1040, 990, 600, 8, t);
     attr('cH', 'transform', `translate(0 ${30 * (1 - ease((t - 51.6) / .9))})`);
+    attr('cFam', 'transform', `translate(620 ${1330 - 3 * Math.sin((t - 51.5) * 2.2)}) scale(1.45) rotate(${.8 * Math.sin((t - 51.5) * 1.1)})`);
     KIT.zoom('sCarry', 1 + clamp(t - 51.5, 0, 5) * .012);
 
     // recitation: verses 1-7 (known), then 8, 9, 10 for the first time
