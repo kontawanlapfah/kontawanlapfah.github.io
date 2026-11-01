@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>EP10 หออะซานสีขาว</title>
+<link rel="stylesheet" href="../shared/kit.css">
+</head>
+<body>
+<div id="stage"></div>
+<script src="../shared/kit.js"></script>
+<script src="audio/warp.js" onerror="void 0"></script>
+<script>
+// Narration: verbatim from the series document, EP10 (Hook / script / cliffhanger).
+// One caption per line: align.py reads this list.
+// The Prophet Isa (peace be upon him) is NEVER shown: no figure, face, outline or clothing. The descent is shown
+// only as soft light at the top of the white minaret; the two angels are two glows of light; the drops are points of light.
+// He is not in any crowd, row or gate scene either (document, visual guide 2).
+const CAPS = [
+  [0, 5.6, '', 'เช้าวันนั้น ผมละหมาดอยู่ท้ายแถว<br>ที่ยาวที่สุดในชีวิต… และผมรู้ว่าข้างหน้าสุดของแถว<br>มีใครบางคนที่โลกรอคอยมานานกว่าสองพันปี'],
+  [9.6, 13, '', 'แสงนั้นไม่ใช่กลลวงของดัจญาล'],
+  [13, 17, '', 'ก่อนดวงอาทิตย์ขึ้น<br>ชายหนุ่มคนหนึ่งวิ่งขึ้นมาบนภูเขา<br>หอบจนแทบพูดไม่ออก'],
+  [17, 21, 'q', '“ท่านนบีอีซาลงมาแล้ว!<br>ที่หออะซานสีขาว ทางตะวันออกของดามัสกัส!”'],
+  [21, 29, '', 'เขาเล่าว่า ท่านลงมาในเสื้อผ้าสองชิ้นที่ย้อมสีอ่อน<br>มือทั้งสองวางอยู่บนปีกของมลาอิกะฮ์สององค์'],
+  [29, 33, '', 'เมื่อท่านก้มศีรษะ มีหยดน้ำร่วงลงมา<br>เมื่อท่านเงยศีรษะ หยดน้ำนั้นพราวเหมือนไข่มุก'],
+  [33, 38, '', 'เราลงจากภูเขาพร้อมผู้คนนับร้อย<br>ฮาวาขี่หลังผม ซัลมาจับมือฮาริสพยุงเดิน'],
+  [38, 44, '', 'ที่ลานมัสยิด ผู้คนยืนแน่นเป็นแถวยาวจนสุดสายตา<br>ผมอยู่แถวท้าย ๆ<br>และมองไม่เห็นอะไรเลยนอกจากหลังของผู้คน'],
+  [44, 51, '', 'มีคนเล่าต่อกันมาจากแถวหน้าว่า<br>ผู้นำของมุสลิมเชิญท่านให้นำละหมาด แต่ท่านปฏิเสธ<br>และให้เกียรติประชาชาตินี้<br>ด้วยการละหมาดตามผู้นำของพวกเขา'],
+  [51, 55, '', 'ผมยืนตักบีรด้วยน้ำตาที่ไหลไม่หยุด'],
+  [55, 58, '', 'หลังละหมาด ฮาริสดึงแขนผมเบา ๆ'],
+  [58, 64, 'q', '“อาดัม… ฉันไม่เคยเลิกศรัทธานะ ฉันแค่อ่อนแอ<br>อัลลอฮ์จะยังรับฉันอยู่ไหม?”'],
+  [64, 69, 'q', '<span class="n">ผมกอดเพื่อน</span><br>“ผมไม่ใช่คนตัดสินหรอก ฮาริส…<br>มีแต่อัลลอฮ์เท่านั้นที่รู้”'],
+  [69, 72, '', 'แล้วเสียงหนึ่งก็ตะโกนมาจากประตูเมือง'],
+  [72, 76, 'q', '“ท่านกำลังออกตามดัจญาล!<br>ดัจญาลหนีไปทางเมืองลุด!”'],
+  [76, 79.5, 'big', 'ท่านนบีอีซาจะตามทันดัจญาลหรือไม่?'],
+  [79.5, 84, 'big', 'และอะไรจะเกิดขึ้น<br>เมื่อสองคนนี้เผชิญหน้ากัน?'],
+];
+const TAGS = [
+  [21, 33, 'เศาะฮีห์มุสลิม 2937'],
+  [44, 51, 'ความหมายจาก เศาะฮีห์มุสลิม 156'],
+];
+
+const SK = '#c99a7b', HR = '#2a1a12';
+{ const base = KIT.hawa; KIT.hawa = p => base(p).replace('<path d="M-50 -272 C-64 -210 -62 -165 -50 -140 L50 -140 C62 -165 64 -210 50 -272Z"',
+  '<path d="M0 -332 C-44 -332 -62 -300 -60 -262 C-64 -210 -62 -165 -50 -140 L50 -140 C62 -165 64 -210 60 -262 C62 -300 44 -332 0 -332Z"'); }
+{ const baseA = KIT.adam; KIT.adam = p => baseA(p).replace(/(<g id="\w+Arm[LR]"><rect [^>]*?)fill="#cdbb9a"/g, '$1fill="#bca986"'); }
+const shadow = (x, y, rx, o = .25) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${rx * .16}" fill="#000" opacity="${o}"/>`;
+// Harith as in EP09: like Adam, thin, worn grey shirt, stubble
+const HSHIRT = '#6e727c', HPANTS = '#4a4038', HSKIN = '#b98e72';
+const harithStand = p => `<g transform="scale(.82 1)">${KIT.adam(p)
+  .replace(/#cdbb9a|#bca986/g, HSHIRT).replace(/#3a3a44/g, HPANTS).replace(new RegExp(SK, 'g'), HSKIN)
+  .replace(/width="34" height="200"/g, 'width="26" height="200"').replace(/opacity="\.85"/, 'opacity=".4"')}
+  <path d="M-64 -252 ${Array.from({ length: 16 }, (_, k) => `l4 ${k % 2 ? -12 : 12} l4 ${k % 2 ? 12 : -12}`).join(' ')}" fill="${HSHIRT}"/></g>`;
+// a worshipper standing in prayer, seen from behind
+const rowMan = (x, y, s, c) => `<g transform="translate(${x} ${y}) scale(${s})"><ellipse rx="50" ry="9" fill="#000" opacity=".18"/>
+  <path d="M-42 0 C-48 -100 -42 -170 -30 -196 L30 -196 C42 -170 48 -100 42 0Z" fill="${c}"/><rect x="-12" y="-214" width="24" height="22" fill="${SK}"/><circle cy="-238" r="30" fill="#2a2622"/></g>`;
+const ROWC = ['#e8e2d4', '#d8d2c4', '#cdbb9a', '#c8ccd2', '#b8b0a2', '#e0d8c8'];
+const rows = (y0, n, seedv) => { seed = seedv; let s = '';
+  for (let r = 0; r < n; r++) { const sc = .24 + r * .17, y = y0 + r * r * 8 + r * 30, gap = 118 * sc, cnt = Math.ceil(1180 / gap) + 1;
+    for (let i = 0; i < cnt; i++) s += rowMan(-60 + i * gap + (r % 2) * gap / 2, y, sc, ROWC[(i * 7 + r) % 6]); }
+  return s; };
+// profile walker facing left (legs swing from the hip). Origin at the feet.
+const walker = (cls, c, i, extra = '') => `<g class="${cls}" data-i="${i}">
+  <g class="lA"><rect x="-11" y="-160" width="22" height="160" rx="10" fill="${c[1]}"/></g><g class="lB"><rect x="-11" y="-160" width="22" height="160" rx="10" fill="${c[1]}"/></g>
+  <path d="M-32 -150 C-38 -230 -30 -290 -20 -310 L22 -310 C34 -290 38 -230 32 -150Z" fill="${c[0]}"/>
+  <rect x="-10" y="-332" width="20" height="26" fill="${c[3] || SK}"/><circle cy="-360" r="32" fill="${c[3] || SK}"/><path d="M-32 -362 C-34 -400 34 -400 32 -362 C20 -384 -20 -384 -32 -362Z" fill="${c[2]}"/>
+  ${extra}</g>`;
+const stepLegs = (sel, t, amp = 22) => document.querySelectorAll(sel).forEach(g => {
+  const ph = t * 4 + +g.dataset.i * 1.3, sw = Math.sin(ph) * amp;
+  g.querySelector('.lA').setAttribute('transform', `rotate(${sw} 0 -150)`); g.querySelector('.lB').setAttribute('transform', `rotate(${-sw} 0 -150)`);
+});
+
+function build() {
+  // ---- hook: from behind the last row, the rows run on as far as the eye can see ----
+  KIT.S('sRows', `<defs><linearGradient id="dw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d8b0"/><stop offset="1" stop-color="#e8c89a"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#dw)"/>
+    <rect y="560" width="1080" height="1360" fill="#d9c6a6"/>
+    <g id="rowsG">${rows(620, 7, 3)}</g>`);
+
+  // ---- the mountain before sunrise; a young man runs up the path, out of breath ----
+  seed = 77;
+  let sitters = '';
+  for (let i = 0; i < 26; i++) { const x = rnd() * 1080, y = 820 + rnd() * 160, s = .22 + (y - 820) / 160 * .18;
+    sitters += `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-40 0 C-44 -60 -30 -110 0 -116 C30 -110 44 -60 40 0Z" fill="#2a2a38"/><circle cy="-140" r="28" fill="#2a2a38"/></g>`; }
+  KIT.S('sRunner', `<defs><linearGradient id="pre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2240"/><stop offset=".7" stop-color="#5a5a7a"/><stop offset="1" stop-color="#c49070"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#pre)"/>
+    <path d="M-20 820 L280 520 L560 760 L860 480 L1100 760 L1100 1920 L-20 1920Z" fill="#3a3448"/>
+    <path d="M-20 1000 C300 960 700 980 1100 1000 L1100 1920 L-20 1920Z" fill="#4a4050"/>
+    ${sitters}
+    <path id="trail" d="M1120 1180 C940 1120 820 1060 640 1010" stroke="#5a4e5a" stroke-width="40" fill="none" stroke-linecap="round"/>
+    <g id="runner"><g transform="scale(.85)">${walker('rn', ['#8a7a6a', '#3a3530', HR], 0)}</g></g>`);
+
+  // ---- the white minaret at dawn: soft light at its top; two glows of light (the angels); drops of light ----
+  seed = 5;
+  let city = '';
+  for (let x = -20; x < 1100;) { const w = 50 + rnd() * 70, h = 60 + rnd() * 120; city += `<rect x="${x}" y="${1060 - h}" width="${w}" height="${h + 40}"/>`; x += w; }
+  KIT.S('sMinaret', `<defs><linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4470"/><stop offset=".6" stop-color="#d89a7a"/><stop offset="1" stop-color="#f6d6a0"/></linearGradient>
+      <radialGradient id="soft"><stop offset="0" stop-color="#fffaf0" stop-opacity=".95"/><stop offset=".45" stop-color="#fff4dc" stop-opacity=".45"/><stop offset="1" stop-color="#fff4dc" stop-opacity="0"/></radialGradient>
+      <radialGradient id="wing"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset="1" stop-color="#fff6e0" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="url(#dawn)"/>
+    <g fill="#5a4a50" opacity=".85">${city}</g>
+    <g transform="translate(540 1060)"><rect x="-34" y="-640" width="68" height="640" fill="#f2f0ea"/><rect x="-54" y="-460" width="108" height="22" fill="#f2f0ea"/>
+      <rect x="-48" y="-640" width="96" height="18" fill="#f2f0ea"/><rect x="-26" y="-720" width="52" height="80" fill="#f2f0ea"/><path d="M-26 -720 L0 -800 L26 -720Z" fill="#f2f0ea"/>
+      <rect x="-12" y="-560" width="24" height="60" rx="12" fill="#c8c4bc"/><rect x="-12" y="-360" width="24" height="60" rx="12" fill="#c8c4bc"/></g>
+    <circle id="topLight" cx="540" cy="300" r="300" fill="url(#soft)" opacity="0"/>
+    <circle id="wingL" cx="440" cy="330" r="110" fill="url(#wing)" opacity="0"/><circle id="wingR" cx="640" cy="330" r="110" fill="url(#wing)" opacity="0"/>
+    ${Array.from({ length: 14 }, (_, i) => `<circle class="pearl" data-i="${i}" r="7" fill="#ffffff" opacity="0"/>`).join('')}
+    <rect y="1060" width="1080" height="860" fill="#4a3a3e"/>`);
+
+  // ---- down the mountain: Hawa on Adam's back; Salma holds Harith's arm and helps him walk (side view) ----
+  seed = 19;
+  let others = '';
+  for (let i = 0; i < 9; i++) others += `<g transform="translate(${rnd() * 1080} ${860 + i * 8}) scale(.42)">${walker('ow', ['#4a4450', '#2e2a30', HR, '#3a3438'], i + 10)}</g>`;
+  KIT.S('sDescend', `<defs><linearGradient id="mo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8aa0c8"/><stop offset="1" stop-color="#f3d6a8"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#mo)"/>
+    <path d="M-20 700 L300 380 L620 640 L1100 420 L1100 1920 L-20 1920Z" fill="#8a7464"/>
+    <path d="M-20 1100 L1100 860 L1100 1920 L-20 1920Z" fill="#a48a70"/>
+    <g id="othersG">${others}</g>
+    <g id="fam">
+      <g transform="translate(260 1046)">${shadow(0, 0, 70)}${walker('fw', ['#cdbb9a', '#3a3a44', HR], 1,
+        `<g transform="translate(18 -300)"><path d="M0 0 C-6 -50 6 -90 26 -100 L56 -96 C66 -70 64 -30 54 6Z" fill="#a8583f"/><circle cx="40" cy="-126" r="26" fill="${SK}"/>
+         <path d="M14 -126 C12 -160 66 -162 66 -126 C66 -100 60 -80 56 -66 L22 -66 C16 -90 14 -110 14 -126Z" fill="${HR}"/>
+         <path d="M30 -84 C10 -60 -10 -40 -26 -30" stroke="${SK}" stroke-width="12" fill="none" stroke-linecap="round"/>
+         <path d="M40 10 C30 40 20 60 0 70" stroke="${SK}" stroke-width="14" fill="none" stroke-linecap="round"/></g>
+         <path d="M8 -290 C30 -250 34 -210 30 -190" stroke="#bca986" stroke-width="22" fill="none" stroke-linecap="round"/>`)}</g>
+      <g transform="translate(560 982)">${shadow(0, 0, 70)}${walker('fw', ['#3d4f57', '#3d4f57', '#56707a', '#56707a'], 2,
+        `<path d="M10 -290 C40 -270 80 -262 120 -258" stroke="#3d4f57" stroke-width="22" fill="none" stroke-linecap="round"/><circle cx="124" cy="-258" r="12" fill="${SK}"/>`)}
+        <circle cy="-360" r="24" fill="${SK}" transform="translate(-10 0)"/></g>
+      <g transform="translate(700 952) rotate(4)">${shadow(0, 0, 66)}${walker('fw', [HSHIRT, HPANTS, HR, HSKIN], 3,
+        `<path d="M-10 -290 C-30 -270 -40 -262 -14 -256" stroke="${HSHIRT}" stroke-width="18" fill="none" stroke-linecap="round"/>`)}</g>
+    </g>`);
+
+  // ---- the mosque courtyard: rows to the edge of sight; Adam near the back sees only backs ----
+  KIT.S('sCourt', `<defs><linearGradient id="ct" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6dcb0"/><stop offset="1" stop-color="#e2c494"/></linearGradient>
+      <linearGradient id="wave" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6dc" stop-opacity="0"/><stop offset=".5" stop-color="#fff6dc" stop-opacity=".5"/><stop offset="1" stop-color="#fff6dc" stop-opacity="0"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#ct)"/>
+    <g fill="#e8d4b0">${[0, 1, 2, 3, 4].map(i => `<path d="M${40 + i * 210} 520 v-170 a80 80 0 0 1 160 0 v170Z" fill="#f2e2c4"/>`).join('')}</g>
+    <rect y="520" width="1080" height="1400" fill="#d6c09c"/>
+    ${rows(600, 7, 8)}
+    <rect id="wv" x="0" y="0" width="1080" height="160" fill="url(#wave)" opacity="0"/>
+    <g transform="translate(540 1170) scale(1.25)">${rowMan(0, 0, 1, '#cdbb9a').replace('fill="#2a2622"', `fill="${HR}"`)}</g>`);
+
+  // ---- takbir: Adam raises his hands, tears running ----
+  KIT.S('sTakbir', `<defs><radialGradient id="tk" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#f6dcb0"/><stop offset="1" stop-color="#b8946a"/></radialGradient>
+      <clipPath id="waistT"><rect width="1080" height="1060"/></clipPath></defs>
+    <rect width="1080" height="1920" fill="url(#tk)"/>
+    <g clip-path="url(#waistT)"><g transform="translate(540 1720) scale(2.2)">${KIT.adam('ta')}<path id="tkL" stroke="#bca986" stroke-width="34" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path id="tkR" stroke="#bca986" stroke-width="34" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle id="tkHL" r="20" fill="${SK}"/><circle id="tkHR" r="20" fill="${SK}"/>
+      <g id="tear"><path d="M-22 -540 C-26 -530 -26 -522 -22 -518 C-18 -522 -18 -530 -22 -540Z" fill="#cfeaff" stroke="#9cc8e8" stroke-width="1"/></g>
+      <g id="tear2"><path d="M22 -540 C18 -530 18 -522 22 -518 C26 -522 26 -530 22 -540Z" fill="#cfeaff" stroke="#9cc8e8" stroke-width="1"/></g></g></g>`);
+
+  // ---- after the prayer: Harith tugs his arm, asks; Adam holds his friend ----
+  KIT.S('sHug', `<defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6dcb0"/><stop offset="1" stop-color="#e0be8c"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#hg)"/>
+    <g fill="#f2e2c4">${[0, 1, 2, 3].map(i => `<path d="M${60 + i * 260} 760 v-300 a100 100 0 0 1 200 0 v300Z"/>`).join('')}</g>
+    <rect y="760" width="1080" height="1160" fill="#d6c09c"/>
+    ${shadow(420, 1240, 110)}${shadow(660, 1240, 100)}
+    <g id="hA" transform="translate(420 1240) scale(1.25)">${KIT.adam('ha')}</g>
+    <g id="hH" transform="translate(680 1240) scale(1.25)">${harithStand('hh')}</g>
+    <g id="hugArm" opacity="0"><path d="M572 668 C600 640 640 636 668 652" stroke="#bca986" stroke-width="40" fill="none" stroke-linecap="round"/><circle cx="672" cy="660" r="22" fill="${SK}"/></g>`);
+
+  // ---- the city gate: dust, everyone running out the same way ----
+  seed = 91;
+  let runners = '';
+  for (let i = 0; i < 14; i++) { const s = .4 + rnd() * .4, c = [['#4a4450', '#2e2a30', HR], ['#5a4a3e', '#3a302a', HR], ['#3d4f57', '#3d4f57', '#56707a', '#56707a'], ['#6a6a70', '#3a3a40', HR]][i % 4];
+    runners += `<g class="gr" data-i="${i}" data-x="${rnd() * 1300}" data-s="${s}" data-y="${940 + s * 260}"><g transform="scale(${-s} ${s})">${walker('gw', c, i)}</g></g>`; }
+  KIT.S('sGate', `<defs><radialGradient id="dust" cx="80%" cy="60%"><stop offset="0" stop-color="#e8c896" stop-opacity=".9"/><stop offset="1" stop-color="#e8c896" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="#d8b88a"/>
+    <g fill="#8a6e54"><rect x="560" y="380" width="520" height="640"/><rect x="540" y="360" width="560" height="40"/>${[0, 1, 2, 3, 4, 5].map(i => `<rect x="${560 + i * 90}" y="330" width="50" height="40"/>`).join('')}</g>
+    <path d="M700 1020 v-360 a120 120 0 0 1 240 0 v360Z" fill="#f0d8a8"/>
+    <rect y="1020" width="1080" height="900" fill="#c8a678"/>
+    <circle id="dustC" cx="820" cy="900" r="520" fill="url(#dust)"/>
+    ${runners}`);
+}
+
+KIT.episode({
+  num: 10, name: 'หออะซานสีขาว',
+  total: 101.3, title: [5.6, 9.6], ctaWin: [84.3, 90.3], discWin: [90.3, 96.8], outroAt: 96.8,
+  cta: '“คุณคิดว่าคำถามของฮาริสมีคำตอบไหม?<br>คอมเมนต์บอกกันด้วย<br>แล้วกดติดตามและแชร์ไว้<br><b>ตอนหน้าคือวาระสุดท้ายของดัจญาล</b>”',
+  refs: 'หลักฐานหลัก: เศาะฮีห์มุสลิม 2937<br>เศาะฮีห์มุสลิม 156, 158',
+  scenes: [
+    ['sRows', 0, 9.8], ['sRunner', 9.6, 21.2], ['sMinaret', 21, 33.2], ['sDescend', 33, 38.2], ['sCourt', 38, 51.2],
+    ['sTakbir', 51, 55.2], ['sHug', 55, 69.2], ['sGate', 69, 84, { hardOut: true }], ['sMinaret', 96.4, 101.5],
+  ],
+  caps: CAPS, tags: TAGS,
+  keys: [[2.5, 1], [7.5, 2], [11, 3], [15, 4], [19, 5], [24, 6], [31, 7], [35.5, 8], [41, 9], [47.5, 10], [53, 11], [56.5, 12], [61, 13], [66.5, 14], [70.5, 15], [74, 16], [78, 17], [82, 18], [87, 19], [93, 20], [99, 21]],
+  build,
+  draw(t) {
+    // hook: a slow push along the rows
+    KIT.zoom('sRows', 1 + Math.min(t, 10) * .01);
+
+    // the runner comes up the trail (from 13), slows, out of breath
+    const r = $('trail'), L = r.getTotalLength(), k = ease((t - 13) / 3.2), p = r.getPointAtLength(L * k);
+    attr('runner', 'transform', `translate(${p.x} ${p.y + (k < 1 ? -Math.abs(Math.sin(t * 7)) * 10 : Math.sin(t * 6) * 3)}) rotate(${k < 1 ? -8 : 0})`);
+    stepLegs('#sRunner .rn', t * (k < 1 ? 1.8 : 0), 32);
+    KIT.zoom('sRunner', 1 + clamp(t - 9.6, 0, 11) * .006);
+
+    // the minaret: light at its top (21-), two glows of light (from 23), drops of light fall (29) and shine like pearls (31)
+    attr('topLight', 'opacity', ease((t - 21.2) / 2) * (.9 + .1 * Math.sin(t * 2)));
+    ['wingL', 'wingR'].forEach((id, i) => attr(id, 'opacity', .8 * ease((t - 23.5 - i * .3) / 1.5) * (.85 + .15 * Math.sin(t * 2.4 + i))));
+    document.querySelectorAll('#sMinaret .pearl').forEach(d => {
+      const i = +d.dataset.i, x = 470 + (i * 37) % 140, ph = ((t - 29.2 + i * .23) % 1.6) / 1.6;
+      const on = t > 29.2 && t < 33.2 ? 1 : 0, y = 340 + ph * 260;
+      d.setAttribute('cx', x); d.setAttribute('cy', y);
+      d.setAttribute('opacity', on * (1 - ph) * (t > 31 ? .6 + .4 * Math.sin(t * 9 + i) : .8));
+      d.setAttribute('r', t > 31 ? 8 + 3 * Math.sin(t * 7 + i) : 6);
+    });
+    KIT.zoom('sMinaret', 1 + clamp(t - 21, 0, 12) * .005);
+
+    // descending: everyone walks down the slope
+    stepLegs('#sDescend .fw, #sDescend .ow', t, 20);
+    attr('fam', 'transform', `translate(${-60 * clamp((t - 33) / 5)} ${13 * clamp((t - 33) / 5)})`);
+
+    // the courtyard: word passes back through the rows (44-51) as a soft band of light moving toward us
+    attr('wv', 'opacity', t > 44 && t < 51 ? .9 : 0); attr('wv', 'y', 520 + ((t - 44) % 3.5) / 3.5 * 900);
+    KIT.zoom('sCourt', 1 + clamp(t - 38, 0, 13) * .004);
+
+    // takbir: both hands rise to the ears; tears run down
+    const up = ease((t - 51.3) / .8);
+    attr('taArmL', 'opacity', 0); attr('taArmR', 'opacity', 0);
+    const el = [lerp(-86, -128, up), lerp(-360, -400, up)], hd = [lerp(-80, -82, up), lerp(-262, -548, up)];
+    attr('tkL', 'd', `M-70 -450 L${el[0]} ${el[1]} L${hd[0]} ${hd[1]}`); attr('tkR', 'd', `M70 -450 L${-el[0]} ${el[1]} L${-hd[0]} ${hd[1]}`);
+    attr('tkHL', 'cx', hd[0]); attr('tkHL', 'cy', hd[1] - 6); attr('tkHR', 'cx', -hd[0]); attr('tkHR', 'cy', hd[1] - 6);
+    attr('tear', 'transform', `translate(0 ${((t - 51.5) % 1.8) / 1.8 * 60})`); attr('tear', 'opacity', t > 51.5 ? 1 - ((t - 51.5) % 1.8) / 1.8 : 0);
+    attr('tear2', 'transform', `translate(0 ${((t - 52.3) % 2) / 2 * 60})`); attr('tear2', 'opacity', t > 52.3 ? 1 - ((t - 52.3) % 2) / 2 : 0);
+
+    // after the prayer: Harith tugs Adam's arm (55); at "I held my friend" (64) they come together
+    const tug = t > 55.3 && t < 57.5 ? Math.sin((t - 55.3) * 9) * 6 : 0, come = ease((t - 64.2) / 1);
+    attr('hH', 'transform', `translate(${680 - 70 * come + tug} 1240) scale(1.25) rotate(${-3 * come})`);
+    attr('hA', 'transform', `translate(${420 + 50 * come} 1240) scale(1.25)`);
+    attr('haArmR', 'transform', t > 55.3 && t < 57.5 ? `rotate(${-10 - Math.abs(tug)} 79 -462)` : 'rotate(0 79 -462)');
+    attr('hugArm', 'opacity', come); attr('haArmR', 'opacity', 1 - come);
+    KIT.zoom('sHug', 1 + clamp(t - 55, 0, 14) * .005);
+
+    // the gate: dust, everyone running toward the gate
+    document.querySelectorAll('#sGate .gr').forEach(g => {
+      const s = +g.dataset.s, x = ((+g.dataset.x + (t - 69) * 160 * s) % 1400) - 200;
+      g.setAttribute('transform', `translate(${x} ${+g.dataset.y - Math.abs(Math.sin(t * 7 + +g.dataset.i)) * 8 * s})`);
+    });
+    stepLegs('#sGate .gw', t * 1.6, 30);
+    attr('dustC', 'transform', `translate(${Math.sin(t * .7) * 30} 0) scale(${1 + .05 * Math.sin(t)})`);
+    KIT.zoom('sGate', 1 + clamp(t - 69, 0, 15) * .005);
+  },
+});
+</script>
+</body>
+</html>
