@@ -64,17 +64,20 @@ const placeWalkers = (cls, t, speed) => document.querySelectorAll('.' + cls).for
   const ph = t * 3.2 + +g.dataset.i * 1.3, sw = Math.sin(ph) * 22 * speed;
   g.querySelector('.lA').setAttribute('transform', `rotate(${sw} 0 -150)`); g.querySelector('.lB').setAttribute('transform', `rotate(${-sw} 0 -150)`);
 });
-// cut-paper silhouettes for the flashback (side view)
-const paperMan = (id, s, big = false) => `<g id="${id}"><g transform="scale(${s})">
-  <path d="M-${big ? 70 : 44} 0 L-${big ? 64 : 40} -220 C-${big ? 70 : 46} -300 -${big ? 40 : 30} -340 0 -350 C${big ? 40 : 30} -340 ${big ? 70 : 46} -300 ${big ? 64 : 40} -220 L${big ? 70 : 44} 0Z" fill="${INK}"/>
-  ${big ? Array.from({ length: 12 }, (_, k) => { const a = Math.PI * (1.05 + .9 * k / 11); return `<circle cx="${Math.cos(a) * 52}" cy="${-400 + Math.sin(a) * 52}" r="17" fill="${INK}"/>`; }).join('') + `<circle cy="-398" r="52" fill="${INK}"/>`
-        : `<circle cy="-388" r="38" fill="${INK}"/>`}</g></g>`;
+// cut-paper silhouettes for the flashback (side-on, standing). Origin between the feet.
+const paperMan = (id, s, big = false) => { const w = big ? 1.3 : 1; return `<g id="${id}"><g transform="scale(${s * w} ${s})">
+  <ellipse cx="-14" cy="-6" rx="22" ry="8" fill="${INK}"/><ellipse cx="14" cy="-6" rx="22" ry="8" fill="${INK}"/>
+  <path d="M-38 -4 L-34 -200 C-38 -260 -56 -290 -52 -316 C-40 -330 40 -330 52 -316 C56 -290 38 -260 34 -200 L38 -4Z" fill="${INK}"/>
+  <path d="M-50 -306 C-62 -260 -62 -210 -54 -170 M50 -306 C62 -260 62 -210 54 -170" stroke="${INK}" stroke-width="20" fill="none" stroke-linecap="round"/>
+  <rect x="-12" y="-352" width="24" height="30" fill="${INK}"/></g>
+  <g transform="scale(${s})">${big ? Array.from({ length: 12 }, (_, k) => { const a = Math.PI * (1.05 + .9 * k / 11); return `<circle cx="${Math.cos(a) * 46}" cy="${-388 + Math.sin(a) * 46}" r="15" fill="${INK}"/>`; }).join('') + `<circle cy="-386" r="44" fill="${INK}"/>`
+        : `<circle cy="-384" r="36" fill="${INK}"/>`}</g></g>`; };
 
 function build() {
   // ---- hook: water drips from the tips of Hawa's hair in the dark ----
   KIT.S('sDrip', `<defs><radialGradient id="dl"><stop offset="0" stop-color="#6a7f9a" stop-opacity=".5"/><stop offset="1" stop-color="#6a7f9a" stop-opacity="0"/></radialGradient></defs>
     <rect width="1080" height="1920" fill="#07090e"/><circle cx="540" cy="520" r="560" fill="url(#dl)"/>
-    <path d="M300 1100 C300 900 380 820 540 800 C700 820 780 900 780 1100Z" fill="#7a3a2a"/>
+    <path d="M250 1200 C250 900 330 700 470 660 L610 660 C750 700 830 900 830 1200Z" fill="#7a3a2a"/><rect x="500" y="600" width="80" height="80" fill="#9a6a52"/>
     <path d="M540 120 C380 120 300 230 300 380 C300 520 330 620 350 700 C360 735 380 760 400 770 L680 770 C700 760 720 735 730 700 C750 620 780 520 780 380 C780 230 700 120 540 120Z" fill="${HR}"/>
     ${Array.from({ length: 9 }, (_, i) => `<path d="M${380 + i * 40} 700 q${(i % 2 ? 8 : -8)} 40 ${(i % 2 ? -4 : 4)} 70" stroke="${HR}" stroke-width="26" fill="none" stroke-linecap="round"/>`).join('')}
     ${Array.from({ length: 6 }, (_, i) => `<path d="M${370 + i * 70} 200 C${360 + i * 70} 400 ${380 + i * 70} 600 ${375 + i * 70} 740" stroke="#3a2618" stroke-width="5" fill="none" opacity=".6"/>`).join('')}
@@ -87,6 +90,8 @@ function build() {
     <rect width="1080" height="1920" fill="url(#wg)"/>
     ${Array.from({ length: 8 }, (_, i) => `<path class="caus" data-i="${i}" d="" stroke="#e8f8ff" stroke-width="5" fill="none" opacity=".35"/>`).join('')}
     ${Array.from({ length: 36 }, (_, i) => `<circle class="bub" data-x="${rnd() * 1080}" data-o="${rnd()}" data-s="${.5 + rnd()}" r="${5 + rnd() * 12}" fill="none" stroke="#f0fbff" stroke-width="3" opacity=".7"/>`).join('')}
+    <g id="wFam" style="filter: brightness(.28) saturate(.4) hue-rotate(170deg)" opacity=".85">
+      <g transform="translate(360 1180) scale(.95)">${KIT.salma(0, 0)}</g><g transform="translate(560 1180) scale(.95)">${KIT.adam('wa')}</g><g transform="translate(760 1180) scale(.95)">${KIT.hawa('wh')}</g></g>
     <rect id="wWhite" width="1080" height="1920" fill="#fffdf6"/>`);
 
   // ---- a dark alley behind the square; the three of them, soaked; light from the square beyond ----
@@ -104,10 +109,11 @@ function build() {
   // ---- sujud in the alley; the light from the square beyond ----
   KIT.S('sSujud', `<defs><linearGradient id="al2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#ffb35c" stop-opacity=".6"/><stop offset="1" stop-color="#ffb35c" stop-opacity="0"/></linearGradient></defs>
     <rect width="1080" height="1920" fill="#0d0e14"/><rect width="1080" height="1100" fill="url(#al2)"/>
-    <rect y="1100" width="1080" height="820" fill="#1e1c1e"/><rect y="1096" width="1080" height="8" fill="#2c2a2c"/>
-    <g transform="translate(330 1100)">${sujud('#3d4f57', 1.05, '#56707a')}</g>
-    <g transform="translate(700 1100)">${sujud('#cdbb9a', 1.2)}</g>
-    <g transform="translate(980 1100)">${sujud('#a8583f', .7)}</g>`);
+    <rect y="980" width="1080" height="940" fill="#1e1c1e"/><rect y="976" width="1080" height="8" fill="#2c2a2c"/>
+    ${shadow(230, 980, 160, .35)}${shadow(560, 980, 180, .35)}${shadow(880, 980, 110, .35)}
+    <g transform="translate(240 980)">${sujud('#3d4f57', .95, '#56707a')}</g>
+    <g transform="translate(570 980)">${sujud('#cdbb9a', 1.1)}</g>
+    <g transform="translate(880 980)">${sujud('#a8583f', .65)}</g>`);
 
   // ---- that night: a small group leaves the city; Adam looks back for Harith ----
   seed = 21;
@@ -128,7 +134,7 @@ function build() {
     <path d="M-20 200 L540 40 L1100 200" stroke="#1c130c" stroke-width="30" fill="none"/>
     <rect y="1060" width="1080" height="860" fill="#1a120c"/>
     <circle cx="540" cy="980" r="560" fill="url(#bf${p})"/>
-    <g id="${p}Shadow" fill="#0c0806" opacity=".75"><ellipse cx="380" cy="470" rx="120" ry="140"/><path d="M220 1060 C230 760 300 620 380 600 C460 620 540 760 560 1060Z"/>
+    <g id="${p}Shadow" fill="#0c0806" opacity=".75"><ellipse cx="380" cy="470" rx="120" ry="140"/><rect x="330" y="560" width="100" height="80"/><path d="M220 1060 C230 760 300 620 380 600 C460 620 540 760 560 1060Z"/>
       <g id="${p}ShHand"><path d="M500 720 C560 690 610 660 660 640" stroke="#0c0806" stroke-width="64" fill="none" stroke-linecap="round"/><ellipse cx="690" cy="630" rx="58" ry="40"/>
         ${[0, 1, 2, 3].map(k => `<rect x="720" y="${598 + k * 18}" width="60" height="16" rx="8"/>`).join('')}</g></g>
     <g transform="translate(540 1060)"><path d="M-90 0 L-40 -30 L40 -30 L90 0Z" fill="#3a2414"/>
@@ -156,18 +162,18 @@ function build() {
       <linearGradient id="gate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd76a" stop-opacity="0"/><stop offset=".6" stop-color="#ffe9a8" stop-opacity=".95"/><stop offset="1" stop-color="#fff3c4" stop-opacity=".9"/></linearGradient></defs>
     ${city}
     <g transform="translate(162 -152) scale(.7)">${[120, 400, 680, 960].map((x, i) => `<path class="gl" data-i="${i}" d="M${x - 50} 960 L${x - 100} 300 L${x + 100} 300 L${x + 50} 960Z" fill="url(#gate)" opacity="0"/>`).join('')}</g>
-    <g id="djOut" transform="translate(250 930)">${paperMan('pd', .9, true)}</g>`);
+    <g id="djOut" transform="translate(250 940)">${paperMan('pd', .95, true)}</g>`);
 
   // ---- flashback: the young man comes out and speaks; killed and raised (no violence shown); then cannot be harmed ----
   seed = 9;
   let onlook = '';
-  for (let i = 0; i < 7; i++) onlook += `<g transform="translate(${60 + i * 46} ${960 + (i % 2) * 14}) scale(${.42 + rnd() * .08})">${paperMan('ol' + i, 1)}</g>`;
+  for (let i = 0; i < 6; i++) onlook += `<g transform="translate(${40 + i * 62} ${900 + (i % 2) * 10}) scale(${.66 + rnd() * .06})">${paperMan('ol' + i, 1)}</g>`;
   KIT.S('sYoung', `<defs><filter id="grain2"><feTurbulence baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .5 0"/></filter>
       <radialGradient id="ring"><stop offset=".55" stop-color="#fff8e0" stop-opacity="0"/><stop offset=".8" stop-color="#fff8e0" stop-opacity=".9"/><stop offset="1" stop-color="#fff8e0" stop-opacity="0"/></radialGradient></defs>
     ${city.replace('url(#grain)', 'url(#grain2)')}
     ${onlook}
-    <g transform="translate(260 960)">${paperMan('yd', 1.0, true)}</g>
-    <g id="yWrap"><g id="yMan">${paperMan('ym', .82)}</g></g>
+    <g transform="translate(420 970)">${paperMan('yd', .95, true)}</g>
+    <g id="yWrap"><g id="yMan">${paperMan('ym', .88)}</g></g>
     <circle id="yRing" r="260" fill="url(#ring)" opacity="0"/>
     <rect id="yFlash" width="1080" height="1920" fill="#fffdf2" opacity="0"/>`);
 
@@ -251,15 +257,15 @@ KIT.episode({
 
     // Madinah: light rises at each gate, one after another; he stops outside
     document.querySelectorAll('#sMadinah .gl').forEach(g => g.setAttribute('opacity', .85 * ease((t - 42 - +g.dataset.i * .5) / .8) * (.85 + .15 * Math.sin(t * 3 + +g.dataset.i))));
-    attr('djOut', 'transform', `translate(${lerp(-80, 250, ease((t - 41) / 2.6))} 930)`);
+    attr('djOut', 'transform', `translate(${lerp(-80, 300, ease((t - 41) / 2.6))} 940)`);
 
     // the young man: walks out (46.5), is struck down and raised (52-56, no violence shown: a flash, he falls, he rises),
     // stands firm (56), cannot be harmed again (60.5: the flash breaks on a ring of light)
     const walk = ease((t - 46.6) / 2.4), fall = ease((t - 52.6) / .6) - ease((t - 54.4) / 1.2);
-    attr('yWrap', 'transform', `translate(${lerp(1000, 700, walk)} 960)`);
+    attr('yWrap', 'transform', `translate(${lerp(1000, 720, walk)} 970)`);
     attr('yMan', 'transform', `rotate(${-88 * fall} 0 0)`);
     attr('yFlash', 'opacity', .9 * Math.max(0, 1 - Math.abs(t - 52.5) / .35) + .9 * Math.max(0, 1 - Math.abs(t - 61.2) / .35));
-    attr('yRing', 'transform', `translate(700 800)`); attr('yRing', 'opacity', ease((t - 61) / .5) * (1 - ease((t - 63.4) / .6)));
+    attr('yRing', 'transform', `translate(720 800)`); attr('yRing', 'opacity', ease((t - 61) / .5) * (1 - ease((t - 63.4) / .6)));
     KIT.zoom('sYoung', 1 + clamp(t - 46.5, 0, 17.5) * .004);
 
     // mountains: the thin figure walks along the far ridge
