@@ -45,16 +45,22 @@ const SK = '#c99a7b', HR = '#2a1a12';
 const shadow = (x, y, rx, o = .25) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${rx * .16}" fill="#000" opacity="${o}"/>`;
 // Adam standing, from behind (back of the head)
 const adamStandBack = p => KIT.adam(p).replace(/<\/g>\s*$/, `<ellipse cx="-45" cy="-544" rx="9" ry="15" fill="${SK}"/><ellipse cx="45" cy="-544" rx="9" ry="15" fill="${SK}"/><ellipse cx="0" cy="-552" rx="45" ry="54" fill="${HR}"/></g>`);
-// Harith, thin, sitting huddled in profile (facing left): knees drawn up, arms wrapped round the shins,
-// forehead on the knees. Every limb is one joined stroke. Origin on the ground under his hips.
-const huddle = (p, c = '#2c2e38') => `<g id="${p}">
-  <path d="M60 -16 L-70 -150 L-110 -10" stroke="${c}" stroke-width="44" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <ellipse cx="-122" cy="-6" rx="30" ry="12" fill="#1c1d24"/>
-  <path d="M60 -30 C60 -120 30 -200 -10 -236" stroke="${c}" stroke-width="86" fill="none" stroke-linecap="round"/>
-  <g id="${p}Head"><circle cx="-56" cy="-232" r="40" fill="#1e1f25"/></g>
-  <path d="M10 -214 C-30 -170 -70 -120 -96 -84" stroke="#33353e" stroke-width="26" fill="none" stroke-linecap="round"/>
-  <circle cx="-100" cy="-78" r="16" fill="#8a6a56"/>
-  <path d="M84 -40 C88 -130 60 -210 20 -250" stroke="#7ea3c8" stroke-width="4" fill="none" opacity=".4"/></g>`;
+// Harith (29, Adam's Thai friend), drawn like Adam but as the document describes him now: thin to the bone,
+// worn grey shirt with a frayed hem, dusty trousers, thin arms and only stubble (EP08: "ผอมโซ"; EP09: "ผอมจนแทบจำไม่ได้").
+const HSHIRT = '#6e727c', HPANTS = '#4a4038', HSKIN = '#b98e72';
+const harithStand = p => `<g transform="scale(.82 1)">${KIT.adam(p)
+  .replace(/#cdbb9a|#bca986/g, HSHIRT).replace(/#3a3a44/g, HPANTS).replace(new RegExp(SK, 'g'), HSKIN)
+  .replace(/width="34" height="200"/g, 'width="26" height="200"')
+  .replace(/opacity="\.85"/, 'opacity=".4"')}
+  <path d="M-64 -252 ${Array.from({ length: 16 }, (_, k) => `l4 ${k % 2 ? -12 : 12} l4 ${k % 2 ? 12 : -12}`).join(' ')}" fill="${HSHIRT}"/></g>`;
+// Harith sitting huddled (as in the first preview), in his worn clothes. Origin on the ground under him.
+const huddle = (p, c = HSHIRT) => `<g id="${p}">
+  <path d="M-80 0 C-92 -110 -60 -230 0 -240 C60 -230 92 -110 80 0Z" fill="${c}"/>
+  <path d="M-96 0 C-104 -60 -70 -130 -20 -140 L40 -140 C80 -120 100 -60 96 0Z" fill="${HPANTS}"/>
+  <path d="M-70 -170 C-90 -120 -70 -90 -20 -96 M70 -170 C90 -120 70 -90 20 -96" stroke="${c}" stroke-width="26" fill="none" stroke-linecap="round"/>
+  <circle cx="-14" cy="-96" r="14" fill="${HSKIN}"/><circle cx="14" cy="-96" r="14" fill="${HSKIN}"/>
+  <g id="${p}Head"><ellipse cx="0" cy="-232" rx="44" ry="48" fill="${HR}"/></g>
+  <path d="M-60 -200 C-30 -214 30 -214 60 -200" stroke="#9aa0ac" stroke-width="5" fill="none" opacity=".45"/></g>`;
 // Hawa seated, from behind
 const hawaSit = p => `<g id="${p}"><ellipse cx="0" cy="-30" rx="80" ry="32" fill="#a8583f"/>
   <path d="M-52 -40 C-60 -110 -44 -160 -24 -176 L24 -176 C44 -160 60 -110 52 -40Z" fill="#a8583f"/>
@@ -80,7 +86,7 @@ function build() {
     <g transform="translate(250 1100) scale(.95)">${KIT.salma(0, 0)}</g>
     <g transform="translate(400 1100) scale(.95)">${KIT.adam('fa')}</g>
     <g transform="translate(530 1100) scale(.95)">${KIT.hawa('fh')}</g>
-    <g id="fHar" transform="translate(820 1100) scale(.6 .88)">${KIT.harith('fr')}</g>`);
+    ${shadow(800, 1100, 70)}<g id="fHar" transform="translate(800 1100) scale(.95)">${harithStand('fr')}</g>`);
 
   // ---- the confession: close on Harith, huddled by a rock ----
   KIT.S('sConfess', `<defs><radialGradient id="cv" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="#b89a7a"/><stop offset="1" stop-color="#4a3a32"/></radialGradient></defs>
@@ -104,8 +110,8 @@ function build() {
       <g transform="translate(500 700)"><rect x="-38" y="-40" width="76" height="200" rx="26" fill="#9fd0e8" opacity=".9"/><rect x="-22" y="-80" width="44" height="46" rx="10" fill="#4a8ab0"/>
         <rect x="-30" y="40" width="60" height="80" rx="12" fill="#e8f6ff" opacity=".6"/></g>
       ${[0, 1, 2, 3].map(k => `<rect x="${508}" y="${730 + k * 22}" width="46" height="18" rx="9" fill="${SK}"/>`).join('')}</g>
-    <g id="hArm"><path d="M1160 760 C980 760 820 740 700 730" stroke="#33353e" stroke-width="80" fill="none" stroke-linecap="round"/>
-      <ellipse cx="660" cy="730" rx="46" ry="38" fill="#8a6a56"/>${[0, 1, 2, 3].map(k => `<rect x="596" y="${700 + k * 17}" width="40" height="14" rx="7" fill="#8a6a56"/>`).join('')}</g>`);
+    <g id="hArm"><path d="M1160 760 C980 760 820 740 700 730" stroke="${HSHIRT}" stroke-width="80" fill="none" stroke-linecap="round"/>
+      <ellipse cx="660" cy="730" rx="46" ry="38" fill="${HSKIN}"/>${[0, 1, 2, 3].map(k => `<rect x="596" y="${700 + k * 17}" width="40" height="14" rx="7" fill="${HSKIN}"/>`).join('')}</g>`);
 
   // ---- wide: hundreds of people on the mountainside, small fires; dates shared ----
   seed = 41;
@@ -191,13 +197,12 @@ KIT.episode({
     KIT.zoom('sCry', 1 + Math.min(t, 10) * .006);
 
     // the foot of the mountain: Harith sways, thin and tired
-    attr('fHar', 'transform', `translate(820 1100) scale(.6 .88) rotate(${Math.sin(t * 1.2) * 1.5})`);
+    attr('fHar', 'transform', `translate(800 1100) scale(.95) rotate(${Math.sin(t * 1.2) * 1}) `);
     KIT.zoom('sFoot', 1 + clamp(t - 9.6, 0, 10) * .006);
-    KIT.harithEyes('fr', 0); attr('frEyeL', 'fill', '#ffd9a0'); attr('frEyeR', 'fill', '#ffd9a0');   // warm, as since EP05
 
     // the confession: shoulders shake; at "he lowered his head" (28) the head drops
     attr('hk', 'transform', `translate(0 ${t < 28 ? Math.abs(Math.sin(t * 14)) * 2 : 0})`);
-    attr('hkHead', 'transform', `translate(${-10 * ease((t - 28.2) / .8)} ${22 * ease((t - 28.2) / .8)})`);
+    attr('hkHead', 'transform', `translate(0 ${26 * ease((t - 28.2) / .8)})`);
     KIT.zoom('sConfess', 1 + clamp(t - 19.5, 0, 13) * .006);
 
     KIT.zoom('sMemory', 1 + clamp(t - 32.5, 0, 6) * .01);
