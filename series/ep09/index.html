@@ -45,14 +45,16 @@ const SK = '#c99a7b', HR = '#2a1a12';
 const shadow = (x, y, rx, o = .25) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${rx * .16}" fill="#000" opacity="${o}"/>`;
 // Adam standing, from behind (back of the head)
 const adamStandBack = p => KIT.adam(p).replace(/<\/g>\s*$/, `<ellipse cx="-45" cy="-544" rx="9" ry="15" fill="${SK}"/><ellipse cx="45" cy="-544" rx="9" ry="15" fill="${SK}"/><ellipse cx="0" cy="-552" rx="45" ry="54" fill="${HR}"/></g>`);
-// Harith, thin, sitting huddled: knees up, arms round them, head bowed. Origin on the ground under him.
-const huddle = (p, c = '#2a2c34') => `<g id="${p}">
-  <path d="M-80 0 C-92 -110 -60 -230 0 -240 C60 -230 92 -110 80 0Z" fill="${c}"/>
-  <path d="M-96 0 C-104 -60 -70 -130 -20 -140 L40 -140 C80 -120 100 -60 96 0Z" fill="#33353e"/>
-  <path d="M-70 -170 C-90 -120 -70 -90 -20 -96 M70 -170 C90 -120 70 -90 20 -96" stroke="${c}" stroke-width="26" fill="none" stroke-linecap="round"/>
-  <circle cx="-14" cy="-96" r="14" fill="#8a6a56"/><circle cx="14" cy="-96" r="14" fill="#8a6a56"/>
-  <g id="${p}Head"><ellipse cx="0" cy="-232" rx="44" ry="48" fill="#1e1f25"/></g>
-  <path d="M-60 -200 C-30 -214 30 -214 60 -200" stroke="#7ea3c8" stroke-width="5" fill="none" opacity=".45"/></g>`;
+// Harith, thin, sitting huddled in profile (facing left): knees drawn up, arms wrapped round the shins,
+// forehead on the knees. Every limb is one joined stroke. Origin on the ground under his hips.
+const huddle = (p, c = '#2c2e38') => `<g id="${p}">
+  <path d="M60 -16 L-70 -150 L-110 -10" stroke="${c}" stroke-width="44" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="-122" cy="-6" rx="30" ry="12" fill="#1c1d24"/>
+  <path d="M60 -30 C60 -120 30 -200 -10 -236" stroke="${c}" stroke-width="86" fill="none" stroke-linecap="round"/>
+  <g id="${p}Head"><circle cx="-56" cy="-232" r="40" fill="#1e1f25"/></g>
+  <path d="M10 -214 C-30 -170 -70 -120 -96 -84" stroke="#33353e" stroke-width="26" fill="none" stroke-linecap="round"/>
+  <circle cx="-100" cy="-78" r="16" fill="#8a6a56"/>
+  <path d="M84 -40 C88 -130 60 -210 20 -250" stroke="#7ea3c8" stroke-width="4" fill="none" opacity=".4"/></g>`;
 // Hawa seated, from behind
 const hawaSit = p => `<g id="${p}"><ellipse cx="0" cy="-30" rx="80" ry="32" fill="#a8583f"/>
   <path d="M-52 -40 C-60 -110 -44 -160 -24 -176 L24 -176 C44 -160 60 -110 52 -40Z" fill="#a8583f"/>
@@ -61,7 +63,7 @@ const hawaSit = p => `<g id="${p}"><ellipse cx="0" cy="-30" rx="80" ry="32" fill
 function build() {
   // ---- hook: at the foot of the mountain, from behind Adam: Harith huddled, crying ----
   KIT.S('sCry', `<defs><linearGradient id="dk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a6a86"/><stop offset="1" stop-color="#c9a27a"/></linearGradient>
-      <clipPath id="waistH"><rect width="1080" height="1180"/></clipPath></defs>
+      <clipPath id="waistH"><rect width="1080" height="1020"/></clipPath></defs>
     <rect width="1080" height="1920" fill="url(#dk)"/>
     <path d="M-20 700 L260 300 L520 620 L760 260 L1100 640 L1100 1920 L-20 1920Z" fill="#6a5a50"/>
     <path d="M-20 860 C300 800 700 820 1100 860 L1100 1920 L-20 1920Z" fill="#8a7460"/>
@@ -78,7 +80,7 @@ function build() {
     <g transform="translate(250 1100) scale(.95)">${KIT.salma(0, 0)}</g>
     <g transform="translate(400 1100) scale(.95)">${KIT.adam('fa')}</g>
     <g transform="translate(530 1100) scale(.95)">${KIT.hawa('fh')}</g>
-    <g id="fHar" transform="translate(820 1100) scale(.62 .66)">${KIT.harith('fr')}</g>`);
+    <g id="fHar" transform="translate(820 1100) scale(.6 .88)">${KIT.harith('fr')}</g>`);
 
   // ---- the confession: close on Harith, huddled by a rock ----
   KIT.S('sConfess', `<defs><radialGradient id="cv" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="#b89a7a"/><stop offset="1" stop-color="#4a3a32"/></radialGradient></defs>
@@ -189,20 +191,20 @@ KIT.episode({
     KIT.zoom('sCry', 1 + Math.min(t, 10) * .006);
 
     // the foot of the mountain: Harith sways, thin and tired
-    attr('fHar', 'transform', `translate(820 1100) scale(.62 .66) rotate(${Math.sin(t * 1.2) * 1.5})`);
+    attr('fHar', 'transform', `translate(820 1100) scale(.6 .88) rotate(${Math.sin(t * 1.2) * 1.5})`);
     KIT.zoom('sFoot', 1 + clamp(t - 9.6, 0, 10) * .006);
     KIT.harithEyes('fr', 0); attr('frEyeL', 'fill', '#ffd9a0'); attr('frEyeR', 'fill', '#ffd9a0');   // warm, as since EP05
 
     // the confession: shoulders shake; at "he lowered his head" (28) the head drops
     attr('hk', 'transform', `translate(0 ${t < 28 ? Math.abs(Math.sin(t * 14)) * 2 : 0})`);
-    attr('hkHead', 'transform', `translate(0 ${26 * ease((t - 28.2) / .8)})`);
+    attr('hkHead', 'transform', `translate(${-10 * ease((t - 28.2) / .8)} ${22 * ease((t - 28.2) / .8)})`);
     KIT.zoom('sConfess', 1 + clamp(t - 19.5, 0, 13) * .006);
 
     KIT.zoom('sMemory', 1 + clamp(t - 32.5, 0, 6) * .01);
 
     // the bottle: Adam's hand comes in, Harith's hand meets it
     attr('aArm', 'transform', `translate(${-220 * (1 - ease((t - 38.2) / 1.2))} 0)`);
-    attr('hArm', 'transform', `translate(${260 * (1 - ease((t - 39.4) / 1.2))} 0)`);
+    attr('hArm', 'transform', `translate(${260 * (1 - ease((t - 39.4) / 1.2)) - 90 * ease((t - 39.4) / 1.2)} 0)`);
 
     // the camp: small fires flicker
     document.querySelectorAll('#sCamp .cf').forEach(f => {
