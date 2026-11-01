@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>EP07 แม่น้ำกับไฟ</title>
+<link rel="stylesheet" href="../shared/kit.css">
+</head>
+<body>
+<div id="stage"></div>
+<script src="../shared/kit.js"></script>
+<script src="audio/warp.js" onerror="void 0"></script>
+<script>
+// Narration: verbatim from the series document, EP7 (Hook / script / cliffhanger).
+// One caption per line: align.py reads this list.
+// He (the Dajjal) is not shown in this episode; the water and the fire are his, the announcement is a voice only.
+// No Qur'anic text is drawn: the recitation is shown as verse numbers 1-10 only (document, visual guide 4).
+const CAPS = [
+  [0, 5.6, '', 'ข้างหนึ่งคือแม่น้ำใสเย็น<br>อีกข้างคือกองไฟที่ลุกท่วมหัว…<br>และผมกำลังจะพาลูกเดินเข้าไปในกองไฟ'],
+  [9.6, 13, '', 'ฮาริสไม่ได้พาพวกเขามาจับผม'],
+  [13, 20, 'q', '<span class="n">ตอนที่ทหารลากเราออกจากบ้าน<br>เขาเดินมากระซิบข้างหูผม</span><br>“ฉันพยายามขีดชื่อแกออกแล้ว อาดัม…<br>แต่พวกมันมีรายชื่ออีกชุด”'],
+  [20, 23.5, '', 'เสียงของเขาสั่นเหมือนคนจะร้องไห้'],
+  [23.5, 28, '', 'พวกเราถูกพาไปที่ลานกลางเมือง<br>ตรงหน้ามีสองสิ่งตั้งอยู่เคียงกัน'],
+  [28, 32.5, '', 'แม่น้ำที่ใสเย็นน่าดื่ม<br>และกองไฟที่ร้อนจนผิวหน้าผมแสบ'],
+  [32.5, 37, 'q', '<span class="n">เสียงประกาศดังขึ้น</span><br>“ใครเชื่อ เข้าไปในแม่น้ำ<br>ใครปฏิเสธ เข้าไปในไฟ”'],
+  [37, 41, '', 'คนข้างหน้าผมวิ่งเข้าหาแม่น้ำอย่างกระหาย'],
+  [41, 44.5, '', 'ผมหลับตา นึกถึงคำของชัยค์ยะห์ยา'],
+  [44.5, 51.5, 'q', 'สิ่งที่เขาเรียกว่าน้ำคือไฟ<br>และสิ่งที่เขาเรียกว่าไฟคือน้ำเย็น<br>ใครเจอเขา ให้เลือกสิ่งที่เห็นเป็นไฟ'],
+  [51.5, 56, '', 'ผมอุ้มฮาวาขึ้น จับมือซัลมาไว้แน่น<br>แล้วเริ่มท่องอัลกะฮ์ฟ์'],
+  [56, 60, '', 'อายะฮ์ที่หนึ่ง… ที่ห้า… ที่เจ็ด…'],
+  [60, 66, '', 'แล้วอายะฮ์ที่แปด เก้า และสิบ ที่ผมท่องผิดมาตลอด<br>กลับไหลออกมาจากปากผมอย่างไม่ติดขัด'],
+  [66, 69.5, 'big', 'ครบสิบอายะฮ์ เป็นครั้งแรกในชีวิต'],
+  [69.5, 76, '', 'ผมก้าวเข้าไปในเปลวไฟ ความร้อนพุ่งเข้าใส่หน้า<br>ฮาวาซุกหน้ากับอกผม<br>ซัลมาบีบมือผมแน่นจนเจ็บ'],
+  [76, 79, '', 'แล้วทุกอย่างก็ขาวโพลน…'],
+  [79, 82.5, 'big', 'สิ่งที่รอเราอยู่ในกองไฟนั้นคืออะไร?'],
+  [82.5, 87, 'big', 'และฮาริส… จะเลือกเดินเข้าแม่น้ำ<br>หรือเดินตามผมมา?'],
+];
+const TAGS = [
+  [44.5, 51.5, 'ความหมายจาก เศาะฮีห์อัลบุคอรี 3450 · เศาะฮีห์มุสลิม 2934'],
+  [51.5, 60, 'เศาะฮีห์มุสลิม 2937 · เศาะฮีห์มุสลิม 809'],
+];
+
+const HAIR_ = '#2a1a12', SKIN_ = '#c99a7b';
+// figures seen from behind
+const withHands = svg => svg.replace(/(<g id="\w+Arm[LR]"><rect x="(-?\d+)" y="-228" width="18" height="98" rx="9" fill="[^"]+"\/>)/g,
+  (m, a, x) => `${a}<circle cx="${+x + 9}" cy="-130" r="13" fill="${SKIN_}"/>`);
+{ const base = KIT.hawa; KIT.hawa = p => base(p).replace('<path d="M-50 -272 C-64 -210 -62 -165 -50 -140 L50 -140 C62 -165 64 -210 50 -272Z"',
+  '<path d="M0 -332 C-44 -332 -62 -300 -60 -262 C-64 -210 -62 -165 -50 -140 L50 -140 C62 -165 64 -210 60 -262 C62 -300 44 -332 0 -332Z"'); }
+const adamStandBack = p => KIT.adam(p).replace(/<\/g>\s*$/, `<ellipse cx="-45" cy="-544" rx="9" ry="15" fill="${SKIN_}"/><ellipse cx="45" cy="-544" rx="9" ry="15" fill="${SKIN_}"/><ellipse cx="0" cy="-552" rx="45" ry="54" fill="${HAIR_}"/></g>`);
+const salmaBack = p => KIT.salma(0, 0).replace(`<ellipse cx="0" cy="-345" rx="44" ry="52" fill="${SKIN_}"/>`, `<ellipse cx="0" cy="-345" rx="46" ry="54" fill="#56707a"/>`).replace('<g ', `<g id="${p}" `);
+const shadow = (x, y, rx, o = .18) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${rx * .16}" fill="#000" opacity="${o}"/>`;
+const soldier = (id, x, y, s = 1) => `<g id="${id}" transform="translate(${x} ${y}) scale(${s})"><path d="M-60 0 C-66 -150 -50 -250 -30 -280 L30 -280 C50 -250 66 -150 60 0Z" fill="#0d0f14"/>
+  <ellipse cy="-318" rx="40" ry="44" fill="#0d0f14"/><path d="M-46 -330 C-44 -380 44 -380 46 -330Z" fill="#161a22"/><rect x="20" y="-222" width="100" height="24" rx="12" fill="#0d0f14"/></g>`;
+const backPerson = (x, y, s, c) => `<g transform="translate(${x} ${y}) scale(${s})"><ellipse rx="54" ry="10" fill="#000" opacity=".2"/>
+  <path d="M-42 0 C-48 -90 -42 -150 -30 -172 L30 -172 C42 -150 48 -90 42 0Z" fill="${c}"/><circle cy="-202" r="30" fill="#2a1a12"/></g>`;
+
+// ---- flames: tongues whose tips move with time; one path per colour layer ----
+const FIRE = ['#b8321f', '#e8732c', '#f6c04a', '#fff1b8'];
+const flameD = (x0, x1, base, h, n, t, ph, k) => {
+  const w = (x1 - x0) / n; let d = `M${x0} ${base}`;
+  for (let i = 0; i < n; i++) {
+    const cx = x0 + (i + .5) * w, hh = h * (.62 + .38 * Math.sin(t * (3.1 + (i % 3) * .7) + i * 1.9 + ph)) * k;
+    const sway = Math.sin(t * 2.3 + i) * w * .25;
+    d += ` Q${cx - w * .45} ${base - hh * .45} ${cx + sway} ${base - hh} Q${cx + w * .45} ${base - hh * .45} ${x0 + (i + 1) * w} ${base}`;
+  }
+  return d + 'Z';
+};
+const fire = id => FIRE.map((c, i) => `<path id="${id}${i}" fill="${c}"/>`).join('');
+const updFire = (id, x0, x1, base, h, n, t, s = 1) => FIRE.forEach((c, i) => {
+  const m = [1, .78, .52, .28][i], pad = (x1 - x0) * (1 - m) / 2 * .6;
+  attr(id + i, 'd', flameD(x0 + pad, x1 - pad, base, h * m * s, n - i, t, i * 1.3, 1));
+});
+// ---- water: a clear blue surface with drifting ripple lines ----
+const water = (id, x, y, w, h) => `<g id="${id}"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#wat)"/>
+  ${Array.from({ length: 14 }, (_, i) => `<path class="rip" data-i="${i}" data-x="${x}" data-y="${y}" data-w="${w}" data-h="${h}" d="" stroke="#e6f6ff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/>`).join('')}</g>`;
+const updWater = (id, t) => document.querySelectorAll(`#${id} .rip`).forEach(r => {
+  const i = +r.dataset.i, x = +r.dataset.x, y = +r.dataset.y, w = +r.dataset.w, h = +r.dataset.h;
+  const yy = y + ((i * 97 + t * 40) % h), xx = x + ((i * 173) % (w - 120)) + Math.sin(t + i) * 20, L = 60 + (i % 4) * 25;
+  r.setAttribute('d', `M${xx} ${yy} q${L / 4} -8 ${L / 2} 0 t${L / 2} 0`);
+});
+const DEFS = `<linearGradient id="wat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fd0f0"/><stop offset="1" stop-color="#2f86c4"/></linearGradient>
+  <radialGradient id="fireGlow"><stop offset="0" stop-color="#ffb35c" stop-opacity=".75"/><stop offset="1" stop-color="#ff7a2c" stop-opacity="0"/></radialGradient>
+  <radialGradient id="coolGlow"><stop offset="0" stop-color="#9fe0ff" stop-opacity=".6"/><stop offset="1" stop-color="#9fe0ff" stop-opacity="0"/></radialGradient>`;
+
+function build() {
+  // ---- hook: split screen, clear river | red-orange fire ----
+  KIT.S('sSplit', `<defs>${DEFS}<clipPath id="lh"><rect width="540" height="1920"/></clipPath><clipPath id="rh"><rect x="540" width="540" height="1920"/></clipPath></defs>
+    <g clip-path="url(#lh)"><rect width="1080" height="1920" fill="#cfe9f5"/>${water('w1', 0, 520, 540, 600)}<circle cx="270" cy="700" r="420" fill="url(#coolGlow)"/></g>
+    <g clip-path="url(#rh)"><rect width="1080" height="1920" fill="#2a1410"/><circle cx="810" cy="860" r="520" fill="url(#fireGlow)"/>${fire('f1')}<rect x="540" y="1060" width="540" height="860" fill="#1a0c08"/></g>
+    <rect x="536" width="8" height="1920" fill="#f3ead8" opacity=".9"/>`);
+
+  // ---- Harith whispers at Adam's ear; soldiers' torches behind ----
+  KIT.S('sWhisper', `<defs><linearGradient id="nw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0e18"/><stop offset="1" stop-color="#1c2236"/></linearGradient>
+      <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff6d8" stop-opacity=".5"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#nw)"/>
+    <rect x="-20" y="380" width="420" height="700" fill="#1e222c"/><rect x="640" y="420" width="460" height="660" fill="#1a1e28"/>
+    <polygon id="wbA" points="0,-14 900,-170 900,170 0,14" fill="url(#beam)"/><polygon id="wbB" points="0,-14 900,-170 900,170 0,14" fill="url(#beam)"/>
+    ${soldier('ws1', 140, 1080, .7)}${soldier('ws2', 980, 1090, .65)}
+    <g transform="translate(400 1500) scale(2.1)">${KIT.adam('wa')}</g>
+    <g id="wHar"><g transform="translate(850 1600) scale(1.7)">${KIT.harith('wh')}</g></g>`);
+
+  // ---- the town square: river and fire side by side; the crowd from behind ----
+  seed = 7;
+  let crowd = '';
+  for (let r = 0; r < 3; r++) for (let i = 0; i < 9 - r; i++) crowd += backPerson(30 + (i + .5) * 1020 / (9 - r) + (rnd() - .5) * 40, 1120 + r * 110, .6 + r * .2, ['#4a3e52', '#435246', '#5a4638', '#40495a', '#3a3a44'][(i + r) % 5]);
+  KIT.S('sSquare', `<defs>${DEFS}<linearGradient id="nsq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#121624"/><stop offset="1" stop-color="#2a2a38"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#nsq)"/>
+    <rect x="-20" y="300" width="300" height="520" fill="#1a1e2a"/><rect x="800" y="280" width="300" height="540" fill="#1e1a20"/>
+    <rect y="800" width="1080" height="1120" fill="#3a3430"/>
+    <circle cx="270" cy="760" r="380" fill="url(#coolGlow)"/><circle cx="790" cy="680" r="520" fill="url(#fireGlow)"/>
+    <polygon points="20,1060 500,1060 430,800 180,800" fill="#2f86c4"/>
+    <g clip-path="url(#riv)">${water('w2', 20, 800, 480, 260)}</g><clipPath id="riv"><polygon points="20,1060 500,1060 430,800 180,800"/></clipPath>
+    <path d="M20 1060 L180 800 M500 1060 L430 800" stroke="#9ab" stroke-width="6"/>
+    <ellipse cx="790" cy="1000" rx="240" ry="34" fill="#1a0c08"/>${fire('f2')}
+    <rect id="heat" width="1080" height="1920" fill="#ff8a3c" opacity="0"/>
+    <g id="sqCrowd">${crowd}</g>`);
+
+  // ---- slow motion: people run for the river ----
+  seed = 13;
+  let runners = '';
+  for (let i = 0; i < 12; i++) { const s = .55 + rnd() * .7; runners += `<g class="rn" data-i="${i}" data-x="${120 + rnd() * 1100}" data-s="${s}" data-y="${880 + s * 260}">
+    <g transform="scale(${s})"><ellipse rx="50" ry="9" fill="#000" opacity=".2"/>
+      <g class="lgA"><rect x="-12" y="-150" width="24" height="150" rx="10" fill="#2a2522"/></g><g class="lgB"><rect x="-12" y="-150" width="24" height="150" rx="10" fill="#33302c"/></g>
+      <g transform="rotate(-14 0 -150)"><path d="M-40 -140 C-44 -220 -36 -280 -26 -300 L26 -300 C36 -280 44 -220 40 -140Z" fill="${['#4a3e52', '#435246', '#5a4638', '#40495a'][i % 4]}"/><circle cy="-330" r="30" fill="#2a1a12"/>
+      <g class="arA"><rect x="-10" y="-290" width="20" height="110" rx="10" fill="#3a3430"/></g></g></g></g>`; }
+  KIT.S('sRun', `<defs>${DEFS}</defs><rect width="1080" height="1920" fill="#2a2a38"/><rect y="820" width="1080" height="1100" fill="#3a3430"/>
+    <circle cx="80" cy="900" r="520" fill="url(#coolGlow)"/><polygon points="-40,1180 230,1180 170,820 -40,820" fill="#2f86c4"/>
+    <circle cx="1080" cy="700" r="460" fill="url(#fireGlow)" opacity=".7"/>${runners}`);
+
+  // ---- memory: Shaykh Yahya at the old mosque, from behind, warm and faded ----
+  KIT.S('sMemory', `<rect width="1080" height="1920" fill="#e6d6b8"/>
+    ${[0, 1, 2, 3].map(i => `<path d="M${40 + i * 270} 1000 v-460 a110 110 0 0 1 220 0 v460Z" fill="#f7ecd2"/><rect x="${20 + i * 270}" y="420" width="22" height="600" fill="#cdb894"/>`).join('')}
+    <rect y="1000" width="1080" height="920" fill="#7a2a26"/>
+    <g transform="translate(540 1085)">${KIT.sheikhBack('ms')}</g>
+    <rect width="1080" height="1920" fill="#e9c47e" opacity=".22"/>`);
+  $('sMemory').querySelector('svg').style.filter = 'sepia(.55) blur(.6px)';
+
+  // ---- the meaning of the hadith: what looks like water is fire, what looks like fire is cool water ----
+  KIT.S('sSwap', `<defs>${DEFS}<clipPath id="lh2"><rect width="540" height="1920"/></clipPath><clipPath id="rh2"><rect x="540" width="540" height="1920"/></clipPath></defs>
+    <g clip-path="url(#lh2)"><rect width="1080" height="1920" fill="#cfe9f5"/>${water('w3', 0, 520, 540, 600)}
+      <g id="swL" opacity="0"><rect width="540" height="1920" fill="#2a1410"/><circle cx="270" cy="860" r="520" fill="url(#fireGlow)"/>${fire('f3')}</g></g>
+    <g clip-path="url(#rh2)"><rect width="1080" height="1920" fill="#2a1410"/><circle cx="810" cy="860" r="520" fill="url(#fireGlow)"/>${fire('f4')}
+      <g id="swR" opacity="0"><rect x="540" width="540" height="1920" fill="#cfe9f5"/>${water('w4', 540, 520, 540, 600)}<circle cx="810" cy="700" r="420" fill="url(#coolGlow)"/></g></g>
+    <rect x="536" width="8" height="1920" fill="#f3ead8" opacity=".9"/>
+    <rect id="dimL" width="540" height="1920" fill="#000" opacity="0"/>
+    <rect id="ringR" x="566" y="300" width="488" height="760" rx="30" fill="none" stroke="#e9c47e" stroke-width="6" opacity="0"/>`);
+
+  // ---- Adam lifts Hawa and holds Salma's hand, facing the fire (from behind) ----
+  KIT.S('sCarry', `<defs>${DEFS}</defs><rect width="1080" height="1920" fill="#2a1410"/><circle cx="540" cy="620" r="700" fill="url(#fireGlow)"/>
+    ${fire('f5')}<rect y="980" width="1080" height="940" fill="#2a1d16"/>
+    ${shadow(600, 1240, 160, .35)}${shadow(300, 1240, 120, .35)}
+    <g transform="translate(300 1240) scale(1.25)">${salmaBack('cs')}</g>
+    <g transform="translate(600 1240) scale(1.3)">${adamStandBack('ca')}
+      <g id="cHawa"><path d="M-70 -440 C-90 -380 -80 -320 -50 -300 L40 -300 C60 -330 60 -400 40 -440Z" fill="#a8583f"/><ellipse cx="-14" cy="-470" rx="44" ry="46" fill="${HAIR_}"/><path d="M-56 -470 C-64 -420 -60 -380 -50 -350 L20 -350 C30 -380 34 -430 28 -470Z" fill="${HAIR_}"/></g></g>
+    <path d="M370 1010 C420 1000 470 1000 520 1010" stroke="#cdbb9a" stroke-width="34" fill="none" stroke-linecap="round"/><circle cx="378" cy="1012" r="16" fill="${SKIN_}"/>`);
+
+  // ---- recitation: Adam's mouth moves; verse numbers 1-10 light up as a thin graphic ----
+  KIT.S('sRecite', `<defs>${DEFS}</defs><rect width="1080" height="1920" fill="#1e120c"/><circle cx="540" cy="760" r="760" fill="url(#fireGlow)" opacity=".6"/>
+    <g transform="translate(540 760)">
+      <rect x="-60" y="300" width="120" height="200" fill="${SKIN_}"/><path d="M-330 640 C-320 470 -220 400 -90 380 L90 380 C220 400 320 470 330 640Z" fill="#cdbb9a"/>
+      <ellipse rx="250" ry="300" fill="${SKIN_}"/>
+      <path d="M-262 -40 C-280 -360 280 -360 262 -40 C240 -200 -240 -200 -262 -40Z" fill="${HAIR_}"/>
+      <path d="M-245 20 C-240 230 -120 320 0 320 C120 320 240 230 245 20 C200 160 120 200 0 200 C-120 200 -200 160 -245 20Z" fill="${HAIR_}" opacity=".85"/>
+      <path d="M-150 -20 q50 22 100 0 M50 -20 q50 22 100 0" stroke="#5a3a2a" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <ellipse cx="0" cy="168" rx="70" ry="34" fill="${HAIR_}" opacity=".6"/>
+      <path id="mouth" d="M-50 170 Q0 176 50 170" stroke="#7a3a2c" stroke-width="12" fill="none" stroke-linecap="round"/></g>
+    <g id="verses" font-family="Sans" font-weight="700" font-size="34" text-anchor="middle">
+      ${Array.from({ length: 10 }, (_, i) => `<g id="v${i}" transform="translate(${180 + i * 80} 330)"><circle r="32" fill="none" stroke="#e9c47e" stroke-width="3"/><text y="12" fill="#e9c47e">${i + 1}</text></g>`).join('')}</g>`);
+
+  // ---- into the flames: the family walks forward and is swallowed by white ----
+  KIT.S('sFire', `<defs>${DEFS}</defs><rect width="1080" height="1920" fill="#2a1410"/><circle cx="540" cy="700" r="760" fill="url(#fireGlow)"/>
+    ${fire('f6')}<rect y="1000" width="1080" height="920" fill="#3a1e12"/>
+    <g id="fam"><g transform="translate(-170 0) scale(.95)">${salmaBack('fs')}</g>
+      <g>${adamStandBack('fa')}<g transform="translate(-72 34)"><path d="M-70 -440 C-90 -380 -80 -320 -50 -300 L40 -300 C60 -330 60 -400 40 -440Z" fill="#a8583f"/><ellipse cx="-14" cy="-470" rx="44" ry="46" fill="${HAIR_}"/><path d="M-56 -470 C-64 -420 -60 -380 -50 -350 L20 -350 C30 -380 34 -430 28 -470Z" fill="${HAIR_}"/></g></g>
+      <path d="M-120 -230 C-100 -240 -80 -240 -60 -232" stroke="#cdbb9a" stroke-width="26" fill="none" stroke-linecap="round"/></g>
+    ${fire('f7')}
+    <rect id="white" width="1080" height="1920" fill="#fffdf6" opacity="0"/>`);
+
+  // ---- white; then, far off, Harith standing between the river and the fire ----
+  KIT.S('sWhite', `<defs>${DEFS}</defs><rect width="1080" height="1920" fill="#fffdf6"/>
+    <g id="farChoice" opacity="0"><circle cx="300" cy="820" r="300" fill="url(#coolGlow)"/><circle cx="780" cy="820" r="320" fill="url(#fireGlow)" opacity=".7"/>
+      <g transform="translate(540 960) scale(.42)">${KIT.harith('xh')}</g></g>`);
+}
+
+KIT.episode({
+  num: 7, name: 'แม่น้ำกับไฟ',
+  total: 104.3, title: [5.6, 9.6], ctaWin: [87.3, 93.3], discWin: [93.3, 99.8], outroAt: 99.8,
+  cta: '“ถ้าเป็นคุณ คุณจะกล้าเดินเข้าไปในไฟไหม?<br>คอมเมนต์บอกกันด้วย<br>แล้วกดติดตามและแชร์ไว้<br><b>ตอนหน้าเราจะรู้คำตอบ</b>”',
+  refs: 'หลักฐานหลัก: เศาะฮีห์อัลบุคอรี 3450<br>เศาะฮีห์มุสลิม 2934',
+  scenes: [
+    ['sSplit', 0, 9.8], ['sWhisper', 9.6, 23.7], ['sSquare', 23.5, 37.2], ['sRun', 37, 41.2], ['sMemory', 41, 44.7],
+    ['sSwap', 44.5, 51.7], ['sCarry', 51.5, 56.2], ['sRecite', 56, 69.7], ['sFire', 69.5, 76.05, { cut: true }],
+    ['sWhite', 76, 87, { hardOut: true }], ['sSquare', 99.4, 104.5],
+  ],
+  caps: CAPS, tags: TAGS,
+  keys: [[2.5, 1], [7.5, 2], [11, 3], [16.5, 4], [21.5, 5], [25.5, 6], [30, 7], [34.5, 8], [39, 9], [43, 10], [46, 11], [50, 12], [54, 13], [58, 14], [63, 15], [67.5, 16], [72, 17], [75.7, 18], [77.5, 19], [84, 20], [90, 21], [96, 22], [102, 23]],
+  build,
+  draw(t) {
+    // hook: the river ripples, the fire roars
+    updWater('w1', t); updFire('f1', 560, 1080, 1070, 620, 7, t);
+    KIT.zoom('sSplit', 1 + Math.min(t, 10) * .006);
+
+    // the whisper: torches sweep; Harith leans in, then his shoulders shake
+    attr('wbA', 'transform', `translate(230 900) rotate(${-24 + Math.sin(t * .8) * 10})`);
+    attr('wbB', 'transform', `translate(870 910) rotate(${200 + Math.sin(t * .6 + 1) * 10})`);
+    const lean = ease((t - 13.3) / 1.2), sob = t > 20 && t < 23.6 ? Math.sin(t * 22) * 3 : 0;
+    attr('wHar', 'transform', `translate(${-90 * lean + sob} ${sob * .4}) rotate(${-9 * lean} 850 1600)`);
+    KIT.harithEyes('wh', 0); attr('whEyeL', 'fill', '#ffd9a0'); attr('whEyeR', 'fill', '#ffd9a0');
+    KIT.zoom('sWhisper', 1 + clamp(t - 9.6, 0, 14) * .006);
+
+    // the square: river and fire; the heat on his face; the crowd sways at the announcement
+    updWater('w2', t); updFire('f2', 590, 990, 1010, 560, 6, t);
+    attr('heat', 'opacity', .14 * ease((t - 29.5) / 2) * (t < 33 ? 1 : 1 - ease((t - 33) / 1)));
+    attr('sqCrowd', 'transform', `translate(0 ${t > 32.5 && t < 37 ? Math.sin((t - 32.5) * 3) * 4 : 0})`);
+    KIT.zoom('sSquare', 1 + clamp(t - 23.5, 0, 14) * .005);
+
+    // slow motion: the runners move left toward the water
+    document.querySelectorAll('#sRun .rn').forEach(g => {
+      const i = +g.dataset.i, s = +g.dataset.s, ph = (t - 37) * 3.2 + i, x = +g.dataset.x - (t - 37) * 90 * s;
+      g.setAttribute('transform', `translate(${x} ${+g.dataset.y - Math.abs(Math.sin(ph)) * 10 * s})`);
+      g.querySelector('.lgA').setAttribute('transform', `rotate(${Math.sin(ph) * 28} 0 -150)`);
+      g.querySelector('.lgB').setAttribute('transform', `rotate(${-Math.sin(ph) * 28} 0 -150)`);
+      g.querySelector('.arA').setAttribute('transform', `rotate(${-40 - Math.sin(ph) * 25} 0 -290)`);
+    });
+
+    // memory: a slow drift
+    KIT.zoom('sMemory', 1 + clamp(t - 41, 0, 4) * .01);
+
+    // the swap: the river turns to fire, the fire to cool water; then the fire side is the one to choose
+    updWater('w3', t); updWater('w4', t); updFire('f3', 20, 520, 1070, 600, 6, t); updFire('f4', 560, 1080, 1070, 620, 7, t);
+    attr('swL', 'opacity', ease((t - 45) / 1.2)); attr('swR', 'opacity', ease((t - 47.6) / 1.2));
+    attr('dimL', 'opacity', .55 * ease((t - 49.4) / .8)); attr('ringR', 'opacity', ease((t - 49.6) / .8));
+
+    // carrying Hawa toward the fire
+    updFire('f5', 40, 1040, 990, 640, 8, t);
+    attr('cHawa', 'transform', `translate(-72 ${34 - 6 * ease((t - 51.7) / .8)})`);
+    KIT.zoom('sCarry', 1 + clamp(t - 51.5, 0, 5) * .012);
+
+    // recitation: verses 1-7 (known), then 8, 9, 10 for the first time
+    const lit = t < 56.3 ? 0 : t < 57.4 ? 1 : t < 58.4 ? 5 : t < 60.6 ? 7 : t < 62 ? 8 : t < 63.4 ? 9 : 10;
+    for (let i = 0; i < 10; i++) {
+      const on = i < lit ? 1 : 0, full = t > 66 ? .5 + .5 * Math.sin((t - 66) * 3) ** 2 : 0;
+      attr('v' + i, 'opacity', .25 + .75 * on); attr('v' + i, 'style', on ? `filter: drop-shadow(0 0 ${6 + 14 * full}px rgba(242,193,78,.9))` : '');
+    }
+    const talk = t > 56 && t < 66 ? Math.abs(Math.sin(t * 8.5)) * (.6 + .4 * Math.sin(t * 2.1)) : 0;
+    attr('mouth', 'd', `M-50 170 Q0 ${176 + 30 * talk} 50 170`);
+    KIT.zoom('sRecite', 1 + clamp(t - 56, 0, 13) * .006);
+
+    // into the fire, then white
+    updFire('f6', -60, 1140, 1010, 900, 9, t, 1 + .2 * ease((t - 69.5) / 5));
+    updFire('f7', -60, 1140, 1500, 260 + 900 * ease((t - 72) / 3.5), 10, t + 3);
+    const walk = ease((t - 69.8) / 5.5);
+    attr('fam', 'transform', `translate(${560} ${1500 - 380 * walk}) scale(${1.4 - .7 * walk})`);
+    attr('white', 'opacity', ease((t - 75.3) / .7));
+
+    // white: then far away, Harith between the two
+    attr('farChoice', 'opacity', .8 * ease((t - 82.8) / 1.5));
+  },
+});
+</script>
+</body>
+</html>
