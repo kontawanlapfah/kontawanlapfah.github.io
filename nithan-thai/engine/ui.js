@@ -9,7 +9,7 @@ function setupUI(cfg){const w=$('wrap');w.insertAdjacentHTML('beforeend',`
 <div id="head"><div class="pill">${cfg.pill}</div><div class="ttl">${cfg.title}</div></div>
 <div id="thought"><div class="cl"></div><div class="d1"></div><div class="d2"></div></div><div id="dim"></div>
 <div id="card"><h2>${cfg.card.title}</h2><div class="sm">${cfg.card.sm}</div>${cfg.card.rows.map((r,i)=>`<div class="row" id="r${i}">${r.icon}<div class="w" style="color:${r.color};${r.fs?'font-size:'+r.fs+'px':''}">${r.w}</div><div><div class="r">${r.r}</div><div class="m">${r.m}</div></div></div>`).join('')}</div>
-<div id="cta"><div class="q">${cfg.cta}</div><div class="logo">Nithan Thai</div></div>
+<div id="cta"><div class="q">${cfg.cta}</div><div class="logo">NithanTH</div></div>
 <div id="cap"></div><div id="sub"><div class="who"></div><div class="th"></div><div class="ro"></div><div class="id"></div></div><div id="black"></div>`);
  if(cfg.thoughtCss)Object.assign($('thought').style,cfg.thoughtCss);
  const S=$('sub'),who=S.querySelector('.who'),sth=S.querySelector('.th'),sro=S.querySelector('.ro'),sid=S.querySelector('.id'),TH=$('thought'),THc=TH.querySelector('.cl');

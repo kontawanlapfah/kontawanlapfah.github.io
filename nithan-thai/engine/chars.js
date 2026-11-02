@@ -1,4 +1,4 @@
-// Shared characters + backgrounds for Nithan Thai skits (crayon style). Requires engine/ui.js first (NS, el, helpers).
+// Shared characters + backgrounds for NithanTH skits (crayon style). Requires engine/ui.js first (NS, el, helpers).
 const DEFS=`<filter id="crayon" x="-5%" y="-5%" width="110%" height="110%">
  <feTurbulence id="turb" type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="n1"/>
  <feDisplacementMap in="SourceGraphic" in2="n1" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
