@@ -3,7 +3,7 @@ const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
 function rnd(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function el(tag,a,p){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),ease=x=>{x=clamp(x,0,1);return x*x*(3-2*x)},win=(t,a,b,f=.25)=>Math.min(ease((t-a)/f),1-ease((t-b)/f));
-const talking=(t,a,b)=>t>a&&t<b-.2&&Math.sin(t*19)>-.2;
+const talking=(t,a,b)=>{const v=typeof voxTalk=='function'?voxTalk(a):undefined;return v!==undefined?v:t>a&&t<b-.2&&Math.sin(t*19)>-.2};
 const WHO={PUTRI:'#e3a19b',BIBI:'#7fc0ad',TON:'#8fb3e8',FAH:'#c9b3e8'};
 function setupUI(cfg){const w=$('wrap');w.insertAdjacentHTML('beforeend',`
 <div id="head"><div class="pill">${cfg.pill}</div><div class="ttl">${cfg.title}</div></div>

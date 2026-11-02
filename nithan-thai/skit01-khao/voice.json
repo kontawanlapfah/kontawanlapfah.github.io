@@ -1,0 +1,6 @@
+{"dur":46.6,
+ "sfx":"pop@9.7,shock@13.1,pop@17.0,bleep@24.5-27.6,rise@27.8,ding@31.2,pop@32.0,pop@33.4,pop@34.8,pop@42.5",
+ "lines":[
+  {"who":"BIBI","src":"../voice-src/bibi_ep01-ep03.mp3","from":0.0,"to":1.85,"cue":9.6,"cueEnd":12.8},
+  {"who":"BIBI","src":"../voice-src/bibi_ep01-ep03.mp3","from":2.15,"to":7.5,"cue":20.2,"cueEnd":24.2},
+  {"who":"BIBI","src":"../voice-src/bibi_ep01-ep03.mp3","from":7.75,"to":12.1,"cue":27.8,"cueEnd":30.9}]}
