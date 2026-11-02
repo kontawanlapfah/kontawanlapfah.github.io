@@ -1,0 +1,238 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,600;0,800;1,400&family=Mali:wght@600;700&display=block" rel="stylesheet">
+<style>
+html,body{margin:0;width:540px;height:960px;overflow:hidden;background:#000}
+#wrap{position:relative;width:540px;height:960px;font-family:Kanit}
+svg{position:absolute;inset:0}
+#head{position:absolute;top:18px;left:0;right:0;text-align:center}
+#head .pill{display:inline-block;background:#e9c46a;color:#1d2440;font-weight:600;font-size:16px;padding:4px 14px;border-radius:20px;letter-spacing:1px}
+#head .ttl{font-weight:800;font-size:40px;color:#fff;text-shadow:0 3px 0 #1d2440,0 0 12px rgba(0,0,0,.5);margin-top:2px}
+#thought{position:absolute;left:18px;top:150px;width:310px;opacity:0}
+#thought .cl{background:#fffdf7;border-radius:38px;padding:16px 20px;font-family:Mali;font-weight:600;font-size:22px;color:#3b3350;line-height:1.3;box-shadow:0 6px 0 rgba(0,0,0,.15)}
+#thought .d1,#thought .d2{position:absolute;background:#fffdf7;border-radius:50%}
+#thought .d1{width:26px;height:26px;left:110px;bottom:-34px}#thought .d2{width:15px;height:15px;left:128px;bottom:-56px}
+#sub{position:absolute;left:0;right:0;bottom:0;height:200px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 18px 30px;box-sizing:border-box;text-align:center;
+ background:linear-gradient(to bottom,rgba(10,10,25,0),rgba(10,10,25,.85) 40%)}
+#sub .who{font-size:14px;font-weight:600;padding:1px 10px;border-radius:10px;margin-bottom:4px;letter-spacing:1px}
+#sub .th{font-weight:600;font-size:31px;color:#fff;line-height:1.25}
+#sub .ro{font-style:italic;font-size:18px;color:#f2d48a}
+#sub .id{font-size:21px;color:#bfe6f2;line-height:1.25}
+.k{color:#ffcf5a}
+#dim{position:absolute;inset:0;background:#0d1020;opacity:0}
+#card{position:absolute;left:30px;right:30px;top:190px;background:#fbf4e4;border-radius:26px;padding:22px 22px 14px;box-shadow:0 10px 0 rgba(0,0,0,.25);opacity:0}
+#card h2{margin:0;font-family:Mali;font-size:30px;color:#c9653f;text-align:center}
+#card .sm{text-align:center;color:#6b6070;font-size:17px;margin-bottom:10px}
+.row{display:flex;align-items:center;gap:12px;padding:10px 6px;border-top:2px dashed #e2d3b5;opacity:0}
+.row svg{position:static;flex:none}
+.row .w{font-weight:800;font-size:46px;width:120px;line-height:1}
+.row .r{font-size:17px;color:#5d5566}.row .m{font-size:24px;color:#1d2440;font-weight:600}
+#cta{position:absolute;left:30px;right:30px;top:300px;text-align:center;opacity:0}
+#cta .q{background:#fffdf7;border-radius:24px;padding:18px;font-family:Mali;font-size:28px;color:#3b3350;box-shadow:0 8px 0 rgba(0,0,0,.2)}
+#cta .logo{display:inline-block;margin-top:22px;background:#132536;color:#f6efe2;font-family:Mali;font-size:30px;padding:6px 22px;border-radius:30px;border:3px solid #e9c46a}
+#black{position:absolute;inset:0;background:#000}
+</style></head><body><div id="wrap">
+<svg width="540" height="960" viewBox="0 0 540 960" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <filter id="crayon" x="-5%" y="-5%" width="110%" height="110%">
+  <feTurbulence id="turb" type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="n1"/>
+  <feDisplacementMap in="SourceGraphic" in2="n1" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="8" result="grain"/>
+  <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.5 1.7" result="mask"/>
+  <feComposite in="d" in2="mask" operator="in"/>
+ </filter>
+ <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#232a55"/><stop offset=".6" stop-color="#7a4f7a"/><stop offset="1" stop-color="#e8936a"/></linearGradient>
+ <radialGradient id="vig" cx="50%" cy="45%" r="75%"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+</defs>
+<rect width="540" height="530" fill="url(#sky)"/>
+<g id="bld" filter="url(#crayon)"></g>
+<rect y="520" width="540" height="440" fill="#4a3f4a" filter="url(#crayon)"/>
+<g stroke="#5a4e5a" stroke-width="3" filter="url(#crayon)"><path d="M0 600H540M0 690H540M0 790H540M90 520L40 960M260 520L250 960M430 520L470 960"/></g>
+<path id="wire1" fill="none" stroke="#1d1a2a" stroke-width="2"/><path id="wire2" fill="none" stroke="#1d1a2a" stroke-width="2"/>
+<g id="bulbs" filter="url(#glow)"></g>
+<!-- stall -->
+<g filter="url(#crayon)">
+ <rect x="290" y="335" width="245" height="225" fill="#5d4038"/>
+ <g fill="#7b5a4c"><rect x="300" y="380" width="225" height="8"/><rect x="300" y="440" width="225" height="8"/></g>
+ <g><rect x="310" y="352" width="18" height="28" rx="4" fill="#c8553d"/><rect x="334" y="358" width="16" height="22" rx="4" fill="#e9c46a"/><rect x="470" y="350" width="22" height="30" rx="5" fill="#7aa58f"/><rect x="497" y="356" width="16" height="24" rx="4" fill="#c8553d"/>
+  <rect x="312" y="412" width="30" height="28" rx="6" fill="#e9dfc9"/><rect x="490" y="414" width="26" height="26" rx="6" fill="#e9dfc9"/></g>
+ <rect x="283" y="300" width="11" height="420" fill="#3b2d27"/><rect x="528" y="300" width="11" height="420" fill="#3b2d27"/>
+ <rect x="300" y="222" width="225" height="54" rx="8" fill="#f3e2b3"/>
+</g>
+<text x="412" y="261" text-anchor="middle" font-family="Kanit" font-weight="800" font-size="30" fill="#8a3b2a">อาหารตามสั่ง</text>
+<g id="awn" filter="url(#crayon)"></g>
+<!-- auntie -->
+<g id="pa" transform="translate(440 545)">
+ <g filter="url(#crayon)">
+  <path d="M-58 5 L-52 -92 Q0 -104 52 -92 L58 5Z" fill="#5f9a8a"/>
+  <path d="M-36 -70 L36 -70 L38 5 L-38 5Z" fill="#f1e3c8"/><path d="M-30 -70 L-22 -98 M30 -70 L22 -98" stroke="#f1e3c8" stroke-width="6"/>
+  <rect x="-9" y="-112" width="18" height="20" class="sk2" fill="#e2ad92"/>
+  <g id="paArm"><path d="M-48 -86 Q-74 -50 -66 -18" stroke="#5f9a8a" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="-66" cy="-14" r="10" fill="#e2ad92"/>
+   <path d="M-66 -14 L-96 -46" stroke="#9aa6ad" stroke-width="5" stroke-linecap="round"/><ellipse cx="-100" cy="-50" rx="12" ry="8" fill="#9aa6ad"/></g>
+  <g id="paHead">
+   <ellipse cx="0" cy="-150" rx="40" ry="44" fill="#e9b59b"/>
+   <g fill="#4a4450"><path d="M-42 -152 C-46 -196 -20 -200 0 -199 C20 -200 46 -196 42 -152 C34 -176 18 -182 0 -180 C-18 -182 -34 -176 -42 -152Z"/><circle cx="0" cy="-200" r="17"/><circle cx="-38" cy="-168" r="10"/><circle cx="38" cy="-168" r="10"/></g>
+  </g>
+ </g>
+ <g id="paFace">
+  <g fill="#ee9c91" opacity=".6"><ellipse cx="-22" cy="-134" rx="8" ry="5"/><ellipse cx="22" cy="-134" rx="8" ry="5"/></g>
+  <g id="paEyes" fill="#2b2430"><circle cx="-15" cy="-150" r="3.2"/><circle cx="15" cy="-150" r="3.2"/></g>
+  <g id="paHappy" stroke="#2b2430" stroke-width="3" fill="none" stroke-linecap="round" opacity="0"><path d="M-21 -148 q6 -7 12 0"/><path d="M9 -148 q6 -7 12 0"/></g>
+  <g fill="none" stroke="#3a3340" stroke-width="2.6"><circle cx="-15" cy="-150" r="12"/><circle cx="15" cy="-150" r="12"/><path d="M-3 -151 q3 -3 6 0"/></g>
+  <path id="paBrow" d="M-24 -170 l14 -3 M10 -173 l14 3" stroke="#4a4450" stroke-width="3" stroke-linecap="round" opacity="0"/>
+  <path id="paMouthC" d="M-7 -124 q7 5 14 0" stroke="#9a4a42" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse id="paMouthO" cx="0" cy="-123" rx="7" ry="6" fill="#7a3a35" opacity="0"/>
+ </g>
+ <text id="paQ" x="38" y="-212" font-family="Kanit" font-weight="800" font-size="50" fill="#ffd27a" opacity="0">?</text>
+</g>
+<!-- counter -->
+<g filter="url(#crayon)">
+ <rect x="268" y="556" width="285" height="170" fill="#a8744f"/>
+ <rect x="262" y="543" width="297" height="17" fill="#c48b5c"/>
+ <rect x="300" y="590" width="86" height="104" fill="#f6efe0" transform="rotate(-3 343 642)"/>
+ <g stroke="#b9a98a" stroke-width="4"><path d="M312 615h60M312 635h50M312 655h58M312 675h44" transform="rotate(-3 343 642)"/></g>
+ <rect x="410" y="520" width="52" height="24" rx="4" fill="#d9822b"/><rect x="468" y="520" width="52" height="24" rx="4" fill="#6f8f4a"/>
+ <rect x="302" y="482" width="78" height="62" rx="12" fill="#b9c3c9"/>
+ <rect x="296" y="476" width="90" height="12" rx="6" fill="#d3dbe0"/>
+ <ellipse cx="341" cy="478" rx="38" ry="7" fill="#fbfaf4"/>
+</g>
+<g id="steam" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"></g>
+<g id="plate" opacity="0" filter="url(#crayon)"><ellipse cx="0" cy="0" rx="34" ry="9" fill="#f1f3f5"/><ellipse cx="0" cy="-8" rx="22" ry="12" fill="#fffef8"/></g>
+<!-- Putri -->
+<g id="pu" transform="translate(150 770)">
+ <ellipse cx="0" cy="0" rx="62" ry="10" fill="#000" opacity=".25"/>
+ <g id="puBody">
+ <g filter="url(#crayon)">
+  <path d="M-50 -122 L50 -122 L64 -8 L-64 -8Z" fill="#3d4a6b"/>
+  <ellipse cx="-22" cy="-5" rx="18" ry="7" fill="#6b4a3f"/><ellipse cx="22" cy="-5" rx="18" ry="7" fill="#6b4a3f"/>
+  <path d="M-48 -252 L-48 -252" />
+  <path d="M-72 -300 C-82 -240 -68 -222 -58 -212 L58 -212 C68 -222 82 -240 72 -300Z" fill="#e3a19b"/>
+  <path id="shirt" d="M-48 -250 Q0 -262 48 -250 L55 -118 L-55 -118Z" fill="#fbfaf6" stroke="#cfc8bc" stroke-width="2"/>
+  <path d="M-40 -246 L32 -128" stroke="#b08a5a" stroke-width="8"/>
+  <path d="M-48 -238 Q-68 -180 -60 -128" stroke="#cfc8bc" stroke-width="25" stroke-linecap="round" fill="none"/>
+  <path d="M-48 -238 Q-68 -180 -60 -128" stroke="#fbfaf6" stroke-width="20" stroke-linecap="round" fill="none"/>
+  <circle cx="-60" cy="-120" r="11" class="sk" fill="#d9a184"/>
+ </g>
+ <g id="armR"><g filter="url(#crayon)">
+  <path d="M46 -238 Q66 -180 58 -128" stroke="#cfc8bc" stroke-width="25" stroke-linecap="round" fill="none"/>
+  <path d="M46 -238 Q66 -180 58 -128" stroke="#fbfaf6" stroke-width="20" stroke-linecap="round" fill="none"/>
+  <circle cx="58" cy="-120" r="11" fill="#d9a184"/></g></g>
+ <g filter="url(#crayon)">
+  <ellipse cx="0" cy="-330" rx="64" ry="68" fill="#e3a19b"/>
+  <path d="M-58 -262 Q0 -228 58 -262 L52 -228 Q0 -204 -52 -228Z" fill="#e3a19b"/>
+  <ellipse cx="0" cy="-322" rx="43" ry="47" fill="#d9a184"/>
+ </g>
+ <ellipse cx="0" cy="-322" rx="46" ry="50" fill="none" stroke="#c98680" stroke-width="5"/>
+ <g id="puBlush" fill="#ee8f86" opacity=".65"><ellipse cx="-25" cy="-302" rx="9" ry="5"/><ellipse cx="25" cy="-302" rx="9" ry="5"/></g>
+ <g id="puEyes" fill="#2b2430"><circle cx="-15" cy="-324" r="4"/><circle cx="15" cy="-324" r="4"/></g>
+ <g id="puShock" opacity="0"><circle cx="-15" cy="-324" r="8" fill="#fff" stroke="#2b2430" stroke-width="2"/><circle cx="15" cy="-324" r="8" fill="#fff" stroke="#2b2430" stroke-width="2"/><circle cx="-15" cy="-324" r="3" fill="#2b2430"/><circle cx="15" cy="-324" r="3" fill="#2b2430"/></g>
+ <g id="puHappy" stroke="#2b2430" stroke-width="3" fill="none" stroke-linecap="round" opacity="0"><path d="M-21 -322 q6 -8 12 0"/><path d="M9 -322 q6 -8 12 0"/></g>
+ <path id="puBrow" d="M-24 -340 l13 4 M11 -336 l13 -4" stroke="#5a3a35" stroke-width="3" stroke-linecap="round" opacity="0"/>
+ <path id="puMouthC" d="M-7 -296 q7 5 14 0" stroke="#8a3f3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+ <ellipse id="puMouthO" cx="0" cy="-295" rx="6" ry="6" fill="#7a3a35" opacity="0"/>
+ <path id="puSweat" d="M44 -368 q-9 14 0 18 q9 -4 0 -18z" fill="#9fd3ea" opacity="0"/>
+ <g id="puTears" fill="#9fd3ea" opacity="0"><path d="M-24 -318 q-6 14 -2 26 q6 -4 4 -26z"/><path d="M24 -318 q6 14 2 26 q-6 -4 -4 -26z"/></g>
+ <g id="puStomach" opacity="0" font-family="Kanit" font-weight="800" fill="#ffd27a"><text x="62" y="-160" font-size="24" transform="rotate(-10 62 -160)">kruuuk~</text></g>
+ </g>
+</g>
+<g id="sparkle" fill="#ffe27a" opacity="0" filter="url(#glow)"><path d="M0 -14 L4 -4 14 0 4 4 0 14 -4 4 -14 0 -4 -4Z"/></g>
+<rect width="540" height="960" fill="url(#vig)"/>
+</svg>
+<div id="head"><div class="pill">Putri di Thailand · Ep.1</div><div class="ttl">ข้าว ข่าว ขาว</div></div>
+<div id="thought"><div class="cl"></div><div class="d1"></div><div class="d2"></div></div>
+<div id="dim"></div>
+<div id="card"><h2>Bunyinya mirip!</h2><div class="sm">เสียงคล้ายกัน · 3 kata, 3 nada</div>
+ <div class="row" id="r1"><svg width="56" height="56" viewBox="0 0 56 56"><path d="M6 28 h44 q-2 20 -22 22 q-20 -2 -22 -22z" fill="#7aa58f"/><ellipse cx="28" cy="27" rx="20" ry="9" fill="#fff" stroke="#ddd"/></svg>
+  <div class="w" style="color:#d9822b">ข้าว</div><div><div class="r">khâao · nada turun ↘</div><div class="m">nasi</div></div></div>
+ <div class="row" id="r2"><svg width="56" height="56" viewBox="0 0 56 56"><rect x="8" y="10" width="40" height="36" rx="3" fill="#fff" stroke="#888" stroke-width="2"/><rect x="13" y="15" width="14" height="12" fill="#bbb"/><path d="M31 17h12M31 23h12M13 33h30M13 39h30" stroke="#999" stroke-width="2.5"/></svg>
+  <div class="w" style="color:#3d6fb0">ข่าว</div><div><div class="r">khàao · nada rendah ↓</div><div class="m">berita</div></div></div>
+ <div class="row" id="r3"><svg width="56" height="56" viewBox="0 0 56 56"><path d="M18 8 L8 16 L13 25 L18 21 L18 48 L38 48 L38 21 L43 25 L48 16 L38 8 Q28 15 18 8Z" fill="#fff" stroke="#888" stroke-width="2"/></svg>
+  <div class="w" style="color:#3f8f5a">ขาว</div><div><div class="r">khǎao · nada naik ↗</div><div class="m">putih</div></div></div>
+</div>
+<div id="cta"><div class="q">Kamu pernah salah ngomong juga?<br><b>Tulis di komentar!</b></div><div class="logo">Nithan Thai</div></div>
+<div id="sub"><div class="who"></div><div class="th"></div><div class="ro"></div><div class="id"></div></div>
+<div id="black"></div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+function rnd(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rnd(7);function el(tag,a,p){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),ease=x=>{x=clamp(x,0,1);return x*x*(3-2*x)},win=(t,a,b,f=.25)=>Math.min(ease((t-a)/f),1-ease((t-b)/f));
+// buildings
+for(let x=-10;x<560;){const w=50+R()*60,h=120+R()*200;el('rect',{x,y:530-h,width:w,height:h,fill:R()>.5?'#2e2a4a':'#3a3356'},$('bld'));
+ for(let wy=530-h+15;wy<510;wy+=26)for(let wx=x+8;wx<x+w-12;wx+=18)if(R()>.55)el('rect',{x:wx,y:wy,width:8,height:10,fill:'#f5c96a',opacity:.8},$('bld'));x+=w+4}
+// wires & bulbs
+const wires=[[0,92,270,170,540,128],[0,190,270,250,540,165]],bulbs=[];
+wires.forEach((w,i)=>{$('wire'+(i+1)).setAttribute('d',`M${w[0]} ${w[1]} Q${w[2]} ${w[3]} ${w[4]} ${w[5]}`);
+ for(let k=1;k<12;k++){const s=k/12,x=(1-s)**2*w[0]+2*(1-s)*s*w[2]+s*s*w[4],y=(1-s)**2*w[1]+2*(1-s)*s*w[3]+s*s*w[5];
+  bulbs.push([el('circle',{cx:x,cy:y+6,r:5,fill:['#ffd27a','#ff9f7a','#9fe0c0'][k%3]},$('bulbs')),R()*6,1+R()*2])}});
+// awning
+for(let i=0;i<8;i++){el('rect',{x:272+i*35,y:278,width:35,height:58,fill:i%2?'#fbf2df':'#c8553d'},$('awn'));el('circle',{cx:289.5+i*35,cy:336,r:17.5,fill:i%2?'#fbf2df':'#c8553d'},$('awn'))}
+// steam
+const steam=[0,1,2].map(i=>el('path',{},$('steam')));
+const cues=[
+ {a:1.2,b:5.0,who:'',th:'วันแรกในกรุงเทพฯ หิวมากเลย!',ro:'',id:'',thought:'Hari pertamaku di Bangkok. Aku lapar banget!'},
+ {a:5.3,b:9.3,who:'PUTRI',th:'ป้าคะ ขอ<span class=k>ข่าว</span>หนึ่งจานค่ะ',ro:'pâa khá, khǒr khàao nùeng jaan khâ',id:'Bu, saya mau satu piring <span class=k>berita</span>.'},
+ {a:9.6,b:12.8,who:'BIBI',th:'<span class=k>ข่าว</span>? ข่าวอะไรจ๊ะ?',ro:'khàao? khàao à-rai já?',id:'<span class=k>Berita</span>? Berita apa?'},
+ {a:13.1,b:16.6,who:'',th:'ข่าว?! ฉันแค่อยากกินข้าว...',ro:'',id:'',thought:'Berita?! Aku cuma mau nasi...'},
+ {a:16.9,b:19.9,who:'PUTRI',th:'<span class=k>ขาว</span>... ขาวค่ะ!',ro:'khǎao... khǎao khâ!',id:'<span class=k>Putih</span>... putih!'},
+ {a:20.2,b:24.2,who:'BIBI',th:'ขาว? เสื้อหนูก็<span class=k>ขาว</span>นี่จ๊ะ',ro:'khǎao? sêua nǔu kôr khǎao nîi já',id:'Putih? Bajumu memang <span class=k>putih</span>, Nak.'},
+ {a:27.8,b:30.9,who:'BIBI',th:'อ๋อ! <span class=k>ข้าว</span>! ได้เลยจ้ะ',ro:'ǒr! khâao! dâi loei jâ',id:'Oh! <span class=k>Nasi</span>! Siap!'},
+ {a:38.3,b:42.3,who:'',th:'เสียงเหมือนกันหมดเลย... ภาษาไทย ใจร้ายจริงๆ!',ro:'',id:'',thought:'Bunyinya mirip semua... Bahasa Thai, kamu tega banget!'},
+];
+const S=$('sub'),who=S.querySelector('.who'),sth=S.querySelector('.th'),sro=S.querySelector('.ro'),sid=S.querySelector('.id'),TH=$('thought'),THc=TH.querySelector('.cl');
+function talk(t,a,b){return t>a&&t<b-.2&&Math.sin(t*19)>-.2}
+function set(id,o){$(id).setAttribute('opacity',o)}
+function update(t){
+ $('turb').setAttribute('seed',3+Math.floor(t*8)%4);
+ bulbs.forEach(([e,p,s])=>e.setAttribute('opacity',.55+.45*Math.abs(Math.sin(t*s+p))));
+ steam.forEach((e,i)=>{const ph=(t*.6+i/3)%1,x=322+i*20,y=468-ph*70;e.setAttribute('d',`M${x} ${y} q${8*Math.sin(t*2+i)} -12 0 -24 q${-8*Math.sin(t*2+i)} -12 0 -24`);e.setAttribute('opacity',.5*Math.sin(ph*Math.PI))});
+ // Putri position / bob
+ const walk=ease((t-.3)/2.2),px=-110+260*walk;const walking=t<2.5;
+ let py=walking?-Math.abs(Math.sin(t*9))*8:-1.5*Math.sin(t*2.2);
+ if(t>13.1&&t<13.6)py-=Math.sin((t-13.1)/.5*Math.PI)*28;
+ if(t>38.3&&t<42.3)py-=Math.abs(Math.sin(t*10))*4;
+ $('pu').setAttribute('transform',`translate(${px} ${770+py})`);
+ // Putri arm
+ let arm=0;if(t<5)arm=50;if(t>24.5&&t<27.6)arm=-100+8*Math.sin(t*40);else if(t>27.6&&t<28.2)arm=-100*(1-ease((t-27.6)/.6));
+ if(t>16.9&&t<19.9)arm=-30+6*Math.sin(t*6);
+ $('armR').setAttribute('transform',`rotate(${arm} 46 -238)`);
+ // Putri face states
+ const shock=(t>13.1&&t<16.8)||(t>24.5&&t<27.6),happy=(t>28&&t<31)||(t>38.3),emb=t>20.2&&t<24.4,worried=(t>9.6&&t<13.1)||(t>16.9&&t<20.2)||(t>24.5&&t<27.6);
+ set('puEyes',shock||happy?0:1);set('puShock',shock?1:0);set('puHappy',happy?1:0);set('puBrow',worried||shock?1:0);
+ set('puSweat',(t>13.1&&t<16.8)||(t>20.2&&t<27.6)?.9:0);set('puTears',t>38.3&&t<42.3?.9:0);
+ $('puSweat').setAttribute('transform',`translate(0 ${((t*20)%14)})`);
+ set('puBlush',emb?1:.65);
+ const pTalk=talk(t,5.3,9.3)||talk(t,16.9,19.9);
+ set('puMouthO',pTalk||shock?1:0);set('puMouthC',pTalk||shock?0:1);
+ set('puStomach',win(t,1.5,4.8,.3));
+ // Putri looks down at shirt
+ const look=t>21.2&&t<24.2;$('puEyes').setAttribute('transform',look?'translate(0 4)':'');
+ // auntie
+ const paTalk=talk(t,9.6,12.8)||talk(t,20.2,24.2)||talk(t,27.8,30.9);
+ const puzzled=(t>9.6&&t<13.0)||(t>16.9&&t<20.2),paHappy=t>27.8&&t<31.5;
+ $('paHead').setAttribute('transform',`rotate(${puzzled?-8:0} 0 -110)`);$('paFace').setAttribute('transform',`rotate(${puzzled?-8:0} 0 -110)`);
+ set('paQ',puzzled?win(t,9.7,12.9,.2)+win(t,17,20.1,.2):0);
+ set('paBrow',puzzled||t>20.2&&t<24.2?1:0);set('paEyes',paHappy?0:1);set('paHappy',paHappy?1:0);
+ $('paEyes').setAttribute('transform',t>20.6&&t<24.2?'translate(-5 3)':'');
+ set('paMouthO',paTalk?1:0);set('paMouthC',paTalk?0:1);
+ let pa=0;if(t>28.3&&t<30.5)pa=-25*Math.sin((t-28.3)/2.2*Math.PI*2);$('paArm').setAttribute('transform',`rotate(${pa} -48 -86)`);
+ // shirt sparkle
+ const sp=win(t,21.0,24.0,.2);$('sparkle').setAttribute('opacity',sp);$('sparkle').setAttribute('transform',`translate(${px+25} ${770+py-200}) scale(${1+.3*Math.sin(t*12)}) rotate(${t*90})`);
+ // plate
+ const pl=ease((t-29.5)/.5);$('plate').setAttribute('opacity',pl);$('plate').setAttribute('transform',`translate(305 ${545-(1-pl)*30})`);
+ // thought / subs
+ let c=null;for(const q of cues)if(t>=q.a-.01&&t<=q.b+.3){c=q;break}
+ if(c){const o=win(t,c.a,c.b,.3);
+  if(c.thought){THc.textContent=c.thought;TH.style.opacity=o;TH.style.transform=`scale(${.9+.1*ease((t-c.a)/.3)})`;who.style.display='none';sth.innerHTML=c.th;sth.style.fontSize='24px';sro.textContent='';sid.textContent='';S.style.opacity=o}
+  else{TH.style.opacity=0;who.style.display='';who.textContent=c.who;who.style.background=c.who=='PUTRI'?'#e3a19b':'#7fc0ad';who.style.color='#1d2440';sth.innerHTML=c.th;sth.style.fontSize='';sro.textContent=c.ro;sid.innerHTML=c.id;S.style.opacity=o}}
+ else{TH.style.opacity=0;S.style.opacity=0}
+ // card
+ const cd=win(t,31.2,38.0,.4);$('card').style.opacity=cd;$('card').style.transform=`translateY(${(1-ease((t-31.2)/.4))*40}px)`;$('dim').style.opacity=.55*cd+.6*win(t,42.5,47,.4);
+ [['r1',32.0],['r2',33.4],['r3',34.8]].forEach(([id,a])=>{$(id).style.opacity=ease((t-a)/.3);$(id).style.transform=`translateX(${(1-ease((t-a)/.3))*-20}px)`});
+ $('cta').style.opacity=ease((t-42.5)/.4);$('cta').style.transform=`scale(${.9+.1*ease((t-42.5)/.4)})`;
+ $('head').style.opacity=1-.7*cd;
+ $('black').style.opacity=1-ease(t/.8)+ease((t-46)/.6);
+}
+update(0);
+</script></body></html>
