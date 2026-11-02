@@ -3,8 +3,9 @@ const DEFS=`<filter id="crayon" x="-5%" y="-5%" width="110%" height="110%">
  <feTurbulence id="turb" type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="n1"/>
  <feDisplacementMap in="SourceGraphic" in2="n1" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
  <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="8" result="grain"/>
- <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.5 1.7" result="mask"/>
- <feComposite in="d" in2="mask" operator="in"/></filter>
+ <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.9 0.5" result="specks"/>
+ <feComposite in="specks" in2="d" operator="in" result="sp"/>
+ <feMerge><feMergeNode in="d"/><feMergeNode in="sp"/></feMerge></filter>
 <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#232a55"/><stop offset=".6" stop-color="#7a4f7a"/><stop offset="1" stop-color="#e8936a"/></linearGradient>
 <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2448"/><stop offset="1" stop-color="#454a7e"/></linearGradient>
