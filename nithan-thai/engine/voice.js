@@ -5,7 +5,7 @@ const fs=require('fs'),path=require('path'),{execFileSync}=require('child_proces
 const [dir,tmp]=process.argv.slice(2),cfg=JSON.parse(fs.readFileSync(path.join(dir,'voice.json')));
 const ff=a=>execFileSync('ffmpeg',['-y','-loglevel','error',...a]);
 const lines=cfg.lines.map((l,i)=>{const out=path.join(tmp,`v${i}.wav`);
- ff(['-i',path.resolve(dir,l.src),'-ss',''+l.from,'-to',''+l.to,'-af','silenceremove=stop_periods=-1:stop_duration=0.3:stop_threshold=-38dB:stop_silence=0.22,areverse,silenceremove=start_periods=1:start_threshold=-40dB,areverse,silenceremove=start_periods=1:start_threshold=-40dB','-ac','1','-ar','44100',out]);
+ ff(['-i',path.resolve(dir,l.src),...(l.from!=null?['-ss',''+l.from,'-to',''+l.to]:[]),'-af','silenceremove=stop_periods=-1:stop_duration=0.3:stop_threshold=-38dB:stop_silence=0.22,areverse,silenceremove=start_periods=1:start_threshold=-40dB,areverse,silenceremove=start_periods=1:start_threshold=-40dB','-ac','1','-ar','44100',out]);
  const raw=execFileSync('ffmpeg',['-loglevel','error','-i',out,'-f','s16le','-ac','1','-ar','8000','-']);
  const n=raw.length/2,hop=160,env=[];let mx=1;for(let i=0;i+hop<=n;i+=hop){let s=0;for(let j=0;j<hop;j++){const v=raw.readInt16LE((i+j)*2);s+=v*v}const r=Math.sqrt(s/hop);env.push(r);mx=Math.max(mx,r)}
  return {...l,out,len:n/8000,env:env.map(v=>+(v/mx).toFixed(2))}});
