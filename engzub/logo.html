@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600;800&family=Bungee&display=block" rel="stylesheet">
+<style>html,body{margin:0;background:transparent}svg{display:block}</style></head><body>
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <radialGradient id="bg" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="#3b2a8f"/><stop offset=".6" stop-color="#1c1450"/><stop offset="1" stop-color="#0b0826"/></radialGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset="1" stop-color="#ff9f1c"/></linearGradient>
+ <linearGradient id="page" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf0"/><stop offset="1" stop-color="#f1e3c4"/></linearGradient>
+ <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+ <filter id="sh"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity=".45"/></filter>
+</defs>
+<rect width="800" height="800" fill="url(#bg)"/>
+<!-- stars -->
+<g fill="#fff" opacity=".8">
+ <circle cx="170" cy="190" r="3"/><circle cx="640" cy="170" r="4"/><circle cx="600" cy="300" r="2.5"/>
+ <circle cx="200" cy="330" r="2"/><circle cx="120" cy="420" r="2.5"/><circle cx="690" cy="430" r="2"/>
+ <path d="M560 120 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6z" fill="#ffe27a"/>
+ <path d="M240 110 l4 11 11 4 -11 4 -4 11 -4 -11 -11 -4 11 -4z" fill="#ffe27a"/>
+</g>
+<!-- glow behind book -->
+<ellipse cx="400" cy="400" rx="210" ry="120" fill="#ffb627" opacity=".45" filter="url(#glow)"/>
+<!-- speech bubbles -->
+<g filter="url(#sh)">
+ <path d="M220 175 h150 a28 28 0 0 1 28 28 v62 a28 28 0 0 1 -28 28 h-70 l-40 34 6 -34 h-46 a28 28 0 0 1 -28 -28 v-62 a28 28 0 0 1 28 -28z" fill="#ffffff"/>
+ <text x="295" y="258" text-anchor="middle" font-family="Bungee, Kanit" font-size="62" fill="#1c1450">EN</text>
+ <path d="M430 160 h150 a28 28 0 0 1 28 28 v70 a28 28 0 0 1 -28 28 h-46 l6 38 -44 -38 h-66 a28 28 0 0 1 -28 -28 v-70 a28 28 0 0 1 28 -28z" fill="url(#gold)"/>
+ <text x="505" y="249" text-anchor="middle" font-family="Kanit, Loma" font-weight="800" font-size="64" fill="#1c1450">ไทย</text>
+</g>
+<!-- arrow between bubbles -->
+<path d="M385 330 q20 -30 45 -8" fill="none" stroke="#ffe27a" stroke-width="7" stroke-linecap="round"/>
+<path d="M422 312 l14 12 -18 6z" fill="#ffe27a"/>
+<!-- open book -->
+<g filter="url(#sh)">
+ <path d="M400 395 C330 360 250 360 175 380 L175 520 C250 500 330 500 400 535 Z" fill="url(#page)"/>
+ <path d="M400 395 C470 360 550 360 625 380 L625 520 C550 500 470 500 400 535 Z" fill="url(#page)"/>
+ <path d="M165 388 L165 532 C250 512 330 512 400 548 C470 512 550 512 635 532 L635 388 L625 384 L625 520 C550 500 470 500 400 535 C330 500 250 500 175 520 L175 384Z" fill="#c0392b"/>
+ <path d="M400 395 L400 535" stroke="#d9c49a" stroke-width="3"/>
+ <g fill="none" stroke="#b8a37a" stroke-width="5" stroke-linecap="round" opacity=".7">
+  <path d="M205 410 q85 -18 165 4"/><path d="M205 440 q85 -18 165 4"/><path d="M205 470 q85 -18 120 2"/>
+  <path d="M430 414 q80 -22 165 -4"/><path d="M430 444 q80 -22 165 -4"/><path d="M475 472 q60 -18 120 -2"/>
+ </g>
+</g>
+<!-- channel name -->
+<text x="400" y="650" text-anchor="middle" font-family="Bungee, Kanit" font-size="104" fill="#0b0826" opacity=".5" transform="translate(0 6)">ENGZUB</text>
+<text x="400" y="650" text-anchor="middle" font-family="Bungee, Kanit" font-size="104" fill="url(#gold)" stroke="#0b0826" stroke-width="3" paint-order="stroke">ENGZUB</text>
+<text x="400" y="705" text-anchor="middle" font-family="Kanit, Loma" font-weight="600" font-size="38" fill="#ffffff" letter-spacing="2">เล่าสตอรี่ · แปลไทย</text>
+</svg></body></html>
