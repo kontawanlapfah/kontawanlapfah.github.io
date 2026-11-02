@@ -19,5 +19,5 @@ fs.writeFileSync(path.join(dir,'voice/timing.js'),`window.WARP=${JSON.stringify(
 const sfx=(cfg.sfx||'').split(',').filter(Boolean).map(s=>{const[k,v]=s.split('@');return k+'@'+v.split('-').map(x=>warp(+x).toFixed(2)).join('-')}).join(',');
 execFileSync('node',[path.join(__dirname,'sfx.js'),path.join(tmp,'bg.wav'),''+dur,sfx]);
 const ins=['-i',path.join(tmp,'bg.wav')],fl=[];lines.forEach((l,i)=>{ins.push('-i',l.out);const ms=Math.round((warp(l.cue)+0.15)*1000);fl.push(`[${i+1}]adelay=${ms}|${ms},volume=1.6[v${i}]`)});
-ff([...ins,'-filter_complex',fl.join(';')+(fl.length?';':'')+`[0]${lines.map((_,i)=>`[v${i}]`).join('')}amix=inputs=${lines.length+1}:normalize=0[o]`,'-map','[o]','-ar','44100',path.join(tmp,'a.wav')]);
+ff([...ins,'-filter_complex',fl.join(';')+(fl.length?';':'')+`[0]${lines.map((_,i)=>`[v${i}]`).join('')}amix=inputs=${lines.length+1}:normalize=0,alimiter=limit=0.89[o]`,'-map','[o]','-ar','44100',path.join(tmp,'a.wav')]);
 console.log(dur);
