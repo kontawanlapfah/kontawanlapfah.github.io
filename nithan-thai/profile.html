@@ -1,0 +1,61 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@700&family=Kanit:wght@600&display=block" rel="stylesheet">
+<style>html,body{margin:0;background:transparent}svg{display:block}</style></head><body>
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <filter id="crayon" x="-5%" y="-5%" width="110%" height="110%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="4" result="n1"/>
+  <feDisplacementMap in="SourceGraphic" in2="n1" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="1.0" numOctaves="2" seed="8" result="grain"/>
+  <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.75" result="mask"/>
+  <feComposite in="d" in2="mask" operator="in"/>
+ </filter>
+ <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/></filter>
+ <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <filter id="bigglow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="36"/></filter>
+ <radialGradient id="bg" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#22405a"/><stop offset=".6" stop-color="#132536"/><stop offset="1" stop-color="#0a141f"/></radialGradient>
+</defs>
+<rect width="800" height="800" fill="url(#bg)"/>
+<!-- stars -->
+<g fill="#fff">
+ <circle cx="190" cy="200" r="2.5" opacity=".8"/><circle cx="250" cy="130" r="2" opacity=".6"/><circle cx="600" cy="150" r="2.5" opacity=".8"/>
+ <circle cx="640" cy="260" r="2" opacity=".6"/><circle cx="150" cy="320" r="2" opacity=".6"/><circle cx="560" cy="95" r="1.8" opacity=".6"/>
+ <path d="M220 250 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5z" fill="#e9c46a" filter="url(#rough)"/>
+ <path d="M610 330 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" fill="#e9c46a" filter="url(#rough)"/>
+</g>
+<!-- moon -->
+<circle cx="400" cy="230" r="150" fill="#f4ecd2" opacity=".22" filter="url(#bigglow)"/>
+<circle cx="400" cy="230" r="112" fill="#f4ecd2" filter="url(#crayon)"/>
+<g fill="#e3d7b5" opacity=".7" filter="url(#crayon)"><circle cx="360" cy="200" r="16"/><circle cx="440" cy="260" r="11"/><circle cx="425" cy="180" r="8"/></g>
+<!-- Thai house rising from the book -->
+<g filter="url(#crayon)">
+ <g fill="#3a2b25"><rect x="330" y="350" width="9" height="62"/><rect x="396" y="350" width="9" height="62"/><rect x="462" y="350" width="9" height="62"/></g>
+ <rect x="318" y="344" width="166" height="11" fill="#4a372f"/>
+ <rect x="334" y="282" width="134" height="64" fill="#5b453b"/>
+ <path d="M300 288 L401 205 L502 288 L486 291 L401 222 L316 291Z" fill="#2d2422"/>
+ <path d="M322 285 L401 220 L480 285Z" fill="#3b2e2a"/>
+ <path d="M300 288 q-11 -13 -3 -25" stroke="#2d2422" stroke-width="7" fill="none"/>
+ <path d="M502 288 q11 -13 3 -25" stroke="#2d2422" stroke-width="7" fill="none"/>
+</g>
+<rect x="384" y="298" width="32" height="34" fill="#f2c46d" filter="url(#glow)"/>
+<!-- fireflies -->
+<g fill="#f6f0a0" filter="url(#glow)"><circle cx="270" cy="360" r="4"/><circle cx="540" cy="340" r="3.5"/><circle cx="300" cy="300" r="3"/><circle cx="520" cy="250" r="3"/><circle cx="560" cy="395" r="2.5"/></g>
+<!-- open book -->
+<g filter="url(#crayon)">
+ <path d="M150 412 Q275 380 400 418 Q525 380 650 412 L658 520 Q530 492 400 530 Q270 492 142 520Z" fill="#b5523b"/>
+ <path d="M166 408 Q282 378 397 410 L397 512 Q282 482 162 506Z" fill="#fbf4e4"/>
+ <path d="M403 410 Q518 378 634 408 L638 506 Q518 482 403 512Z" fill="#fbf4e4"/>
+ <path d="M400 410 L400 515" stroke="#d8c7a2" stroke-width="3"/>
+</g>
+<g fill="none" stroke="#c9b48c" stroke-width="5" stroke-linecap="round" opacity=".8" filter="url(#rough)">
+ <path d="M200 440 q90 -20 170 0"/><path d="M200 468 q90 -20 170 0"/><path d="M220 494 q70 -16 140 0"/>
+ <path d="M430 440 q90 -20 170 0"/><path d="M430 468 q90 -20 170 0"/><path d="M440 494 q70 -16 140 0"/>
+</g>
+<!-- name -->
+<text x="400" y="638" text-anchor="middle" font-family="Mali" font-weight="700" font-size="118" fill="#0a141f" opacity=".6" transform="translate(0 6)">Nithan</text>
+<text x="400" y="638" text-anchor="middle" font-family="Mali" font-weight="700" font-size="118" fill="#f6efe2" filter="url(#rough)">Nithan</text>
+<g filter="url(#rough)">
+ <rect x="262" y="660" width="276" height="60" rx="30" fill="#e9c46a"/>
+ <text x="400" y="703" text-anchor="middle" font-family="Kanit" font-weight="600" font-size="36" fill="#132536" letter-spacing="3">THAI · นิทาน</text>
+</g>
+</svg></body></html>
