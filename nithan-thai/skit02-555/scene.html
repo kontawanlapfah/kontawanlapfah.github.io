@@ -53,7 +53,7 @@ function update(t){UI(t);
  const ty=typing.some(([a,b])=>t>=a&&t<b);const T=$('typing');T.style.display=ty?'block':'none';[...T.children].forEach((d,i)=>d.style.transform=`translateY(${-4*Math.max(0,Math.sin(t*10-i))}px)`);
  $('phone').style.transform=`translateY(${(1-ease((t-.4)/.6))*600}px)`;
  const typingMe=(t>6.6&&t<8.2)||(t>19.6&&t<20.8)||(t>38.1&&t<38.9);
- let e='normal',y=800,arm=-55+(typingMe?4*Math.sin(t*30):0);
+ let e='normal',y=800,arm=-25+(typingMe?4*Math.sin(t*30):0);
  if(t>12.1&&t<15.1)e='worried';if(t>15.2&&t<20.4)e='shock';if(t>20.4&&t<24.0)e='worried';if(t>29&&t<32.8)e='happy';if(t>38&&t<41.3)e='happy';if(t>41.3)e='laugh';
  if(t>15.2&&t<15.7)y-=Math.sin((t-15.2)/.5*Math.PI)*30;if(t>41.5&&t<45)y-=Math.abs(Math.sin(t*9))*7;
  pu.set({t,x:110,y:y-1.5*Math.sin(t*2.2),expr:e,arm,phone:1,look:[6,4],sweat:t>15.2&&t<24});

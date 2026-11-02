@@ -38,11 +38,11 @@ function ctl(g,armPivot){const q=s=>g.querySelector(s),o=(s,v)=>{const e=q(s);if
 function Putri(parent){const g=grp(parent,`<ellipse cx="0" cy="0" rx="62" ry="10" fill="#000" opacity=".25"/>
  <g filter="url(#crayon)"><path d="M-50 -122 L50 -122 L64 -8 L-64 -8Z" fill="#3d4a6b"/>
   <ellipse cx="-22" cy="-5" rx="18" ry="7" fill="#6b4a3f"/><ellipse cx="22" cy="-5" rx="18" ry="7" fill="#6b4a3f"/>
-  <path d="M-72 -300 C-82 -240 -68 -222 -58 -212 L58 -212 C68 -222 82 -240 72 -300Z" fill="#e3a19b"/>
-  <path d="M-48 -250 Q0 -262 48 -250 L55 -118 L-55 -118Z" fill="#fbfaf6" stroke="#cfc8bc" stroke-width="2"/>
+    <path d="M-48 -250 Q0 -262 48 -250 L55 -118 L-55 -118Z" fill="#fbfaf6" stroke="#cfc8bc" stroke-width="2"/>
   <path d="M-40 -246 L32 -128" stroke="#b08a5a" stroke-width="8"/>${SLEEVE('#fbfaf6','#cfc8bc')}<circle cx="-60" cy="-120" r="11" fill="#d9a184"/></g>
  ${ARMR('#fbfaf6','#cfc8bc','#d9a184')}
- <g filter="url(#crayon)"><ellipse cx="0" cy="-330" rx="64" ry="68" fill="#e3a19b"/><path d="M-58 -262 Q0 -228 58 -262 L52 -228 Q0 -204 -52 -228Z" fill="#e3a19b"/><ellipse cx="0" cy="-322" rx="43" ry="47" fill="#d9a184"/></g>
+ <g filter="url(#crayon)"><path d="M0 -398 C-50 -398 -70 -360 -70 -310 C-72 -280 -76 -250 -78 -220 L-80 -160 Q-78 -142 -60 -140 Q0 -128 60 -140 Q78 -142 80 -160 L78 -220 C76 -250 72 -280 70 -310 C70 -360 50 -398 0 -398Z" fill="#e3a19b"/>
+  <g stroke="#cf8a84" stroke-width="4" stroke-linecap="round" fill="none"><path d="M-58 -196 q22 5 44 0"/><path d="M-40 -172 q34 7 68 0"/><path d="M-6 -156 q26 4 48 -2"/><path d="M30 -200 q18 4 34 -2"/></g><ellipse cx="0" cy="-322" rx="43" ry="47" fill="#d9a184"/></g>
  <ellipse cx="0" cy="-322" rx="46" ry="50" fill="none" stroke="#c98680" stroke-width="5"/>${FACE(-324,-296)}`);return ctl(g,'46 -238')}
 function Ton(parent){const g=grp(parent,`<ellipse cx="0" cy="0" rx="58" ry="10" fill="#000" opacity=".25"/>
  <g filter="url(#crayon)"><path d="M-46 -124 L46 -124 L44 -10 L6 -10 L0 -90 L-6 -10 L-44 -10Z" fill="#2c3346"/>
