@@ -1,0 +1,41 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,600;0,800;1,400&family=Mali:wght@600;700&display=block" rel="stylesheet">
+<link rel="stylesheet" href="../engine/base.css">
+</head><body><div id="wrap">
+<svg id="stage" width="540" height="960" viewBox="0 0 540 960" xmlns="http://www.w3.org/2000/svg"><defs id="defs"></defs>
+<g id="A"></g><g id="B"></g><rect width="540" height="960" fill="url(#vig)"/></svg></div>
+<script src="../engine/ui.js"></script><script src="../engine/chars.js"></script>
+<script>
+$('defs').innerHTML=DEFS;const A=$('A'),B=$('B');
+const cls=bgClass(A),ton=Ton(A),puA=Putri(A);
+const st=bgStall(B),bi=Bibi(el('g',{},B)),fr=bgStall(B,true),puB=Putri(B);
+const UI=setupUI({pill:'Putri di Thailand · Ep.3',title:'ครับ หรือ ค่ะ?',dur:49.5,ctaAt:45.0,cut:[16.4,17.6,'Sore harinya...<small>ตอนเย็น...</small>'],
+ cues:[
+ {a:0.9,b:4.2,th:'วันนี้เรียนการพูดสุภาพแบบไทย!',thought:'Hari ini belajar ngomong sopan ala Thai!'},
+ {a:4.5,b:9.0,who:'TON',th:'จบประโยค ให้ลงท้ายว่า "<span class=k>ครับ</span>" นะ จะได้สุภาพ',ro:'jòp prà-yòok hâi long-tháai wâa "khráp" ná, jà dâi sù-phâap',id:'Di akhir kalimat, tambahkan "khrap" supaya sopan.'},
+ {a:9.3,b:12.0,who:'PUTRI',th:'<span class=k>ครับ</span>! ครับ! ครับ!',ro:'khráp! khráp! khráp!',id:'Khrap! Khrap! Khrap!'},
+ {a:12.3,b:16.0,who:'TON',th:'เก่งมากครับ!',ro:'gèng mâak khráp!',id:'Pintar sekali!'},
+ {a:17.8,b:21.8,who:'PUTRI',th:'ป้า<span class=k>ครับ</span>! ขอข้าวหนึ่งจาน<span class=k>ครับ</span>!',ro:'pâa khráp! khǒr khâao nùeng jaan khráp!',id:'Bu! Saya mau satu piring nasi!'},
+ {a:22.1,b:26.6,who:'BIBI',th:'"ข้าว" ถูกแล้ว... แต่ "<span class=k>ครับ</span>" ใช้กับผู้ชายนะลูก',ro:'"khâao" thùuk láew... tàe "khráp" chái kàp phûu-chaai ná lûuk',id:'"Nasi"-nya sudah benar... tapi "khrap" itu untuk laki-laki, Nak.'},
+ {a:26.9,b:30.6,who:'BIBI',th:'ผู้หญิงต้องพูดว่า "<span class=k>ค่ะ</span>" จ้ะ',ro:'phûu-yǐng tông phûut wâa "khâ" jâ',id:'Perempuan harus bilang "kha".'},
+ {a:30.9,b:34.6,th:'ตกลง... ทั้งวันฉันพูดเหมือนผู้ชายเหรอเนี่ย?!',thought:'Jadi... seharian aku ngomong kayak laki-laki?!'},
+ {a:41.3,b:44.7,who:'PUTRI',th:'ขอบคุณ<span class=k>ค่ะ</span>!',ro:'khòp-khun khâ!',id:'Terima kasih!'}],
+ card:{at:[34.9,41.0],title:'Khrap atau Kha?',sm:'ครับ หรือ ค่ะ · kata sopan di akhir kalimat',rows:[
+  {icon:ICON.boy,w:'ครับ',color:'#3d6fb0',r:'khráp',m:'laki-laki'},
+  {icon:ICON.girl,w:'ค่ะ',color:'#c8553d',r:'khâ',m:'perempuan<br><small>kalimat biasa</small>'},
+  {icon:ICON.ask,w:'คะ',color:'#8a5fc0',r:'khá',m:'perempuan<br><small>kalimat tanya</small>'}]},
+ cta:'Coba tulis di komentar:<br><b>ขอบคุณครับ</b> atau <b>ขอบคุณค่ะ</b>?<br>Kamu pakai yang mana?'});
+function update(t){UI(t);const inA=t<17;A.setAttribute('display',inA?'':'none');B.setAttribute('display',inA?'none':'');
+ if(inA){ // classroom
+  cls.write('ครับ','khráp',ease((t-5)/1.4));
+  const tw=t>4.5&&t<6.6;ton.set({t,x:410,y:775-1.5*Math.sin(t*2),expr:t>12.3?'happy':'normal',talk:talking(t,4.5,9)||talking(t,12.3,16),arm:tw?-150+10*Math.sin(t*14):t>12.3&&t<16?-120:0});
+  let e='normal',y=775;if(t>9.3&&t<12.2){e='happy';y-=Math.abs(Math.sin(t*8))*10}
+  puA.set({t,x:140,y:y-1.5*Math.sin(t*2.2),expr:e,talk:talking(t,9.3,12),arm:t>9.3&&t<12?-150:0,look:t>4.5&&t<9?[6,-3]:[0,0]});
+ } else { st.update(t,fr);
+  const puzzled=t>18&&t<22.1,happyB=t>41.3;
+  bi.set({t,x:440,y:545,tilt:puzzled?-8:0,q:puzzled?win(t,18.2,22,.2):0,expr:happyB?'happy':(t>22.1&&t<30.6?'worried':'normal'),talk:talking(t,22.1,26.6)||talking(t,26.9,30.6),arm:happyB?100*ease((t-41.6)/.4):0});
+  let e='normal',y=770;if(t>17.8&&t<21.8)e='happy';if(t>22.1&&t<30.6)e='worried';if(t>30.9&&t<34.8){e='shock';if(t<31.4)y-=Math.sin((t-30.9)/.5*Math.PI)*28}if(t>41.3)e='happy';
+  puB.set({t,x:150,y:y-1.5*Math.sin(t*2.2),expr:e,talk:talking(t,17.8,21.8)||talking(t,41.3,44.7),sweat:t>26&&t<35,arm:t>17.8&&t<19.5?-100:0});
+ }}
+update(0);
+</script></body></html>
