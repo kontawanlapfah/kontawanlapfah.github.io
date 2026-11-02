@@ -1,0 +1,90 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@600;700&display=block" rel="stylesheet">
+<style>html,body{margin:0;background:#fff}svg{display:block}</style></head><body>
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <filter id="crayon" x="-10%" y="-10%" width="120%" height="120%">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="n1"/>
+  <feDisplacementMap in="SourceGraphic" in2="n1" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="8" result="grain"/>
+  <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.95" result="mask"/>
+  <feComposite in="d" in2="mask" operator="in"/>
+ </filter>
+ <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="5" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/></filter>
+ <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" seed="2"/>
+  <feColorMatrix type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.4  0 0 0 0 0.35  0 0 0 0.10 0"/></filter>
+</defs>
+<!-- paper background -->
+<rect width="800" height="800" fill="#f5efe3"/>
+<rect width="800" height="800" filter="url(#paper)"/>
+<circle cx="400" cy="420" r="300" fill="#cfdde3" filter="url(#crayon)"/>
+
+<!-- floating letters (story magic) -->
+<g font-family="Mali" font-weight="700" filter="url(#crayon)">
+ <text x="190" y="300" font-size="46" fill="#e39a7b" transform="rotate(-12 190 300)">A</text>
+ <text x="575" y="250" font-size="50" fill="#7a9e8e" transform="rotate(10 575 250)">ก</text>
+ <text x="215" y="470" font-size="36" fill="#7a9e8e" transform="rotate(8 215 470)">b</text>
+ <text x="560" y="455" font-size="40" fill="#e39a7b" transform="rotate(-8 560 455)">ข</text>
+ <path d="M300 150 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5z" fill="#e8c46a"/>
+ <path d="M520 150 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" fill="#e8c46a"/>
+</g>
+
+<!-- body / sweater -->
+<g filter="url(#crayon)">
+ <path d="M190 800 C195 640 225 555 330 528 C360 520 380 515 400 515 C420 515 440 520 470 530 C575 555 605 640 610 800Z" fill="#d98b62"/>
+ <rect x="378" y="440" width="44" height="90" rx="18" fill="#f2c4b4"/>
+ <!-- collar -->
+ <path d="M345 520 Q372 560 400 528 Q428 560 455 520 Q430 505 400 512 Q370 505 345 520Z" fill="#fbf7ee"/>
+ <!-- knit texture lines -->
+ <g stroke="#c27350" stroke-width="5" stroke-linecap="round" fill="none">
+  <path d="M300 590 v60"/><path d="M500 590 v60"/><path d="M270 640 v50"/><path d="M530 640 v50"/>
+ </g>
+</g>
+
+<g transform="translate(0,30)">
+<!-- hair back -->
+<path d="M290 330 C280 220 340 190 400 190 C470 190 525 225 512 340 C510 380 495 400 490 410 L310 410 C300 395 292 370 290 330Z" fill="#3b2f3a" filter="url(#crayon)"/>
+<!-- ears -->
+<g filter="url(#crayon)" fill="#f2c4b4">
+ <ellipse cx="302" cy="352" rx="20" ry="24"/><ellipse cx="498" cy="352" rx="20" ry="24"/>
+</g>
+<!-- face -->
+<ellipse cx="400" cy="342" rx="98" ry="106" fill="#f7d3c5" filter="url(#crayon)"/>
+<!-- hair front: side-swept fringe -->
+<path d="M298 320 C296 240 345 205 405 205 C465 205 510 240 504 318 C490 290 470 270 445 262 C430 285 400 300 360 300 C380 288 390 275 392 262 C360 270 320 290 298 320Z" fill="#3b2f3a" filter="url(#crayon)"/>
+<!-- hair clip -->
+<g filter="url(#rough)"><rect x="440" y="248" width="34" height="12" rx="6" fill="#e8c46a" transform="rotate(-25 457 254)"/></g>
+
+<!-- blush -->
+<g fill="#ee9c91" opacity=".75" filter="url(#crayon)">
+ <ellipse cx="337" cy="388" rx="20" ry="12"/><ellipse cx="463" cy="388" rx="20" ry="12"/>
+</g>
+<!-- glasses -->
+<g fill="none" stroke="#4a3f4c" stroke-width="4.5" filter="url(#rough)">
+ <circle cx="360" cy="352" r="30"/><circle cx="440" cy="352" r="30"/><path d="M390 348 q10 -7 20 0"/>
+ <path d="M330 346 l-26 -6"/><path d="M470 346 l26 -6"/>
+</g>
+<!-- eyes + mouth -->
+<g fill="#2b2430"><circle cx="362" cy="355" r="6.5"/><circle cx="438" cy="355" r="6.5"/></g>
+<path d="M388 405 q12 11 24 0" fill="none" stroke="#a0544a" stroke-width="4" stroke-linecap="round" filter="url(#rough)"/>
+
+</g>
+<!-- open book held in hands -->
+<g filter="url(#crayon)">
+ <path d="M228 600 Q315 575 400 605 Q485 575 572 600 L578 715 Q490 690 400 722 Q310 690 222 715Z" fill="#5f8a86"/>
+ <path d="M240 598 Q320 572 398 598 L398 708 Q320 682 238 704Z" fill="#fbf6ea"/>
+ <path d="M402 598 Q480 572 560 598 L562 704 Q480 682 402 708Z" fill="#fbf6ea"/>
+</g>
+<g font-family="Mali" font-weight="700" text-anchor="middle" filter="url(#rough)">
+ <text x="318" y="665" font-size="50" fill="#3d4a6b">EN</text>
+ <text x="482" y="667" font-size="50" fill="#c9653f">ไทย</text>
+</g>
+<path d="M392 640 l14 0" stroke="#4a3f4c" stroke-width="0"/>
+<!-- hands -->
+<g fill="#f2c4b4" filter="url(#crayon)">
+ <ellipse cx="236" cy="672" rx="26" ry="32"/><ellipse cx="564" cy="672" rx="26" ry="32"/>
+</g>
+<!-- channel name -->
+<text x="400" y="775" text-anchor="middle" font-family="Mali" font-weight="700" font-size="54" fill="#3b2f3a" letter-spacing="4" filter="url(#rough)">ENGZUB</text>
+</svg></body></html>
