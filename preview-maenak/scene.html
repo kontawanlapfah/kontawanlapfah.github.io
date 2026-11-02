@@ -1,0 +1,158 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,600;0,800;1,400&family=Mali:wght@700&display=block" rel="stylesheet">
+<style>
+html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#000}
+#wrap{position:relative;width:1280px;height:720px}
+svg{position:absolute;inset:0}
+#sub{position:absolute;left:0;right:0;bottom:0;height:190px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:26px;box-sizing:border-box;
+ background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.72) 45%);text-align:center}
+#sub .th{font-family:Kanit;font-weight:600;font-size:42px;color:#fff;line-height:1.25;text-shadow:0 2px 6px #000}
+#sub .ro{font-family:Kanit;font-style:italic;font-size:24px;color:#f2d48a;margin-top:2px;text-shadow:0 2px 4px #000}
+#sub .id{font-family:Kanit;font-size:28px;color:#bfe6f2;margin-top:2px;text-shadow:0 2px 4px #000}
+#title{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,rgba(30,10,20,.75),rgba(0,0,0,.95));opacity:0}
+#title .big{font-family:Kanit;font-weight:800;font-size:110px;color:#f6efe4;text-shadow:0 0 30px #b3261e,0 0 8px #b3261e;letter-spacing:4px}
+#title .idt{font-family:Mali;font-size:44px;color:#e9c46a;margin-top:6px}
+#title .tag{font-family:Kanit;font-size:26px;color:#bfe6f2;margin-top:14px;letter-spacing:1px}
+#black{position:absolute;inset:0;background:#000}
+</style></head><body><div id="wrap">
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <filter id="crayon" x="-5%" y="-5%" width="110%" height="110%">
+  <feTurbulence id="turb" type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="3" result="n1"/>
+  <feDisplacementMap in="SourceGraphic" in2="n1" scale="6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="1.0" numOctaves="2" seed="8" result="grain"/>
+  <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.75" result="mask"/>
+  <feComposite in="d" in2="mask" operator="in"/>
+ </filter>
+ <filter id="fogblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+ <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <filter id="bigglow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="30"/></filter>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1424"/><stop offset=".7" stop-color="#1b3346"/><stop offset="1" stop-color="#2c4a57"/></linearGradient>
+ <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d3a48"/><stop offset="1" stop-color="#08141b"/></linearGradient>
+ <radialGradient id="vig" cx="50%" cy="45%" r="75%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".75"/></radialGradient>
+</defs>
+<g id="cam">
+ <rect x="-200" y="-200" width="1680" height="620" fill="url(#sky)"/>
+ <g id="stars"></g>
+ <circle id="halo" cx="1060" cy="120" r="110" fill="#f4ecd2" opacity=".18" filter="url(#bigglow)"/>
+ <circle id="moon" cx="1060" cy="120" r="46" fill="#f4ecd2" filter="url(#crayon)"/>
+ <path id="trees" fill="#14262f" filter="url(#crayon)"/>
+ <!-- house -->
+ <g filter="url(#crayon)">
+  <g fill="#2a201c"><rect x="150" y="330" width="10" height="90"/><rect x="240" y="330" width="10" height="90"/><rect x="330" y="330" width="10" height="90"/></g>
+  <rect x="130" y="325" width="230" height="12" fill="#3a2c25"/>
+  <rect x="150" y="250" width="190" height="78" fill="#4b3a33"/>
+  <path d="M110 255 L245 150 L380 255 L360 258 L245 172 L130 258Z" fill="#2d2422"/>
+  <path d="M135 252 L245 165 L355 252Z" fill="#3a2d29"/>
+  <path d="M110 255 q-12 -14 -4 -26" stroke="#2d2422" stroke-width="7" fill="none"/>
+  <path d="M380 255 q12 -14 4 -26" stroke="#2d2422" stroke-width="7" fill="none"/>
+ </g>
+ <rect id="win" x="215" y="268" width="38" height="40" fill="#f2c46d" filter="url(#glow)"/>
+ <circle id="winglow" cx="234" cy="288" r="60" fill="#f2b04d" opacity=".25" filter="url(#bigglow)"/>
+ <!-- water -->
+ <rect x="-200" y="398" width="1680" height="520" fill="url(#water)"/>
+ <g id="refl" stroke="#f4ecd2" stroke-linecap="round" opacity=".55"></g>
+ <g id="ripples" stroke="#7fa4b3" stroke-width="3" stroke-linecap="round" fill="none" opacity=".3"></g>
+ <!-- pier -->
+ <g filter="url(#crayon)">
+  <g id="posts" fill="#3b2d24"></g>
+  <rect x="560" y="420" width="900" height="16" fill="#5a4636"/>
+  <g stroke="#3b2d24" stroke-width="2"><path d="M620 420v16M690 420v16M760 420v16M830 420v16M900 420v16M970 420v16M1040 420v16M1110 420v16M1180 420v16"/></g>
+ </g>
+ <!-- Mae Nak -->
+ <g id="nak" transform="translate(800 0)">
+  <g filter="url(#crayon)">
+   <g id="hairBack"><path d="M-34 212 C-48 260 -50 330 -42 372 Q0 382 42 372 C50 330 48 260 34 212Z" fill="#17141c"/></g>
+   <g id="body">
+    <path d="M-36 330 L36 330 L46 425 L-46 425Z" fill="#3f5f57"/>
+    <path d="M-44 408 L44 408 L46 418 L-46 418Z" fill="#c9a75a"/>
+    <path d="M-30 262 Q0 255 30 262 L37 336 L-37 336Z" fill="#b97a86"/>
+    <path d="M-30 262 L-12 260 L37 326 L24 336Z" fill="#8f5565"/>
+    <rect x="-8" y="250" width="16" height="16" class="skin" fill="#f2cdbf"/>
+    <path d="M-30 268 Q-44 296 -34 310" stroke="#f2cdbf" class="skinS" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <ellipse cx="-4" cy="300" rx="32" ry="22" fill="#e9dfc9" transform="rotate(-15 -4 300)"/>
+    <path d="M-30 296 q24 -8 48 6" stroke="#cfc2a6" stroke-width="3" fill="none"/>
+    <circle cx="-24" cy="290" r="9" class="skin" fill="#f2cdbf"/>
+    <path d="M30 268 Q40 300 18 316" stroke="#f2cdbf" class="skinS" stroke-width="12" stroke-linecap="round" fill="none"/>
+   </g>
+   <ellipse cx="0" cy="226" rx="30" ry="34" class="skin" fill="#f2cdbf"/>
+   <path d="M-32 222 C-35 190 -16 186 0 189 C16 186 35 190 32 222 C28 206 14 200 1 199 C-12 200 -27 206 -32 222Z" fill="#17141c"/>
+   <path d="M-32 214 C-37 240 -36 262 -30 272 L-24 270 C-28 250 -28 232 -26 214Z" fill="#17141c"/>
+   <path d="M32 214 C37 240 36 262 30 272 L24 270 C28 250 28 232 26 214Z" fill="#17141c"/>
+  </g>
+  <g id="blush" fill="#ee9c91" opacity=".7"><ellipse cx="-15" cy="238" rx="7" ry="4"/><ellipse cx="15" cy="238" rx="7" ry="4"/></g>
+  <g id="eyes" fill="#1d1a22"><circle cx="-11" cy="227" r="3"/><circle cx="11" cy="227" r="3"/></g>
+  <path id="mouth" d="M-4 245 q4 3 8 0" stroke="#a0544a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <g id="geyes" fill="#eafcff" opacity="0" filter="url(#glow)"><circle cx="-11" cy="227" r="5"/><circle cx="11" cy="227" r="5"/></g>
+ </g>
+ <g id="flies" fill="#f6f0a0" filter="url(#glow)"></g>
+ <g id="fog" fill="#b9cdd6" filter="url(#fogblur)"></g>
+</g>
+<rect id="tint" width="1280" height="720" fill="#06121c" opacity="0"/>
+<rect width="1280" height="720" fill="url(#vig)"/>
+</svg>
+<div id="sub"><div class="th"></div><div class="ro"></div><div class="id"></div></div>
+<div id="title"><div class="big">แม่นาก</div><div class="idt">Kisah Hantu Mae Nak</div><div class="tag">Belajar Bahasa Thailand dari Cerita</div></div>
+<div id="black"></div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+function rnd(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rnd(42);
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent.appendChild(e);return e}
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),ease=x=>{x=clamp(x,0,1);return x*x*(3-2*x)};
+function mix(a,b,k){const p=s=>[1,3,5].map(i=>parseInt(s.substr(i,2),16));const A=p(a),B=p(b);return'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*k)).join(',')+')'}
+// stars
+const stars=[];for(let i=0;i<70;i++){stars.push([el('circle',{cx:R()*1480-100,cy:R()*300-120,r:.8+R()*1.8,fill:'#fff'},$('stars')),R()*3+1,R()*6])}
+// trees
+let d='M-200 420 L-200 360';for(let x=-200;x<=1480;x+=30){const h=330+Math.sin(x*.013)*25+Math.sin(x*.05)*12+R()*14;d+=` Q${x+15} ${h-18} ${x+30} ${h}`}d+=' L1480 420Z';$('trees').setAttribute('d',d);
+// posts
+for(let x=580;x<1460;x+=70)el('rect',{x,y:430,width:12,height:90+R()*20},$('posts'));
+// reflection
+const refl=[];for(let i=0;i<8;i++)refl.push([el('line',{x1:0,y1:0,x2:0,y2:0,'stroke-width':4-i*.3},$('refl')),440+i*18,70-i*6]);
+// ripples
+const rip=[];for(let i=0;i<14;i++){const y=450+i*20+R()*8;rip.push([el('line',{x1:-200,y1:y,x2:1480,y2:y,'stroke-dasharray':`${30+R()*60} ${60+R()*120}`},$('ripples')),20+R()*30])}
+// fireflies
+const flies=[];for(let i=0;i<14;i++)flies.push([el('circle',{r:2.5,cx:0,cy:0},$('flies')),80+R()*1100,260+R()*170,R()*1.5+.5,R()*1.5+.5,R()*6]);
+// fog
+const fog=[];for(let i=0;i<7;i++)fog.push([el('ellipse',{cx:0,cy:380+R()*80,rx:220+R()*120,ry:28+R()*20},$('fog')),R()*1800,8+R()*14,.18+R()*.12]);
+const cues=[
+ [0.8,6.0,'ณ ริมคลองพระโขนง เมื่อนานมาแล้ว','ná rim khlong phrá-khà-nǒng mêua naan maa láew','Di tepi Kanal Phra Khanong, pada zaman dahulu'],
+ [6.4,11.2,'มีหญิงสาวคนหนึ่ง ชื่อ "นาก"','mii yǐng-sǎao khon nùeng chêu "Nâak"','Hiduplah seorang wanita muda bernama "Nak"'],
+ [11.6,17.0,'ทุกคืน นางจะยืนรอสามีที่ท่าน้ำ','thúk kheun naang jà yeun ror sǎa-mii thîi thâa-náam','Setiap malam, dia berdiri menunggu suaminya di dermaga'],
+ [17.6,21.2,'แต่... ไม่มีใครรู้เลยว่า','tàe... mâi mii khrai rúu loei wâa','Tapi... tak seorang pun tahu bahwa'],
+ [21.6,25.2,'นางไม่ใช่คนอีกต่อไปแล้ว','naang mâi châi khon ìik tòr pai láew','dia sudah bukan manusia lagi'],
+];
+const sub=$('sub'),sth=sub.querySelector('.th'),sro=sub.querySelector('.ro'),sid=sub.querySelector('.id');
+function update(t){
+ $('turb').setAttribute('seed',3+Math.floor(t*8)%4);
+ const z=1+.18*ease(t/21),fx=640+90*ease(t/21),fy=360-40*ease(t/21);
+ let sx=0,sy=0;if(t>21.5&&t<23){const a=1-(t-21.5)/1.5;sx=Math.sin(t*90)*4*a;sy=Math.cos(t*77)*3*a}
+ $('cam').setAttribute('transform',`translate(${640+sx} ${360+sy}) scale(${z}) translate(${-fx} ${-fy})`);
+ stars.forEach(([e,s,p])=>e.setAttribute('opacity',.25+.75*Math.abs(Math.sin(t*s+p))));
+ refl.forEach(([e,y,w],i)=>{const ww=w*(.6+.4*Math.sin(t*2.5+i*1.7));e.setAttribute('x1',1060-ww);e.setAttribute('x2',1060+ww);e.setAttribute('y1',y);e.setAttribute('y2',y)});
+ rip.forEach(([e,v])=>e.setAttribute('stroke-dashoffset',-t*v));
+ const ff=1-ease((t-17)/1.5);
+ flies.forEach(([e,bx,by,a,b,p])=>{e.setAttribute('cx',bx+40*Math.sin(t*a*.6+p));e.setAttribute('cy',by+25*Math.sin(t*b*.7+p*2));e.setAttribute('opacity',(.3+.7*Math.abs(Math.sin(t*a*1.5+p)))*ff)});
+ const fogk=1+1.2*ease((t-17)/3);
+ fog.forEach(([e,bx,v,o])=>{e.setAttribute('cx',((bx+v*t)%1900)-300);e.setAttribute('opacity',o*fogk)});
+ const fl=.78+.22*Math.sin(t*13)*Math.sin(t*7.3);$('win').setAttribute('opacity',fl);$('winglow').setAttribute('opacity',.25*fl);
+ // ghost
+ let g=0;if(t>=21.5){const k=(t-21.5)/1.2;g=ease(k);if(k<.75&&Math.floor(t*14)%2==0)g=1}
+ if(t>=25.5)g=1;
+ const skin=mix('#f2cdbf','#bccfdc',g);
+ document.querySelectorAll('.skin').forEach(e=>e.setAttribute('fill',skin));
+ document.querySelectorAll('.skinS').forEach(e=>e.setAttribute('stroke',skin));
+ $('blush').setAttribute('opacity',.7*(1-g));$('eyes').setAttribute('opacity',1-g);$('geyes').setAttribute('opacity',g);$('mouth').setAttribute('opacity',1-g);
+ $('hairBack').setAttribute('transform',`rotate(${1.5*Math.sin(t*1.3)+g*5*Math.sin(t*3.2)} 0 212)`);
+ $('body').setAttribute('transform',`translate(0 ${-1.2*Math.sin(t*1.8)})`);
+ $('tint').setAttribute('opacity',.35*g);
+ $('moon').setAttribute('fill',mix('#f4ecd2','#e9a99a',g));$('halo').setAttribute('fill',mix('#f4ecd2','#e9a99a',g));
+ // subtitles
+ let shown=false;for(const[a,b,th,ro,id]of cues){if(t>=a-.01&&t<=b+.35){const o=Math.min(ease((t-a)/.3),1-ease((t-b)/.35));sub.style.opacity=o;sth.textContent=th;sro.textContent=ro;sid.textContent=id;shown=true;break}}
+ if(!shown)sub.style.opacity=0;
+ $('title').style.opacity=ease((t-25.6)/1.0);
+ $('black').style.opacity=1-ease(t/1.5);
+}
+update(0);
+</script></body></html>
