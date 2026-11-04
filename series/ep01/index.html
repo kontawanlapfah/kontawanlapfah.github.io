@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>EP01 ชายตาเดียวจากทิศตะวันออก</title>
+<style>
+@font-face { font-family: "Sans"; src: url(../shared/fonts/noto-sans-thai-thai-400-normal.woff2); font-weight: 400; }
+@font-face { font-family: "Sans"; src: url(../shared/fonts/noto-sans-thai-thai-700-normal.woff2); font-weight: 700; }
+@font-face { font-family: "Serif"; src: url(../shared/fonts/noto-serif-thai-thai-700-normal.woff2); font-weight: 700; }
+
+:root { --gold: #e9c47e; --ink: #f6efe2; --dim: #b9b0a0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Sans", sans-serif; color: var(--ink); background: #000; }
+.scene { position: absolute; inset: 0; opacity: 0; }
+.scene svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+/* bottom shade so captions read over any scene */
+#shade { position: absolute; left: 0; right: 0; top: 1000px; height: 920px; background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.78) 18%, rgba(0,0,0,.92)); pointer-events: none; }
+/* captions sit in the safe band, bottom edge at y=1320 */
+#caps { position: absolute; left: 70px; right: 70px; bottom: 600px; text-align: center; }
+.cap { position: absolute; left: 0; right: 0; bottom: 0; opacity: 0; font-size: 46px; line-height: 1.5; text-shadow: 0 2px 12px rgba(0,0,0,.9); }
+.cap.q { color: var(--gold); font-style: italic; }
+.cap .n { color: var(--ink); font-style: normal; }
+.cap.big { font-size: 54px; font-weight: 700; color: var(--gold); }
+.overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 90px; opacity: 0; }
+.t-series { font-family: "Serif"; font-size: 120px; color: var(--gold); line-height: 1.25; text-shadow: 0 0 50px rgba(233,196,126,.35), 0 4px 20px rgba(0,0,0,.8); }
+.t-ep { font-size: 44px; margin-top: 28px; letter-spacing: 1px; }
+.t-name { font-size: 58px; font-weight: 700; margin-top: 8px; text-shadow: 0 3px 16px rgba(0,0,0,.9); }
+.t-latin { font-size: 30px; letter-spacing: 10px; color: var(--dim); margin-top: 26px; }
+.cta { font-size: 52px; line-height: 1.6; }
+.cta b { color: var(--gold); }
+.disc-h { font-size: 40px; color: var(--gold); font-weight: 700; margin-bottom: 22px; }
+.nw { white-space: nowrap; }
+.disc { white-space: nowrap; font-size: 34px; line-height: 1.65; color: var(--ink); }
+.refs { margin-top: 44px; font-size: 32px; color: var(--gold); border: 2px solid rgba(233,196,126,.5); border-radius: 40px; padding: 12px 34px; }
+/* page logo, top-right for the whole clip */
+#mark { position: absolute; top: 44px; right: 40px; width: 230px; opacity: .95; filter: drop-shadow(0 0 2px rgba(255,240,220,.95)) drop-shadow(0 0 12px rgba(255,236,200,.45)); }
+#outro { position: absolute; inset: 0; opacity: 0; }
+#outroDim { position: absolute; inset: 0; background: rgba(8,6,12,.62); }
+#popup { position: absolute; left: 0; right: 0; top: 470px; display: flex; flex-direction: column; align-items: center; }
+#logoWrap { position: relative; width: 470px; height: 470px; }
+#logoRing { position: absolute; inset: 0; border-radius: 50%; border: 8px solid rgba(255,236,200,.55); }
+#logoImg { position: absolute; inset: 38px; width: 394px; height: 394px; border-radius: 50%; object-fit: cover; box-shadow: 0 14px 40px rgba(0,0,0,.45); }
+#subPill { margin-top: 44px; padding: 16px 46px; border-radius: 60px; background: #3b2a4f; color: #ffe8bf; font-family: "Serif", serif; font-size: 50px; font-weight: 700; letter-spacing: .5px; box-shadow: 0 10px 28px rgba(0,0,0,.4); }
+.logo { margin-top: 60px; font-family: "Serif"; font-size: 54px; color: var(--gold); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <section class="scene" id="sA"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sB"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sC"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sD"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sE"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sF"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sG"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sH1"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sH2"><svg viewBox="0 0 1080 1920"></svg></section>
+  <section class="scene" id="sH3"><svg viewBox="0 0 1080 1920"></svg></section>
+  <div id="shade"></div>
+
+  <div class="overlay" id="title">
+    <div class="t-series">สี่สิบวัน<br>ของอาดัม</div>
+    <div class="t-ep">ตอนที่ 1</div>
+    <div class="t-name">ชายตาเดียวจากทิศตะวันออก</div>
+    <div class="t-latin">THE ERA OF DAJJAL</div>
+  </div>
+
+  <div class="overlay" id="cta">
+    <div class="cta">“ถ้าเป็นคุณ<br><b>คุณจะรับขนมปังก้อนนั้นไหม?</b><br>คอมเมนต์บอกกันด้วย<br>และอย่าลืมกดติดตามและแชร์เรื่องนี้<br>เพื่อไม่ให้พลาดตอนต่อไป”</div>
+  </div>
+
+  <div class="overlay" id="disc">
+    <div class="disc-h">คำเตือน</div>
+    <div class="disc">เรื่องราวนี้เป็นการจำลองสถานการณ์สมมติ<br>เพื่อการศึกษาและสร้างความเข้าใจเกี่ยวกับฟิตนะฮ์ของดัจญาล<br>โดยมีการอ้างอิงข้อมูลจากอัลกุรอานและหะดีษที่เชื่อถือได้<br>ตัวละคร บทสนทนา และรายละเอียดบางส่วน<br>เป็นจินตนาการเพื่อประกอบการเล่าเรื่อง<br>ไม่ใช่เหตุการณ์จริงหรือคำรายงานทางศาสนา<br>โปรดแยกแยะระหว่างหลักฐานทางศาสนา<br>กับส่วนที่เป็นเรื่องสมมติ</div>
+    <div class="refs">หลักฐานหลัก: เศาะฮีห์อัลบุคอรี 7131<br>เศาะฮีห์มุสลิม 809, 2937</div>
+    <div class="logo">สี่สิบวันของอาดัม</div>
+  </div>
+
+  <div id="outro">
+    <div id="outroDim"></div>
+    <div id="popup">
+      <div id="logoWrap"><div id="logoRing"></div><img id="logoImg" src="../shared/logo.png" alt="ก่อนตะวันลับฟ้า"></div>
+      <div id="subPill">Subscribe • Follow</div>
+    </div>
+  </div>
+
+  <div id="caps"></div>
+  <img id="mark" src="../shared/logo-mark.png" alt="ก่อนตะวันลับฟ้า">
+</div>
+
+<script src="audio/warp.js"></script>
+<script>
+// ---------- timeline (seconds) ----------
+const TOTAL = 107.5;
+const SCENES = [            // id, start, end
+  ['sA', 0, 9], ['sB', 9, 17], ['sC', 17, 29], ['sD', 29, 41.5], ['sE', 41.5, 49],
+  ['sB', 49, 53], ['sF', 53, 58], ['sG', 58, 79],
+  ['sH1', 79, 81.2], ['sH2', 81.2, 83], ['sH3', 83, 91], ['sB', 102.6, 108],
+];
+// Narration: verbatim from the series document, EP1 (Hook / script / cliffhanger).
+const CAPS = [
+  [0, 5.5, '', 'ฝนไม่ตกที่นี่มาเจ็ดเดือนแล้ว…<br>แต่คืนนี้ เพื่อนของผมเดินเข้ามา<br>ทั้งตัวเปียกโชก'],
+  [9, 13, '', 'ผมชื่ออาดัม อายุยี่สิบเจ็ด<br>เป็นนักศึกษาไทยที่มาเรียนภาษาอาหรับ<br>อยู่ชานเมืองดามัสกัส'],
+  [13, 17, '', 'ผมอยู่ที่นี่กับซัลมา ภรรยาของผม<br>และฮาวา ลูกสาววัยห้าขวบ'],
+  [17, 21, '', 'ช่วงนี้มีข่าวลือแปลก ๆ<br>ลอยมาจากทางตะวันออก…'],
+  [21, 25, '', 'คนพูดถึงชายคนหนึ่งที่ตาข้างหนึ่งบอด<br>แต่ทำเรื่องที่ไม่มีใครอธิบายได้'],
+  [25, 29, '', 'คลิปของเขาถูกแชร์กันทั้งเมือง<br>บางคนหัวเราะเยาะ บางคนนั่งร้องไห้'],
+  [29, 33, '', 'ผมพยายามไม่สนใจ…<br>แต่ข้อความเสียงสุดท้ายของแม่จากเมืองไทย<br>ยังวนอยู่ในหัวผม'],
+  [33, 38, 'q', '“อาดัม ท่องสิบอายะฮ์แรก<br>ของซูเราะฮ์อัลกะฮ์ฟีไว้นะลูก<br>แม่ไม่ได้สอนเล่น ๆ”'],
+  [38, 41.5, '', 'หลังจากวันนั้น<br>สัญญาณโทรศัพท์ก็ไม่เคยกลับมาอีกเลย'],
+  [41.5, 45.5, '', 'คืนนี้ผมเปิดมุศหัฟเล่มเล็กที่แม่ให้มา<br>แล้วก็ต้องยอมรับความจริงที่น่าอาย…'],
+  [45.5, 49, '', 'ผมจำได้แค่สามอายะฮ์เท่านั้น'],
+  [49, 53, '', 'ผมท่องซ้ำไปซ้ำมา<br>จนฮาวาหลับไปบนตักของซัลมา'],
+  [53, 58, '', 'แล้วเสียงเคาะประตูก็ดังขึ้น…<br>สามครั้ง ช้า ๆ'],
+  [58, 62, '', 'คนที่ยืนอยู่หน้าบ้านคือฮาริส<br>เพื่อนสนิทที่หายไปทางตะวันออก<br>เมื่อเดือนก่อน'],
+  [62, 66.5, '', 'เสื้อของเขาเปียกโชก<br>ในมือถือขนมปังอุ่น ๆ ส่งกลิ่นหอม'],
+  [66.5, 70.5, '', 'ทั้งที่เมืองนี้ไม่มีใครเห็นขนมปังสด ๆ<br>มาหลายสัปดาห์แล้ว'],
+  [70.5, 74, '', 'เขายิ้มให้ผม…<br>แต่แววตานั้นไม่ใช่ฮาริสคนเดิมที่ผมรู้จัก'],
+  [74, 79, 'q', '“ที่หมู่บ้านผม ฝนตกแล้วนะอาดัม”<br><span class="n">เขากระซิบ</span><br>“เพราะ<u>เขา</u>สั่งให้ฟ้าตก”'],
+  [79, 83, '', 'ผมมองขนมปังในมือเพื่อน แล้วหันไปมอง<br>ลูกสาวที่ไม่ได้กินอิ่มมาหลายวัน…'],
+  [83, 87.5, 'big', 'ผมควรรับขนมปังก้อนนั้นไว้<br>หรือควรปิดประตูใส่เพื่อนที่รักที่สุด?'],
+  [87.5, 91, 'big', 'แล้ว “เขา” ที่ฮาริสพูดถึง…<br>คือใครกันแน่?'],
+];
+const OVERLAYS = [['title', 5.5, 9.4], ['cta', 91.3, 96.5], ['disc', 96.5, 103]];
+const KEYS = [[1, 1], [7, 2], [11, 3], [23, 4], [36, 5], [47, 6], [51, 7], [56, 8], [64, 9], [76, 10], [80, 11], [82, 12], [86, 13], [93, 14], [100, 15], [105.5, 16]];
+
+// ---------- helpers ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const win = (t, a, b, f = .4) => Math.min(clamp((t - a) / f), clamp((b - t) / f));
+let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const $ = id => document.getElementById(id);
+const S = (id, svg) => { $(id).querySelector('svg').innerHTML = svg; };
+const attr = (id, k, v) => { const e = $(id); if (e) e.setAttribute(k, v); };
+
+// ---------- characters ----------
+// Salma: hijab, seated. Faces are left blank on purpose (stylised, no features).
+const salma = (x, y) => `
+  <g transform="translate(${x} ${y})" id="salma">
+    <path d="M-150 0 C-160 -120 -120 -230 -60 -260 L60 -260 C120 -230 160 -120 150 0 Z" fill="#3d4f57"/>
+    <path d="M-62 -262 C-90 -330 -70 -420 0 -430 C70 -420 90 -330 62 -262 C40 -240 -40 -240 -62 -262Z" fill="#56707a"/>
+    <ellipse cx="0" cy="-345" rx="44" ry="52" fill="#c99a7b"/>
+    <path d="M-50 -350 C-52 -410 52 -410 50 -350 C46 -395 -46 -395 -50 -350Z" fill="#56707a"/>
+  </g>`;
+// Hawa, five years old: stands about as tall as her seated mother, hair past the shoulders.
+// Origin is between her feet; legs and arms are separate groups so she can walk.
+const hawaStand = () => `
+  <g id="hawaW">
+    <path d="M-50 -272 C-64 -210 -62 -165 -50 -140 L50 -140 C62 -165 64 -210 50 -272Z" fill="#2a1a12"/>
+    <g id="hLegL"><rect x="-26" y="-122" width="22" height="114" rx="10" fill="#c99a7b"/><ellipse cx="-17" cy="-6" rx="19" ry="9" fill="#5a2f22"/></g>
+    <g id="hLegR"><rect x="4" y="-122" width="22" height="114" rx="10" fill="#c99a7b"/><ellipse cx="17" cy="-6" rx="19" ry="9" fill="#5a2f22"/></g>
+    <g id="hArmL"><rect x="-50" y="-228" width="18" height="98" rx="9" fill="#c99a7b"/></g>
+    <g id="hArmR"><rect x="32" y="-228" width="18" height="98" rx="9" fill="#c99a7b"/></g>
+    <path d="M-34 -234 C-42 -190 -62 -140 -68 -102 L68 -102 C62 -140 42 -190 34 -234Z" fill="#a8583f"/>
+    <path d="M-34 -234 L-50 -205 L-32 -200Z M34 -234 L50 -205 L32 -200Z" fill="#a8583f"/>
+    <rect x="-9" y="-252" width="18" height="22" fill="#c99a7b"/>
+    <circle cx="0" cy="-286" r="38" fill="#c99a7b"/>
+    <path d="M-42 -280 C-52 -342 52 -342 42 -280 C36 -312 -36 -312 -42 -280Z" fill="#2a1a12"/>
+  </g>`;
+const hawaAsleep = (x, y) => `
+  <g transform="translate(${x} ${y})" id="hawa2">
+    <path d="M-60 -50 C-120 -40 -150 10 -120 50 C-90 70 -50 40 -30 0Z" fill="#2a1a12"/>
+    <rect x="215" y="-30" width="125" height="20" rx="10" fill="#c99a7b"/><rect x="215" y="-10" width="118" height="20" rx="10" fill="#c99a7b"/>
+    <ellipse cx="342" cy="-20" rx="9" ry="13" fill="#5a2f22"/><ellipse cx="335" cy="0" rx="9" ry="13" fill="#5a2f22"/>
+    <path d="M0 -44 C60 -60 210 -54 232 -28 C242 -2 214 14 176 14 L10 12 C-14 4 -18 -30 0 -44Z" fill="#a8583f"/>
+    <circle cx="-44" cy="-32" r="38" fill="#c99a7b"/>
+    <path d="M-82 -26 C-98 -82 -16 -100 -4 -52 C-28 -70 -58 -66 -82 -26Z" fill="#2a1a12"/>
+    <path d="M-62 -30 q8 6 16 0" stroke="#5a3a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>`;
+const bread = (x, y, s = 1, fresh = true) => `
+  <g transform="translate(${x} ${y}) scale(${s})">
+    <ellipse cx="0" cy="0" rx="120" ry="62" fill="${fresh ? '#b8732f' : '#8c6a45'}"/>
+    <ellipse cx="0" cy="-12" rx="104" ry="44" fill="${fresh ? '#d9954a' : '#a3825a'}"/>
+    ${fresh ? '<path d="M-60 -30 q20 -14 40 0 M-10 -34 q20 -14 40 0 M40 -28 q16 -10 32 2" stroke="#f3c27a" stroke-width="6" fill="none" stroke-linecap="round"/>'
+            : '<path d="M-50 -20 l30 10 l-8 14 M20 -26 l18 22 M50 -6 l-24 8" stroke="#6e5236" stroke-width="4" fill="none"/>'}
+  </g>`;
+const steam = (pfx, x, y, n = 3) => Array.from({ length: n }, (_, i) =>
+  `<path id="${pfx}${i}" d="" stroke="rgba(255,240,220,.5)" stroke-width="7" fill="none" stroke-linecap="round" transform="translate(${x + (i - (n - 1) / 2) * 46} ${y})"/>`).join('');
+function updSteam(pfx, n, t, h = 170) {
+  for (let i = 0; i < n; i++) {
+    const p = (t * .5 + i * .33) % 1, ph = t * 2 + i;
+    let d = 'M0 0';
+    for (let k = 1; k <= 6; k++) d += ` L${Math.sin(ph + k * .9) * 14 * (k / 6)} ${-k * h / 6}`;
+    const e = $(pfx + i); if (!e) continue;
+    e.setAttribute('d', d); e.setAttribute('opacity', Math.sin(p * Math.PI) * .9);
+    e.setAttribute('transform', e.getAttribute('transform').replace(/translate\(([^ ]+) [^)]+\)/, (m, a) => `translate(${a} ${-p * 40 + +e.dataset.y})`));
+  }
+}
+
+// ---------- scene A: dry city at dusk ----------
+seed = 11;
+let city = '', cracks = '', dust = '';
+for (let x = -20; x < 1100;) { const w = 60 + rnd() * 110, h = 90 + rnd() * 170; city += `<rect x="${x}" y="${1060 - h}" width="${w}" height="${h + 60}"/>`; if (rnd() > .55) city += `<rect x="${x + w * .3}" y="${1060 - h + 30}" width="16" height="22" fill="#3a2418"/>`; x += w - 6; }
+for (let i = 0; i < 26; i++) { let x = rnd() * 1080, y = 1140 + rnd() * 720, d = `M${x} ${y}`; for (let k = 0; k < 4; k++) { x += (rnd() - .5) * 160; y += (rnd() - .3) * 70; d += ` L${x} ${y}`; } cracks += `<path d="${d}"/>`; }
+for (let i = 0; i < 40; i++) dust += `<circle class="dust" cx="${rnd() * 1080}" cy="${700 + rnd() * 600}" r="${1 + rnd() * 2.5}" data-s="${.3 + rnd()}"/>`;
+S('sA', `
+  <defs><linearGradient id="skyA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1430"/><stop offset=".45" stop-color="#6b2c2c"/><stop offset=".6" stop-color="#c8662f"/><stop offset=".66" stop-color="#e8a24a"/></linearGradient>
+  <radialGradient id="sunA"><stop offset="0" stop-color="#ffd58a"/><stop offset="1" stop-color="#ffd58a" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1080" height="1920" fill="url(#skyA)"/>
+  <circle cx="540" cy="1000" r="300" fill="url(#sunA)" opacity=".55"/>
+  <circle cx="540" cy="1010" r="110" fill="#f7c26e"/>
+  <g fill="#1a0f14">${city}
+    <path d="M720 905 a80 80 0 0 1 160 0 Z"/><rect x="712" y="900" width="176" height="160"/>
+    <rect x="920" y="760" width="26" height="300"/><path d="M914 765 l19 -40 l19 40Z"/></g>
+  <rect y="1060" width="1080" height="860" fill="#4a3220"/>
+  <rect y="1060" width="1080" height="860" fill="url(#skyA)" opacity=".12"/>
+  <g stroke="#24170d" stroke-width="5" fill="none" stroke-linecap="round">${cracks}</g>
+  <g fill="#f3c98a" opacity=".5">${dust}</g>
+  <path id="drop" d="M0 -26 C10 -10 16 0 16 8 A16 16 0 0 1 -16 8 C-16 0 -10 -10 0 -26Z" fill="#9fd3f0"/>
+  <ellipse id="ripple" cx="540" cy="1095" rx="0" ry="0" fill="none" stroke="#9fd3f0" stroke-width="4"/>
+  <ellipse id="ripple2" cx="540" cy="1095" rx="0" ry="0" fill="none" stroke="#9fd3f0" stroke-width="3"/>`);
+
+// ---------- scene B: rented room, candle ----------
+S('sB', `
+  <defs><radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 800) scale(700)">
+    <stop offset="0" stop-color="#ffb35c" stop-opacity=".55"/><stop offset="1" stop-color="#ffb35c" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1080" height="1920" fill="#1c130d"/>
+  <rect y="1080" width="1080" height="840" fill="#120c08"/>
+  <rect x="700" y="300" width="230" height="290" rx="8" fill="#0d1526" stroke="#3a2a1c" stroke-width="14"/>
+  <path d="M815 300 V590 M700 445 H930" stroke="#3a2a1c" stroke-width="10"/>
+  <circle cx="760" cy="350" r="3" fill="#cfd8ff"/><circle cx="880" cy="400" r="2" fill="#cfd8ff"/><circle cx="740" cy="520" r="2" fill="#cfd8ff"/>
+  <rect id="glowRect" width="1080" height="1920" fill="url(#glowB)"/>
+  <rect x="80" y="1020" width="560" height="70" rx="20" fill="#5a2f22"/>
+  <g id="heldPair">${salma(330, 1060)}</g>
+  <g id="asleepPair" opacity="0">${salma(260, 1060)}<rect x="120" y="950" width="300" height="110" rx="40" fill="#3d4f57"/>${hawaAsleep(250, 962)}</g>
+  <rect x="610" y="880" width="380" height="26" rx="6" fill="#5c3a22"/>
+  <rect x="640" y="906" width="20" height="180" fill="#3e2716"/><rect x="940" y="906" width="20" height="180" fill="#3e2716"/>
+  <ellipse cx="840" cy="874" rx="120" ry="16" fill="#d9cdb8"/>
+  ${bread(840, 852, .55, false)}
+  <rect x="680" y="790" width="34" height="92" rx="4" fill="#efe3c8"/>
+  <ellipse id="flameB" cx="697" cy="770" rx="11" ry="24" fill="#ffd27a"/>
+  <g id="awakeHawa">${hawaStand()}</g>
+  <path id="hugArm" d="M392 812 C440 850 478 905 512 892" stroke="#3d4f57" stroke-width="34" fill="none" stroke-linecap="round" opacity="0"/>`);
+
+// ---------- scene C: phone clip of a blurred crowd ----------
+seed = 5;
+let crowd = '', bokeh = '', minis = '';
+for (let i = 0; i < 60; i++) { const x = 300 + rnd() * 480, y = 700 + rnd() * 380, r = 22 + rnd() * 14; crowd += `<circle cx="${x}" cy="${y}" r="${r}"/><rect x="${x - r * 1.4}" y="${y + r * .8}" width="${r * 2.8}" height="${r * 3}" rx="${r}"/>`; }
+for (let i = 0; i < 16; i++) bokeh += `<circle cx="${rnd() * 1080}" cy="${rnd() * 1300}" r="${20 + rnd() * 60}" fill="#ff9f5a" opacity="${.05 + rnd() * .12}"/>`;
+for (let i = 0; i < 10; i++) minis += `<g class="mini" data-i="${i}" opacity="0"><rect x="-60" y="-110" width="120" height="220" rx="16" fill="#0b0b0f" stroke="#444" stroke-width="3"/><rect x="-50" y="-90" width="100" height="160" rx="6" fill="#6b3f2a"/><circle cx="0" cy="-10" r="22" fill="#2a1a12" filter="url(#blurC)"/></g>`;
+S('sC', `
+  <defs><filter id="blurC" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"/></filter>
+  <linearGradient id="scrC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2a3a"/><stop offset="1" stop-color="#8b4a2a"/></linearGradient></defs>
+  <rect width="1080" height="1920" fill="#0e0b0c"/>${bokeh}
+  <g id="minis">${minis}</g>
+  <g id="phoneC">
+    <rect x="270" y="330" width="540" height="980" rx="60" fill="#0b0b0f" stroke="#2c2c33" stroke-width="6"/>
+    <rect x="295" y="400" width="490" height="840" rx="14" fill="url(#scrC)"/>
+    <g fill="#1a1012" filter="url(#blurC)" opacity=".9">${crowd}</g>
+    <rect x="295" y="400" width="490" height="840" rx="14" fill="#000" opacity=".15"/>
+    <circle cx="540" cy="820" r="54" fill="rgba(255,255,255,.18)"/><path d="M522 792 L568 820 L522 848Z" fill="rgba(255,255,255,.75)"/>
+    <rect x="330" y="1190" width="420" height="8" rx="4" fill="rgba(255,255,255,.25)"/>
+    <rect id="progC" x="330" y="1190" width="0" height="8" rx="4" fill="#ff5a4a"/>
+    <path d="M735 1000 c-14 -24 -50 -10 -30 18 l30 26 l30 -26 c20 -28 -16 -42 -30 -18Z" fill="rgba(255,255,255,.8)" transform="translate(0 -20)"/>
+    <path d="M712 1090 h40 l-14 -16 m14 16 l-14 16" stroke="rgba(255,255,255,.8)" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+`);
+
+// ---------- scene D: mum's voice message, signal lost ----------
+let wave = '';
+for (let i = 0; i < 34; i++) { const h = 10 + Math.abs(Math.sin(i * 1.7) * 30 + Math.sin(i * .6) * 20); wave += `<rect class="wv" x="${410 + i * 11}" y="${880 - h / 2}" width="6" height="${h}" rx="3"/>`; }
+S('sD', `
+  <rect width="1080" height="1920" fill="#0c0d12"/>
+  <rect x="270" y="330" width="540" height="980" rx="60" fill="#0b0b0f" stroke="#2c2c33" stroke-width="6"/>
+  <rect x="295" y="400" width="490" height="840" rx="14" fill="#14171e"/>
+  <rect x="295" y="400" width="490" height="100" rx="14" fill="#1d212b"/>
+  <circle cx="350" cy="450" r="28" fill="#7a5c4a"/><text x="395" y="462" font-size="34" font-family="Sans" font-weight="700" fill="#f6efe2">แม่</text>
+  <g id="bars">${[0, 1, 2, 3].map(i => `<rect class="bar" x="${700 + i * 16}" y="${470 - i * 10 - 10}" width="10" height="${i * 10 + 10}" fill="#f6efe2"/>`).join('')}</g>
+  <text id="nosig" x="755" y="540" text-anchor="end" font-size="26" font-family="Sans" fill="#ff6b5a" opacity="0">ไม่มีสัญญาณ</text>
+  <rect x="330" y="820" width="430" height="120" rx="40" fill="#2a5e4a"/>
+  <circle cx="375" cy="880" r="24" fill="#f6efe2"/><path d="M367 868 L387 880 L367 892Z" fill="#2a5e4a"/>
+  <g fill="#cfe9dc">${wave}</g>`);
+
+// ---------- scene E: small mushaf + needle watch ----------
+let dots = '';
+for (let i = 0; i < 10; i++) dots += `<circle class="dot" cx="${315 + i * 50}" cy="500" r="14" fill="#e9c47e" opacity=".18"/>`;
+let lines = '';
+for (let k = 0; k < 9; k++) { lines += `<path d="M300 ${640 + k * 46} q40 -10 80 0 t80 0 t80 0" stroke="#8f7d60" stroke-width="5" fill="none" opacity=".55"/>`; lines += `<path d="M600 ${640 + k * 46} q40 -10 80 0 t80 0 t80 0" stroke="#8f7d60" stroke-width="5" fill="none" opacity=".55"/>`; }
+S('sE', `
+  <defs><radialGradient id="glowE"><stop offset="0" stop-color="#ffbf70" stop-opacity=".5"/><stop offset="1" stop-color="#ffbf70" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1080" height="1920" fill="#2a1a10"/>
+  <g stroke="#23150c" stroke-width="3">${Array.from({ length: 12 }, (_, i) => `<line x1="0" y1="${200 + i * 110}" x2="1080" y2="${180 + i * 110}"/>`).join('')}</g>
+  <circle cx="540" cy="780" r="620" fill="url(#glowE)"/>
+  <g id="dots">${dots}</g>
+  <path d="M260 560 Q540 520 540 560 Q540 520 820 560 L820 1080 Q540 1040 540 1080 Q540 1040 260 1080Z" fill="#1d4a3a"/>
+  <path d="M280 580 Q530 545 530 580 L530 1050 Q410 1025 280 1050Z" fill="#efe4c9"/>
+  <path d="M550 580 Q550 545 800 580 L800 1050 Q670 1025 550 1050Z" fill="#efe4c9"/>
+  ${lines}
+  <rect x="280" y="580" width="250" height="40" fill="none"/>
+  <g transform="translate(40 -950)"><path d="M640 1240 C700 1180 900 1150 1100 1150 L1100 1330 C900 1330 760 1320 680 1300Z" fill="#b98262"/>
+  <rect x="770" y="1150" width="70" height="190" rx="10" fill="#4a3424" transform="rotate(-8 805 1245)"/>
+  <circle cx="805" cy="1240" r="68" fill="#cfc6b4" stroke="#8a7a62" stroke-width="10"/>
+  <circle cx="805" cy="1240" r="56" fill="#f4efe4"/>
+  ${Array.from({ length: 12 }, (_, i) => `<line x1="805" y1="1190" x2="805" y2="${i % 3 ? 1196 : 1200}" stroke="#333" stroke-width="3" transform="rotate(${i * 30} 805 1240)"/>`).join('')}
+  <line id="hHand" x1="805" y1="1240" x2="805" y2="1210" stroke="#222" stroke-width="6" stroke-linecap="round"/>
+  <line id="mHand" x1="805" y1="1240" x2="805" y2="1196" stroke="#222" stroke-width="4" stroke-linecap="round"/>
+  <line id="sHand" x1="805" y1="1250" x2="805" y2="1192" stroke="#c0392b" stroke-width="2"/>
+  <circle cx="805" cy="1240" r="5" fill="#222"/></g>`);
+
+// ---------- scene F: wooden door, shadow outside ----------
+S('sF', `
+  <defs><linearGradient id="gapF" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffcf8a" stop-opacity="0"/><stop offset=".2" stop-color="#ffcf8a"/><stop offset=".8" stop-color="#ffcf8a"/><stop offset="1" stop-color="#ffcf8a" stop-opacity="0"/></linearGradient></defs>
+  <rect width="1080" height="1920" fill="#17100b"/>
+  <rect y="980" width="1080" height="940" fill="#0e0a07"/>
+  <g transform="translate(0 -110)"><g id="doorF">
+    <rect x="330" y="330" width="420" height="760" fill="#5a3a22" stroke="#2c1b0f" stroke-width="16"/>
+    ${[0, 1, 2, 3, 4].map(i => `<line x1="${414 + i * 84}" y1="340" x2="${414 + i * 84}" y2="1080" stroke="#3e2716" stroke-width="5"/>`).join('')}
+    <rect x="350" y="470" width="380" height="18" fill="#3e2716"/><rect x="350" y="900" width="380" height="18" fill="#3e2716"/>
+    <circle cx="700" cy="720" r="16" fill="#c9a45e"/>
+  </g>
+  <rect x="340" y="1088" width="400" height="8" fill="url(#gapF)" opacity=".7"/>
+  <rect x="470" y="1086" width="50" height="12" fill="#000"/><rect x="560" y="1086" width="50" height="12" fill="#000"/></g>
+  ${[0, 1, 2].map(i => `<circle id="ring${i}" cx="540" cy="570" r="0" fill="none" stroke="#e9c47e" stroke-width="5" opacity="0"/>`).join('')}`);
+
+// ---------- scene G: Harith at the open door ----------
+S('sG', `
+  <defs><linearGradient id="nightG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1222"/><stop offset="1" stop-color="#1b2a3e"/></linearGradient>
+  <radialGradient id="warmG"><stop offset="0" stop-color="#ffbf70" stop-opacity=".55"/><stop offset="1" stop-color="#ffbf70" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1080" height="1920" fill="#17100b"/>
+  <g id="camG">
+    <rect x="300" y="250" width="480" height="840" fill="url(#nightG)"/>
+    <g id="harith">
+      <path d="M380 1090 C380 900 400 760 440 700 C470 660 610 660 640 700 C680 760 700 900 700 1090Z" fill="#14171d"/>
+      <path d="M440 700 C470 660 610 660 640 700" stroke="#7ea3c8" stroke-width="6" fill="none" opacity=".6"/>
+      <rect x="515" y="610" width="50" height="70" fill="#14171d"/>
+      <ellipse cx="540" cy="540" rx="80" ry="96" fill="#14171d"/>
+      <path d="M462 520 C470 430 610 430 618 520" stroke="#7ea3c8" stroke-width="6" fill="none" opacity=".6"/>
+      <ellipse id="eyeL" cx="512" cy="540" rx="9" ry="5" fill="#d8e6f2" opacity=".35"/>
+      <ellipse id="eyeR" cx="568" cy="540" rx="9" ry="5" fill="#d8e6f2" opacity=".35"/>
+      <path id="smile" d="M512 590 Q540 604 568 590" stroke="#2b3240" stroke-width="5" fill="none" opacity="0"/>
+      <g id="drips">${Array.from({ length: 12 }, (_, i) => `<ellipse class="drip" cx="${400 + (i * 97) % 290}" cy="0" rx="4" ry="9" fill="#9fc9e8" data-i="${i}"/>`).join('')}</g>
+      <path d="M430 800 C470 860 520 870 540 860 C560 870 610 860 650 800" stroke="#14171d" stroke-width="48" fill="none" stroke-linecap="round"/>
+    </g>
+    <circle cx="540" cy="840" r="260" fill="url(#warmG)"/>
+    ${bread(540, 840, .62, true)}
+    ${steam('stG', 540, 800, 3)}
+    <path id="doorPanel" d="M300 250 L780 250 L780 1090 L300 1090Z" fill="#5a3a22" stroke="#2c1b0f" stroke-width="14"/>
+    <rect x="290" y="240" width="500" height="860" fill="none" stroke="#2c1b0f" stroke-width="22"/>
+  </g>`);
+document.querySelectorAll('#stG0,#stG1,#stG2').forEach(e => e.dataset.y = 800);
+
+// ---------- scene H1: bread close-up ----------
+S('sH1', `<defs><radialGradient id="warmH"><stop offset="0" stop-color="#ffbf70" stop-opacity=".5"/><stop offset="1" stop-color="#ffbf70" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1080" height="1920" fill="#0d0907"/><circle cx="540" cy="760" r="520" fill="url(#warmH)"/>
+  ${bread(540, 800, 2.6, true)}${steam('stH', 540, 640, 4)}`);
+document.querySelectorAll('#stH0,#stH1,#stH2,#stH3').forEach(e => e.dataset.y = 640);
+
+// ---------- scene H2: Hawa asleep (close) ----------
+S('sH2', `<defs><radialGradient id="warmH2"><stop offset="0" stop-color="#ffbf70" stop-opacity=".35"/><stop offset="1" stop-color="#ffbf70" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1080" height="1920" fill="#120c08"/><circle cx="540" cy="760" r="560" fill="url(#warmH2)"/>
+  <g transform="rotate(-12 540 760)">
+    <path d="M300 640 C230 860 250 1060 340 1140 L740 1140 C830 1060 850 860 780 640Z" fill="#2a1a12"/>
+    <circle cx="540" cy="760" r="250" fill="#c99a7b"/>
+    <path d="M290 760 C270 500 520 420 690 470 C800 520 820 640 790 700 C740 600 560 560 420 620 C360 660 320 700 300 800Z" fill="#2a1a12"/>
+    <path d="M440 790 q30 22 60 0 M580 790 q30 22 60 0" stroke="#5a3a2a" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M520 890 q20 10 40 0" stroke="#8a5040" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="420" cy="860" r="34" fill="#e08a7a" opacity=".35"/><circle cx="660" cy="860" r="34" fill="#e08a7a" opacity=".35"/>
+  </g>`);
+
+// ---------- scene H3: Adam's eyes ----------
+const eye = (cx, id) => `<g><path d="M${cx - 150} 760 Q${cx} 640 ${cx + 150} 760 Q${cx} 860 ${cx - 150} 760Z" fill="#f1e8dc"/>
+  <clipPath id="clip${id}"><path d="M${cx - 150} 760 Q${cx} 640 ${cx + 150} 760 Q${cx} 860 ${cx - 150} 760Z"/></clipPath>
+  <g clip-path="url(#clip${id})"><g id="iris${id}"><circle cx="${cx}" cy="760" r="62" fill="#4a2c1a"/><circle cx="${cx}" cy="760" r="28" fill="#0e0806"/><circle cx="${cx + 18}" cy="740" r="10" fill="#fff" opacity=".9"/></g>
+  <rect id="lid${id}" x="${cx - 160}" y="600" width="320" height="0" fill="#b98262"/></g>
+  <path d="M${cx - 150} 760 Q${cx} 640 ${cx + 150} 760" stroke="#3a2418" stroke-width="8" fill="none"/>
+  <path d="M${cx - 160} 600 Q${cx} 540 ${cx + 170} 610" stroke="#2a1a12" stroke-width="30" fill="none" stroke-linecap="round"/></g>`;
+S('sH3', `<rect width="1080" height="1920" fill="#000"/><rect y="520" width="1080" height="440" fill="#b98262"/>
+  <rect y="520" width="1080" height="440" fill="#000" opacity=".25"/>${eye(300, 'L')}${eye(780, 'R')}`);
+
+// ---------- captions & overlays ----------
+const back = x => { x = clamp(x); const c = 1.2; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };   // light overshoot
+function updOutro(t) {
+  const u = t - 103;
+  $('outro').style.opacity = clamp(u / .4);
+  if (u < 0) return;
+  const lg = $('logoWrap'), pill = $('subPill');
+  lg.style.opacity = clamp((u - .15) / .3); lg.style.transform = `scale(${.86 + .14 * back((u - .15) / .5)})`;
+  $('logoRing').style.opacity = clamp((u - .4) / .4);
+  const q = clamp((u - .7) / .4);
+  pill.style.opacity = q; pill.style.transform = `translateY(${(1 - ease(q)) * 22}px)`;
+}
+
+$('caps').innerHTML = CAPS.map(([a, b, cls, txt], i) => `<div class="cap ${cls}" id="cap${i}">${txt}</div>`).join('');
+
+// ---------- per-frame ----------
+function setFrame(t) {
+  // scenes (sB is used twice)
+  const vis = {};
+  for (const [id, a, b] of SCENES) {
+    const hard = id === 'sH3' || id === 'sA';              // hard cut to black after H3; A starts on frame 0
+    const v = id === 'sA' ? (t < b ? Math.min(1, clamp((b - t) / .4)) : 0) : hard ? (t >= a && t < b ? clamp((t - a) / .4) : 0) : win(t, a, b);
+    vis[id] = Math.max(vis[id] || 0, v);
+  }
+  for (const id in vis) $(id).style.opacity = vis[id];
+  $('shade').style.opacity = t < 91 ? 1 : 0;
+
+  CAPS.forEach(([a, b], i) => {
+    const k = i === 0 ? (t < b ? clamp((b - t) / .3) : 0) : win(t, a, b, .3);
+    const c = $('cap' + i); c.style.opacity = k; c.style.transform = `translateY(${(1 - k) * 16}px)`;
+  });
+  OVERLAYS.forEach(([id, a, b]) => { const k = win(t, a, b, .5); $(id).style.opacity = k; $(id).style.transform = `translateY(${(1 - k) * 24}px)`; });
+
+  // A: falling drop, ripple, drifting dust, slow push
+  const dropT = clamp((t - 1.2) / 1.0);
+  attr('drop', 'transform', `translate(540 ${640 + 455 * dropT * dropT})`);
+  attr('drop', 'opacity', t > 1.2 && t < 2.2 ? 1 : 0);
+  [['ripple', 2.2], ['ripple2', 2.5]].forEach(([id, s]) => { const k = clamp((t - s) / 1.6); attr(id, 'rx', 160 * k); attr(id, 'ry', 32 * k); attr(id, 'opacity', k > 0 ? 1 - k : 0); });
+  document.querySelectorAll('#sA .dust').forEach((d, i) => d.setAttribute('transform', `translate(${(t * 18 * d.dataset.s) % 200 - 100} ${Math.sin(t + i) * 8})`));
+  $('sA').querySelector('svg').style.transform = `scale(${1 + t * .006})`;
+
+  // B: candle flicker, breathing; asleep variant after 49s
+  const fl = 1 + Math.sin(t * 13) * .06 + Math.sin(t * 7.3) * .05;
+  attr('flameB', 'transform', `translate(697 770) scale(${1 / fl} ${fl}) translate(-697 -770)`);
+  attr('glowRect', 'opacity', .85 + Math.sin(t * 9) * .08);
+  attr('heldPair', 'opacity', t < 49 ? 1 : 0); attr('asleepPair', 'opacity', t < 49 ? 0 : 1);
+  attr('heldPair', 'transform', `translate(0 ${Math.sin(t * 1.6) * 3})`);
+  attr('awakeHawa', 'opacity', t < 49 ? 1 : 0);
+  const wk = clamp((t - 9.3) / 3), walking = wk > 0 && wk < 1, ph = (t - 9.3) * 2 * Math.PI * 1.3;
+  const sw = walking ? Math.sin(ph) * 20 : 0, bob = walking ? -Math.abs(Math.sin(ph)) * 7 : 0;
+  const lean = -5 * ease((t - 12.4) / .6);
+  attr('hawaW', 'transform', `translate(${720 - 252 * ease(wk)} ${1082 + bob}) rotate(${lean})`);
+  attr('hLegL', 'transform', `rotate(${sw} -15 -122)`); attr('hLegR', 'transform', `rotate(${-sw} 15 -122)`);
+  attr('hArmL', 'transform', `rotate(${-sw * .8} -41 -226)`); attr('hArmR', 'transform', `rotate(${sw * .8 + 14 * ease((t - 12.4) / .6)} 41 -226)`);
+  attr('hugArm', 'opacity', t < 49 ? ease((t - 12.4) / .6) : 0);
+  $('sB').querySelector('svg').style.transform = `scale(${1.02 + ((t > 49 ? Math.min(t - 49, 4) : t - 9) * .005)})`;
+
+  // C: progress bar, shared clips spreading around the phone
+  attr('progC', 'width', 420 * clamp((t - 17) / 12));
+  document.querySelectorAll('#sC .mini').forEach((m, i) => {
+    const k = ease((t - 25.2 - i * .18) / .6), ang = i / 10 * Math.PI * 2;
+    m.setAttribute('opacity', k);
+    m.setAttribute('transform', `translate(${540 + Math.cos(ang) * 420 * k} ${820 + Math.sin(ang) * 640 * k}) scale(${.6 + .4 * k}) rotate(${(i % 2 ? 1 : -1) * 8})`);
+  });
+  $('sC').querySelector('svg').style.transform = `scale(${1 + (t - 17) * .004})`;
+
+  // D: waveform plays during mum's line, signal drops after
+  const playing = t > 33 && t < 38;
+  document.querySelectorAll('#sD .wv').forEach((w, i) => w.setAttribute('opacity', playing && i / 34 < (t - 33) / 5 ? 1 : .45));
+  document.querySelectorAll('#sD .bar').forEach((b, i) => b.setAttribute('opacity', t > 38.6 + (3 - i) * .35 ? .15 : 1));
+  attr('nosig', 'opacity', clamp((t - 40) / .4));
+
+  // E: three verses lit out of ten, watch ticking
+  document.querySelectorAll('#sE .dot').forEach((d, i) => d.setAttribute('opacity', i < 3 ? .18 + .82 * ease((t - 45.8 - i * .35) / .4) : .18));
+  attr('sHand', 'transform', `rotate(${Math.floor(t) * 6} 805 1240)`);
+  attr('mHand', 'transform', `rotate(${120 + t * .1} 805 1240)`);
+  attr('hHand', 'transform', `rotate(${300 + t * .008} 805 1240)`);
+  $('sE').querySelector('svg').style.transform = `scale(${1 + (t - 41.5) * .006})`;
+
+  // F: three slow knocks at 55, 56.2, 57.4
+  let shake = 0;
+  [55, 56.2, 57.4].forEach((k, i) => {
+    const d = t - k; if (d > 0 && d < .35) shake = Math.sin(d * 60) * 6 * (1 - d / .35);
+    const r = clamp(d / .9); attr('ring' + i, 'r', 40 + 320 * r); attr('ring' + i, 'opacity', d > 0 ? (1 - r) * .7 : 0);
+  });
+  attr('doorF', 'transform', `translate(${shake} 0)`);
+
+  // G: door swings open, drips, steam, eyes turn cold, slow push-in on the face
+  const op = ease((t - 58) / 1.4);
+  attr('doorPanel', 'd', `M300 250 L${780 - 400 * op} ${250 + 60 * op} L${780 - 400 * op} ${1090 - 60 * op} L300 1090Z`);
+  attr('doorPanel', 'opacity', op > .99 ? 0 : 1);
+  document.querySelectorAll('#sG .drip').forEach(d => {
+    const i = +d.dataset.i, p = (t * .9 + i * .37) % 1;
+    d.setAttribute('cy', 720 + (i % 4) * 90 + p * 300); d.setAttribute('opacity', (1 - p) * .9);
+  });
+  updSteam('stG', 3, t, 150);
+  const cold = ease((t - 70.8) / 1.2);
+  ['eyeL', 'eyeR'].forEach(id => { attr(id, 'opacity', .35 + .65 * cold); attr(id, 'fill', cold > .5 ? '#eaf6ff' : '#d8e6f2'); });
+  attr('smile', 'opacity', ease((t - 70.5) / .8));
+  const push = ease((t - 59) / 20);
+  attr('camG', 'transform', `translate(540 600) scale(${1 + .55 * push}) translate(-540 -600)`);
+
+  // H: close-ups
+  updSteam('stH', 4, t, 260);
+  $('sH1').querySelector('svg').style.transform = `scale(${1 + (t - 79) * .02})`;
+  $('sH2').querySelector('svg').style.transform = `scale(${1 + (t - 81.2) * .02})`;
+  const look = t < 84.2 ? 0 : t < 85.6 ? -1 : t < 87 ? 1 : 0;           // glance: bread, daughter, back
+  const lookS = look * 45;
+  ['L', 'R'].forEach(s => attr('iris' + s, 'transform', `translate(${lookS} 0)`));
+  const blink = Math.max(0, 1 - Math.abs(t - 88.6) / .12);
+  ['L', 'R'].forEach(s => attr('lid' + s, 'height', 220 * blink));
+  $('sH3').querySelector('svg').style.transform = `scale(${1 + (t - 83) * .012})`;
+}
+// The animation is authored on its own timeline; audio/warp.js (build_timing.py) maps it onto the voiceover.
+const lerpMap = (x, xs, ys) => { if (x <= xs[0]) return ys[0]; for (let i = 1; i < xs.length; i++) if (x <= xs[i]) return ys[i - 1] + (ys[i] - ys[i - 1]) * (x - xs[i - 1]) / (xs[i] - xs[i - 1]); return ys[ys.length - 1]; };
+const WA = window.WARP ? window.WARP.anchors : [[0, 0], [TOTAL, TOTAL]];
+const toOld = T => lerpMap(T, WA.map(a => a[1]), WA.map(a => a[0]));
+const toNew = t => lerpMap(t, WA.map(a => a[0]), WA.map(a => a[1]));
+const _sf = setFrame;
+window.setFrame = T => { const t = toOld(T); _sf(t); updOutro(t); };
+window.TOTAL = window.WARP ? window.WARP.total : TOTAL;
+window.KEYS = KEYS.map(([t, n]) => [+toNew(t).toFixed(2), n]);
+const q = new URLSearchParams(location.search);
+if (q.has('t')) window.setFrame(+q.get('t'));
+else if (!q.has('render')) { const t0 = performance.now(); (function loop() { window.setFrame(((performance.now() - t0) / 1000) % window.TOTAL); requestAnimationFrame(loop); })(); }
+</script>
+</body>
+</html>

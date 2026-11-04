@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>EP03 วันที่ไม่มีวันจบ</title>
+<link rel="stylesheet" href="../shared/kit.css">
+</head>
+<body>
+<div id="stage"></div>
+<script src="../shared/kit.js"></script>
+<script src="audio/warp.js" onerror="void 0"></script>
+<script>
+// Narration: verbatim from the series document, EP3 (Hook / script / cliffhanger).
+// One caption per line: align.py reads this list.
+const CAPS = [
+  [0, 5.6, '', 'ไม่มีใครในเมืองรู้แล้วว่าตอนนี้กี่โมง…<br>ยกเว้นนาฬิกาเก่า ๆ บนข้อมือผม'],
+  [9.6, 12.6, '', 'ดวงอาทิตย์ไม่ตกจริง ๆ'],
+  [12.6, 16.6, '', 'ผมวิ่งไปมัสยิด<br>ผู้คนยืนออกันอยู่หน้าประตู'],
+  [16.6, 20.6, '', 'บางคนร้องไห้<br>บางคนตะโกนว่าโลกแตกแล้ว'],
+  [20.6, 24.6, '', 'ชัยค์ยะห์ยายกมือให้ทุกคนเงียบ<br>แล้วพูดช้า ๆ'],
+  [24.6, 29.5, 'q', '“เศาะฮาบะฮ์เคยถามท่านนบี <span class="saw">ﷺ</span> ว่า<br>ในวันที่ยาวเท่าหนึ่งปี<br>ละหมาดของวันปกติจะพอไหม'],
+  [29.5, 34, 'q', 'ท่านตอบว่าไม่พอ<br>ให้ประมาณเวลาของมันเอา”'],
+  [34, 37, '', 'แล้วท่านก็หันมามองข้อมือผม'],
+  [37, 41, '', 'ตั้งแต่วันนั้น นาฬิกาเก่าเรือนนี้<br>กลายเป็นนาฬิกาของทั้งซอย'],
+  [41, 46.5, '', 'ผมจดเวลาละหมาดทั้งห้าลงบนกำแพง<br>ประมาณจากเวลาที่เราเคยละหมาด<br>ในวันธรรมดา'],
+  [46.5, 51, 'q', '<span class="n">คนแปลกหน้ามาเคาะประตูถามผมว่า</span><br>“ตอนนี้ถึงเวลาอัศริหรือยัง?”'],
+  [51, 55.5, '', 'ผมไม่เคยคิดเลยว่าของธรรมดาที่สุดที่ผมมี<br>จะกลายเป็นสิ่งที่ทุกคนต้องการ'],
+  [55.5, 59.5, '', 'ระหว่างรอเวลาละหมาดแต่ละครั้ง<br>ผมท่องอัลกะฮ์ฟี จนครบเจ็ดอายะฮ์'],
+  [59.5, 63.5, '', 'แต่ความหิวไม่รอใคร…<br>ขนมปังแห้งชิ้นสุดท้ายหมดไปแล้ว'],
+  [63.5, 68, '', 'คืนที่ไม่มีความมืดคืนหนึ่ง<br>ซัลมาแตะหน้าผากฮาวา แล้วหน้าเธอซีดลง'],
+  [68, 72.5, 'q', '“ลูกตัวร้อนจัดเลย อาดัม…<br>และโรงพยาบาลไม่เหลือยาแล้ว”'],
+  [72.5, 77, '', 'ผมเดินไปที่หน้าต่างเพื่อหายใจ<br>แล้วก็เห็นบางอย่างที่ไม่ได้เห็นมาเจ็ดเดือน'],
+  [77, 81.5, '', 'เมฆฝน…<br>แต่มันลอยอยู่เหนือบ้านเพียงบางหลังเท่านั้น'],
+  [81.5, 84.5, 'big', 'ทำไมฝนถึงเลือกตกเฉพาะบางบ้าน?'],
+  [84.5, 89, 'big', 'และผมจะรักษาลูกได้อย่างไร<br>ในเมืองที่ไม่เหลือยาแม้แต่เม็ดเดียว?'],
+];
+// The document marks the shaykh's words as a paraphrase of the hadith.
+const TAGS = [
+  [24.6, 34, 'ถ่ายทอดความหมายจากหะดีษ · เศาะฮีห์มุสลิม 2937'],
+];
+const PRAYERS = ['ศุบห์', 'ซุฮ์ริ', 'อัศริ', 'มัฆริบ', 'อิชาอ์'];
+
+// glaring day sky: the sun that does not set
+const GLARE = `<linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f1dc"/><stop offset=".6" stop-color="#fff7d6"/><stop offset="1" stop-color="#ffe9a8"/></linearGradient>`;
+
+// a person in a crowd, facing the viewer, no features; variety by seed
+function crowdPerson(x, y, s, i, raise) {
+  const shirt = ['#7d6a8a', '#5f7d6a', '#8a6a52', '#6a7a8f', '#9a7f5a', '#5a5f72'][i % 6];
+  const scarf = i % 3 === 0;
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+    <path d="M-70 0 C-74 -90 -60 -160 -40 -180 L40 -180 C60 -160 74 -90 70 0Z" fill="${shirt}"/>
+    ${raise ? `<rect x="40" y="-300" width="22" height="140" rx="11" fill="${shirt}" transform="rotate(${raise} 51 -170)"/>` : ''}
+    <rect x="-10" y="-196" width="20" height="20" fill="#c99a7b"/>
+    <ellipse cx="0" cy="-226" rx="32" ry="38" fill="#c99a7b"/>
+    ${scarf ? `<path d="M-38 -220 C-44 -280 44 -280 38 -220 C40 -196 34 -180 30 -176 L-30 -176 C-34 -180 -40 -196 -38 -220Z M-30 -226 C-28 -256 28 -256 30 -226 C20 -244 -20 -244 -30 -226Z" fill="${['#8a5a6a', '#4f6a7a', '#7a6a4a'][i % 3]}" fill-rule="evenodd"/>`
+             : `<path d="M-33 -232 C-38 -276 38 -276 33 -232 C26 -254 -26 -254 -33 -232Z" fill="#2a1a12"/>`}
+  </g>`;
+}
+
+function build() {
+  // ---- 1. watch close-up, ticking ----
+  KIT.S('sWatch', `<rect width="1080" height="1920" fill="#20160f"/>
+    <path d="M-40 840 C200 760 700 740 1120 780 L1120 1060 C700 1080 200 1060 -40 1000Z" fill="#c48d6a"/>
+    <rect x="420" y="380" width="240" height="880" rx="30" fill="#4a3424"/>
+    ${KIT.watch('w1', 540, 820, 250)}`);
+
+  // ---- 2. crowd outside the mosque under an unnaturally bright sky ----
+  seed = 31;
+  let crowd = '';
+  for (let r = 0; r < 3; r++) for (let i = 0; i < 7; i++) {
+    const x = 90 + i * 150 + (r % 2) * 70 + (rnd() - .5) * 30, y = 1060 + r * 70;
+    crowd += crowdPerson(x, y, .8 + r * .12, i + r * 7, rnd() > .82 ? -25 - rnd() * 20 : 0);
+  }
+  KIT.S('sCrowd', `<defs>${GLARE}<radialGradient id="sunW"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff6d0" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="url(#gl)"/>
+    <circle cx="820" cy="300" r="380" fill="url(#sunW)"/><circle cx="820" cy="300" r="70" fill="#fff"/>
+    <g fill="#d8c8a6" stroke="#b8a582" stroke-width="4">
+      <rect x="150" y="560" width="640" height="460"/><path d="M300 560 a170 170 0 0 1 340 0Z" fill="#e6d6b2"/>
+      <rect x="820" y="300" width="70" height="720"/><rect x="805" y="440" width="100" height="22"/><path d="M820 300 l35 -70 l35 70Z" fill="#e6d6b2"/>
+    </g>
+    <path d="M400 1020 v-240 a70 70 0 0 1 140 0 v240Z" fill="#6e5a40"/>
+    <rect y="1000" width="1080" height="920" fill="#d9c49c"/>
+    <g id="crowdG">${crowd}</g>
+    <rect id="glareA" width="1080" height="1920" fill="#fffbe8" opacity=".18"/>`);
+
+  // ---- 3. the shaykh raises his hand, seen from behind, light around him ----
+  seed = 47;
+  let faces = '';
+  for (let r = 0; r < 2; r++) for (let i = 0; i < 6; i++) faces += crowdPerson(120 + i * 170 + r * 80, 860 + r * 80, .7 + r * .1, i + r * 5 + 3, 0);
+  KIT.S('sShaykh', `<defs>${GLARE}<radialGradient id="hal"><stop offset="0" stop-color="#fffbe6" stop-opacity=".9"/><stop offset="1" stop-color="#fffbe6" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="url(#gl)"/><rect y="760" width="1080" height="1160" fill="#d9c49c"/>
+    ${faces}
+    <g id="rays">${Array.from({ length: 12 }, (_, i) => `<polygon points="540,760 ${540 + Math.cos(i / 12 * 6.283) * 700},${760 + Math.sin(i / 12 * 6.283) * 700} ${540 + Math.cos((i + .4) / 12 * 6.283) * 700},${760 + Math.sin((i + .4) / 12 * 6.283) * 700}" fill="#fffbe6" opacity=".22"/>`).join('')}</g>
+    <circle cx="540" cy="820" r="420" fill="url(#hal)"/>
+    <g transform="translate(540 1300) scale(1.25)">${KIT.sheikhBack('sk')}
+      <g id="skArm"><rect x="78" y="-450" width="40" height="190" rx="20" fill="#ece6d8"/><ellipse cx="98" cy="-458" rx="17" ry="22" fill="#b98a6c"/></g></g>`);
+
+  // ---- 4. charcoal on the plaster wall: the five prayers ----
+  let rows = '';
+  PRAYERS.forEach((p, i) => {
+    const y = 470 + i * 120;
+    rows += `<g id="pr${i}" opacity="0"><text x="250" y="${y}" font-family="Sans" font-weight="700" font-size="64" fill="#2b2522">${p}</text>
+      <g transform="translate(720 ${y - 22})"><circle r="36" fill="none" stroke="#2b2522" stroke-width="6"/>
+      <line x1="0" y1="0" x2="0" y2="-24" stroke="#2b2522" stroke-width="6" transform="rotate(${[150, 360, 450, 540, 600][i]})"/>
+      <line x1="0" y1="0" x2="0" y2="-16" stroke="#2b2522" stroke-width="7" transform="rotate(${[150, 360, 450, 540, 600][i] / 12})"/></g></g>`;
+  });
+  KIT.S('sWall', `<rect width="1080" height="1920" fill="#d8ccb6"/>
+    ${Array.from({ length: 30 }, () => `<circle cx="${rnd() * 1080}" cy="${rnd() * 1300}" r="${10 + rnd() * 40}" fill="#cbbea6" opacity=".5"/>`).join('')}
+    ${rows}
+    <g id="hand"><path d="M0 0 C40 -20 120 -10 170 20 L260 60 L240 140 L120 110 C60 90 10 60 0 0Z" fill="#c48d6a"/>
+      <rect x="-14" y="-16" width="70" height="26" rx="8" fill="#222" transform="rotate(-25)"/>
+      <rect x="230" y="50" width="400" height="120" rx="40" fill="#cdbb9a" transform="rotate(12 230 50)"/></g>`);
+
+  // ---- 5. a stranger at the door asks the time; outside is bright though it is evening ----
+  const stranger = KIT.adam('st').replaceAll('#cdbb9a', '#7d8f6a').replaceAll('#3a3a44', '#4a4038');
+  KIT.S('sDoor', `<defs>${GLARE}</defs>
+    <rect width="1080" height="1920" fill="#2a1d14"/><rect y="1090" width="1080" height="830" fill="#1a120c"/>
+    <rect x="560" y="300" width="340" height="790" fill="url(#gl)"/>
+    <polygon points="560,300 900,300 900,1090 560,1090" fill="#fff4cf" opacity=".25"/>
+    <g id="dSt" transform="translate(730 1090) scale(.86)">${stranger}</g>
+    <polygon points="900,300 1010,250 1010,1140 900,1090" fill="#5a3a22" stroke="#2c1b0f" stroke-width="12"/>
+    <rect x="548" y="288" width="364" height="812" fill="none" stroke="#2c1b0f" stroke-width="24"/>
+    <polygon points="560,1090 900,1090 1080,1500 380,1500" fill="#fff4cf" opacity=".12"/>
+    <g id="dAd" transform="translate(320 1092)">${KIT.adam('da')}<g transform="translate(-70 -252)">${KIT.watch('dw', 0, 0, 22)}</g></g>`);
+
+  // ---- 6. seven of ten verses ----
+  let lines = '';
+  for (let k = 0; k < 9; k++) lines += `<path d="M300 ${640 + k * 46} q40 -10 80 0 t80 0 t80 0" stroke="#8f7d60" stroke-width="5" fill="none" opacity=".55"/><path d="M600 ${640 + k * 46} q40 -10 80 0 t80 0 t80 0" stroke="#8f7d60" stroke-width="5" fill="none" opacity=".55"/>`;
+  KIT.S('sDots', `<defs><radialGradient id="gw"><stop offset="0" stop-color="#ffe9b0" stop-opacity=".45"/><stop offset="1" stop-color="#ffe9b0" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="#3a2a1e"/><circle cx="540" cy="800" r="620" fill="url(#gw)"/>
+    ${KIT.dots('vd', 500)}
+    <path d="M260 560 Q540 520 540 560 Q540 520 820 560 L820 1080 Q540 1040 540 1080 Q540 1040 260 1080Z" fill="#1d4a3a"/>
+    <path d="M280 580 Q530 545 530 580 L530 1050 Q410 1025 280 1050Z" fill="#efe4c9"/><path d="M550 580 Q550 545 800 580 L800 1050 Q670 1025 550 1050Z" fill="#efe4c9"/>${lines}`);
+
+  // ---- 7. the last dry bread is gone ----
+  KIT.S('sPlate', `<rect width="1080" height="1920" fill="#3a2a1e"/>
+    <rect y="760" width="1080" height="1160" fill="#5c3a22"/>
+    <ellipse cx="540" cy="840" rx="330" ry="90" fill="#d9cdb8"/><ellipse cx="540" cy="830" rx="250" ry="62" fill="#e6dccb"/>
+    ${[[-120, 6], [40, -10], [150, 12], [-40, 20], [90, 28]].map(([dx, dy]) => `<circle cx="${540 + dx}" cy="${836 + dy}" r="6" fill="#a3825a"/>`).join('')}`);
+
+  // ---- 8. Salma's hand on Hawa's forehead (warm colours, as in EP01) ----
+  KIT.S('sFever', `<defs>${GLARE}<radialGradient id="fw"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".35"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="#7a6650"/><rect width="1080" height="1920" fill="url(#gl)" opacity=".35"/><circle cx="540" cy="760" r="620" fill="url(#fw)"/>
+    <g transform="rotate(-10 540 800)">
+      <path d="M300 640 C230 860 250 1060 340 1140 L740 1140 C830 1060 850 860 780 640Z" fill="#2a1a12"/>
+      <circle cx="540" cy="760" r="250" fill="#c99a7b"/>
+      <path d="M290 760 C270 500 520 420 690 470 C800 520 820 640 790 700 C740 600 560 560 420 620 C360 660 320 700 300 800Z" fill="#2a1a12"/>
+      <circle cx="420" cy="860" r="40" fill="#e0705a" opacity=".45"/><circle cx="660" cy="860" r="40" fill="#e0705a" opacity=".45"/>
+      <path d="M440 795 q30 16 60 0 M580 795 q30 16 60 0" stroke="#5a3a2a" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M520 900 q20 -6 40 0" stroke="#8a5040" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M700 640 q10 22 0 32 q-10 -10 0 -32Z" fill="#cfe6f2" opacity=".8"/>
+    </g>
+    <g id="sHand"><rect x="760" y="300" width="400" height="150" rx="50" fill="#3d4f57"/>
+      <path d="M770 330 C700 320 600 330 500 370 C460 390 470 440 520 440 C610 438 700 430 780 420Z" fill="#c99a7b"/></g>`);
+
+  // ---- 9. rain clouds over only some roofs ----
+  seed = 12;
+  let roofs = '', rain = '';
+  const wet = [2, 5];
+  for (let i = 0, x = 120; i < 7; i++) {
+    const w = 100 + rnd() * 30, h = 160 + rnd() * 140;
+    roofs += `<rect x="${x}" y="${1000 - h}" width="${w}" height="${h}" fill="${wet.includes(i) ? '#3a3a3e' : '#7a6248'}"/>`;
+    if (wet.includes(i)) {
+      rain += `<g class="cloud" data-x="${x + w / 2}" data-y="${1000 - h - 200}"><ellipse cx="0" cy="0" rx="${w * .9}" ry="50" fill="#3a3d46"/><ellipse cx="${-w * .4}" cy="20" rx="${w * .5}" ry="40" fill="#30333b"/><ellipse cx="${w * .45}" cy="16" rx="${w * .55}" ry="44" fill="#353841"/></g>`;
+      for (let k = 0; k < 14; k++) rain += `<line class="drop" data-x="${x + 8 + rnd() * (w - 16)}" data-y0="${1000 - h - 160}" data-y1="${1000 - h}" data-p="${rnd()}" x1="0" y1="0" x2="-4" y2="26" stroke="#9fb3c8" stroke-width="3" opacity=".8"/>`;
+    }
+    x += w - 2;
+  }
+  KIT.S('sRain', `<defs>${GLARE}<clipPath id="wc"><rect x="170" y="270" width="740" height="730"/></clipPath></defs>
+    <rect width="1080" height="1920" fill="#2a1f1a"/>
+    <g clip-path="url(#wc)"><rect x="170" y="270" width="740" height="730" fill="url(#gl)"/>${rain}${roofs}</g>
+    <rect x="160" y="260" width="760" height="750" fill="none" stroke="#4a3424" stroke-width="22"/>
+    <path d="M540 260 V1010 M160 635 H920" stroke="#4a3424" stroke-width="12"/>
+    <rect y="1010" width="1080" height="910" fill="#1e1611"/>`);
+}
+
+KIT.episode({
+  num: 3, name: 'วันที่ไม่มีวันจบ',
+  total: 106.3, title: [5.6, 9.6], ctaWin: [89.3, 95.3], discWin: [95.3, 101.8], outroAt: 101.8,
+  cta: '“ถ้าคุณต้องอยู่ในวันที่ยาวเท่าหนึ่งปี<br><b>คุณจะรู้เวลาละหมาดได้อย่างไร?</b><br>คอมเมนต์บอกกันด้วย<br>แล้วกดติดตามและแชร์ไว้<br>อย่าพลาดตอนต่อไป”',
+  refs: 'หลักฐานหลัก: เศาะฮีห์มุสลิม 2937',
+  scenes: [
+    ['sWatch', 0, 9.8], ['sCrowd', 9.6, 20.8], ['sShaykh', 20.6, 34.2], ['sWatch', 34, 37.2],
+    ['sWall', 37, 46.7], ['sDoor', 46.5, 55.7], ['sDots', 55.5, 59.7], ['sPlate', 59.5, 63.7],
+    ['sFever', 63.5, 72.7], ['sRain', 72.5, 89, { hardOut: true }], ['sRain', 101.4, 107],
+  ],
+  caps: CAPS, tags: TAGS,
+  keys: [[1.5, 1], [7.5, 2], [11, 3], [18, 4], [23, 5], [30, 6], [35.5, 7], [39, 8], [44, 9], [49, 10], [57.5, 11], [62, 12], [66, 13], [70, 14], [75, 15], [80, 16], [86, 17], [92, 18], [98, 19], [104, 20]],
+  build,
+  draw(t) {
+    // 1. the watch: the only clock left (a quiet afternoon time, hands move with the seconds)
+    KIT.setWatch('w1', 15.75 + t / 3600, t);
+    KIT.zoom('sWatch', t < 10 ? 1 + t * .01 : 1.06 + (t - 34) * .01);
+
+    // 2. crowd: restless, the light too bright
+    document.querySelectorAll('#crowdG > g').forEach((g, i) => {
+      const base = g.getAttribute('transform').replace(/ rotate\([^)]*\)/, '');
+      g.setAttribute('transform', base + ` rotate(${Math.sin(t * (2 + i % 3) + i) * 2})`);
+    });
+    attr('glareA', 'opacity', .14 + .08 * Math.sin(t * 1.3));
+    KIT.zoom('sCrowd', 1 + clamp(t - 9.6, 0, 11) * .008);
+
+    // 3. the shaykh lifts his hand; the light settles around him
+    attr('skArm', 'transform', `rotate(${lerp(160, 30, ease((t - 20.9) / .9))} 98 -270)`);   // from hanging at his side up to a raised hand
+    attr('rays', 'transform', `rotate(${t * 2} 540 760)`);
+    KIT.zoom('sShaykh', 1 + clamp(t - 20.6, 0, 14) * .006);
+
+    // 4. writing the five prayers on the wall, one by one
+    PRAYERS.forEach((_, i) => attr('pr' + i, 'opacity', ease((t - 41.3 - i * .9) / .6)));   // each word appears as the hand passes
+    const u = t - 41.3, row = clamp(Math.floor(u / .9), 0, 4), ph = u - row * .9;
+    let hx, hy;
+    if (u < 0) { hx = 250; hy = 480; }
+    else if (u > 4.5) { const k = ease((u - 4.5) / .8); hx = lerp(670, 1000, k); hy = lerp(960, 1250, k); }
+    else if (ph < .6) { hx = lerp(250, 670, ease(ph / .6)); hy = 480 + row * 120; }                 // writing across
+    else { const k = ease((ph - .6) / .3); hx = lerp(670, 250, k); hy = 480 + row * 120 + 120 * k; } // back to the next line
+    attr('hand', 'transform', `translate(${hx} ${hy})`);
+    KIT.zoom('sWall', 1 + clamp(t - 37, 0, 10) * .006);
+
+    // 5. door
+    KIT.setWatch('dw', 15.9, t);
+    const lean = 4 * Math.sin(Math.PI * clamp((t - 46.7) / 2.4));
+    attr('dSt', 'transform', `translate(730 ${1090 + Math.sin(t * 1.7) * 2}) rotate(${-lean}) scale(.86)`);
+    attr('dAd', 'transform', `translate(320 ${1092 + Math.sin(t * 1.5 + 1) * 2})`);
+    KIT.zoom('sDoor', 1 + clamp(t - 46.5, 0, 9) * .006);
+
+    // 6. seven verses
+    KIT.setDots('vd', 7, t, 56.3);
+
+    // 7. the last bread fades, crumbs remain
+    KIT.zoom('sPlate', 1 + clamp(t - 59.5, 0, 4) * .015);
+
+    // 8. Salma's hand comes to Hawa's forehead
+    const touch = ease((t - 64) / 1.2);
+    attr('sHand', 'transform', `translate(${(1 - touch) * 320} ${(1 - touch) * -160 + 150 * touch})`);
+    KIT.zoom('sFever', 1 + clamp(t - 63.5, 0, 9) * .008);
+
+    // 9. clouds drift in over two roofs only; rain falls on those roofs
+    const come = ease((t - 76.8) / 2.5);
+    document.querySelectorAll('#sRain .cloud').forEach((c, i) => c.setAttribute('transform', `translate(${+c.dataset.x + (1 - come) * (i ? 260 : -260)} ${c.dataset.y}) `));
+    document.querySelectorAll('#sRain .cloud').forEach(c => c.setAttribute('opacity', come));
+    document.querySelectorAll('#sRain .drop').forEach(d => {
+      const p = (t * 1.4 + +d.dataset.p) % 1, y = lerp(+d.dataset.y0, +d.dataset.y1, p);
+      d.setAttribute('transform', `translate(${d.dataset.x} ${y})`); d.setAttribute('opacity', .8 * ease((t - 78.5) / 1));
+    });
+    KIT.zoom('sRain', t < 89 ? 1 + clamp(t - 72.5, 0, 17) * .008 : 1.1);
+  },
+});
+</script>
+</body>
+</html>
