@@ -109,19 +109,21 @@ function build() {
   // ---- down the mountain: Hawa on Adam's back; Salma holds Harith's arm and helps him walk (side view) ----
   seed = 19;
   let others = '';
-  for (let i = 0; i < 9; i++) others += `<g transform="translate(${rnd() * 1080} ${860 + i * 8}) scale(.42)">${walker('ow', ['#4a4450', '#2e2a30', HR, '#3a3438'], i + 10)}</g>`;
+  for (let i = 0; i < 9; i++) { const x = 40 + i * 118 + rnd() * 40; others += `<g transform="translate(${x} ${1100 - 240 * (x + 20) / 1120 - 36}) scale(.42)">${walker('ow', ['#4a4450', '#2e2a30', HR, '#3a3438'], i + 10)}${shadow(0, 0, 50, .2)}</g>`; }
   KIT.S('sDescend', `<defs><linearGradient id="mo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8aa0c8"/><stop offset="1" stop-color="#f3d6a8"/></linearGradient></defs>
     <rect width="1080" height="1920" fill="url(#mo)"/>
     <path d="M-20 700 L300 380 L620 640 L1100 420 L1100 1920 L-20 1920Z" fill="#8a7464"/>
     <path d="M-20 1100 L1100 860 L1100 1920 L-20 1920Z" fill="#a48a70"/>
     <g id="othersG">${others}</g>
     <g id="fam">
-      <g transform="translate(260 1046)">${shadow(0, 0, 70)}${walker('fw', ['#cdbb9a', '#3a3a44', HR], 1,
-        `<g transform="translate(18 -300)"><path d="M0 0 C-6 -50 6 -90 26 -100 L56 -96 C66 -70 64 -30 54 6Z" fill="#a8583f"/><circle cx="40" cy="-126" r="26" fill="${SK}"/>
-         <path d="M14 -126 C12 -160 66 -162 66 -126 C66 -100 60 -80 56 -66 L22 -66 C16 -90 14 -110 14 -126Z" fill="${HR}"/>
-         <path d="M30 -84 C10 -60 -10 -40 -26 -30" stroke="${SK}" stroke-width="12" fill="none" stroke-linecap="round"/>
-         <path d="M40 10 C30 40 20 60 0 70" stroke="${SK}" stroke-width="14" fill="none" stroke-linecap="round"/></g>
-         <path d="M8 -290 C30 -250 34 -210 30 -190" stroke="#bca986" stroke-width="22" fill="none" stroke-linecap="round"/>`)}</g>
+      <g transform="translate(260 1046)">${shadow(0, 0, 70)}
+        <g><path d="M24 -334 C14 -300 18 -256 30 -232 L74 -236 C82 -270 78 -310 64 -334Z" fill="#a8583f"/>
+          <path d="M22 -372 C20 -404 70 -406 70 -372 C70 -346 66 -330 62 -318 L30 -318 C24 -336 22 -352 22 -372Z" fill="${HR}"/>
+          <circle cx="40" cy="-366" r="22" fill="${SK}"/><path d="M22 -372 C22 -398 66 -400 66 -374 C56 -388 32 -388 22 -372Z" fill="${HR}"/></g>
+        ${walker('fw', ['#cdbb9a', '#3a3a44', HR], 1,
+        `<path d="M34 -322 C16 -332 0 -332 -16 -326" stroke="${SK}" stroke-width="12" fill="none" stroke-linecap="round"/><circle cx="-18" cy="-326" r="8" fill="${SK}"/>
+         <path d="M58 -240 C40 -222 14 -214 -10 -214" stroke="${SK}" stroke-width="14" fill="none" stroke-linecap="round"/><ellipse cx="-16" cy="-214" rx="12" ry="7" fill="#5a2f22"/>
+         <path d="M4 -296 C-4 -270 -6 -240 -2 -218" stroke="#bca986" stroke-width="22" fill="none" stroke-linecap="round"/><circle cx="-2" cy="-214" r="11" fill="${SK}"/>`)}</g>
       <g transform="translate(480 1004)">${shadow(0, 0, 70)}${walker('fw', ['#3d4f57', '#3d4f57', '#56707a', '#56707a'], 2,
         `<path d="M8 -290 C24 -250 26 -210 20 -186" stroke="#3d4f57" stroke-width="22" fill="none" stroke-linecap="round"/><circle cx="20" cy="-180" r="12" fill="${SK}"/>`)}
         <circle cy="-360" r="24" fill="${SK}" transform="translate(-10 0)"/></g>
@@ -137,7 +139,7 @@ function build() {
     <rect y="520" width="1080" height="1400" fill="#d6c09c"/>
     ${rows(600, 7, 8)}
     <rect id="wv" x="0" y="0" width="1080" height="160" fill="url(#wave)" opacity="0"/>
-    <g transform="translate(540 1170) scale(1.25)">${rowMan(0, 0, 1, '#cdbb9a').replace('fill="#2a2622"', `fill="${HR}"`)}</g>`);
+    <g transform="translate(540 1190) scale(1.6)">${rowMan(0, 0, 1, '#bfa77e').replace('fill="#2a2622"', `fill="${HR}"`)}<ellipse cx="-31" cy="-236" rx="6" ry="10" fill="${SK}"/><ellipse cx="31" cy="-236" rx="6" ry="10" fill="${SK}"/></g>`);
 
   // ---- takbir: Adam raises his hands, tears running ----
   KIT.S('sTakbir', `<defs><radialGradient id="tk" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#f6dcb0"/><stop offset="1" stop-color="#b8946a"/></radialGradient>
