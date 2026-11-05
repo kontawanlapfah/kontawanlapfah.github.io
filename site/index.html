@@ -92,6 +92,33 @@ nav ul a:hover { color: var(--star); }
 .ep-body h3 { font-size: 1.08rem; }
 .ep-body p { font-size: .92rem; color: var(--muted); line-height: 1.6; }
 
+/* Shop */
+.shop { background: var(--sand); color: var(--ink); }
+.shop .wrap { padding-block: 8px 72px; display: grid; gap: 28px; }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.product { background: #f1d6a8; border-radius: 18px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; box-shadow: 0 1px 0 rgba(18,14,36,.15); }
+.p-art { aspect-ratio: 4 / 3; max-width: 100%; position: relative; overflow: hidden; display: grid; place-items: center; font-family: var(--font-display); color: var(--text); text-align: center; }
+.p-art.a { background: linear-gradient(180deg, var(--sky), var(--dusk) 70%, var(--dune)); }
+.p-art.b { background: radial-gradient(circle at 70% 30%, var(--star) 0 14%, transparent 15%), linear-gradient(180deg, var(--night), var(--sky)); }
+.p-art.c { background: repeating-linear-gradient(0deg, #fbf3e4 0 26px, #e9dcc3 26px 27px); color: var(--ink); }
+.p-art.d { background: linear-gradient(160deg, var(--dune), var(--sand)); color: var(--ink); }
+.p-art.e { background: conic-gradient(from 200deg at 50% 110%, var(--sky), var(--dusk), var(--dune), var(--sky)); }
+.p-art.f { background: linear-gradient(180deg, var(--ink), var(--sky)); }
+.p-art .big { font-size: 1.6rem; line-height: 1.2; padding: 0 16px; }
+.p-art .fmt { position: absolute; top: 10px; left: 10px; font-family: var(--font-body); font-size: .75rem; padding: 2px 10px; border-radius: 999px; background: rgba(18,14,36,.72); color: var(--text); }
+.p-body { padding: 16px 18px 18px; display: grid; gap: 10px; align-content: start; grid-template-rows: auto 1fr auto; }
+.p-body h3 { font-size: 1.08rem; }
+.p-body p { font-size: .92rem; line-height: 1.6; opacity: .85; }
+.p-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.price { font-family: var(--font-display); font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.price.free { color: #2f6b3a; }
+.btn-buy { background: var(--ink); color: var(--text); padding: 8px 18px; font-size: .95rem; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; list-style: none; margin: 0; padding: 20px 0 0; border-top: 2px solid var(--ink); counter-reset: s; }
+.steps li { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; font-size: .95rem; line-height: 1.6; counter-increment: s; }
+.steps li::before { content: counter(s); font-family: var(--font-display); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--star); }
+.steps b { font-family: var(--font-display); font-weight: 500; display: block; }
+@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+
 /* Values */
 .values { background: var(--sand); color: var(--ink); }
 .values .wrap { padding-block: 0 72px; display: grid; gap: 28px; }
@@ -120,6 +147,7 @@ footer .wrap { padding-block: 24px; display: flex; justify-content: space-betwee
     <ul>
       <li><a href="#about">เกี่ยวกับช่อง</a></li>
       <li><a href="#episodes">ตอนทั้งหมด</a></li>
+      <li><a href="#shop">ร้านค้า</a></li>
       <li><a href="#subscribe">ติดตาม</a></li>
     </ul>
   </div>
@@ -189,6 +217,49 @@ footer .wrap { padding-block: 24px; display: flex; justify-content: space-betwee
           <div class="ep-body"><h3>เกราะป้องกันของผู้ศรัทธา</h3><p>ซูเราะฮ์อัลกะฮ์ฟี ดุอาอ์ และวิธีเตรียมตัวที่เริ่มได้ตั้งแต่วันนี้</p></div>
         </a>
       </div>
+    </div>
+  </section>
+
+  <section class="shop" id="shop">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">ร้านค้า</span>
+          <h2>ไฟล์ดิจิทัลจากช่อง</h2>
+        </div>
+        <span class="note">สินค้าและราคาเป็นตัวอย่าง · ทุกการซื้อช่วยสนับสนุนการทำตอนต่อไป</span>
+      </div>
+      <div class="shop-grid">
+        <article class="product">
+          <div class="p-art c"><span class="fmt">PDF · 12 หน้า</span><span class="big">สิบอายะฮ์แรก<br>อัลกะฮ์ฟี</span></div>
+          <div class="p-body"><h3>สมุดฝึกท่องจำ 10 อายะฮ์แรก</h3><p>ตัวบทอาหรับ คำอ่านไทย ความหมาย และตารางติดตามการท่องจำรายวัน พิมพ์ได้ขนาด A4</p><div class="p-foot"><span class="price">฿59</span><a class="btn btn-buy" href="https://payhip.com" target="_blank" rel="noopener">ซื้อเลย</a></div></div>
+        </article>
+        <article class="product">
+          <div class="p-art d"><span class="fmt">PDF · 20 หน้า</span><span class="big">ระบายสี<br>ก่อนตะวันลับฟ้า</span></div>
+          <div class="p-body"><h3>สมุดภาพระบายสีสำหรับเด็ก</h3><p>ภาพฉากและตัวละครจากซีรีส์ พร้อมข้อคิดสั้น ๆ ท้ายภาพ เหมาะกับเด็ก 4–10 ปี</p><div class="p-foot"><span class="price">฿79</span><a class="btn btn-buy" href="https://payhip.com" target="_blank" rel="noopener">ซื้อเลย</a></div></div>
+        </article>
+        <article class="product">
+          <div class="p-art b"><span class="fmt">PNG · 6 ภาพ</span><span class="big">วอลเปเปอร์<br>ยามสนธยา</span></div>
+          <div class="p-body"><h3>ชุดวอลเปเปอร์มือถือและคอม</h3><p>ภาพท้องฟ้าและเนินทรายจากฉากในซีรีส์ ความละเอียดสูง ทั้งแนวตั้งและแนวนอน</p><div class="p-foot"><span class="price free">ฟรี</span><a class="btn btn-buy" href="https://payhip.com" target="_blank" rel="noopener">ดาวน์โหลด</a></div></div>
+        </article>
+        <article class="product">
+          <div class="p-art a"><span class="fmt">PDF · 48 หน้า</span><span class="big">อีบุ๊ก<br>ซีซัน 1</span></div>
+          <div class="p-body"><h3>อีบุ๊กสรุปเนื้อหาซีซัน 1</h3><p>สรุปทุกตอนพร้อมภาพประกอบ และรายการหะดีษที่อ้างอิงในแต่ละตอน</p><div class="p-foot"><span class="price">฿149</span><a class="btn btn-buy" href="https://payhip.com" target="_blank" rel="noopener">ซื้อเลย</a></div></div>
+        </article>
+        <article class="product">
+          <div class="p-art e"><span class="fmt">PNG · 24 ชิ้น</span><span class="big">สติกเกอร์<br>ตัวละคร</span></div>
+          <div class="p-body"><h3>สติกเกอร์ดิจิทัล</h3><p>ใช้ใน GoodNotes หรือแอปจดโน้ต พื้นหลังโปร่งใส พร้อมคำทักทายภาษาไทย</p><div class="p-foot"><span class="price">฿39</span><a class="btn btn-buy" href="https://payhip.com" target="_blank" rel="noopener">ซื้อเลย</a></div></div>
+        </article>
+        <article class="product">
+          <div class="p-art f"><span class="fmt">ชุดรวม · ประหยัด 30%</span><span class="big">ชุดครอบครัว</span></div>
+          <div class="p-body"><h3>ชุดรวมทุกไฟล์</h3><p>สมุดท่องจำ สมุดระบายสี อีบุ๊ก และสติกเกอร์ ในการซื้อครั้งเดียว</p><div class="p-foot"><span class="price">฿229</span><a class="btn btn-buy" href="https://payhip.com" target="_blank" rel="noopener">ซื้อเลย</a></div></div>
+        </article>
+      </div>
+      <ol class="steps">
+        <li><span><b>เลือกไฟล์</b>กดปุ่มซื้อ ระบบจะพาไปหน้าชำระเงิน</span></li>
+        <li><span><b>ชำระเงิน</b>จ่ายด้วยบัตรหรือช่องทางที่ร้านรองรับ</span></li>
+        <li><span><b>รับไฟล์ทันที</b>ลิงก์ดาวน์โหลดส่งไปที่อีเมลของคุณ</span></li>
+      </ol>
     </div>
   </section>
 
