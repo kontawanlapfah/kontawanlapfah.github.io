@@ -110,10 +110,17 @@ nav ul a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 
 
 .shop { background: linear-gradient(180deg, var(--t1815), var(--t1830)); }
 .shop-top { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+.shop-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.shop-tab { font: 500 .95rem/1 var(--font-display); padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(251,241,222,.35); background: transparent; color: var(--paper); cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+.shop-tab:hover { background: rgba(251,241,222,.12); }
+.shop-tab[aria-pressed="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.shop-tab .n { font-family: var(--font-body); font-size: .8rem; opacity: .7; font-variant-numeric: tabular-nums; }
+.cards[data-show="kids"] .card:not([data-cat="kids"]), .cards[data-show="parents"] .card:not([data-cat="parents"]), .cards[data-show="teens"] .card:not([data-cat="teens"]), .cards[data-show="fest"] .card:not([data-cat="fest"]) { display: none; }
+.cat-chip { justify-self: start; font-size: .75rem; line-height: 1.5; padding: 1px 9px; border-radius: 999px; background: rgba(26,20,48,.08); color: var(--ink-soft); }
 .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .card { position: relative; background: var(--paper); color: var(--ink); border-radius: 18px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
 .card-art { aspect-ratio: 4 / 3; max-width: 100%; position: relative; display: grid; place-items: center; font-family: var(--font-display); font-size: 1.25rem; text-align: center; line-height: 1.25; padding: 0 14px; }
-.card-body { padding: 14px 16px 16px; display: grid; gap: 8px; grid-template-rows: auto 1fr auto; }
+.card-body { padding: 14px 16px 16px; display: grid; gap: 8px; grid-template-rows: auto auto 1fr auto; }
 .card-body h3 { font-size: 1rem; }
 .card-body p { font-size: .88rem; line-height: 1.55; color: var(--ink-soft); }
 .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -206,11 +213,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
 {"title":"สตอรี่บอร์ด","desc":"ร่างภาพทีละฉาก กำหนดมุมกล้องและจังหวะของเรื่อง"},
 {"title":"วาดและขยับภาพ","desc":"วาดตัวละครกับฉาก แล้วทำแอนิเมชัน 2D ทีละช็อต"},
 {"title":"เสียงและตัดต่อ","desc":"ลงเสียงพากย์ ดนตรี และเอฟเฟกต์ ก่อนตัดต่อเป็นตอนเต็ม"}]},
-"shop":{"time":"18:15","label":"สนธยา","heading":"ร้านค้า","intro":"ไฟล์ดิจิทัลจากโลกของช่อง ดาวน์โหลดได้ทันทีหลังชำระเงิน รายได้นำไปทำตอนต่อไป","allText":"ดูสินค้าทั้งหมด","allUrl":"https://payhip.com","note":"สินค้าและราคาเป็นตัวอย่าง","items":[
-{"art":4,"fmt":"PNG · 6 ภาพ","label":"วอลเปเปอร์\nยามสนธยา","title":"ชุดวอลเปเปอร์","desc":"ภาพฉากจากช่อง สำหรับมือถือและคอมพิวเตอร์","price":"ฟรี","btn":"ดาวน์โหลด","url":"https://payhip.com"},
-{"art":7,"fmt":"PDF · 20 หน้า","label":"สมุด\nระบายสี","title":"สมุดภาพระบายสี","desc":"ตัวละครและฉากจากนิทาน สำหรับเด็ก 4–10 ปี","price":"฿79","btn":"ซื้อ","url":"https://payhip.com"},
-{"art":5,"fmt":"PDF · 12 หน้า","label":"สมุดฝึก\nท่องจำ","title":"สมุดฝึกท่องจำอัลกะฮ์ฟี","desc":"10 อายะฮ์แรก พร้อมคำอ่าน ความหมาย และตารางติดตาม","price":"฿59","btn":"ซื้อ","url":"https://payhip.com"},
-{"art":6,"fmt":"PNG · 24 ชิ้น","label":"สติกเกอร์\nตัวละคร","title":"สติกเกอร์ดิจิทัล","desc":"ใช้ในแอปจดโน้ต พื้นหลังโปร่งใส มีคำทักทายภาษาไทย","price":"฿39","btn":"ซื้อ","url":"https://payhip.com"}]},
+"shop":{"time": "18:15", "label": "สนธยา", "heading": "ร้านค้า", "intro": "ไฟล์ดิจิทัลจากโลกของช่อง แบ่งตามคนที่ใช้ ดาวน์โหลดได้ทันทีหลังชำระเงิน รายได้นำไปทำตอนต่อไป", "allText": "ดูสินค้าทั้งหมด", "allUrl": "https://payhip.com", "note": "สินค้าและราคาเป็นตัวอย่าง", "items": [{"cat": "kids", "art": 7, "fmt": "PDF · 20 หน้า", "label": "สมุด\nระบายสี", "title": "สมุดภาพระบายสี", "desc": "ตัวละครและฉากจากนิทานของช่อง สำหรับเด็ก 4–10 ปี", "price": "฿79", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "kids", "art": 1, "fmt": "PDF · 40 ใบ", "label": "การ์ดคำศัพท์\nอาหรับ–ไทย", "title": "การ์ดคำศัพท์อาหรับ–ไทย", "desc": "คำพื้นฐานพร้อมภาพประกอบ ตัดเป็นการ์ดเล่นกับลูกได้", "price": "฿99", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "kids", "art": 3, "fmt": "PDF · 15 หน้า", "label": "ใบกิจกรรม\nแสนสนุก", "title": "ใบกิจกรรมเด็ก", "desc": "จับคู่ ลากเส้น หาจุดต่าง จากฉากในคลิป", "price": "฿49", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "parents", "art": 5, "fmt": "PDF · A4", "label": "ตาราง\nทำความดี", "title": "ตารางทำความดีรายสัปดาห์", "desc": "ติดตู้เย็นได้ ชวนลูกสะสมดาวจากความดีทุกวัน", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://payhip.com"}, {"cat": "parents", "art": 2, "fmt": "PDF · 24 หน้า", "label": "นิทาน\nก่อนนอน", "title": "นิทานก่อนนอนแบบอีบุ๊ก", "desc": "เรื่องจากคลิปเรียบเรียงเป็นหนังสือภาพ อ่านให้ลูกฟังก่อนนอน", "price": "฿79", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "parents", "art": 0, "fmt": "PDF · 12 หน้า", "label": "สอนลูก\nละหมาด", "title": "ชุดสอนลูกละหมาด", "desc": "ขั้นตอนละหมาดทีละท่าพร้อมภาพ เข้าใจง่ายสำหรับเด็ก", "price": "฿99", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "teens", "art": 4, "fmt": "PNG · 6 ภาพ", "label": "วอลเปเปอร์\nอายะฮ์", "title": "วอลเปเปอร์อายะฮ์โทนสนธยา", "desc": "ภาพฉากจากช่องคู่กับอายะฮ์สั้น ๆ สำหรับหน้าจอล็อก", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://payhip.com"}, {"cat": "teens", "art": 6, "fmt": "PDF · GoodNotes", "label": "แพลนเนอร์\nดิจิทัล", "title": "แพลนเนอร์ดิจิทัลสายอิสลาม", "desc": "ตารางละหมาด ตารางอ่านอัลกุรอาน และติดตามนิสัยที่อยากสร้าง", "price": "฿149", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "teens", "art": 5, "fmt": "PDF · 12 หน้า", "label": "สมุดฝึก\nท่องจำ", "title": "สมุดฝึกท่องจำอัลกะฮ์ฟี", "desc": "10 อายะฮ์แรก พร้อมคำอ่าน ความหมาย และตารางติดตาม", "price": "฿79", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "fest", "art": 2, "fmt": "PDF · 30 วัน", "label": "ชุด\nรอมฎอน", "title": "ชุดรอมฎอนครอบครัว", "desc": "ปฏิทินกิจกรรมเด็ก แพลนเนอร์วัยรุ่น และตารางครอบครัวในชุดเดียว", "price": "฿199", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "fest", "art": 1, "fmt": "PNG · 8 แบบ", "label": "การ์ด\nวันอีด", "title": "การ์ดอวยพรวันอีด", "desc": "ไฟล์ภาพพร้อมส่งทาง LINE ถึงคนที่คุณรัก", "price": "฿39", "btn": "ซื้อ", "url": "https://payhip.com"}, {"cat": "fest", "art": 7, "fmt": "PDF · พิมพ์เอง", "label": "ตกแต่ง\nวันอีด", "title": "ชุดตกแต่งบ้านวันอีด", "desc": "ธงราวและป้ายตกแต่ง พิมพ์และตัดเองที่บ้านได้", "price": "฿69", "btn": "ซื้อ", "url": "https://payhip.com"}]},
 "together":{"time":"18:30","label":"ฟ้าค่ำ","heading":"ไปด้วยกัน","ways":[
 {"title":"กดติดตามและกดกระดิ่ง","desc":"ฟรี และช่วยให้ช่องเติบโตได้มากที่สุด","url":"https://www.youtube.com/@Kontawanlapfah?sub_confirmation=1"},
 {"title":"สมัครสมาชิกช่อง","desc":"ได้ดูตอนใหม่ก่อนใคร และเห็นภาพเบื้องหลังที่ไม่ได้ลงคลิป","url":"https://www.youtube.com/@Kontawanlapfah/join"},
@@ -240,10 +243,18 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
     { bg: 'conic-gradient(from 200deg at 50% 110%,#4d3e66,#8b5a6c,#c9775d,#4d3e66)', fg: '#fbf1de' },
     { bg: 'linear-gradient(160deg,#e99d66,#f1c483)', fg: '#1a1430' }
   ];
+  var CATS = [
+    { k: 'kids', name: 'เด็ก', icon: '🧒' },
+    { k: 'parents', name: 'ผู้ปกครอง', icon: '👨‍👩‍👧' },
+    { k: 'teens', name: 'วัยรุ่นและผู้ใหญ่', icon: '🧑‍🎓' },
+    { k: 'fest', name: 'เทศกาล', icon: '🌙' }
+  ];
+  var shopShow = 'all';
+  function catOf(k) { for (var i = 0; i < CATS.length; i++) if (CATS[i].k === k) return CATS[i]; return CATS[0]; }
   var NEW = {
     'series.items': { art: 0, icon: '✦', meta: 'ซีรีส์ใหม่', title: 'ชื่อซีรีส์', desc: 'คำอธิบายสั้น ๆ ของซีรีส์นี้', url: 'https://www.youtube.com/@Kontawanlapfah' },
     'craft.steps': { title: 'ขั้นตอนใหม่', desc: 'อธิบายสั้น ๆ' },
-    'shop.items': { art: 1, fmt: 'PDF', label: 'สินค้า\nใหม่', title: 'ชื่อสินค้า', desc: 'คำอธิบายสินค้า', price: '฿0', btn: 'ซื้อ', url: 'https://payhip.com' },
+    'shop.items': { cat: 'kids', art: 1, fmt: 'PDF', label: 'สินค้า\nใหม่', title: 'ชื่อสินค้า', desc: 'คำอธิบายสินค้า', price: '฿0', btn: 'ซื้อ', url: 'https://payhip.com' },
     'together.ways': { title: 'ช่องทางใหม่', desc: 'คำอธิบาย', url: 'https://' },
     'together.faq': { q: 'คำถามใหม่', a: 'คำตอบ' },
     'footer.socials': { name: 'ชื่อโซเชียล', url: 'https://' }
@@ -313,12 +324,22 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
     h += '</ol>' + add('craft.steps', 'เพิ่มขั้นตอน') + '</div></section>';
 
     h += '<section class="shop on-dark" id="shop"><div class="wrap"><div class="shop-top"><div class="head">' + clock('shop') + T('shop.heading', 'h2') + T('shop.intro', 'p') + '</div>' +
-      '<span><a class="btn btn-line" ' + H('shop.allUrl') + '>' + T('shop.allText', 'span') + '</a>' + (editing ? '<span class="ed-inline">' + link('shop.allUrl') + '</span>' : '') + '</span></div><div class="cards">';
+      '<span><a class="btn btn-line" ' + H('shop.allUrl') + '>' + T('shop.allText', 'span') + '</a>' + (editing ? '<span class="ed-inline">' + link('shop.allUrl') + '</span>' : '') + '</span></div>';
+    var counts = { all: s.shop.items.length };
+    s.shop.items.forEach(function (it) { var k = catOf(it.cat).k; counts[k] = (counts[k] || 0) + 1; });
+    if (shopShow !== 'all' && !counts[shopShow] && !editing) shopShow = 'all';
+    h += '<div class="shop-tabs" role="group" aria-label="หมวดสินค้า"><button type="button" class="shop-tab" data-cat="all" aria-pressed="' + (shopShow === 'all') + '">ทั้งหมด <span class="n">' + counts.all + '</span></button>';
+    CATS.forEach(function (c) {
+      if (!counts[c.k] && !editing) return;
+      h += '<button type="button" class="shop-tab" data-cat="' + c.k + '" aria-pressed="' + (shopShow === c.k) + '">' + c.icon + ' ' + c.name + ' <span class="n">' + (counts[c.k] || 0) + '</span></button>';
+    });
+    h += '</div><div class="cards" data-show="' + shopShow + '">';
     s.shop.items.forEach(function (it, i) {
       var p = 'shop.items.' + i, free = /ฟรี|free/i.test(it.price);
-      h += '<article class="card">' + ctl('shop.items', i, imgBtns(p + '.img') + artBtn(p) + link(p + '.url')) +
+      var cat = catOf(it.cat);
+      h += '<article class="card" data-cat="' + cat.k + '">' + ctl('shop.items', i, imgBtns(p + '.img') + '<button type="button" class="ed-btn" data-act="cat" data-p="' + p + '">🏷 หมวด</button>' + artBtn(p) + link(p + '.url')) +
         '<div class="card-art' + (it.img ? ' has-img' : '') + '" style="' + artStyle(it.art) + '">' + cover(it.img) + T(p + '.fmt', 'span', 'tag') + T(p + '.label', 'span', 'art-text') + '</div>' +
-        '<div class="card-body">' + T(p + '.title', 'h3') + T(p + '.desc', 'p') +
+        '<div class="card-body"><span class="cat-chip">' + cat.icon + ' ' + cat.name + '</span>' + T(p + '.title', 'h3') + T(p + '.desc', 'p') +
         '<div class="card-foot">' + T(p + '.price', 'span', 'price' + (free ? ' free' : '')) + '<a class="buy" ' + H(p + '.url') + '>' + T(p + '.btn', 'span') + '</a></div></div></article>';
     });
     h += '</div>' + add('shop.items', 'เพิ่มสินค้า') + T('shop.note', 'span', 'note') + '</div></section>';
@@ -408,6 +429,14 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
       try { navigator.clipboard.writeText(code.textContent).then(function () { btn.textContent = 'คัดลอกแล้ว'; setTimeout(function () { btn.textContent = 'คัดลอก'; }, 1600); }, sel); } catch (err) { sel(); }
       return;
     }
+    var tab = t.closest('.shop-tab');
+    if (tab) {
+      e.preventDefault();
+      shopShow = tab.dataset.cat;
+      root.querySelector('.cards').setAttribute('data-show', shopShow);
+      root.querySelectorAll('.shop-tab').forEach(function (x) { x.setAttribute('aria-pressed', String(x === tab)); });
+      return;
+    }
     if (!editing) return;
     var b = t.closest('[data-act],[data-add],[data-link],[data-img],[data-imgdel]');
     if (b) {
@@ -420,6 +449,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
       if (b.dataset.act === 'del') list.splice(idx, 1);
       if (b.dataset.act === 'up') list.splice(idx - 1, 0, list.splice(idx, 1)[0]);
       if (b.dataset.act === 'down') list.splice(idx + 1, 0, list.splice(idx, 1)[0]);
+      if (b.dataset.act === 'cat') { var ci = CATS.indexOf(catOf(list[idx].cat)); list[idx].cat = CATS[(ci + 1) % CATS.length].k; }
       if (b.dataset.act === 'art') list[idx].art = ((list[idx].art || 0) + 1) % ART.length;
       changed(true); return;
     }
@@ -451,7 +481,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
     msg.innerHTML = text || (dirty ? '<b>มีการแก้ไขที่ยังไม่ได้บันทึก</b> · กดบันทึกเพื่อให้ทุกคนเห็น' : '<b>โหมดแก้ไข</b> · คลิกข้อความที่มีเส้นประเพื่อแก้ ใช้ปุ่มบนการ์ดเพื่อเพิ่ม ลบ หรือเรียงลำดับ');
     saveBtn.disabled = !dirty || busy;
   }
-  function enter() { editing = true; toggle.hidden = true; bar.hidden = false; paint(); status(); }
+  function enter() { editing = true; shopShow = 'all'; toggle.hidden = true; bar.hidden = false; paint(); status(); }
   function leave() { editing = false; dirty = false; state = clone(saved); toggle.hidden = false; bar.hidden = true; paint(); }
   function buildUI() {
     toggle = document.createElement('button');
@@ -513,7 +543,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
     inp.click();
   }
   function buildDoc() {
-    var was = editing; editing = false; var body = render(); editing = was;
+    var was = editing, show = shopShow; editing = false; shopShow = 'all'; var body = render(); editing = was; shopShow = show;
     var css = document.getElementById('site-style').textContent;
     var json = JSON.stringify(state).replace(/</g, '\\u003c');
     var app = document.getElementById('app').textContent;
