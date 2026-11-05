@@ -1,0 +1,56 @@
+"""Build docs/index.html (a complete page for GitHub Pages) from site/index.html.
+
+Usage: python3 site/build_pages.py [source.html]
+The source defaults to site/index.html; pass a page downloaded from the
+claude.ai artifact to publish the latest edits made in its edit mode.
+"""
+import os
+import re
+import shutil
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "site", "index.html")
+OUT_DIR = os.path.join(ROOT, "docs")
+SITE_URL = "https://umaiworks-glitch.github.io/DAJJAL-ANIMATION/"
+
+src = open(SRC, encoding="utf8").read()
+# A page saved from the artifact carries the viewer skeleton; keep only the body content.
+if src.lstrip().lower().startswith("<!doctype"):
+    src = src[src.index("<body>") + len("<body>"):src.rindex("</body>")]
+
+start = src.index('<style id="site-style">')
+body = src[start:]
+
+head = f"""<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ก่อนตะวันลับฟ้า</title>
+<meta name="description" content="ก่อนตะวันลับฟ้า — ช่องแอนิเมชัน 2D เล่าเรื่องดี ๆ ที่ชวนคิด ก่อนวันจะหมดลง">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ก่อนตะวันลับฟ้า">
+<meta property="og:description" content="ช่องแอนิเมชัน 2D เล่าเรื่องดี ๆ ที่ชวนคิด ก่อนวันจะหมดลง">
+<meta property="og:image" content="{SITE_URL}assets/logo.jpg">
+<meta property="og:url" content="{SITE_URL}">
+<meta name="theme-color" content="#f7e2b8">
+<link rel="icon" href="assets/logo.jpg">
+<link rel="apple-touch-icon" href="assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600&family=Anuphan:wght@300;400;500;600&display=swap">
+<style>:root{{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
+</head>
+<body>
+"""
+
+os.makedirs(os.path.join(OUT_DIR, "assets"), exist_ok=True)
+with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf8") as f:
+    f.write(head + body + "\n</body>\n</html>\n")
+shutil.copy(os.path.join(ROOT, "site", "assets", "logo.jpg"), os.path.join(OUT_DIR, "assets", "logo.jpg"))
+open(os.path.join(OUT_DIR, ".nojekyll"), "w").close()
+
+if re.search(r'"(img|logoImg)":"[0-9a-f]{32}"', body):
+    print("warning: page uses images uploaded on claude.ai (/_blob/...); they will not show on GitHub Pages")
+print("wrote", os.path.join(OUT_DIR, "index.html"))
