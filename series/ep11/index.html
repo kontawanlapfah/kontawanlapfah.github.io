@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>EP11 ประตูเมืองลุด</title>
+<link rel="stylesheet" href="../shared/kit.css">
+</head>
+<body>
+<div id="stage"></div>
+<script src="../shared/kit.js"></script>
+<script src="audio/warp.js" onerror="void 0"></script>
+<script>
+// Narration: verbatim from the series document, EP11 (Hook / script / cliffhanger).
+// One caption per line: align.py reads this list.
+// The Prophet Isa (peace be upon him) is never shown in any form. The Dajjal is not shown; his end is told only in the
+// narration and shown as a symbol (salt dissolving in water), with no violence (document, visual guide 3).
+// The gate at the opening has no people in it (visual guide 1).
+const CAPS = [
+  [0, 5.6, '', 'ชายที่ทำให้ฟ้าฝนเชื่อฟัง<br>ที่ทำให้ทองคำบินตามได้…<br>จบชีวิตลงที่ประตูเมืองเล็ก ๆ แห่งหนึ่ง'],
+  [9.6, 13, '', 'ท่านนบีอีซาตามทันดัจญาล'],
+  [13, 18, '', 'ข่าวมาถึงดามัสกัสตอนบ่าย<br>ผู้ส่งข่าวยืนบนกำแพงเมืองแล้วตะโกนจนเสียงแหบ'],
+  [18, 22, 'q', '“ท่านตามทันเขาที่ประตูเมืองลุด!<br>ดัจญาลตายแล้ว!”'],
+  [22, 28, '', 'เขาเล่าว่า ทันทีที่ดัจญาลเห็นท่านนบีอีซา<br>ร่างของเขาเริ่มละลาย<br>เหมือนเกลือที่ละลายในน้ำ'],
+  [28, 33, '', 'และท่านได้ฆ่าเขาด้วยมือของท่าน<br>แล้วแสดงเลือดของเขาบนหอกให้ผู้คนเห็น'],
+  [33, 37.5, '', 'ทั้งลานเงียบไปชั่วขณะ…<br>แล้วเสียงตักบีรก็ดังสนั่นไปทั้งเมือง'],
+  [37.5, 41, '', 'คนแปลกหน้ากอดกัน<br>บางคนล้มลงสุญูดกลางถนน'],
+  [41, 45.5, '', 'ฮาริสทรุดลงนั่งร้องไห้เหมือนเด็ก<br>ผมนั่งลงข้าง ๆ เขาโดยไม่พูดอะไร'],
+  [45.5, 54, '', 'ผมก้มลงมองนาฬิกาข้อมือ<br>เข็มของมันเดินตรงกับดวงอาทิตย์ตามปกติ<br>นาฬิกาที่เคยเป็นนาฬิกาของทั้งซอย<br>ตอนนี้กลับมาเป็นแค่นาฬิกาธรรมดาอีกครั้ง'],
+  [54, 57.5, 'q', '<span class="n">ฮาวาถามผมว่า</span><br>“บาบา… คนตาเดียวไม่มาแล้วใช่ไหม?”'],
+  [57.5, 62, '', 'ผมพยักหน้า และเป็นครั้งแรกในรอบหลายเดือน<br>ที่ผมยิ้มได้จริง ๆ'],
+  [62, 65.5, '', 'ตกเย็น ผู้คนในค่ายนอกเมืองที่เราพักอยู่<br>ต่างลุกขึ้นยืนพร้อมกัน'],
+  [65.5, 72, '', 'มีข่าวกระซิบต่อกันมาว่า<br>ท่านนบีอีซากำลังเดินทางมาหากลุ่มคน<br>ที่อัลลอฮ์ทรงคุ้มครองไว้จากดัจญาล…<br>และท่านกำลังมาทางนี้'],
+  [72, 75.5, 'big', 'ท่านจะมาพูดอะไรกับพวกเรา?'],
+  [75.5, 80, 'big', 'และนี่คือจุดจบของการทดสอบ<br>จริง ๆ หรือยัง?'],
+];
+const TAGS = [
+  [18, 22, 'เศาะฮีห์มุสลิม 2937'],
+  [22, 33, 'เศาะฮีห์มุสลิม 2897'],
+  [65.5, 72, 'เศาะฮีห์มุสลิม 2937'],
+];
+
+const SK = '#c99a7b', HR = '#2a1a12';
+{ const base = KIT.hawa; KIT.hawa = p => base(p).replace('<path d="M-50 -272 C-64 -210 -62 -165 -50 -140 L50 -140 C62 -165 64 -210 50 -272Z"',
+  '<path d="M0 -332 C-44 -332 -62 -300 -60 -262 C-64 -210 -62 -165 -50 -140 L50 -140 C62 -165 64 -210 60 -262 C62 -300 44 -332 0 -332Z"'); }
+{ const baseA = KIT.adam; KIT.adam = p => baseA(p).replace(/(<g id="\w+Arm[LR]"><rect [^>]*?)fill="#cdbb9a"/g, '$1fill="#bca986"'); }
+const withHands = svg => svg.replace(/(<g id="\w+Arm[LR]"><rect x="(-?\d+)" y="-228" width="18" height="98" rx="9" fill="[^"]+"\/>)/g,
+  (m, a, x) => `${a}<circle cx="${+x + 9}" cy="-130" r="13" fill="${SK}"/>`);
+const shadow = (x, y, rx, o = .25) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${rx * .16}" fill="#000" opacity="${o}"/>`;
+const HSHIRT = '#6e727c', HPANTS = '#4a4038', HSKIN = '#b98e72';
+// Harith sitting huddled (as in EP09), in his worn clothes
+const huddle = (p, c = HSHIRT) => `<g id="${p}">
+  <path d="M-80 0 C-92 -110 -60 -230 0 -240 C60 -230 92 -110 80 0Z" fill="${c}"/>
+  <path d="M-96 0 C-104 -60 -70 -130 -20 -140 L40 -140 C80 -120 100 -60 96 0Z" fill="${HPANTS}"/>
+  <path d="M-70 -170 C-90 -120 -70 -90 -20 -96 M70 -170 C90 -120 70 -90 20 -96" stroke="${c}" stroke-width="26" fill="none" stroke-linecap="round"/>
+  <circle cx="-14" cy="-96" r="14" fill="${HSKIN}"/><circle cx="14" cy="-96" r="14" fill="${HSKIN}"/>
+  <g id="${p}Head"><ellipse cx="0" cy="-232" rx="44" ry="48" fill="${HR}"/></g></g>`;
+// a person from behind, standing (origin at the feet)
+const backPerson = (x, y, s, c, cls = '') => `<g class="${cls}" transform="translate(${x} ${y}) scale(${s})"><ellipse rx="50" ry="9" fill="#000" opacity=".2"/>
+  <path d="M-42 0 C-48 -100 -42 -170 -30 -196 L30 -196 C42 -170 48 -100 42 0Z" fill="${c}"/><rect x="-12" y="-214" width="24" height="22" fill="${SK}"/><circle cy="-238" r="30" fill="#2a2622"/></g>`;
+// someone in sujud, side view facing left (origin at the knee)
+const sujud = (c, s, head = HR) => `<g transform="scale(${s})">
+  <path d="M0 -12 L110 -12" stroke="${c}" stroke-width="30" stroke-linecap="round"/>
+  <path d="M8 -20 L64 -112" stroke="${c}" stroke-width="54" stroke-linecap="round"/>
+  <path d="M70 -122 C30 -130 -30 -110 -66 -72" stroke="${c}" stroke-width="72" fill="none" stroke-linecap="round"/>
+  <path d="M-62 -66 C-90 -40 -120 -14 -170 -10" stroke="${c}" stroke-width="24" fill="none" stroke-linecap="round"/>
+  <circle cx="-112" cy="-34" r="34" fill="${head}"/></g>`;
+// two strangers embracing, from the front (origin between them at the feet)
+const embrace = (c1, c2, s) => `<g transform="scale(${s})"><ellipse rx="90" ry="12" fill="#000" opacity=".2"/>
+  <path d="M-100 0 C-104 -110 -96 -180 -80 -200 L-10 -200 C-4 -180 0 -110 -4 0Z" fill="${c1}"/><circle cx="-46" cy="-232" r="30" fill="${SK}"/><path d="M-76 -236 C-76 -270 -16 -270 -16 -236 C-28 -254 -64 -254 -76 -236Z" fill="${HR}"/>
+  <path d="M4 0 C0 -110 6 -180 14 -200 L84 -200 C98 -180 104 -110 100 0Z" fill="${c2}"/><circle cx="48" cy="-232" r="30" fill="${SK}"/><path d="M18 -236 C18 -270 78 -270 78 -236 C66 -254 30 -254 18 -236Z" fill="${HR}"/>
+  <path d="M-30 -186 C0 -170 40 -170 70 -186" stroke="${c1}" stroke-width="24" fill="none" stroke-linecap="round"/><circle cx="72" cy="-184" r="11" fill="${SK}"/>
+  <path d="M40 -170 C10 -156 -30 -156 -60 -170" stroke="${c2}" stroke-width="24" fill="none" stroke-linecap="round"/><circle cx="-62" cy="-168" r="11" fill="${SK}"/></g>`;
+const gateArt = `<g fill="#8a6e54"><rect x="200" y="420" width="680" height="640"/><rect x="180" y="400" width="720" height="40"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<rect x="${200 + i * 88}" y="370" width="50" height="40"/>`).join('')}
+  <rect x="120" y="520" width="120" height="540"/><rect x="840" y="520" width="120" height="540"/></g>
+  <path d="M400 1060 v-380 a140 140 0 0 1 280 0 v380Z" fill="#f2d6a2"/>
+  ${[0, 1, 2].map(k => `<rect x="${260 + k * 0}" y="${560 + k * 120}" width="80" height="12" fill="#7a604a" opacity=".5"/>`).join('')}`;
+
+function build() {
+  // ---- hook: an ancient city gate in the dusty afternoon sun; no one in it ----
+  seed = 3;
+  KIT.S('sGate', `<defs><linearGradient id="af" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8b878"/><stop offset="1" stop-color="#f3d6a0"/></linearGradient>
+      <radialGradient id="sunG" cx="78%" cy="20%"><stop offset="0" stop-color="#fff2c8" stop-opacity=".9"/><stop offset="1" stop-color="#fff2c8" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="url(#af)"/><rect width="1080" height="1920" fill="url(#sunG)"/>
+    ${gateArt}<rect y="1060" width="1080" height="860" fill="#c8a272"/>
+    <path d="M400 1060 L680 1060 L760 1200 L320 1200Z" fill="#d8b688" opacity=".7"/>
+    ${Array.from({ length: 40 }, () => `<circle class="mote" data-x="${rnd() * 1080}" data-y="${300 + rnd() * 800}" data-o="${rnd() * 6.28}" r="${2 + rnd() * 4}" fill="#fff4d8" opacity="${.3 + rnd() * .4}"/>`).join('')}`);
+
+  // ---- the messenger on the city wall, a silhouette against the sky, arm up, shouting ----
+  seed = 11;
+  let below = '';
+  for (let i = 0; i < 16; i++) below += backPerson(30 + i * 68 + (rnd() - .5) * 20, 1240 + (i % 3) * 18, .55 + rnd() * .1, ['#4a4450', '#5a4a3e', '#3d4f57', '#6a6a70'][i % 4]);
+  KIT.S('sWall', `<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a868"/><stop offset="1" stop-color="#f6dcb0"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#sky2)"/>
+    <rect y="760" width="1080" height="500" fill="#8a6e54"/>${Array.from({ length: 12 }, (_, i) => `<rect x="${i * 95}" y="720" width="56" height="44" fill="#8a6e54"/>`).join('')}
+    <rect y="1240" width="1080" height="680" fill="#b8956a"/>
+    <g id="msg" transform="translate(560 720)"><path d="M-36 0 L-30 -200 C-32 -250 -20 -280 0 -286 C20 -280 32 -250 30 -200 L36 0Z" fill="#2a2420"/>
+      <circle cy="-318" r="32" fill="#2a2420"/><g id="msgArm"><path d="M20 -250 C60 -290 80 -340 90 -380" stroke="#2a2420" stroke-width="24" fill="none" stroke-linecap="round"/></g>
+      <path d="M-20 -250 C-40 -220 -44 -180 -40 -150" stroke="#2a2420" stroke-width="24" fill="none" stroke-linecap="round"/></g>
+    ${[0, 1, 2].map(k => `<path id="shout${k}" d="M610 410 a50 50 0 0 1 0 70" stroke="#2a2420" stroke-width="5" fill="none" opacity="0"/>`).join('')}
+    ${below}`);
+
+  // ---- a symbol only: salt dissolving in a glass of water ----
+  seed = 21;
+  KIT.S('sSalt', `<defs><linearGradient id="wt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8eef8" stop-opacity=".7"/><stop offset="1" stop-color="#a8d4ea" stop-opacity=".9"/></linearGradient>
+      <radialGradient id="sbg" cx="50%" cy="40%"><stop offset="0" stop-color="#3a4250"/><stop offset="1" stop-color="#14161c"/></radialGradient>
+      <clipPath id="glassIn"><path d="M370 520 L710 520 L680 1020 L400 1020Z"/></clipPath></defs>
+    <rect width="1080" height="1920" fill="url(#sbg)"/>
+    <path d="M370 520 L710 520 L680 1020 L400 1020Z" fill="none" stroke="#e8f2f8" stroke-width="8" opacity=".8"/>
+    <g clip-path="url(#glassIn)"><rect x="360" y="600" width="360" height="430" fill="url(#wt)"/>
+      <path id="surf" fill="#e8f6fc" opacity=".6"/>
+      <g id="salt" transform="translate(540 760)"><rect x="-70" y="-70" width="140" height="140" rx="10" fill="#f6f6f2" stroke="#d8d8d0" stroke-width="4"/>
+        <path d="M-70 -20 L70 -20 M-20 -70 L-20 70 M30 -70 L30 70" stroke="#e4e4dc" stroke-width="3"/></g>
+      ${Array.from({ length: 40 }, () => `<circle class="grain" data-a="${rnd() * 6.28}" data-r="${30 + rnd() * 140}" data-s="${.4 + rnd()}" r="${3 + rnd() * 5}" fill="#ffffff" opacity="0"/>`).join('')}</g>
+    <path d="M384 1020 L696 1020" stroke="#e8f2f8" stroke-width="10" opacity=".8"/>`);
+
+  // ---- the square: a hush, then takbir; strangers embrace; some fall into sujud in the street ----
+  seed = 33;
+  let crowd = '';
+  for (let r = 0; r < 3; r++) for (let i = 0; i < 9 - r; i++) crowd += backPerson(20 + (i + .5) * 1040 / (9 - r) + (rnd() - .5) * 30, 820 + r * 90, .55 + r * .16, ['#4a4450', '#5a4a3e', '#3d4f57', '#6a6a70', '#7a6a5a'][(i + r) % 5], 'cr');
+  KIT.S('sSquare', `<defs><linearGradient id="sq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0c890"/><stop offset="1" stop-color="#e8c898"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#sq)"/>
+    <g fill="#c8a478">${[[0, 380, 260, 380], [240, 340, 220, 420], [760, 360, 320, 400]].map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`).join('')}</g>
+    <rect y="760" width="1080" height="1160" fill="#c8a678"/>
+    <g id="crowdG">${crowd}</g>
+    <g id="joy" opacity="0">
+      <g transform="translate(260 1080)">${embrace('#4a4450', '#6a6a70', .95)}</g>
+      <g transform="translate(640 1090)">${shadow(0, 0, 150, .3)}${sujud('#5a4a3e', .9)}</g>
+      <g transform="translate(900 1080)">${shadow(0, 0, 120, .3)}${sujud('#3d4f57', .75)}</g></g>`);
+
+  // ---- Harith sinks down crying; Adam sits beside him without a word ----
+  KIT.S('sSit', `<defs><linearGradient id="st" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0c890"/><stop offset="1" stop-color="#d8b07c"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#st)"/><rect x="0" y="380" width="1080" height="640" fill="#b89470"/>
+    <rect y="1020" width="1080" height="900" fill="#a8845e"/>
+    ${shadow(380, 1060, 150, .3)}${shadow(680, 1060, 130, .3)}
+    <g transform="translate(380 1060) scale(1.15)">${KIT.adamBack('sa')}</g>
+    <g id="sitH" transform="translate(690 1060) scale(1.25)">${huddle('sh')}</g>`);
+
+  // ---- close-up: the wristwatch keeps ordinary time with the sun ----
+  KIT.S('sWatch', `<defs><linearGradient id="wsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ab4e0"/><stop offset="1" stop-color="#f6dcb0"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#wsky)"/>
+    <circle id="wsun" r="60" fill="#ffd27a"/>
+    <path d="M-20 1100 L1100 1100 L1100 1920 L-20 1920Z" fill="#a8845e"/>
+    <path d="M-80 700 C200 660 500 640 860 640 C900 640 920 700 900 760 C500 780 200 800 -80 840Z" fill="#bca986"/><ellipse cx="930" cy="700" rx="70" ry="60" fill="${SK}"/>
+    <rect x="370" y="560" width="340" height="260" rx="20" fill="#4a3a30"/>
+    ${KIT.watch('wt', 540, 690, 150)}`);
+
+  // ---- Hawa asks; Adam (kneeling) nods ----
+  KIT.S('sAsk', `<defs><linearGradient id="ak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0c890"/><stop offset="1" stop-color="#d8b07c"/></linearGradient>
+      <clipPath id="waistK"><rect width="1080" height="1090"/></clipPath></defs>
+    <rect width="1080" height="1920" fill="url(#ak)"/><rect y="1000" width="1080" height="920" fill="#a8845e"/>
+    <g clip-path="url(#waistK)"><g id="kA" transform="translate(420 1420) scale(2.1)">${KIT.adamKneel('ka')}</g></g>
+    <g transform="translate(790 1420) scale(2.1)">${withHands(KIT.hawa('kh'))}</g>`);
+
+  // ---- close-up: for the first time in months, he truly smiles ----
+  KIT.S('sSmile', `<defs><radialGradient id="sg" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#f6dcb0"/><stop offset="1" stop-color="#c49a6a"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="url(#sg)"/>
+    <g transform="translate(540 700)">
+      <rect x="-60" y="300" width="120" height="200" fill="${SK}"/><path d="M-330 640 C-320 470 -220 400 -90 380 L90 380 C220 400 320 470 330 640Z" fill="#cdbb9a"/>
+      <ellipse rx="250" ry="300" fill="${SK}"/>
+      <path d="M-262 -40 C-280 -360 280 -360 262 -40 C240 -200 -240 -200 -262 -40Z" fill="${HR}"/>
+      <path d="M-245 20 C-240 230 -120 320 0 320 C120 320 240 230 245 20 C200 160 120 200 0 200 C-120 200 -200 160 -245 20Z" fill="${HR}" opacity=".85"/>
+      <path id="eyes" d="M-150 -20 q50 -22 100 0 M50 -20 q50 -22 100 0" stroke="#5a3a2a" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M-70 150 Q0 128 70 150" stroke="${HR}" stroke-width="22" fill="none" stroke-linecap="round" opacity=".7"/>
+      <path id="smile" d="M-56 168 Q0 172 56 168" stroke="#7a3a2c" stroke-width="12" fill="none" stroke-linecap="round"/></g>`);
+
+  // ---- evening, the camp outside the city: everyone stands, facing one way; warm light on the horizon ----
+  seed = 51;
+  let camp = '';
+  for (let r = 0; r < 3; r++) for (let i = 0; i < 10 - r * 2; i++) camp += backPerson(30 + (i + .5) * 1020 / (10 - r * 2) + (rnd() - .5) * 30, 900 + r * 110, .5 + r * .2, ['#3a3448', '#4a3e3a', '#2e3a44', '#4a4450'][(i + r) % 4], 'cp');
+  KIT.S('sCamp', `<defs><linearGradient id="ev" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f50"/><stop offset=".6" stop-color="#c47a5a"/><stop offset="1" stop-color="#f3b878"/></linearGradient>
+      <radialGradient id="hz" cx="50%" cy="100%"><stop offset="0" stop-color="#ffd890" stop-opacity=".9"/><stop offset="1" stop-color="#ffd890" stop-opacity="0"/></radialGradient></defs>
+    <rect width="1080" height="1920" fill="url(#ev)"/>
+    <rect id="horizon" x="-200" y="460" width="1480" height="380" fill="url(#hz)" opacity=".6"/>
+    <path d="M-20 820 L1100 820 L1100 1920 L-20 1920Z" fill="#4a3a34"/>
+    ${[[60, 790], [280, 800], [760, 790], [960, 800]].map(([x, y]) => `<path d="M${x - 70} ${y + 30} L${x} ${y - 60} L${x + 70} ${y + 30}Z" fill="#6a5448"/>`).join('')}
+    ${camp}`);
+}
+
+KIT.episode({
+  num: 11, name: 'ประตูเมืองลุด',
+  total: 97.3, title: [5.6, 9.6], ctaWin: [80.3, 86.3], discWin: [86.3, 92.8], outroAt: 92.8,
+  cta: '“ถ้าคุณอยู่ในค่ายนั้น คุณจะรู้สึกอย่างไร?<br>คอมเมนต์บอกกันด้วย<br>แล้วกดติดตามและแชร์ไว้<br><b>ตอนหน้าคือตอนจบของเรื่องนี้</b>”',
+  refs: 'หลักฐานหลัก: เศาะฮีห์มุสลิม 2937<br>เศาะฮีห์มุสลิม 2897',
+  scenes: [
+    ['sGate', 0, 9.8], ['sWall', 9.6, 22.2], ['sSalt', 22, 33.2], ['sSquare', 33, 41.2], ['sSit', 41, 45.7],
+    ['sWatch', 45.5, 54.2], ['sAsk', 54, 57.7], ['sSmile', 57.5, 62.2], ['sCamp', 62, 80, { hardOut: true }], ['sGate', 92.4, 97.5],
+  ],
+  caps: CAPS, tags: TAGS,
+  keys: [[2.5, 1], [7.5, 2], [11, 3], [15.5, 4], [20, 5], [25, 6], [30.5, 7], [35, 8], [39.5, 9], [43, 10], [49.5, 11], [56, 12], [60, 13], [64, 14], [69, 15], [74, 16], [78, 17], [83, 18], [89, 19], [95, 20]],
+  build,
+  draw(t) {
+    // hook: dust motes drift through the empty gate
+    document.querySelectorAll('#sGate .mote').forEach(m => {
+      const o = +m.dataset.o; m.setAttribute('cx', (+m.dataset.x + t * 14 + Math.sin(t * .5 + o) * 20) % 1100); m.setAttribute('cy', +m.dataset.y + Math.sin(t * .7 + o) * 30);
+    });
+    KIT.zoom('sGate', 1 + Math.min(t, 10) * .008);
+
+    // the messenger: arm thrown up, shouting (from 13)
+    const sh = t > 13 ? 1 : 0;
+    const ra = ease((t - 12.8) / .5); attr('msgArm', 'transform', `rotate(${lerp(165, -6 + Math.sin(t * 5) * 6, ra)} 20 -250)`);   // arm down, then thrown up as he shouts
+    for (let k = 0; k < 3; k++) { const ph = ((t - 13) * 1.4 + k / 3) % 1; attr('shout' + k, 'opacity', sh ? .7 * (1 - ph) : 0); attr('shout' + k, 'transform', `translate(${ph * 40} ${-ph * 10}) scale(${1 + ph * .5})`); }
+    KIT.zoom('sWall', 1 + clamp(t - 9.6, 0, 12) * .006);
+
+    // the symbol: the salt block shrinks and its grains spread through the water until it is gone (22-30)
+    const d = ease((t - 23) / 6.5);
+    attr('salt', 'transform', `translate(540 ${760 + d * 180}) scale(${1 - d}) rotate(${d * 20})`);
+    document.querySelectorAll('#sSalt .grain').forEach(g => {
+      const a = +g.dataset.a + t * .3 * +g.dataset.s, r = +g.dataset.r * d;
+      g.setAttribute('cx', 540 + Math.cos(a) * r); g.setAttribute('cy', 800 + Math.sin(a) * r * .8 + d * 60);
+      g.setAttribute('opacity', d > 0 && d < 1 ? .8 * Math.sin(d * Math.PI) : 0);
+    });
+    let sd = 'M360 600'; for (let x = 360; x <= 720; x += 40) sd += ` L${x} ${600 + Math.sin(t * 2 + x * .03) * 5}`; attr('surf', 'd', sd + ' L720 620 L360 620Z');
+
+    // the square: stillness at first, then joy (37.5): strangers embrace, some in sujud
+    document.querySelectorAll('#sSquare .cr').forEach((c, i) => {
+      const b = t > 34.6 ? Math.abs(Math.sin(t * 5 + i)) * 6 : 0;
+      c.setAttribute('transform', c.getAttribute('transform').replace(/translate\(([-\d.]+) ([-\d.]+)\)/, (m, x, y) => `translate(${x} ${(+c.dataset.y || (c.dataset.y = y)) - b})`));
+    });
+    attr('joy', 'opacity', ease((t - 37.6) / .8));
+
+    // Harith shakes as he cries
+    attr('sitH', 'transform', `translate(690 ${1060 + Math.abs(Math.sin(t * 14)) * 2}) scale(1.25)`);
+    attr('shHead', 'transform', `translate(0 ${18 * ease((t - 41.2) / .8)})`);
+
+    // the watch: ordinary time, the sun moving with it
+    KIT.setWatch('wt', 9 + (t - 45.5) * .25, t * 6);
+    const sp = clamp((t - 45.5) / 8.7); attr('wsun', 'cx', lerp(160, 920, sp)); attr('wsun', 'cy', 420 - Math.sin(sp * Math.PI) * 180);
+    KIT.zoom('sWatch', 1 + clamp(t - 45.5, 0, 8.7) * .008);
+
+    // Hawa asks; Adam nods (57.6)
+    KIT.poseHawa('kh', 0, 0, t, false);
+    const nod = t > 57 && t < 57.7 ? Math.sin((t - 57) * 18) * 3 : 0;
+    attr('kA', 'transform', `translate(420 1420) scale(2.1) rotate(${nod} -38 -400)`);
+
+    // the smile
+    const s = ease((t - 58.6) / 1.2);
+    attr('smile', 'd', `M-56 ${168 - 10 * s} Q0 ${172 + 34 * s} 56 ${168 - 10 * s}`);
+    KIT.zoom('sSmile', 1 + clamp(t - 57.5, 0, 5) * .01);
+
+    // the camp: everyone standing, facing one way; the warm light on the horizon grows
+    attr('horizon', 'opacity', .5 + .5 * ease((t - 66) / 6));
+    KIT.zoom('sCamp', 1 + clamp(t - 62, 0, 18) * .005);
+  },
+});
+</script>
+</body>
+</html>
