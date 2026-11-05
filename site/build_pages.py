@@ -12,7 +12,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "site", "index.html")
 OUT_DIR = os.path.join(ROOT, "docs")
-SITE_URL = "https://umaiworks-glitch.github.io/DAJJAL-ANIMATION/"
+SITE_URL = "https://umaiworks-glitch.github.io/kontawanlapfah/"
 
 src = open(SRC, encoding="utf8").read()
 # A page saved from the artifact carries the viewer skeleton; keep only the body content.
