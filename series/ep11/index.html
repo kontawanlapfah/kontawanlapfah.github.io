@@ -166,7 +166,8 @@ function build() {
   // ---- evening, the camp outside the city: everyone stands, facing one way; warm light on the horizon ----
   seed = 51;
   let camp = '';
-  for (let r = 0; r < 3; r++) for (let i = 0; i < 10 - r * 2; i++) camp += backPerson(30 + (i + .5) * 1020 / (10 - r * 2) + (rnd() - .5) * 30, 900 + r * 110, .5 + r * .2, ['#3a3448', '#4a3e3a', '#2e3a44', '#4a4450'][(i + r) % 4], 'cp');
+  for (let r = 0; r < 3; r++) for (let i = 0; i < 10 - r * 2; i++) camp += backPerson(30 + (i + .5) * 1020 / (10 - r * 2) + (rnd() - .5) * 30, 900 + r * 110, .5 + r * .2, ['#3a3448', '#4a3e3a', '#2e3a44', '#4a4450'][(i + r) % 4], 'cp')
+      .replace(/<circle cy="-238" r="30" fill="#2a2622"\/>/, '<circle cy="-238" r="30" fill="#2a2622"/><path class="rim" d="M-26 -258 a30 30 0 0 1 52 0 M-30 -194 L30 -194" stroke="#ffd890" stroke-width="5" fill="none" opacity=".5"/>');
   KIT.S('sCamp', `<defs><linearGradient id="ev" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f50"/><stop offset=".6" stop-color="#c47a5a"/><stop offset="1" stop-color="#f3b878"/></linearGradient>
       <radialGradient id="hz" cx="50%" cy="100%"><stop offset="0" stop-color="#ffd890" stop-opacity=".9"/><stop offset="1" stop-color="#ffd890" stop-opacity="0"/></radialGradient></defs>
     <rect width="1080" height="1920" fill="url(#ev)"/>
@@ -209,6 +210,7 @@ KIT.episode({
       g.setAttribute('cx', 540 + Math.cos(a) * r); g.setAttribute('cy', 800 + Math.sin(a) * r * .8 + d * 60);
       g.setAttribute('opacity', d > 0 && d < 1 ? .8 * Math.sin(d * Math.PI) : 0);
     });
+    KIT.zoom('sSalt', 1 + clamp(t - 22, 0, 11) * .012);
     let sd = 'M360 600'; for (let x = 360; x <= 720; x += 40) sd += ` L${x} ${600 + Math.sin(t * 2 + x * .03) * 5}`; attr('surf', 'd', sd + ' L720 620 L360 620Z');
 
     // the square: stillness at first, then joy (37.5): strangers embrace, some in sujud
@@ -239,6 +241,7 @@ KIT.episode({
 
     // the camp: everyone standing, facing one way; the warm light on the horizon grows
     attr('horizon', 'opacity', .5 + .5 * ease((t - 66) / 6));
+    document.querySelectorAll('#sCamp .rim').forEach(r => r.setAttribute('opacity', .35 + .45 * ease((t - 66) / 6)));
     KIT.zoom('sCamp', 1 + clamp(t - 62, 0, 18) * .005);
   },
 });
