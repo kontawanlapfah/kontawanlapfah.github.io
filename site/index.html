@@ -50,7 +50,7 @@ nav ul a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 
 @media (max-width: 860px) { nav ul { display: none; } }
 
 .hero { background: linear-gradient(180deg, var(--t1530), var(--t1645)); position: relative; overflow: hidden; }
-.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 48px; padding-block: 64px 96px; }
+.hero .wrap:not(.dtop) { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 48px; padding-block: 64px 96px; }
 .hero-text { display: grid; gap: 22px; min-width: 0; position: relative; z-index: 1; }
 .hero h1 { font-size: var(--step-3); font-weight: 600; letter-spacing: -.01em; }
 .hero h1 em { font-style: normal; display: block; color: #b34f2e; }
@@ -67,7 +67,7 @@ nav ul a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 
 .btn-solid { background: var(--ink); color: var(--paper); }
 .btn-line { border-color: currentColor; }
 @media (max-width: 820px) {
-  .hero .wrap { grid-template-columns: 1fr; padding-block: 40px 72px; gap: 28px; }
+  .hero .wrap:not(.dtop) { grid-template-columns: 1fr; padding-block: 40px 72px; gap: 28px; }
   .hero-logo { order: -1; width: min(220px, 64%); }
   .big-sun { width: 360px; height: 360px; right: -140px; top: -120px; }
 }
@@ -137,16 +137,21 @@ nav ul a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 
 .way h3 { font-size: 1.1rem; }
 .way p { grid-column: 1; font-size: .92rem; color: var(--paper-soft); line-height: 1.55; }
 .way .arrow { grid-row: 1 / span 2; grid-column: 2; font-family: var(--font-display); color: var(--star); font-size: 1.3rem; }
-.donate { display: grid; gap: 10px; justify-items: center; text-align: center; margin-top: 18px; padding: 22px 18px; border-radius: 20px; background: rgba(251,241,222,.1); border: 1px solid rgba(251,241,222,.22); }
+.dtop { position: relative; z-index: 2; padding-block: 20px 0; }
+.donate { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; padding: 18px 20px; border-radius: 20px; background: rgba(255,255,255,.6); border: 1px solid rgba(26,20,48,.12); box-shadow: 0 10px 30px -20px rgba(26,20,48,.5); color: var(--ink); }
+.d-text { display: grid; gap: 6px; min-width: 0; }
 .donate h3 { font-size: var(--step-1); }
+.donate .note { opacity: 1; color: var(--ink-soft); }
+.donate .small { font-size: .8rem; }
+@media (max-width: 560px) { .donate { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
 #donate, section[id] { scroll-margin-top: 72px; }
-.qr { position: relative; width: min(220px, 100%); aspect-ratio: 1; max-width: 100%; border-radius: 16px; background: #fff; padding: 12px; display: grid; place-items: center; }
+.qr { position: relative; width: 150px; aspect-ratio: 1; max-width: 100%; border-radius: 16px; background: #fff; padding: 10px; display: grid; place-items: center; }
 .qr img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .qr-empty { width: 100%; height: 100%; border: 2px dashed #c9c4d6; border-radius: 10px; display: grid; place-content: center; gap: 4px; color: #6b5f7d; font-family: var(--font-display); }
-.qr-empty b { font-size: 2rem; letter-spacing: .1em; color: #b8b0c8; }
-.qr-empty span { font-size: .85rem; }
+.qr-empty b { font-size: 1.6rem; letter-spacing: .1em; color: #b8b0c8; text-align: center; }
+.qr-empty span { font-size: .72rem; text-align: center; padding: 0 6px; }
 .qr-ctl { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); display: flex; gap: 4px; }
-.qr-name { font-family: var(--font-display); font-size: 1rem; color: var(--paper); }
+.qr-name { font-family: var(--font-display); font-size: 1rem; color: var(--ink); }
 .contact { display: grid; gap: 16px; align-content: start; }
 .contact h3 { font-size: var(--step-1); }
 .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 14px; background: rgba(251,241,222,.1); }
@@ -297,10 +302,15 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
   function render() {
     var s = state, h = '';
     h += '<nav id="nav"><div class="wrap"><a class="brand" href="#top"><img src="' + logo() + '" alt="">ก่อนตะวันลับฟ้า</a><ul>' +
-      '<li><a href="#latest">ล่าสุด</a></li><li><a href="#series">ซีรีส์</a></li><li><a href="#craft">เบื้องหลัง</a></li><li><a href="#shop">ร้านค้า</a></li><li><a href="#together">ติดต่อ</a></li></ul>' +
+      '<li><a href="#latest">ล่าสุด</a></li><li><a href="#series">ซีรีส์</a></li><li><a href="#craft">เบื้องหลัง</a></li><li><a href="#shop">ร้านค้า</a></li><li><a href="#together">ติดต่อ</a></li><li><a href="#donate">💛 สนับสนุน</a></li></ul>' +
       '<div class="dial" aria-hidden="true"><span class="dial-win"><span class="dial-sun" id="dialSun"></span></span><span id="dialTime">15:30</span></div></div></nav>';
 
-    h += '<header class="hero" id="top"><div class="big-sun" aria-hidden="true"></div><div class="wrap"><div class="hero-text">' + clock('hero') +
+    var dn = s.together.donate || {}, qrsrc = dn.qr ? src(dn.qr) : (dn.qrSrc || '');
+    h += '<header class="hero" id="top"><div class="big-sun" aria-hidden="true"></div>' +
+      '<div class="wrap dtop"><div class="donate" id="donate"><div class="d-text">' + T('together.donate.title', 'h3') + T('together.donate.desc', 'p', 'note') + T('together.donate.name', 'p', 'qr-name') + T('together.donate.note', 'p', 'note small') + '</div>' +
+      '<div class="qr">' + (qrsrc ? '<img src="' + esc(qrsrc) + '" alt="QR Code พร้อมเพย์สำหรับสนับสนุนช่อง">' : '<div class="qr-empty"><b>QR</b><span>รอใส่ QR พร้อมเพย์</span></div>') +
+      (editing && assets ? '<span class="qr-ctl">' + imgBtns('together.donate.qr') + '</span>' : '') + '</div></div></div>' +
+      '<div class="wrap"><div class="hero-text">' + clock('hero') +
       '<h1>' + T('hero.title1', 'span') + ' <em data-k="hero.title2">' + esc(s.hero.title2) + '</em></h1>' + T('hero.lede', 'p', 'lede') +
       '<div class="actions"><a class="btn btn-solid" ' + H('hero.url1') + '>' + T('hero.btn1', 'span') + '</a>' + link('hero.url1') +
       '<a class="btn btn-line" href="#series">' + T('hero.btn2', 'span') + '</a></div>' +
@@ -351,11 +361,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
       var p = 'together.ways.' + i;
       h += '<a class="way" ' + H(p + '.url') + '>' + ctl('together.ways', i, link(p + '.url')) + T(p + '.title', 'h3') + T(p + '.desc', 'p') + '<span class="arrow">→</span></a>';
     });
-    var dn = s.together.donate || {}, qrsrc = dn.qr ? src(dn.qr) : (dn.qrSrc || '');
-    h += add('together.ways', 'เพิ่มช่องทาง') + '<div class="donate" id="donate">' + T('together.donate.title', 'h3') + T('together.donate.desc', 'p', 'note') +
-      '<div class="qr">' + (qrsrc ? '<img src="' + esc(qrsrc) + '" alt="QR Code พร้อมเพย์สำหรับสนับสนุนช่อง">' : '<div class="qr-empty"><b>QR</b><span>รอใส่ QR พร้อมเพย์</span></div>') +
-      (editing && assets ? '<span class="qr-ctl">' + imgBtns('together.donate.qr') + '</span>' : '') + '</div>' +
-      T('together.donate.name', 'p', 'qr-name') + T('together.donate.note', 'p', 'note') + '</div>' + '</div><div class="contact">' + T('together.contactTitle', 'h3') + T('together.contactNote', 'p', 'note') +
+    h += add('together.ways', 'เพิ่มช่องทาง') + '</div><div class="contact">' + T('together.contactTitle', 'h3') + T('together.contactNote', 'p', 'note') +
       '<div class="mail"><code id="mailAddr" data-k="together.email">' + esc(s.together.email) + '</code><button type="button" id="copyBtn">คัดลอก</button></div>';
     s.together.faq.forEach(function (it, i) {
       var p = 'together.faq.' + i;
