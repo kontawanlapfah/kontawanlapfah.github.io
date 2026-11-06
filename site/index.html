@@ -488,8 +488,8 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
       .then(function (r) { return r.json(); })
       .then(function (d) {
         if (d && d.success) { f.reset(); st.textContent = 'ส่งข้อความแล้ว ขอบคุณค่ะ ช่องจะตอบกลับโดยเร็ว'; }
-        else { st.textContent = 'ส่งไม่สำเร็จ ลองใหม่อีกครั้งในอีกสักครู่'; }
-      }, function () { st.textContent = 'ส่งไม่สำเร็จ ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วลองใหม่ (แบบฟอร์มใช้ได้บนเว็บ kontawanlapfah.github.io)'; })
+        else { st.textContent = 'ส่งไม่สำเร็จ ลองใหม่อีกครั้งในอีกสักครู่' + (d && d.message ? ' (' + d.message + ')' : ''); }
+      }, function (err) { st.textContent = 'ส่งไม่สำเร็จ ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วลองใหม่ (แบบฟอร์มใช้ได้บนเว็บ kontawanlapfah.github.io)'; })
       .then(function () { btn.disabled = false; });
   });
   root.addEventListener('input', function (e) {
