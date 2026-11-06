@@ -154,6 +154,16 @@ nav ul a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 
 .qr-name { font-family: var(--font-display); font-size: 1rem; color: var(--ink); }
 .contact { display: grid; gap: 16px; align-content: start; }
 .contact h3 { font-size: var(--step-1); }
+.cform { display: grid; gap: 6px; }
+.cform label { font: 500 .85rem var(--font-display); color: var(--paper-soft); margin-top: 6px; }
+.cform input, .cform select, .cform textarea { font: 1rem var(--font-body); padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(251,241,222,.3); background: rgba(251,241,222,.08); color: var(--paper); width: 100%; }
+.cform select option { color: #1a1430; }
+.cform textarea { resize: vertical; min-height: 110px; }
+.cform input:focus, .cform select:focus, .cform textarea:focus { outline: 2px solid var(--star); outline-offset: 1px; }
+.cform .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.cf-send { justify-self: start; margin-top: 10px; background: var(--paper) !important; color: var(--ink) !important; border: 0; }
+.cf-send:disabled { opacity: .5; cursor: default; transform: none; }
+.cf-status { font-size: .9rem; color: var(--star); min-height: 1.4em; }
 .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 14px; background: rgba(251,241,222,.1); }
 .mail code { font-family: var(--font-body); font-size: 1rem; overflow-wrap: anywhere; min-width: 0; flex: 1; }
 .mail button { font: inherit; font-family: var(--font-display); font-size: .9rem; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--paper-soft); background: transparent; color: var(--paper); cursor: pointer; }
@@ -216,24 +226,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
 </style>
 <div id="root"></div>
 <script type="application/json" id="site-data">
-{"hero":{"time":"15:30","label":"บ่ายแก่","title1":"เรื่องเล่าดี ๆ","title2":"ก่อนวันจะหมดลง","lede":"ช่องแอนิเมชัน 2D ที่เล่าเรื่องชวนคิด จากประวัติศาสตร์ คำสอน และชีวิตประจำวัน ดูง่าย ดูได้ทั้งครอบครัว","btn1":"▶ ไปที่ช่อง YouTube","url1":"https://www.youtube.com/@Kontawanlapfah","btn2":"ดูซีรีส์ทั้งหมด","meaningLabel":"ชื่อช่อง","meaning":"ตะวันยังไม่ลับฟ้า แปลว่าเรายังมีเวลา เรื่องดี ๆ ที่อยากเล่า ก็อยากให้ได้ฟังตอนที่ยังทัน"},
-"latest":{"time":"16:45","label":"แดดอ่อน","heading":"คลิปล่าสุด","tag":"ตัวอย่าง","length":"12:48","meta":"ซีรีส์ เงาแห่งยุคสุดท้าย · ตอนที่ 1","title":"สัญญาณก่อนวันสิ้นโลก","desc":"สัญญาณเล็กและสัญญาณใหญ่ที่ท่านนบีได้บอกไว้ล่วงหน้า เล่าผ่านการเดินทางของเด็กชายคนหนึ่งในเมืองกลางทะเลทราย","note":"ชื่อคลิปและความยาวเป็นตัวอย่าง","url":"https://www.youtube.com/@Kontawanlapfah"},
-"series":{"time":"17:30","label":"ตะวันคล้อย","heading":"ซีรีส์ในช่อง","intro":"แต่ละซีรีส์มีโทนต่างกัน เลือกดูตามอารมณ์และเวลาที่มีได้เลย","note":"ชื่อซีรีส์และจำนวนตอนเป็นตัวอย่าง","items":[
-{"art":0,"icon":"☾","meta":"ซีรีส์ยาว · 4 ตอน","title":"เงาแห่งยุคสุดท้าย","desc":"สัญญาณวันสิ้นโลกและฟิตนะฮ์ของดัจญาล ตามที่ปรากฏในหะดีษ เล่าให้เข้าใจโดยไม่ทำให้กลัว","url":"https://www.youtube.com/@Kontawanlapfah"},
-{"art":1,"icon":"✦","meta":"ซีรีส์ · ตอนละ 8–10 นาที","title":"เรื่องเล่าจากอดีต","desc":"เรื่องราวของบรรดานบีและผู้คนในประวัติศาสตร์ ที่ทิ้งบทเรียนไว้ให้คนรุ่นหลัง","url":"https://www.youtube.com/@Kontawanlapfah"},
-{"art":2,"icon":"☁","meta":"นิทานก่อนนอน · ตอนละ 5 นาที","title":"นิทานก่อนตะวันลับ","desc":"นิทานสั้น ๆ สำหรับเด็ก ภาพนุ่มนวล เสียงเล่าช้า ๆ มีข้อคิดหนึ่งข้อในทุกเรื่อง","url":"https://www.youtube.com/@Kontawanlapfah"},
-{"art":3,"icon":"60","meta":"Shorts · ไม่เกิน 60 วินาที","title":"ข้อคิดหนึ่งนาที","desc":"คลิปสั้นแนวตั้ง หยิบข้อคิดหนึ่งเรื่องมาเล่าให้จบในหนึ่งนาที เหมาะกับการแชร์ต่อ","url":"https://www.youtube.com/@Kontawanlapfah"}]},
-"craft":{"time":"18:00","label":"แสงสุดท้าย","heading":"กว่าจะเป็นหนึ่งตอน","intro":"ทุกตอนผ่านขั้นตอนเหล่านี้ ตั้งแต่ไอเดียแรกจนถึงวันที่ขึ้นบน YouTube","steps":[
-{"title":"ค้นคว้าและเขียนบท","desc":"อ่านแหล่งอ้างอิง ตรวจความถูกต้อง แล้วเรียบเรียงเป็นเรื่องเล่า"},
-{"title":"สตอรี่บอร์ด","desc":"ร่างภาพทีละฉาก กำหนดมุมกล้องและจังหวะของเรื่อง"},
-{"title":"วาดและขยับภาพ","desc":"วาดตัวละครกับฉาก แล้วทำแอนิเมชัน 2D ทีละช็อต"},
-{"title":"เสียงและตัดต่อ","desc":"ลงเสียงพากย์ ดนตรี และเอฟเฟกต์ ก่อนตัดต่อเป็นตอนเต็ม"}]},
-"shop":{"time": "18:15", "label": "สนธยา", "heading": "ร้านค้า", "intro": "ไฟล์ดิจิทัลจากช่อง ตอนนี้แจกฟรี ดาวน์โหลดได้ทันที สินค้าใหม่กำลังจะตามมาเร็ว ๆ นี้", "allText": "ดูสินค้าทั้งหมด", "allUrl": "", "note": "แจกฟรีเป็นวิทยาทาน ห้ามนำไปจำหน่าย", "items": [{"cat": "teens", "art": 0, "fmt": "PDF · A5 · 74 หน้า", "label": "ดุอาอ์\nชีวิตประจำวัน", "title": "ดุอาอ์ชีวิตประจำวัน", "desc": "124 บท 15 หมวด จากอัลกุรอาน อัล-บุคอรีย์ และมุสลิม มีหลักฐานกำกับทุกบท", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/dua-daily.pdf"}, {"cat": "teens", "art": 4, "fmt": "PDF · A5 · 28 หน้า", "label": "อัซการ์\nภาคเช้า", "title": "อัซการ์เช้า", "desc": "บทซิกิรฺที่เศาะฮีหฺจากท่านนบี ﷺ 24 บท พร้อมความหมายและตารางติดตาม 30 วัน", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/adhkar-sabah.pdf"}, {"cat": "teens", "art": 2, "fmt": "PDF · A5 · 29 หน้า", "label": "อัซการ์\nภาคเย็น", "title": "อัซการ์เย็น", "desc": "บทซิกิรฺที่เศาะฮีหฺจากท่านนบี ﷺ 25 บท พร้อมความหมายและตารางติดตาม 30 วัน", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/adhkar-masa.pdf"}]},
-"together":{"time": "18:30", "label": "ฟ้าค่ำ", "heading": "ไปด้วยกัน", "ways": [{"title": "กดติดตามและกดกระดิ่ง", "desc": "ฟรี และช่วยให้ช่องเติบโตได้มากที่สุด", "url": "https://www.youtube.com/@Kontawanlapfah?sub_confirmation=1"}, {"title": "สมัครสมาชิกช่อง", "desc": "ได้ดูตอนใหม่ก่อนใคร และเห็นภาพเบื้องหลังที่ไม่ได้ลงคลิป", "url": "https://www.youtube.com/@Kontawanlapfah/join"}, {"title": "สนับสนุนช่องผ่านพร้อมเพย์", "desc": "สแกน QR ด้านล่าง ร่วมสนับสนุนการทำคลิปและสื่อแจกฟรี", "url": "#donate"}, {"title": "แชร์ให้คนที่คุณรัก", "desc": "เรื่องดี ๆ จะไปได้ไกลก็เพราะการบอกต่อ", "url": "https://www.youtube.com/@Kontawanlapfah"}], "contactTitle": "ติดต่อช่อง", "contactNote": "สำหรับงานร่วมมือ ขอใช้คลิปในห้องเรียนหรือมัสยิด หรือเสนอเรื่องที่อยากให้ทำ", "email": "ใส่อีเมลติดต่อของช่องที่นี่", "faq": [{"q": "นำคลิปไปเปิดในห้องเรียนได้ไหม", "a": "ได้ค่ะ เปิดจาก YouTube ได้เลยเพื่อการศึกษา ถ้าต้องการไฟล์วิดีโอแบบไม่มีโฆษณา ติดต่อทางอีเมลได้"}, {"q": "เนื้อหาอ้างอิงจากที่ไหน", "a": "อ้างอิงจากอัลกุรอานและหะดีษ ใส่แหล่งที่มาไว้ในคำอธิบายของแต่ละคลิป"}, {"q": "อยากเสนอเรื่องให้ทำ", "a": "ส่งมาทางอีเมล หรือคอมเมนต์ใต้คลิปล่าสุดได้เลย ทุกข้อความได้อ่านแน่นอน"}], "donate": {"title": "ร่วมสนับสนุนช่อง", "desc": "ทุกการสนับสนุนนำไปใช้ทำแอนิเมชันและสื่อความรู้แจกฟรี ขออัลลอฮฺทรงตอบแทนความดีแก่ทุกท่าน", "name": "ชื่อบัญชี: (รอใส่)", "qr": "", "qrSrc": "", "note": "ก่อนโอน โปรดตรวจสอบชื่อบัญชีในแอปธนาคารให้ตรงกับชื่อด้านบน"}},
-"footer":{"time":"19:00","label":"ดาวขึ้น","line":"ตะวันลับฟ้าไปแล้ว แต่พรุ่งนี้จะขึ้นใหม่ พบกันในตอนต่อไป","copy":"© 2026 ก่อนตะวันลับฟ้า · Kontawanlapfah","socials":[
-{"name":"YouTube","url":"https://www.youtube.com/@Kontawanlapfah"},
-{"name":"TikTok","url":"https://www.tiktok.com/@kontawanlapfah"},
-{"name":"Facebook","url":"https://www.facebook.com/kontawanlapfah"}]}}
+{"hero": {"time": "15:30", "label": "บ่ายแก่", "title1": "เรื่องเล่าดี ๆ", "title2": "ก่อนวันจะหมดลง", "lede": "ช่องแอนิเมชัน 2D ที่เล่าเรื่องชวนคิด จากประวัติศาสตร์ คำสอน และชีวิตประจำวัน ดูง่าย ดูได้ทั้งครอบครัว", "btn1": "▶ ไปที่ช่อง YouTube", "url1": "https://www.youtube.com/@Kontawanlapfah", "btn2": "ดูซีรีส์ทั้งหมด", "meaningLabel": "ชื่อช่อง", "meaning": "ตะวันยังไม่ลับฟ้า แปลว่าเรายังมีเวลา เรื่องดี ๆ ที่อยากเล่า ก็อยากให้ได้ฟังตอนที่ยังทัน"}, "latest": {"time": "16:45", "label": "แดดอ่อน", "heading": "คลิปล่าสุด", "tag": "ตัวอย่าง", "length": "12:48", "meta": "ซีรีส์ เงาแห่งยุคสุดท้าย · ตอนที่ 1", "title": "สัญญาณก่อนวันสิ้นโลก", "desc": "สัญญาณเล็กและสัญญาณใหญ่ที่ท่านนบีได้บอกไว้ล่วงหน้า เล่าผ่านการเดินทางของเด็กชายคนหนึ่งในเมืองกลางทะเลทราย", "note": "ชื่อคลิปและความยาวเป็นตัวอย่าง", "url": "https://www.youtube.com/@Kontawanlapfah"}, "series": {"time": "17:30", "label": "ตะวันคล้อย", "heading": "ซีรีส์ในช่อง", "intro": "แต่ละซีรีส์มีโทนต่างกัน เลือกดูตามอารมณ์และเวลาที่มีได้เลย", "note": "ชื่อซีรีส์และจำนวนตอนเป็นตัวอย่าง", "items": [{"art": 0, "icon": "☾", "meta": "ซีรีส์ยาว · 4 ตอน", "title": "เงาแห่งยุคสุดท้าย", "desc": "สัญญาณวันสิ้นโลกและฟิตนะฮ์ของดัจญาล ตามที่ปรากฏในหะดีษ เล่าให้เข้าใจโดยไม่ทำให้กลัว", "url": "https://www.youtube.com/@Kontawanlapfah"}, {"art": 1, "icon": "✦", "meta": "ซีรีส์ · ตอนละ 8–10 นาที", "title": "เรื่องเล่าจากอดีต", "desc": "เรื่องราวของบรรดานบีและผู้คนในประวัติศาสตร์ ที่ทิ้งบทเรียนไว้ให้คนรุ่นหลัง", "url": "https://www.youtube.com/@Kontawanlapfah"}, {"art": 2, "icon": "☁", "meta": "นิทานก่อนนอน · ตอนละ 5 นาที", "title": "นิทานก่อนตะวันลับ", "desc": "นิทานสั้น ๆ สำหรับเด็ก ภาพนุ่มนวล เสียงเล่าช้า ๆ มีข้อคิดหนึ่งข้อในทุกเรื่อง", "url": "https://www.youtube.com/@Kontawanlapfah"}, {"art": 3, "icon": "60", "meta": "Shorts · ไม่เกิน 60 วินาที", "title": "ข้อคิดหนึ่งนาที", "desc": "คลิปสั้นแนวตั้ง หยิบข้อคิดหนึ่งเรื่องมาเล่าให้จบในหนึ่งนาที เหมาะกับการแชร์ต่อ", "url": "https://www.youtube.com/@Kontawanlapfah"}]}, "craft": {"time": "18:00", "label": "แสงสุดท้าย", "heading": "กว่าจะเป็นหนึ่งตอน", "intro": "ทุกตอนผ่านขั้นตอนเหล่านี้ ตั้งแต่ไอเดียแรกจนถึงวันที่ขึ้นบน YouTube", "steps": [{"title": "ค้นคว้าและเขียนบท", "desc": "อ่านแหล่งอ้างอิง ตรวจความถูกต้อง แล้วเรียบเรียงเป็นเรื่องเล่า"}, {"title": "สตอรี่บอร์ด", "desc": "ร่างภาพทีละฉาก กำหนดมุมกล้องและจังหวะของเรื่อง"}, {"title": "วาดและขยับภาพ", "desc": "วาดตัวละครกับฉาก แล้วทำแอนิเมชัน 2D ทีละช็อต"}, {"title": "เสียงและตัดต่อ", "desc": "ลงเสียงพากย์ ดนตรี และเอฟเฟกต์ ก่อนตัดต่อเป็นตอนเต็ม"}]}, "shop": {"time": "18:15", "label": "สนธยา", "heading": "ร้านค้า", "intro": "ไฟล์ดิจิทัลจากช่อง ตอนนี้แจกฟรี ดาวน์โหลดได้ทันที สินค้าใหม่กำลังจะตามมาเร็ว ๆ นี้", "allText": "ดูสินค้าทั้งหมด", "allUrl": "", "note": "แจกฟรีเป็นวิทยาทาน ห้ามนำไปจำหน่าย", "items": [{"cat": "teens", "art": 0, "fmt": "PDF · A5 · 74 หน้า", "label": "ดุอาอ์\nชีวิตประจำวัน", "title": "ดุอาอ์ชีวิตประจำวัน", "desc": "124 บท 15 หมวด จากอัลกุรอาน อัล-บุคอรีย์ และมุสลิม มีหลักฐานกำกับทุกบท", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/dua-daily.pdf"}, {"cat": "teens", "art": 4, "fmt": "PDF · A5 · 28 หน้า", "label": "อัซการ์\nภาคเช้า", "title": "อัซการ์เช้า", "desc": "บทซิกิรฺที่เศาะฮีหฺจากท่านนบี ﷺ 24 บท พร้อมความหมายและตารางติดตาม 30 วัน", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/adhkar-sabah.pdf"}, {"cat": "teens", "art": 2, "fmt": "PDF · A5 · 29 หน้า", "label": "อัซการ์\nภาคเย็น", "title": "อัซการ์เย็น", "desc": "บทซิกิรฺที่เศาะฮีหฺจากท่านนบี ﷺ 25 บท พร้อมความหมายและตารางติดตาม 30 วัน", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/adhkar-masa.pdf"}]}, "together": {"time": "18:30", "label": "ฟ้าค่ำ", "heading": "ไปด้วยกัน", "ways": [{"title": "กดติดตามและกดกระดิ่ง", "desc": "ฟรี และช่วยให้ช่องเติบโตได้มากที่สุด", "url": "https://www.youtube.com/@Kontawanlapfah?sub_confirmation=1"}, {"title": "สมัครสมาชิกช่อง", "desc": "ได้ดูตอนใหม่ก่อนใคร และเห็นภาพเบื้องหลังที่ไม่ได้ลงคลิป", "url": "https://www.youtube.com/@Kontawanlapfah/join"}, {"title": "สนับสนุนช่องผ่านพร้อมเพย์", "desc": "สแกน QR ด้านล่าง ร่วมสนับสนุนการทำคลิปและสื่อแจกฟรี", "url": "#donate"}, {"title": "แชร์ให้คนที่คุณรัก", "desc": "เรื่องดี ๆ จะไปได้ไกลก็เพราะการบอกต่อ", "url": "https://www.youtube.com/@Kontawanlapfah"}], "contactTitle": "ติดต่อช่อง", "contactNote": "สำหรับงานร่วมมือ ขอใช้คลิปในห้องเรียนหรือมัสยิด เสนอเรื่องที่อยากให้ทำ หรือแจ้งข้อผิดพลาดในสื่อของช่อง", "faq": [{"q": "นำคลิปไปเปิดในห้องเรียนได้ไหม", "a": "ได้ค่ะ เปิดจาก YouTube ได้เลยเพื่อการศึกษา ถ้าต้องการไฟล์วิดีโอแบบไม่มีโฆษณา ส่งข้อความผ่านแบบฟอร์มติดต่อด้านบนได้"}, {"q": "เนื้อหาอ้างอิงจากที่ไหน", "a": "อ้างอิงจากอัลกุรอานและหะดีษ ใส่แหล่งที่มาไว้ในคำอธิบายของแต่ละคลิป"}, {"q": "อยากเสนอเรื่องให้ทำ", "a": "ส่งมาทางแบบฟอร์มติดต่อด้านบน หรือคอมเมนต์ใต้คลิปล่าสุดได้เลย ทุกข้อความได้อ่านแน่นอน"}], "donate": {"title": "ร่วมสนับสนุนช่อง", "desc": "ทุกการสนับสนุนนำไปใช้ทำแอนิเมชันและสื่อความรู้แจกฟรี ขออัลลอฮฺทรงตอบแทนความดีแก่ทุกท่าน", "name": "ชื่อบัญชี: (รอใส่)", "qr": "", "qrSrc": "", "note": "ก่อนโอน โปรดตรวจสอบชื่อบัญชีในแอปธนาคารให้ตรงกับชื่อด้านบน"}, "formKey": ""}, "footer": {"time": "19:00", "label": "ดาวขึ้น", "line": "ตะวันลับฟ้าไปแล้ว แต่พรุ่งนี้จะขึ้นใหม่ พบกันในตอนต่อไป", "copy": "© 2026 ก่อนตะวันลับฟ้า · Kontawanlapfah", "socials": [{"name": "YouTube", "url": "https://www.youtube.com/@Kontawanlapfah"}, {"name": "TikTok", "url": "https://www.tiktok.com/@kontawanlapfah"}, {"name": "Facebook", "url": "https://www.facebook.com/kontawanlapfah"}]}}
 </script>
 <script id="app">
 (function () {
@@ -362,7 +355,14 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
       h += '<a class="way" ' + H(p + '.url') + '>' + ctl('together.ways', i, link(p + '.url')) + T(p + '.title', 'h3') + T(p + '.desc', 'p') + '<span class="arrow">→</span></a>';
     });
     h += add('together.ways', 'เพิ่มช่องทาง') + '</div><div class="contact">' + T('together.contactTitle', 'h3') + T('together.contactNote', 'p', 'note') +
-      '<div class="mail"><code id="mailAddr" data-k="together.email">' + esc(s.together.email) + '</code><button type="button" id="copyBtn">คัดลอก</button></div>';
+      '<form class="cform" id="cform" novalidate>' +
+      '<label for="cf-name">ชื่อ</label><input id="cf-name" name="name" required maxlength="80" autocomplete="name">' +
+      '<label for="cf-contact">อีเมลหรือ LINE ID สำหรับตอบกลับ</label><input id="cf-contact" name="contact" required maxlength="120">' +
+      '<label for="cf-topic">เรื่อง</label><select id="cf-topic" name="topic"><option>ขอใช้คลิปหรือสื่อของช่อง</option><option>เสนอเรื่องที่อยากให้ทำ</option><option>แจ้งข้อผิดพลาดในเนื้อหา</option><option>ติดต่อร่วมงาน</option><option>อื่น ๆ</option></select>' +
+      '<label for="cf-msg">ข้อความ</label><textarea id="cf-msg" name="message" rows="5" required maxlength="3000"></textarea>' +
+      '<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button type="submit" class="btn btn-solid cf-send"' + (s.together.formKey ? '' : ' disabled') + '>ส่งข้อความ</button>' +
+      '<p class="cf-status" id="cf-status" role="status">' + (s.together.formKey ? '' : 'แบบฟอร์มจะเปิดใช้งานเร็ว ๆ นี้') + '</p></form>';
     s.together.faq.forEach(function (it, i) {
       var p = 'together.faq.' + i;
       h += '<details' + (editing ? ' open' : '') + '>' + ctl('together.faq', i) + '<summary>' + T(p + '.q', 'span') + '</summary>' + T(p + '.a', 'p') + '</details>';
@@ -468,6 +468,26 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
     if (t.closest('a, summary')) e.preventDefault();
   }, true);
 
+  root.addEventListener('submit', function (e) {
+    var f = e.target.closest && e.target.closest('#cform');
+    if (!f) return;
+    e.preventDefault();
+    var st = document.getElementById('cf-status'), btn = f.querySelector('.cf-send');
+    if (editing) { st.textContent = 'ออกจากโหมดแก้ไขก่อน จึงจะทดลองส่งข้อความได้'; return; }
+    if (!state.together.formKey) { st.textContent = 'แบบฟอร์มจะเปิดใช้งานเร็ว ๆ นี้'; return; }
+    var v = function (n) { return (f.elements[n].value || '').trim(); };
+    if (!v('name') || !v('contact') || !v('message')) { st.textContent = 'กรุณากรอกชื่อ ช่องทางตอบกลับ และข้อความให้ครบ'; return; }
+    if (f.elements.botcheck.checked) return;
+    btn.disabled = true; st.textContent = 'กำลังส่ง…';
+    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ access_key: state.together.formKey, subject: 'ข้อความจากเว็บก่อนตะวันลับฟ้า: ' + v('topic'), from_name: 'เว็บไซต์ก่อนตะวันลับฟ้า', name: v('name'), contact: v('contact'), topic: v('topic'), message: v('message'), botcheck: false }) })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.success) { f.reset(); st.textContent = 'ส่งข้อความแล้ว ขอบคุณค่ะ ทีมงานจะตอบกลับโดยเร็ว'; }
+        else { st.textContent = 'ส่งไม่สำเร็จ ลองใหม่อีกครั้งในอีกสักครู่'; }
+      }, function () { st.textContent = 'ส่งไม่สำเร็จ ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วลองใหม่ (แบบฟอร์มใช้ได้บนเว็บ kontawanlapfah.github.io)'; })
+      .then(function () { btn.disabled = false; });
+  });
   root.addEventListener('input', function (e) {
     var k = e.target.closest && e.target.closest('[data-k]');
     if (!k) return;
