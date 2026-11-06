@@ -49,6 +49,8 @@ os.makedirs(os.path.join(OUT_DIR, "assets"), exist_ok=True)
 with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf8") as f:
     f.write(head + body + "\n</body>\n</html>\n")
 shutil.copy(os.path.join(ROOT, "site", "assets", "logo.jpg"), os.path.join(OUT_DIR, "assets", "logo.jpg"))
+for _f in ("gift-howto.mp4",):
+    shutil.copy(os.path.join(ROOT, "site", "assets", _f), os.path.join(OUT_DIR, "assets", _f))
 open(os.path.join(OUT_DIR, ".nojekyll"), "w").close()
 
 if re.search(r'"(img|logoImg)":"[0-9a-f]{32}"', body):
