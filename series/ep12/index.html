@@ -150,7 +150,8 @@ function build() {
     <g id="endCam">
       <path d="M-600 1200 L-100 500 L300 900 L700 420 L1200 860 L1700 1200 L1700 2400 L-600 2400Z" fill="#8a6c5c"/>
       <path d="M-600 1180 L540 1020 L1700 1180 L1700 2400 L-600 2400Z" fill="#a48468"/>
-      <g transform="translate(540 1020) scale(.2)">${shadow(0, 0, 200, .3)}
+      <g transform="translate(540 1020) scale(.2)">${shadow(40, 0, 300, .3)}
+        <g transform="translate(200 0) scale(1.05)">${shadow(0, 0, 150, .3)}${KIT.salma(0, 0)}</g>
         ${KIT.adamKneel('ea')}<g transform="translate(-20 0)">${KIT.hawa('eh').replace(/<\/g>\s*$/, `<path d="M-42 -300 C-52 -240 -58 -170 -50 -146 L50 -146 C58 -170 52 -240 42 -300 C30 -330 -30 -330 -42 -300Z" fill="${HR}"/></g>`)}</g>
         <path d="M-104 -350 C-150 -270 -110 -215 -40 -212" stroke="#bca986" stroke-width="32" fill="none" stroke-linecap="round"/><circle cx="-34" cy="-212" r="15" fill="${SK}"/>
         <path d="M28 -352 C70 -300 60 -240 -4 -226" stroke="#bca986" stroke-width="32" fill="none" stroke-linecap="round"/><circle cx="-10" cy="-225" r="15" fill="${SK}"/>
@@ -223,7 +224,7 @@ KIT.episode({
     // the end: close on the embrace and the whisper, then pull back to the mountain; the closing words appear
     for (let k = 0; k < 3; k++) { const ph = ((t - 72.6) * .7 + k / 3) % 1; attr('wh' + k, 'opacity', t > 72.6 && t < 76.8 ? .8 * (1 - ph) : 0); attr('wh' + k, 'transform', `translate(${ph * 36} ${-ph * 8})`); }
     const out = ease((t - 76.6) / 3.5), sc = lerp(7.5, 1, out);
-    attr('endCam', 'transform', `translate(540 ${lerp(720, 1020, out)}) scale(${sc}) translate(-540 ${-lerp(962, 1020, out)})`);
+    attr('endCam', 'transform', `translate(540 ${lerp(720, 1020, out)}) scale(${sc}) translate(${-lerp(556, 540, out)} ${-lerp(962, 1020, out)})`);
     const e1 = ease((t - 78.4) / .8), e2 = ease((t - 79.0) / .8), eo = ease((t - 79.6) / .9);
     attr('et1', 'opacity', e1); attr('et1', 'transform', `translate(0 ${(1 - e1) * 24})`);
     attr('et2', 'opacity', e2); attr('et2', 'transform', `translate(0 ${(1 - e2) * 24})`);
