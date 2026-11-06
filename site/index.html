@@ -137,6 +137,16 @@ nav ul a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 
 .way h3 { font-size: 1.1rem; }
 .way p { grid-column: 1; font-size: .92rem; color: var(--paper-soft); line-height: 1.55; }
 .way .arrow { grid-row: 1 / span 2; grid-column: 2; font-family: var(--font-display); color: var(--star); font-size: 1.3rem; }
+.donate { display: grid; gap: 10px; justify-items: center; text-align: center; margin-top: 18px; padding: 22px 18px; border-radius: 20px; background: rgba(251,241,222,.1); border: 1px solid rgba(251,241,222,.22); }
+.donate h3 { font-size: var(--step-1); }
+#donate, section[id] { scroll-margin-top: 72px; }
+.qr { position: relative; width: min(220px, 100%); aspect-ratio: 1; max-width: 100%; border-radius: 16px; background: #fff; padding: 12px; display: grid; place-items: center; }
+.qr img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.qr-empty { width: 100%; height: 100%; border: 2px dashed #c9c4d6; border-radius: 10px; display: grid; place-content: center; gap: 4px; color: #6b5f7d; font-family: var(--font-display); }
+.qr-empty b { font-size: 2rem; letter-spacing: .1em; color: #b8b0c8; }
+.qr-empty span { font-size: .85rem; }
+.qr-ctl { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); display: flex; gap: 4px; }
+.qr-name { font-family: var(--font-display); font-size: 1rem; color: var(--paper); }
 .contact { display: grid; gap: 16px; align-content: start; }
 .contact h3 { font-size: var(--step-1); }
 .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 14px; background: rgba(251,241,222,.1); }
@@ -214,15 +224,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
 {"title":"วาดและขยับภาพ","desc":"วาดตัวละครกับฉาก แล้วทำแอนิเมชัน 2D ทีละช็อต"},
 {"title":"เสียงและตัดต่อ","desc":"ลงเสียงพากย์ ดนตรี และเอฟเฟกต์ ก่อนตัดต่อเป็นตอนเต็ม"}]},
 "shop":{"time": "18:15", "label": "สนธยา", "heading": "ร้านค้า", "intro": "ไฟล์ดิจิทัลจากช่อง ตอนนี้แจกฟรี ดาวน์โหลดได้ทันที สินค้าใหม่กำลังจะตามมาเร็ว ๆ นี้", "allText": "ดูสินค้าทั้งหมด", "allUrl": "", "note": "แจกฟรีเป็นวิทยาทาน ห้ามนำไปจำหน่าย", "items": [{"cat": "teens", "art": 0, "fmt": "PDF · A5 · 74 หน้า", "label": "ดุอาอ์\nชีวิตประจำวัน", "title": "ดุอาอ์ชีวิตประจำวัน", "desc": "124 บท 15 หมวด จากอัลกุรอาน อัล-บุคอรีย์ และมุสลิม มีหลักฐานกำกับทุกบท", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/dua-daily.pdf"}, {"cat": "teens", "art": 4, "fmt": "PDF · A5 · 28 หน้า", "label": "อัซการ์\nภาคเช้า", "title": "อัซการ์เช้า", "desc": "บทซิกิรฺที่เศาะฮีหฺจากท่านนบี ﷺ 24 บท พร้อมความหมายและตารางติดตาม 30 วัน", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/adhkar-sabah.pdf"}, {"cat": "teens", "art": 2, "fmt": "PDF · A5 · 29 หน้า", "label": "อัซการ์\nภาคเย็น", "title": "อัซการ์เย็น", "desc": "บทซิกิรฺที่เศาะฮีหฺจากท่านนบี ﷺ 25 บท พร้อมความหมายและตารางติดตาม 30 วัน", "price": "ฟรี", "btn": "ดาวน์โหลด", "url": "https://kontawanlapfah.github.io/files/adhkar-masa.pdf"}]},
-"together":{"time":"18:30","label":"ฟ้าค่ำ","heading":"ไปด้วยกัน","ways":[
-{"title":"กดติดตามและกดกระดิ่ง","desc":"ฟรี และช่วยให้ช่องเติบโตได้มากที่สุด","url":"https://www.youtube.com/@Kontawanlapfah?sub_confirmation=1"},
-{"title":"สมัครสมาชิกช่อง","desc":"ได้ดูตอนใหม่ก่อนใคร และเห็นภาพเบื้องหลังที่ไม่ได้ลงคลิป","url":"https://www.youtube.com/@Kontawanlapfah/join"},
-{"title":"เลี้ยงกาแฟหนึ่งแก้ว","desc":"สนับสนุนครั้งเดียว เป็นค่าโปรแกรมและเวลาวาดภาพ","url":"https://ko-fi.com"},
-{"title":"แชร์ให้คนที่คุณรัก","desc":"เรื่องดี ๆ จะไปได้ไกลก็เพราะการบอกต่อ","url":"https://www.youtube.com/@Kontawanlapfah"}],
-"contactTitle":"ติดต่อช่อง","contactNote":"สำหรับงานร่วมมือ ขอใช้คลิปในห้องเรียนหรือมัสยิด หรือเสนอเรื่องที่อยากให้ทำ","email":"ใส่อีเมลติดต่อของช่องที่นี่","faq":[
-{"q":"นำคลิปไปเปิดในห้องเรียนได้ไหม","a":"ได้ค่ะ เปิดจาก YouTube ได้เลยเพื่อการศึกษา ถ้าต้องการไฟล์วิดีโอแบบไม่มีโฆษณา ติดต่อทางอีเมลได้"},
-{"q":"เนื้อหาอ้างอิงจากที่ไหน","a":"อ้างอิงจากอัลกุรอานและหะดีษ ใส่แหล่งที่มาไว้ในคำอธิบายของแต่ละคลิป"},
-{"q":"อยากเสนอเรื่องให้ทำ","a":"ส่งมาทางอีเมล หรือคอมเมนต์ใต้คลิปล่าสุดได้เลย ทุกข้อความได้อ่านแน่นอน"}]},
+"together":{"time": "18:30", "label": "ฟ้าค่ำ", "heading": "ไปด้วยกัน", "ways": [{"title": "กดติดตามและกดกระดิ่ง", "desc": "ฟรี และช่วยให้ช่องเติบโตได้มากที่สุด", "url": "https://www.youtube.com/@Kontawanlapfah?sub_confirmation=1"}, {"title": "สมัครสมาชิกช่อง", "desc": "ได้ดูตอนใหม่ก่อนใคร และเห็นภาพเบื้องหลังที่ไม่ได้ลงคลิป", "url": "https://www.youtube.com/@Kontawanlapfah/join"}, {"title": "สนับสนุนช่องผ่านพร้อมเพย์", "desc": "สแกน QR ด้านล่าง ร่วมสนับสนุนการทำคลิปและสื่อแจกฟรี", "url": "#donate"}, {"title": "แชร์ให้คนที่คุณรัก", "desc": "เรื่องดี ๆ จะไปได้ไกลก็เพราะการบอกต่อ", "url": "https://www.youtube.com/@Kontawanlapfah"}], "contactTitle": "ติดต่อช่อง", "contactNote": "สำหรับงานร่วมมือ ขอใช้คลิปในห้องเรียนหรือมัสยิด หรือเสนอเรื่องที่อยากให้ทำ", "email": "ใส่อีเมลติดต่อของช่องที่นี่", "faq": [{"q": "นำคลิปไปเปิดในห้องเรียนได้ไหม", "a": "ได้ค่ะ เปิดจาก YouTube ได้เลยเพื่อการศึกษา ถ้าต้องการไฟล์วิดีโอแบบไม่มีโฆษณา ติดต่อทางอีเมลได้"}, {"q": "เนื้อหาอ้างอิงจากที่ไหน", "a": "อ้างอิงจากอัลกุรอานและหะดีษ ใส่แหล่งที่มาไว้ในคำอธิบายของแต่ละคลิป"}, {"q": "อยากเสนอเรื่องให้ทำ", "a": "ส่งมาทางอีเมล หรือคอมเมนต์ใต้คลิปล่าสุดได้เลย ทุกข้อความได้อ่านแน่นอน"}], "donate": {"title": "ร่วมสนับสนุนช่อง", "desc": "ทุกการสนับสนุนนำไปใช้ทำแอนิเมชันและสื่อความรู้แจกฟรี ขออัลลอฮฺทรงตอบแทนความดีแก่ทุกท่าน", "name": "ชื่อบัญชี: (รอใส่)", "qr": "", "qrSrc": "", "note": "ก่อนโอน โปรดตรวจสอบชื่อบัญชีในแอปธนาคารให้ตรงกับชื่อด้านบน"}},
 "footer":{"time":"19:00","label":"ดาวขึ้น","line":"ตะวันลับฟ้าไปแล้ว แต่พรุ่งนี้จะขึ้นใหม่ พบกันในตอนต่อไป","copy":"© 2026 ก่อนตะวันลับฟ้า · Kontawanlapfah","socials":[
 {"name":"YouTube","url":"https://www.youtube.com/@Kontawanlapfah"},
 {"name":"TikTok","url":"https://www.tiktok.com/@kontawanlapfah"},
@@ -349,7 +351,11 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
       var p = 'together.ways.' + i;
       h += '<a class="way" ' + H(p + '.url') + '>' + ctl('together.ways', i, link(p + '.url')) + T(p + '.title', 'h3') + T(p + '.desc', 'p') + '<span class="arrow">→</span></a>';
     });
-    h += add('together.ways', 'เพิ่มช่องทาง') + '</div><div class="contact">' + T('together.contactTitle', 'h3') + T('together.contactNote', 'p', 'note') +
+    var dn = s.together.donate || {}, qrsrc = dn.qr ? src(dn.qr) : (dn.qrSrc || '');
+    h += add('together.ways', 'เพิ่มช่องทาง') + '<div class="donate" id="donate">' + T('together.donate.title', 'h3') + T('together.donate.desc', 'p', 'note') +
+      '<div class="qr">' + (qrsrc ? '<img src="' + esc(qrsrc) + '" alt="QR Code พร้อมเพย์สำหรับสนับสนุนช่อง">' : '<div class="qr-empty"><b>QR</b><span>รอใส่ QR พร้อมเพย์</span></div>') +
+      (editing && assets ? '<span class="qr-ctl">' + imgBtns('together.donate.qr') + '</span>' : '') + '</div>' +
+      T('together.donate.name', 'p', 'qr-name') + T('together.donate.note', 'p', 'note') + '</div>' + '</div><div class="contact">' + T('together.contactTitle', 'h3') + T('together.contactNote', 'p', 'note') +
       '<div class="mail"><code id="mailAddr" data-k="together.email">' + esc(s.together.email) + '</code><button type="button" id="copyBtn">คัดลอก</button></div>';
     s.together.faq.forEach(function (it, i) {
       var p = 'together.faq.' + i;
