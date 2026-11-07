@@ -1,0 +1,9 @@
+{
+  "name": "creator",
+  "version": "1.0.0",
+  "description": "Six commands and five helpers that turn your ideas into finished reels, captions and lessons.",
+  "author": {
+    "name": "Reel skill"
+  },
+  "keywords": ["reels", "instagram", "content", "obsidian"]
+}
