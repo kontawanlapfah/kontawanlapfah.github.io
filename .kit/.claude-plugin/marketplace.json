@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "reel-skill",
+  "description": "A free reel skill for Claude. Ideas, reels, captions and a coach that learns your taste with every reel.",
+  "owner": {
+    "name": "Reel skill"
+  },
+  "plugins": [
+    {
+      "name": "creator",
+      "version": "1.0.0",
+      "description": "Six commands and five helpers that turn your ideas into finished reels, captions and lessons.",
+      "source": "./creator",
+      "category": "productivity",
+      "keywords": ["reels", "instagram", "content", "obsidian"]
+    }
+  ]
+}
