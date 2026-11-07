@@ -339,7 +339,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
     h += '<header class="hero" id="top"><div class="big-sun" aria-hidden="true"></div>' +
       (hasQr || editing ? '<div class="wrap dtop"><div class="donate" id="donate"><div class="d-text">' + T('together.donate.title', 'h3') + T('together.donate.desc', 'p', 'note') + (dn.steps && dn.steps.length ? '<ol class="d-steps">' + dn.steps.map(function (x, i) { return T('together.donate.steps.' + i, 'li'); }).join('') + '</ol>' + (dn.video ? '<details class="d-vid"><summary>▶ ดูวิดีโอวิธีส่งซอง <small>(กดที่ไอคอน ▶)</small></summary><video src="' + esc(dn.video) + '" controls playsinline muted preload="none" width="360" height="480"></video></details>' : '') : '') + T('together.donate.note', 'p', 'note small') + '</div>' +
       (dn.steps && dn.steps.length ? '<form class="gform" id="gform" novalidate>' +
-        '<label for="gf-link">ลิงก์ซองของขวัญ</label><input id="gf-link" name="link" type="url" inputmode="url" required maxlength="300" placeholder="https://gift.truemoney.com/…">' +
+        '<label for="gf-link">ลิงก์ซองของขวัญ</label><input id="gf-link" name="link" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" required maxlength="300" placeholder="https://gift.truemoney.com/…">' +
         '<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
         '<button type="submit" class="btn btn-solid">' + T('together.donate.btn', 'span') + '</button><p class="cf-status" id="gf-status" role="status"></p></form>' : dn.url ? '<div class="d-act">' + (qrsrc ? '<div class="qr sm"><img src="' + esc(qrsrc) + '" alt="QR Code หน้าโดเนทของช่อง"></div>' : '') + '<span><a class="btn btn-solid" ' + H('together.donate.url') + '>' + T('together.donate.btn', 'span') + '</a>' + link('together.donate.url') + '</span></div>' : '<div class="qr">' + (qrsrc ? '<img src="' + esc(qrsrc) + '" alt="QR Code สำหรับสนับสนุนช่อง">' : '<div class="qr-empty"><b>QR</b><span>รอใส่ QR</span></div>') +
       (editing && assets ? '<span class="qr-ctl">' + imgBtns('together.donate.qr') + '</span>' : '') + '</div>') + '</div></div>' : '') +
@@ -525,12 +525,12 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
       if (editing) { gs.textContent = 'ออกจากโหมดแก้ไขก่อน จึงจะทดลองส่งได้'; return; }
       if (!state.together.formKey) { gs.textContent = 'ช่องส่งซองจะเปิดใช้งานเร็ว ๆ นี้'; return; }
       var gv = function (n) { return (g.elements[n].value || '').trim(); };
-      var lk = gv('link');
-      if (!/^https?:\/\/[^\s]*truemoney\.com\//i.test(lk)) { gs.textContent = 'กรุณาวางลิงก์ซองของขวัญทรูมันนี่ (ขึ้นต้นด้วย https://gift.truemoney.com/)'; return; }
+      var raw = gv('link'), mm = raw.match(/https?:\/\/[^\s"'<>]*truemoney\.com\/[^\s"'<>]*/i), lk = mm ? mm[0] : '';
+      if (!lk) { gs.textContent = 'กรุณาวางลิงก์ซองของขวัญทรูมันนี่ (ขึ้นต้นด้วย https://gift.truemoney.com/)'; return; }
       if (g.elements.botcheck.checked) return;
       gb.disabled = true; gs.textContent = 'กำลังส่ง…';
       fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ access_key: state.together.formKey, subject: '💛 ซองสนับสนุนช่องจากเว็บก่อนตะวันลับฟ้า', from_name: 'เว็บไซต์ก่อนตะวันลับฟ้า', gift_link: lk, botcheck: false }) })
+        body: JSON.stringify({ access_key: state.together.formKey, subject: '💛 ซองสนับสนุนช่องจากเว็บก่อนตะวันลับฟ้า', from_name: 'เว็บไซต์ก่อนตะวันลับฟ้า', gift_link: lk, pasted_text: raw, botcheck: false }) })
         .then(function (r) { return r.json(); })
         .then(function (d) {
           if (d && d.success) { g.reset(); gs.textContent = 'ส่งซองถึงช่องแล้ว ขอบคุณสำหรับการสนับสนุน'; }
