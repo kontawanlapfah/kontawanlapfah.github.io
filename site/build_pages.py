@@ -28,10 +28,10 @@ head = f"""<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ก่อนตะวันลับฟ้า</title>
-<meta name="description" content="ก่อนตะวันลับฟ้า — ช่องคลิปสั้นข้อเตือนใจและเรื่องเล่าจากอัลกุรอานและหะดีษ มีทั้ง Shorts และแอนิเมชัน">
+<meta name="description" content="ก่อนตะวันลับฟ้า — ช่องคลิปสั้นข้อเตือนใจและเรื่องเล่าแอนิเมชัน จากอัลกุรอานและหะดีษ">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ก่อนตะวันลับฟ้า">
-<meta property="og:description" content="ช่องคลิปสั้นข้อเตือนใจและเรื่องเล่าจากอัลกุรอานและหะดีษ มีทั้ง Shorts และแอนิเมชัน">
+<meta property="og:description" content="ช่องคลิปสั้นข้อเตือนใจและเรื่องเล่าแอนิเมชัน จากอัลกุรอานและหะดีษ">
 <meta property="og:image" content="{SITE_URL}assets/logo.jpg">
 <meta property="og:url" content="{SITE_URL}">
 <meta name="theme-color" content="#f7e2b8">
