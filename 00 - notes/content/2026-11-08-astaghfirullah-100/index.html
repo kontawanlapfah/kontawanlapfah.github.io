@@ -132,7 +132,7 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
 </div></div>
 
 <script>
-const T0 = 5.5, STEP = 0.7, N = 100;
+const T0 = 5.5, STEP = 1.0, N = 100;
 const TK = k => T0 + STEP * (k - 1);           // time drop k lands
 const TEND = TK(N) + 1.6;                       // end card starts
 const DUR = TEND + 6;
@@ -182,7 +182,7 @@ window.frame = t => {
   // counter
   const pop = 1 + .14 * Math.exp(-since * 7);
   $('num').textContent = count; $('num').style.transform = `scale(${pop})`;
-  const shown = count ? (count - 1) / N + ease(since / .35) / N : 0;
+  const shown = count ? (count - 1) / N + ease(since / .45) / N : 0;
   $('arc').setAttribute('stroke-dashoffset', CIRC * (1 - shown));
   $('arab').style.textShadow = `0 0 ${10 + 40 * Math.exp(-since * 3)}px rgba(255,217,61,${(.1 + .45 * Math.exp(-since * 3)).toFixed(2)})`;
 
@@ -223,7 +223,7 @@ window.frame = t => {
   let svg = '';
   for (let k = Math.max(1, count - 1); k <= Math.min(N, count + 1); k++) {
     const tk = TK(k), x = 540 + (rnd(k) - .5) * 24;
-    const fall = (t - (tk - .4)) / .4;
+    const fall = (t - (tk - .5)) / .5;
     if (fall >= 0 && fall < 1) {
       const y = 990 + (HITY - 990) * fall * fall, s = .8 + .3 * fall;
       svg += `<g transform="translate(${x} ${y}) scale(${s})" opacity="${clamp(fall * 6)}"><path d="M0 -30 C10 -12 16 0 16 8 A16 16 0 0 1 -16 8 C-16 0 -10 -12 0 -30 Z" fill="#9BD3F5" stroke="#D8F1FF" stroke-width="2"/></g>`;
