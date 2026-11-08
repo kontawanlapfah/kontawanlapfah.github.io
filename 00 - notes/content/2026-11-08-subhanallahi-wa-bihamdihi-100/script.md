@@ -3,7 +3,7 @@ status: delivered
 kind: dhikr counter
 voiceover: no
 look: the page's dusk design, sunset over a sea of foam that clears
-length: 163 s (one count every 1.5 s)
+length: 179 s (one count every 1.68 s)
 ---
 
 # SubhanAllahi wa bihamdihi 100 times

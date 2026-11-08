@@ -107,10 +107,10 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
 </div></div>
 
 <script>
-const T0 = 7.0, STEP = 1.5, N = 100;
+const T0 = 6.5, STEP = 1.68, N = 100;
 const TK = k => T0 + STEP * (k - 1);           // time drop k lands
 const TEND = TK(N) + 1.6;                       // end card starts
-const DUR = TEND + 6;
+const DUR = TEND + 5;
 const $ = id => document.getElementById(id);
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const ease = x => { x = clamp(x); return x * x * (3 - 2 * x); };
@@ -148,11 +148,11 @@ window.frame = t => {
   for (const s of stars) s.d.style.opacity = (.2 + .8 * (.5 + .5 * Math.sin(t * s.w + s.p))).toFixed(3);
 
   // intro: card in, then counter in
-  const intro = fade(t, .2, 1) * (1 - fade(t, 5.7, 6.4));
+  const intro = fade(t, .2, 1) * (1 - fade(t, 5.2, 5.9));
   $('intro').style.opacity = intro; $('intro').style.transform = `translateY(${(1 - fade(t, .2, 1)) * 40}px)`;
-  const cIn = fade(t, 6.0, 6.8);
+  const cIn = fade(t, 5.5, 6.3);
   $('counter').style.opacity = 1; $('drops').style.opacity = 1; for (const id of ['ring', 'num', 'of', 'stage']) $(id).style.opacity = cIn;
-  ['eyebrow', 'arab', 'title', 'mean'].forEach((id, i) => { const a = fade(t, 6.0 + i * .12, 6.7 + i * .12); $(id).style.opacity = a; $(id).style.transform = `translateY(${(1 - a) * 30}px)`; });
+  ['eyebrow', 'arab', 'title', 'mean'].forEach((id, i) => { const a = fade(t, 5.5 + i * .12, 6.2 + i * .12); $(id).style.opacity = a; $(id).style.transform = `translateY(${(1 - a) * 30}px)`; });
 
   // counter
   const pop = 1 + .14 * Math.exp(-since * 7);
