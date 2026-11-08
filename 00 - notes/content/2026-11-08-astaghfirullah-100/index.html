@@ -19,40 +19,36 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
 .c { left: 0; width: 1080px; text-align: center; }
 .ar { font-family: Sch, serif; direction: rtl; }
 .star { position: absolute; border-radius: 50%; background: #fff; }
-#pill { left: 50%; top: 120px; transform: translateX(-50%); background: #FFF8E7; color: #4A2A20; font-weight: 600; font-size: 40px; padding: 10px 40px; border-radius: 60px; box-shadow: 0 8px 28px rgba(0,0,0,.3); white-space: nowrap; }
-#title { top: 230px; font-weight: 800; font-size: 112px; line-height: 1.15; color: #fff; text-shadow: 0 6px 40px rgba(255,248,231,.35); }
-#times { top: 372px; font-weight: 800; font-size: 76px; color: #FFD93D; text-shadow: 0 0 36px rgba(255,217,61,.8), 0 0 80px rgba(242,197,114,.5); }
-#arab { top: 470px; font-size: 92px; line-height: 1.3; color: #FFF8E7; }
-#ring { left: 390px; top: 640px; width: 300px; height: 300px; }
-#num { left: 390px; top: 700px; width: 300px; text-align: center; font-weight: 800; font-size: 112px; line-height: 1; color: #fff; }
-#of { left: 390px; top: 828px; width: 300px; text-align: center; font-size: 38px; color: rgba(255,255,255,.65); }
-#dots { top: 975px; display: flex; justify-content: center; gap: 18px; }
-.dot { width: 26px; height: 26px; border-radius: 50%; border: 2px solid rgba(255,255,255,.3); background: rgba(255,255,255,.15); }
-.dot.on { background: #FFD93D; border-color: #FFD93D; box-shadow: 0 0 18px #FFD93D; }
+#eyebrow { top: 165px; font-size: 34px; letter-spacing: .25em; color: rgba(255,248,231,.7); }
+#arab { top: 300px; font-size: 140px; line-height: 1.25; color: #FFF8E7; }
+#title { top: 500px; font-weight: 600; font-size: 54px; color: #FFF8E7; }
+#mean { top: 578px; font-size: 34px; color: rgba(255,248,231,.6); }
+#ring { left: 420px; top: 720px; width: 240px; height: 240px; }
+#num { left: 420px; top: 770px; width: 240px; text-align: center; font-weight: 800; font-size: 96px; line-height: 1; color: #fff; }
+#of { left: 420px; top: 870px; width: 240px; text-align: center; font-size: 30px; color: rgba(255,255,255,.6); }
 #stone { left: 190px; top: 1080px; width: 700px; height: 380px; }
 #refl { left: 140px; top: 1438px; width: 800px; height: 90px; background: radial-gradient(ellipse 50% 100% at 50% 0%, rgba(189,230,255,.2), rgba(189,230,255,0)); }
 #water { left: 140px; top: 1436px; width: 800px; height: 3px; background: rgba(255,248,231,.8); box-shadow: 0 0 20px rgba(255,248,231,.8); }
-#stage { top: 1462px; }
-#stage span { background: rgba(0,0,0,.32); padding: 8px 32px; border-radius: 40px; font-size: 40px; }
-#mile { top: 1458px; }
-#mile span { background: #FFD93D; color: #3B1A4A; font-weight: 800; font-size: 44px; padding: 12px 40px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+#stage { top: 1480px; font-size: 40px; color: rgba(255,248,231,.85); }
+#mile { top: 1472px; }
+#mile span { background: #FFD93D; color: #3B1A4A; font-weight: 600; font-size: 40px; padding: 10px 40px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
 #drops, #fx { left: 0; top: 0; width: 1080px; height: 1920px; }
-#intro { top: 640px; height: 760px; }
-#intro .card { margin: 0 70px; background: rgba(30,10,46,.72); border: 2px solid rgba(255,248,231,.25); border-radius: 48px; padding: 56px 50px; box-shadow: 0 30px 80px rgba(0,0,0,.4); }
-#intro .who { font-size: 46px; color: #F2C572; }
-#intro .q { margin-top: 22px; font-size: 64px; font-weight: 600; line-height: 1.35; color: #fff; }
-#intro .cite { margin-top: 30px; font-size: 32px; letter-spacing: .3em; color: rgba(255,248,231,.75); }
-#intro .ask { margin-top: 50px; font-size: 54px; font-weight: 600; color: #FFD93D; }
-#end { top: 600px; height: 900px; }
-#end .card { margin: 0 70px; background: #FFF8E7; color: #3B1A4A; border-radius: 48px; padding: 50px 50px 56px; box-shadow: 0 30px 90px rgba(255,217,61,.35); }
-#end .ar2 { font-size: 84px; line-height: 1.35; color: #3B1A4A; }
-#end .th { margin-top: 8px; font-size: 44px; font-weight: 600; color: #7A3B4A; }
-#end .ask { margin-top: 36px; font-size: 54px; font-weight: 800; color: #3B1A4A; }
-#end .ask b { color: #C0601F; }
-#end .logo { margin: 34px auto 0; width: 200px; height: 200px; border-radius: 40px; background: url(logo.png) center/cover; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-#end .page { margin-top: 18px; font-size: 52px; font-weight: 800; }
-#end .follow { margin-top: 4px; font-size: 40px; color: #6B5A6E; }
-#wm { top: 1560px; font-size: 30px; color: #fff; }
+#intro { top: 500px; }
+#intro .card { margin: 0 80px; background: rgba(30,10,46,.6); border: 1.5px solid rgba(255,248,231,.18); border-radius: 56px; padding: 80px 60px 84px; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+#intro .who { font-size: 38px; letter-spacing: .05em; color: #F2C572; }
+#intro .q { margin-top: 40px; font-size: 66px; font-weight: 600; line-height: 1.4; color: #fff; }
+#intro .cite { margin-top: 40px; font-size: 28px; letter-spacing: .35em; color: rgba(255,248,231,.6); }
+#intro .ask { margin-top: 70px; font-size: 46px; color: #FFD93D; }
+#end { top: 500px; }
+#end .card { margin: 0 80px; background: #FFF8E7; color: #3B1A4A; border-radius: 56px; padding: 70px 60px 74px; box-shadow: 0 30px 90px rgba(255,217,61,.3); }
+#end .ar2 { font-size: 86px; line-height: 1.3; color: #3B1A4A; }
+#end .th { margin-top: 14px; font-size: 36px; color: #7A3B4A; }
+#end .ask { margin-top: 64px; font-size: 52px; font-weight: 600; color: #3B1A4A; }
+#end .ask b { color: #C0601F; font-weight: 800; }
+#end .logo { margin: 64px auto 0; width: 170px; height: 170px; border-radius: 36px; background: url(logo.png) center/cover; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+#end .page { margin-top: 22px; font-size: 44px; font-weight: 800; }
+#end .follow { margin-top: 2px; font-size: 32px; color: #6B5A6E; }
+#wm { top: 1610px; font-size: 30px; color: #fff; }
 #city { left: 0; top: 1760px; width: 1080px; height: 160px; }
 #dim { inset: 0; background: #14071f; }
 </style>
@@ -60,17 +56,16 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
 <body>
 <div id="bg"></div>
 <div id="stars" class="abs" style="inset:0"></div>
-<svg class="abs" style="left:120px;top:150px" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#F2C572" stroke-width="2" stroke-linecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
-<div id="pill" class="abs">ก่อนตะวันลับฟ้า</div>
-<div id="title" class="abs c">อัสตัฆฟิรุลลอฮฺ</div>
-<div id="times" class="abs c">100 ครั้ง</div>
+<svg class="abs" style="left:930px;top:120px" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#F2C572" stroke-width="2" stroke-linecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+<div id="eyebrow" class="abs c">กล่าวตามไปพร้อมกัน</div>
 <div id="arab" class="abs c ar">أَسْتَغْفِرُ ٱللَّٰهَ</div>
+<div id="title" class="abs c">อัสตัฆฟิรุลลอฮฺ</div>
+<div id="mean" class="abs c">ข้าพเจ้าขออภัยโทษต่ออัลลอฮฺ</div>
 
 <div id="counter" class="abs" style="inset:0">
   <svg id="ring" class="abs" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="#241130" stroke="rgba(255,248,231,.18)" stroke-width="7"/><circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="#FFD93D" stroke-width="7" stroke-linecap="round" transform="rotate(-90 60 60)"/></svg>
   <div id="num" class="abs">0</div>
   <div id="of" class="abs">จาก 100</div>
-  <div id="dots" class="abs c"></div>
   <svg id="stone" class="abs" viewBox="0 0 300 160">
     <defs>
       <radialGradient id="g1" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#B9A9C7"/><stop offset=".42" stop-color="#7B658E"/><stop offset=".78" stop-color="#554263"/><stop offset="1" stop-color="#33213F"/></radialGradient>
@@ -110,7 +105,7 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
     </g>
   </svg>
   <div id="refl" class="abs"></div><div id="water" class="abs"></div>
-  <div id="stage" class="abs c"><span></span></div>
+  <div id="stage" class="abs c"></div>
   <div id="mile" class="abs c"><span></span></div>
 </div>
 <svg id="drops" class="abs"></svg>
@@ -119,7 +114,7 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
 
 <div id="intro" class="abs c"><div class="card">
   <div class="who">ท่านนบี ﷺ กล่าวว่า</div>
-  <div class="q">“แท้จริงฉันขออภัยโทษ<br>ต่ออัลลอฮฺ วันละหนึ่งร้อยครั้ง”</div>
+  <div class="q">“แท้จริงฉันขออภัยโทษ<br>ต่ออัลลอฮฺ<br>วันละหนึ่งร้อยครั้ง”</div>
   <div class="cite">SAHIH MUSLIM 2702</div>
   <div class="ask">มากล่าวไปพร้อมกันนะ</div>
 </div></div>
@@ -155,9 +150,6 @@ for (let i = 0; i < 40; i++) {
   Object.assign(d.style, { left: (rnd(i + 1) * 1060) + 'px', top: (rnd(i + 2) * 1100) + 'px', width: sz + 'px', height: sz + 'px' });
   starsEl.appendChild(d); stars.push({ d, w: 1 + rnd(i + 3) * 2, p: rnd(i + 4) * 6.28 });
 }
-// dots
-const dots = [];
-for (let i = 0; i < 10; i++) { const d = document.createElement('div'); d.className = 'dot'; $('dots').appendChild(d); dots.push(d); }
 
 const STAGES = ['หยดแรก… เริ่มแตะหัวใจ', 'หินเริ่มมีรอยร้าวเล็ก ๆ', 'รอยร้าวกว้างขึ้น… หัวใจเริ่มอ่อน', 'ใกล้แล้ว เหลืออีกนิดเดียว', 'หัวใจอ่อนลง… ด้วยอิสติฆฟาร'];
 const stageOf = c => c >= 99 ? 4 : c >= 66 ? 3 : c >= 33 ? 2 : c >= 10 ? 1 : 0;
@@ -185,15 +177,14 @@ window.frame = t => {
   $('intro').style.opacity = intro; $('intro').style.transform = `translateY(${(1 - fade(t, .3, 1.3)) * 40}px)`;
   const cIn = fade(t, 6.9, 7.8);
   $('counter').style.opacity = cIn;
-  ['title', 'times', 'arab'].forEach((id, i) => { const a = fade(t, .1 + i * .25, .9 + i * .25); $(id).style.opacity = a; $(id).style.transform = `translateY(${(1 - a) * 30}px)`; });
+  ['eyebrow', 'arab', 'title', 'mean'].forEach((id, i) => { const a = fade(t, 6.9 + i * .15, 7.7 + i * .15); $(id).style.opacity = a; $(id).style.transform = `translateY(${(1 - a) * 30}px)`; });
 
   // counter
   const pop = 1 + .14 * Math.exp(-since * 7);
   $('num').textContent = count; $('num').style.transform = `scale(${pop})`;
   const shown = count ? (count - 1) / N + ease(since / .45) / N : 0;
   $('arc').setAttribute('stroke-dashoffset', CIRC * (1 - shown));
-  dots.forEach((d, i) => d.classList.toggle('on', i < Math.floor(count / 10)));
-  $('arab').style.textShadow = `0 0 ${10 + 40 * Math.exp(-since * 3)}px rgba(255,217,61,${(.15 + .6 * Math.exp(-since * 3)).toFixed(2)})`;
+  $('arab').style.textShadow = `0 0 ${10 + 40 * Math.exp(-since * 3)}px rgba(255,217,61,${(.1 + .45 * Math.exp(-since * 3)).toFixed(2)})`;
 
   // stone
   const st = stageOf(count);
@@ -218,7 +209,7 @@ window.frame = t => {
   const done = fade(t, TK(N), TK(N) + 1.2);
   $('gold').style.opacity = done; $('halo').style.opacity = done * .8; $('bloom').style.opacity = done;
   $('stone').style.transform = `translateY(${Math.sin(t * 1.4) * 8}px)`;
-  $('stage').querySelector('span').textContent = STAGES[st];
+  $('stage').textContent = STAGES[st];
 
   // milestone banner
   let m = MILES.filter(k => count >= k && t - TK(k) < 2.4).pop();
@@ -234,7 +225,7 @@ window.frame = t => {
     const tk = TK(k), x = 540 + (rnd(k) - .5) * 24;
     const fall = (t - (tk - .55)) / .55;
     if (fall >= 0 && fall < 1) {
-      const y = 1000 + (HITY - 1000) * fall * fall, s = .8 + .3 * fall;
+      const y = 990 + (HITY - 990) * fall * fall, s = .8 + .3 * fall;
       svg += `<g transform="translate(${x} ${y}) scale(${s})" opacity="${clamp(fall * 6)}"><path d="M0 -30 C10 -12 16 0 16 8 A16 16 0 0 1 -16 8 C-16 0 -10 -12 0 -30 Z" fill="#9BD3F5" stroke="#D8F1FF" stroke-width="2"/></g>`;
     }
     const a = t - tk;
@@ -249,7 +240,8 @@ window.frame = t => {
 
   // end card
   const e = fade(t, TEND, TEND + .8);
-  $('dim').style.opacity = e * .55;
+  $('dim').style.opacity = e * .7;
+  for (const id of ['mile', 'stage']) $(id).style.opacity = (parseFloat($(id).style.opacity) || 0) * (1 - e);
   $('end').style.opacity = e; $('end').style.transform = `translateY(${(1 - e) * 50}px) scale(${.96 + .04 * e})`;
   $('wm').style.opacity = .2 * (1 - fade(t, TEND, TEND + .5)) * fade(t, .5, 1.5);
 };
