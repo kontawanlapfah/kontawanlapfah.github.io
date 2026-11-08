@@ -30,10 +30,11 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
 .dot { width: 26px; height: 26px; border-radius: 50%; border: 2px solid rgba(255,255,255,.3); background: rgba(255,255,255,.15); }
 .dot.on { background: #FFD93D; border-color: #FFD93D; box-shadow: 0 0 18px #FFD93D; }
 #stone { left: 190px; top: 1080px; width: 700px; height: 380px; }
-#water { left: 140px; top: 1428px; width: 800px; height: 3px; background: rgba(255,248,231,.8); box-shadow: 0 0 20px rgba(255,248,231,.8); }
-#stage { top: 1350px; }
+#refl { left: 140px; top: 1438px; width: 800px; height: 90px; background: radial-gradient(ellipse 50% 100% at 50% 0%, rgba(189,230,255,.2), rgba(189,230,255,0)); }
+#water { left: 140px; top: 1436px; width: 800px; height: 3px; background: rgba(255,248,231,.8); box-shadow: 0 0 20px rgba(255,248,231,.8); }
+#stage { top: 1462px; }
 #stage span { background: rgba(0,0,0,.32); padding: 8px 32px; border-radius: 40px; font-size: 40px; }
-#mile { top: 1470px; }
+#mile { top: 1458px; }
 #mile span { background: #FFD93D; color: #3B1A4A; font-weight: 800; font-size: 44px; padding: 12px 40px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
 #drops, #fx { left: 0; top: 0; width: 1080px; height: 1920px; }
 #intro { top: 640px; height: 760px; }
@@ -51,7 +52,7 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
 #end .logo { margin: 34px auto 0; width: 200px; height: 200px; border-radius: 40px; background: url(logo.png) center/cover; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
 #end .page { margin-top: 18px; font-size: 52px; font-weight: 800; }
 #end .follow { margin-top: 4px; font-size: 40px; color: #6B5A6E; }
-#wm { top: 1475px; font-size: 30px; color: #fff; }
+#wm { top: 1560px; font-size: 30px; color: #fff; }
 #city { left: 0; top: 1760px; width: 1080px; height: 160px; }
 #dim { inset: 0; background: #14071f; }
 </style>
@@ -76,25 +77,39 @@ body { font-family: Kanit, sans-serif; color: #FFF8E7; position: relative; }
       <radialGradient id="g2" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#FFE9A8"/><stop offset=".38" stop-color="#F2C572"/><stop offset=".78" stop-color="#8A5A78"/><stop offset="1" stop-color="#4B2C53"/></radialGradient>
       <filter id="glow"><feGaussianBlur stdDeviation="6"/></filter>
     </defs>
-    <path id="halo" d="M30 150 C10 110 20 60 70 52 C110 44 190 40 240 56 C290 72 292 120 270 150 Z" fill="#FFD93D" filter="url(#glow)" opacity="0"/>
-    <path d="M30 150 C10 110 20 60 70 52 C110 44 190 40 240 56 C290 72 292 120 270 150 Z" fill="url(#g1)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
-    <path id="gold" d="M30 150 C10 110 20 60 70 52 C110 44 190 40 240 56 C290 72 292 120 270 150 Z" fill="url(#g2)" opacity="0"/>
-    <ellipse cx="100" cy="74" rx="34" ry="12" fill="#fff" opacity=".12"/>
-    <g fill="none" stroke="#211126" stroke-linecap="round" stroke-linejoin="round">
-      <path id="c0" d="M152 56 L146 76 L158 96 L144 118 L150 148"/>
-      <path id="c1" d="M146 76 L118 86 M158 96 L190 86"/>
-      <path id="c2" d="M144 118 L110 128 M150 148 L180 152"/>
-      <path id="c3" d="M158 96 L134 104 M146 76 L172 70"/>
-      <path id="c4" d="M150 148 L128 154 M118 86 L96 102"/>
+    <path id="halo" d="M28 150 L18 118 L34 82 L66 56 L108 38 L150 32 L196 36 L238 52 L268 80 L284 116 L276 150 Z" fill="#FFD93D" filter="url(#glow)" opacity="0"/>
+    <ellipse cx="150" cy="151" rx="140" ry="7" fill="#14071f" opacity=".45"/>
+    <g id="rock" stroke="rgba(255,255,255,.10)" stroke-width=".8" stroke-linejoin="round">
+      <path d="M18 118 L70 112 L150 124 L210 110 L284 116 L276 150 L28 150 Z" fill="#43304F"/>
+      <path d="M18 118 L34 82 L66 56 L90 72 L70 112 Z" fill="#6E5A82"/>
+      <path d="M90 72 L132 62 L200 68 L210 110 L150 124 L70 112 Z" fill="#7B658E"/>
+      <path d="M238 52 L268 80 L284 116 L210 110 L200 68 Z" fill="#5E4A72"/>
+      <path d="M66 56 L108 38 L150 32 L132 62 L90 72 Z" fill="#A894BC"/>
+      <path d="M150 32 L196 36 L238 52 L200 68 L132 62 Z" fill="#8E79A3"/>
     </g>
-    <g id="sprout" transform="translate(150 50) scale(0)">
+    <g id="gold" opacity="0" stroke-linejoin="round">
+      <path d="M18 118 L70 112 L150 124 L210 110 L284 116 L276 150 L28 150 Z" fill="#8A5A3C"/>
+      <path d="M18 118 L34 82 L66 56 L90 72 L70 112 Z" fill="#C98F4A"/>
+      <path d="M90 72 L132 62 L200 68 L210 110 L150 124 L70 112 Z" fill="#E0A856"/>
+      <path d="M238 52 L268 80 L284 116 L210 110 L200 68 Z" fill="#B57A44"/>
+      <path d="M66 56 L108 38 L150 32 L132 62 L90 72 Z" fill="#FFE9A8"/>
+      <path d="M150 32 L196 36 L238 52 L200 68 L132 62 Z" fill="#F2C572"/>
+    </g>
+    <g id="moss" fill="#56B86B" opacity="0">
+      <circle cx="40" cy="118" r="7"/><circle cx="50" cy="114" r="5"/><circle cx="64" cy="62" r="4"/>
+      <circle cx="244" cy="58" r="5"/><circle cx="268" cy="116" r="7"/><circle cx="258" cy="120" r="4" fill="#78D68D"/>
+    </g>
+    <ellipse cx="150" cy="40" rx="22" ry="6" fill="#2A1B36"/>
+    <ellipse id="pool" cx="150" cy="40.5" rx="19" ry="4.6" fill="#8CCBF0" opacity="0"/>
+    <g id="cracks" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g id="sprout" transform="translate(150 40) scale(0)">
       <path d="M0 0 L0 -26" stroke="#2F7A43" stroke-width="3" stroke-linecap="round"/>
       <path d="M0 -14 C-6 -26 -20 -26 -24 -20 C-18 -12 -6 -10 0 -14 Z" fill="#56B86B"/>
       <path d="M0 -18 C6 -30 20 -30 24 -24 C18 -16 6 -14 0 -18 Z" fill="#78D68D"/>
       <g id="bloom" opacity="0"><circle cx="0" cy="-30" r="6" fill="#FFD93D"/><circle cx="-10" cy="-32" r="4" fill="#F7A8C4"/><circle cx="10" cy="-33" r="4" fill="#F7A8C4"/></g>
     </g>
   </svg>
-  <div id="water" class="abs"></div>
+  <div id="refl" class="abs"></div><div id="water" class="abs"></div>
   <div id="stage" class="abs c"><span></span></div>
   <div id="mile" class="abs c"><span></span></div>
 </div>
@@ -151,7 +166,13 @@ const CIRC = 2 * Math.PI * 52;
 $('arc').setAttribute('stroke-dasharray', CIRC);
 
 const STONE = { x: 190, y: 1080, w: 700, h: 380 };      // stone box on screen
-const HITY = STONE.y + 50 / 160 * STONE.h + 6;          // top of the stone
+const HITY = STONE.y + 40 / 160 * STONE.h;              // the little hollow on top of the stone
+const CRACKS = [
+  'M150 46 L144 70 L156 92 L146 118 L152 148',
+  'M144 70 L116 80 L100 76 M156 92 L188 84 L206 90',
+  'M146 118 L112 126 L90 140 M152 148 L176 140',
+  'M156 92 L134 100 M144 70 L170 62 L190 56',
+  'M116 80 L94 100 L72 104 M188 84 L214 112 L240 120'];
 
 window.frame = t => {
   const count = t < T0 ? 0 : Math.min(N, Math.floor((t - T0) / STEP) + 1);
@@ -177,15 +198,27 @@ window.frame = t => {
   // stone
   const st = stageOf(count);
   const crackW = [1.2, 1.8, 2.6, 3.4, 4.2][st], crackO = [.18, .45, .7, .92, 1][st];
-  for (let i = 0; i < 5; i++) { const c = $('c' + i); c.setAttribute('stroke-width', crackW); c.style.opacity = i <= st && count > 0 ? crackO : 0; }
+  // cracks: dark seams that fill with warm light as the count grows
+  const lit = count / N, newCrack = MILES.includes(count) ? ease(since / .5) : 1;
+  let ck = '';
+  CRACKS.forEach((d, i) => {
+    if (count === 0 || i > st) return;
+    const g = i === st ? newCrack : 1;
+    ck += `<path d="${d}" stroke="#FFD93D" stroke-width="${(crackW + 4) * g}" opacity="${(.15 + .7 * lit) * g}" filter="url(#glow)"/>`;
+    ck += `<path d="${d}" stroke="#241130" stroke-width="${crackW * g}" opacity="${crackO * (1 - .5 * lit)}"/>`;
+    ck += `<path d="${d}" stroke="#FFE9A8" stroke-width="${crackW * .45 * g}" opacity="${lit * g}"/>`;
+  });
+  $('cracks').innerHTML = ck;
+  $('pool').style.opacity = clamp(count / 20) * .85;
+  $('pool').setAttribute('ry', 4.6 + 1.2 * Math.exp(-since * 5));
+  $('moss').style.opacity = clamp((count - 20) / 50);
   const grow = count >= 10 ? .45 + .9 * (count - 10) / 90 : 0;
   const sp = count >= 10 ? grow * ease((count === 10 ? since : 1) / .6) : 0;
-  $('sprout').setAttribute('transform', `translate(150 50) scale(${sp.toFixed(3)})`);
+  $('sprout').setAttribute('transform', `translate(150 40) scale(${sp.toFixed(3)})`);
   const done = fade(t, TK(N), TK(N) + 1.2);
   $('gold').style.opacity = done; $('halo').style.opacity = done * .8; $('bloom').style.opacity = done;
   $('stone').style.transform = `translateY(${Math.sin(t * 1.4) * 8}px)`;
   $('stage').querySelector('span').textContent = STAGES[st];
-  $('stage').style.opacity = cIn;
 
   // milestone banner
   let m = MILES.filter(k => count >= k && t - TK(k) < 2.4).pop();
@@ -193,11 +226,12 @@ window.frame = t => {
   const ms = $('mile');
   if (m) { const a = fade(t - TK(m), 0, .3) * (m === N ? 1 : 1 - fade(t - TK(m), 2, 2.4)); ms.style.opacity = a; ms.querySelector('span').textContent = m === N ? 'อัลฮัมดุลิลลาฮฺ ครบ 100 ครั้ง' : `✦ ครบ ${m} ครั้งแล้ว ✦`; }
   else ms.style.opacity = 0;
+  $('stage').style.opacity = cIn * (1 - (m ? parseFloat(ms.style.opacity) : 0));
 
   // drops, ripples, splashes for the next and the last two counts
   let svg = '';
   for (let k = Math.max(1, count - 1); k <= Math.min(N, count + 1); k++) {
-    const tk = TK(k), x = 540 + (rnd(k) - .5) * 120;
+    const tk = TK(k), x = 540 + (rnd(k) - .5) * 24;
     const fall = (t - (tk - .55)) / .55;
     if (fall >= 0 && fall < 1) {
       const y = 1000 + (HITY - 1000) * fall * fall, s = .8 + .3 * fall;
@@ -205,9 +239,9 @@ window.frame = t => {
     }
     const a = t - tk;
     if (a >= 0 && a < .9) {
-      for (let r = 0; r < 2; r++) { const p = clamp((a - r * .15) / .75); if (p > 0 && p < 1) svg += `<ellipse cx="${x}" cy="${HITY}" rx="${30 + 110 * p}" ry="${10 + 30 * p}" fill="none" stroke="#BDE6FF" stroke-width="4" opacity="${(.85 * (1 - p)).toFixed(2)}"/>`; }
+      for (let r = 0; r < 2; r++) { const p = clamp((a - r * .15) / .75); if (p > 0 && p < 1) svg += `<ellipse cx="${x}" cy="${HITY}" rx="${16 + 70 * p}" ry="${5 + 18 * p}" fill="none" stroke="#BDE6FF" stroke-width="4" opacity="${(.85 * (1 - p)).toFixed(2)}"/>`; }
       const cols = ['#BDE6FF', '#FFF8E7', '#F2C572', '#D8CFF5'];
-      for (let i = 0; i < 8; i++) { const p = clamp(a / .6); if (p >= 1) continue; const dx = (rnd(k * 10 + i) - .5) * 200, h = 40 + rnd(k * 7 + i) * 50, sz = 5 + rnd(k * 3 + i) * 7;
+      for (let i = 0; i < 8; i++) { const p = clamp(a / .6); if (p >= 1) continue; const dx = (rnd(k * 10 + i) - .5) * 160, h = 30 + rnd(k * 7 + i) * 50, sz = 4 + rnd(k * 3 + i) * 6;
         svg += `<circle cx="${x + dx * p}" cy="${HITY - h * Math.sin(p * Math.PI) - 4}" r="${sz * (1 - p * .5)}" fill="${cols[i % 4]}" opacity="${(1 - p).toFixed(2)}"/>`; }
     }
   }
