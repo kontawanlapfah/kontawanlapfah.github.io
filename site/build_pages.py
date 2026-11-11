@@ -57,10 +57,11 @@ shutil.copy(os.path.join(ROOT, "site", "assets", "logo.jpg"), os.path.join(OUT_D
 for _f in ("gift-howto.mp4", "ep11.mp4", "ep11.jpg"):
     shutil.copy(os.path.join(ROOT, "site", "assets", _f), os.path.join(OUT_DIR, "assets", _f))
 open(os.path.join(OUT_DIR, ".nojekyll"), "w").close()
+shutil.copytree(os.path.join(ROOT, "site", "wallpapers"), os.path.join(OUT_DIR, "wallpapers"), dirs_exist_ok=True)
 with open(os.path.join(OUT_DIR, "robots.txt"), "w") as f:
     f.write("User-agent: *\nAllow: /\nSitemap: " + SITE_URL + "sitemap.xml\n")
 with open(os.path.join(OUT_DIR, "sitemap.xml"), "w") as f:
-    f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>' + SITE_URL + '</loc></url></urlset>\n')
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>' + SITE_URL + '</loc></url><url><loc>' + SITE_URL + 'wallpapers/</loc></url></urlset>\n')
 with open(os.path.join(OUT_DIR, "404.html"), "w", encoding="utf8") as f:
     f.write('<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ไม่พบหน้านี้ · ก่อนตะวันลับฟ้า</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:sans-serif;background:linear-gradient(180deg,#2a2244,#8b5a6c 70%,#e99d66);color:#fbf1de;text-align:center;padding:24px}a{display:inline-block;margin-top:16px;padding:12px 26px;border-radius:99px;background:#f6d79a;color:#2a2244;text-decoration:none;font-weight:600}</style></head><body><div><h1>ไม่พบหน้านี้</h1><p>ลิงก์อาจเปลี่ยนไปแล้ว</p><a href="/">กลับหน้าแรก</a></div></body></html>')
 
