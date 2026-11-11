@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kontawanlapfah.github.io/sitemap.xml
