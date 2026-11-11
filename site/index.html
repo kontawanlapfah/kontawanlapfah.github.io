@@ -423,7 +423,7 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
     h += '<header class="hero" id="top"><div class="big-sun" aria-hidden="true"></div>' +
       (hasQr || editing ? '<div class="wrap dtop"><div class="donate' + (dn.steps && dn.steps.length ? ' gift' : '') + '" id="donate"><div class="d-text">' + (dn.steps && dn.steps.length ? '<div class="d-head"><svg class="d-env" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dfl" x1="0" x2="1"><stop offset="0" stop-color="#ff7a2a"/><stop offset="1" stop-color="#ffb46b"/></linearGradient></defs><rect x="10" y="26" width="80" height="56" rx="14" fill="#fff" stroke="#e7c9a6" stroke-width="3"/><path d="M10 40 Q10 26 24 26 H76 Q90 26 90 40 L50 64 Z" fill="url(#dfl)"/><path d="M50 72 c-9-6-14-10-14-16 a7 7 0 0 1 14-2 a7 7 0 0 1 14 2 c0 6-5 10-14 16z" fill="#f6b443" stroke="#fff" stroke-width="3"/></svg><div><span class="d-eyebrow">💛 ร่วมสนับสนุนช่อง</span>' + T('together.donate.title', 'h3') + '</div></div>' : T('together.donate.title', 'h3')) + T('together.donate.desc', 'p', 'note') + (dn.uses && dn.uses.length ? '<div class="d-uses">' + dn.uses.map(function (x, i) { return T('together.donate.uses.' + i, 'span'); }).join('') + '</div>' : '') + (dn.steps && dn.steps.length ? '<ol class="d-steps">' + dn.steps.map(function (x, i) { return T('together.donate.steps.' + i, 'li'); }).join('') + '</ol>' + (dn.video ? '<details class="d-vid"><summary>▶ ดูวิดีโอวิธีส่งซอง <small>(กดที่ไอคอน ▶)</small></summary><video src="' + esc(dn.video) + '" controls playsinline muted preload="none" width="360" height="480"></video></details>' : '') : '') + T('together.donate.note', 'p', 'note small') + '</div>' +
       (dn.steps && dn.steps.length ? '<form class="gform" id="gform" novalidate><div class="gf-top"><b>ส่งซองทรูมันนี่</b><small>วางลิงก์ซอง แล้วกดส่งได้เลย</small></div>' +
-        '<label for="gf-link">ลิงก์ซองของขวัญ</label><input id="gf-link" name="link" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" required maxlength="300" placeholder="https://gift.truemoney.com/…">' +
+        '<label for="gf-link">ลิงก์ซองของขวัญ</label><input id="gf-link" name="link" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" required maxlength="300" placeholder="วางลิงก์ซองที่คัดลอกมาจากแอปทรูมันนี่">' +
         '<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
         '<button type="submit" class="btn btn-solid">' + T('together.donate.btn', 'span') + '</button><p class="cf-status" id="gf-status" role="status"></p></form>' : dn.url ? '<div class="d-act">' + (qrsrc ? '<div class="qr sm"><img src="' + esc(qrsrc) + '" alt="QR Code หน้าโดเนทของช่อง"></div>' : '') + '<span><a class="btn btn-solid" ' + H('together.donate.url') + '>' + T('together.donate.btn', 'span') + '</a>' + link('together.donate.url') + '</span></div>' : '<div class="qr">' + (qrsrc ? '<img src="' + esc(qrsrc) + '" alt="QR Code สำหรับสนับสนุนช่อง">' : '<div class="qr-empty"><b>QR</b><span>รอใส่ QR</span></div>') +
       (editing && assets ? '<span class="qr-ctl">' + imgBtns('together.donate.qr') + '</span>' : '') + '</div>') + '</div></div>' : '') +
@@ -694,8 +694,9 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
       if (editing) { gs.textContent = 'ออกจากโหมดแก้ไขก่อน จึงจะทดลองส่งได้'; return; }
       if (!state.together.formKey) { gs.textContent = 'ช่องส่งซองจะเปิดใช้งานเร็ว ๆ นี้'; return; }
       var gv = function (n) { return (g.elements[n].value || '').trim(); };
-      var raw = gv('link'), mm = raw.match(/https?:\/\/[^\s"'<>]*truemoney\.com\/[^\s"'<>]*/i), lk = mm ? mm[0] : '';
-      if (!lk) { gs.textContent = 'กรุณาวางลิงก์ซองของขวัญทรูมันนี่ (ขึ้นต้นด้วย https://gift.truemoney.com/)'; return; }
+      var raw = gv('link'), mm = raw.match(/(https?:\/\/)?[^\s"'<>]*(truemoney|tmn)[^\s"'<>]*/i) || raw.match(/https?:\/\/[^\s"'<>]+/i), lk = mm ? mm[0] : raw;
+      if (lk && !/^https?:\/\//i.test(lk) && /[a-z0-9-]+\.[a-z]{2,}/i.test(lk)) lk = 'https://' + lk;
+      if (raw.length < 8) { gs.textContent = 'กรุณาวางลิงก์ซองของขวัญทรูมันนี่ในช่องด้านบน'; return; }
       if (g.elements.botcheck.checked) return;
       gb.disabled = true; gs.textContent = 'กำลังส่ง…';
       fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -703,8 +704,8 @@ img.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit:
         .then(function (r) { return r.json(); })
         .then(function (d) {
           if (d && d.success) { g.reset(); gs.textContent = 'ส่งซองถึงช่องแล้ว ขอบคุณสำหรับการสนับสนุน'; }
-          else { gs.textContent = 'ส่งไม่สำเร็จ ลองใหม่อีกครั้งในอีกสักครู่' + (d && d.message ? ' (' + d.message + ')' : ''); }
-        }, function () { gs.textContent = 'ส่งไม่สำเร็จ ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วลองใหม่'; })
+          else { gs.innerHTML = 'ส่งไม่สำเร็จ' + (d && d.message ? ' (' + esc(d.message) + ')' : '') + ' ลองใหม่อีกครั้ง หรือส่งลิงก์ซองทาง <a href="' + esc(state.lineUrl || 'https://line.me/R/ti/p/@911vdjvd') + '" target="_blank" rel="noopener">LINE ของช่อง</a>'; }
+        }, function () { gs.innerHTML = 'ส่งไม่สำเร็จ ลองใหม่อีกครั้ง หรือส่งลิงก์ซองทาง <a href="' + esc(state.lineUrl || 'https://line.me/R/ti/p/@911vdjvd') + '" target="_blank" rel="noopener">LINE ของช่อง</a>'; })
         .then(function () { gb.disabled = false; });
       return;
     }
