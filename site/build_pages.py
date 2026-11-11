@@ -54,7 +54,7 @@ os.makedirs(os.path.join(OUT_DIR, "assets"), exist_ok=True)
 with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf8") as f:
     f.write(head + body + "\n</body>\n</html>\n")
 shutil.copy(os.path.join(ROOT, "site", "assets", "logo.jpg"), os.path.join(OUT_DIR, "assets", "logo.jpg"))
-for _f in ("gift-howto.mp4",):
+for _f in ("gift-howto.mp4", "ep11.mp4", "ep11.jpg"):
     shutil.copy(os.path.join(ROOT, "site", "assets", _f), os.path.join(OUT_DIR, "assets", _f))
 open(os.path.join(OUT_DIR, ".nojekyll"), "w").close()
 with open(os.path.join(OUT_DIR, "robots.txt"), "w") as f:
