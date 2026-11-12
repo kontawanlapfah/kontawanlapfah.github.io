@@ -1,0 +1,9 @@
+# Keep the reel-kit files out of the GitHub Pages site
+exclude:
+  - index.md
+  - CLAUDE.md
+  - SETUP.md
+  - log.md
+  - "00 - notes"
+  - "01 - dashboards"
+  - "03 - export"
