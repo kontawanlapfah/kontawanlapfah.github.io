@@ -1,8 +1,8 @@
-# REEL ~115s | ดัยยูษ คำหนักที่มักถูกใช้ผิด
+# REEL ~130s | ดัยยูษ คำหนักที่มักถูกใช้ผิด
 
 **แก่นเรื่อง:** ปกป้องครอบครัว ไม่ใช่ปล่อย และไม่ใช่คุม
 **โทน:** สุภาพ กันเอง นุ่ม ตรงข้อมูล ไม่ใส่ ค่ะ/ครับ ไม่ชี้นิ้ว ไม่ตัดสินใคร
-**สไตล์:** Minimal healing beige #F5F1E8 | 9:16 | 7 ซีน
+**สไตล์:** Minimal healing beige #F5F1E8 | 9:16 | 8 ซีน
 **หลักการ:** เลขอ้างอิงขึ้นบนจอเท่านั้น ไม่อ่านออกเสียง | อาหรับใช้อักขรวิธีอิมลาอีทั้งไฟล์ | ไม่วาดภาพท่านนบีหรือเศาะฮาบะห์
 **ภาพคน:** ทุกซีนใช้ภาพจากด้านหลังหรือภาพเงา ไม่เห็นใบหน้า | ผู้หญิง: ฮิญาบคลุมผมและคอ เสื้อผ้าหลวม ไม่เห็นสัดส่วน | ไม่วาดภาพผู้หญิงแต่งกายเปิดเผย
 
@@ -14,9 +14,10 @@
 
 **TEXT:**
 ดัยยูษ
+คำที่ฮะดีษใช้เรียกผู้ชาย
 คำหนัก ที่มักถูกใช้ผิด
 
-**VO:** เคยได้ยินคำว่า ดัยยูษ ไหม คำนี้หนักมากในฮะดีษ แต่ก็เป็นคำที่ถูกใช้ผิดบ่อยเหมือนกัน
+**VO:** เคยได้ยินคำว่า ดัยยูษ ไหม คำนี้ใช้เรียกผู้ชาย เป็นคำที่หนักมากในฮะดีษ แต่ก็ถูกใช้ผิดบ่อยเหมือนกัน
 
 ---
 
@@ -41,9 +42,10 @@
 الدَّيُّوثُ: هُوَ الَّذِي لَا يَغَارُ عَلَى أَهْلِهِ
 "ดัยยูษ คือผู้ที่ไม่หวงแหนครอบครัวของเขา"
 [อิบนุลอะษีร, อันนิฮายะห์ ฟีเฆาะรีบิลฮะดีษ]
+บรรทัดเล็ก: หมายถึงผู้ชาย ต่อคนในความดูแลของเขา (ภรรยา บุตรสาว พี่น้องหญิง)
 บรรทัดเล็ก: คำนี้มีไว้เตือนตัวเอง ไม่ได้มีไว้เรียกคนอื่น
 
-**VO:** อุละมาอ์อธิบายว่า ดัยยูษ คือผู้ที่ไม่มีความหวงแหนต่อครอบครัว เห็นเรื่องผิดประเวณี หรือสิ่งที่นำไปสู่เรื่องนั้นในบ้าน แล้วยอมรับได้ คำนี้จึงมีไว้เตือนตัวเอง ไม่ได้มีไว้หยิบไปเรียกใครง่ายๆ
+**VO:** อุละมาอ์อธิบายว่า ดัยยูษ คือผู้ชายที่ไม่มีความหวงแหนต่อครอบครัว เห็นเรื่องผิดประเวณี หรือสิ่งที่นำไปสู่เรื่องนั้นในบ้าน แล้วยอมรับได้ คำนี้จึงมีไว้เตือนตัวเอง ไม่ได้มีไว้หยิบไปเรียกใครง่ายๆ
 
 ---
 
@@ -62,7 +64,22 @@
 
 ---
 
-## [60-82s] ซีน 5 - ความหวงมีสองแบบ
+## [60-76s] ซีน 5 - ตัวอย่างที่พบบ่อยวันนี้
+
+**VISUAL:** หน้าจอมือถือ มีโพสต์เป็นกรอบสี่เหลี่ยมเบลอ (ไม่มีภาพคน) ตัวเลขยอดวิวใต้โพสต์ค่อยๆ เพิ่มขึ้น แล้วมือ (เห็นเฉพาะมือ) กดปิดโพสต์
+
+**TEXT:**
+ผู้ชายที่นำความงามของภรรยาไปโชว์ให้คนทั่วไปดูในโซเชียล
+... وَلَا يُبْدِينَ زِينَتَهُنَّ إِلَّا لِبُعُولَتِهِنَّ ...
+"... และพวกนางอย่าเปิดเผยความงามของพวกนาง เว้นแต่แก่สามีของพวกนาง ..."
+[ส่วนหนึ่งของอันนูร 24:31]
+บรรทัดเล็ก: สวนทางกับความหวงแหน ส่วนจะถึงขั้นดัยยูษหรือไม่ อุละมาอ์เห็นต่างกัน
+
+**VO:** ตัวอย่างที่พบบ่อยวันนี้ คือผู้ชายที่นำความงามของภรรยาไปโชว์ให้คนทั่วไปดูในโซเชียล อัลกุรอานกำหนดว่า ความงามของผู้หญิงเปิดเผยได้กับสามีและมะห์ร็อม การพาไปโชว์จึงสวนทางกับความหวงแหน ส่วนจะถึงขั้นดัยยูษหรือไม่ อุละมาอ์เห็นต่างกัน
+
+---
+
+## [76-98s] ซีน 6 - ความหวงมีสองแบบ
 
 **VISUAL:** แบ่งจอ 2 ฝั่ง ซ้ายโทนอุ่น "หวงเมื่อมีเหตุ" ขวาโทนหม่น "หวงทั้งที่ไม่มีเหตุ" ภาพมือถือที่ถูกเปิดดู (เห็นเฉพาะมือ) อยู่ฝั่งขวา "ไม่มีเหตุ" เท่านั้น
 
@@ -77,7 +94,7 @@
 
 ---
 
-## [82-104s] ซีน 6 - ถ้าต้องเตือนกัน
+## [98-120s] ซีน 7 - ถ้าต้องเตือนกัน
 
 **VISUAL:** ภาพเงาสามีภรรยาจากด้านหลัง นั่งคุยกันบนโซฟา มีแก้วชาสองใบ ขึ้นเลข 1-3 ทีละข้อ
 
@@ -92,7 +109,7 @@
 
 ---
 
-## [104-118s] ซีน 7 - ปิด
+## [120-134s] ซีน 8 - ปิด
 
 **VISUAL:** ภาพเงาสามีภรรยาจากด้านหลัง เดินข้างกัน สามีเดินฝั่งถนน จบที่พื้นเบจว่าง ข้อความค้าง 2 วินาที
 
@@ -115,7 +132,13 @@
 
 🤍 ดัยยูษหมายถึงใคร
 الدَّيُّوثُ: هُوَ الَّذِي لَا يَغَارُ عَلَى أَهْلِهِ "ผู้ที่ไม่หวงแหนครอบครัวของเขา" [อิบนุลอะษีร, อันนิฮายะห์]
+คำนี้ใช้เรียกผู้ชาย ต่อคนในความดูแลของเขา เช่น ภรรยา บุตรสาว พี่น้องหญิง
 คำนี้มีไว้เตือนตัวเอง ไม่ได้มีไว้เรียกคนอื่น
+
+🤍 ตัวอย่างที่พบบ่อยวันนี้
+ผู้ชายที่นำความงามของภรรยาไปโชว์ให้คนทั่วไปดูในโซเชียล
+อัลลอฮ์ตรัสถึงบรรดาหญิงผู้ศรัทธาว่า ... وَلَا يُبْدِينَ زِينَتَهُنَّ إِلَّا لِبُعُولَتِهِنَّ ... "... และพวกนางอย่าเปิดเผยความงามของพวกนาง เว้นแต่แก่สามีของพวกนาง ..." [ส่วนหนึ่งของอันนูร 24:31] อายะห์ระบุรายชื่อมะห์ร็อมต่อจากนั้น
+การนำความงามของภรรยาไปให้ชายอื่นดูจึงสวนทางกับความหวงแหน ส่วนจะถึงขั้นเข้าข่ายคำว่าดัยยูษในฮะดีษหรือไม่ อุละมาอ์เห็นต่างกัน บางท่านจำกัดไว้ที่การยอมรับซินา บางท่านรวมถึงการยอมรับการเปิดเผยความงามต่อชายอื่นด้วย
 
 🤍 หน้าที่ของเราคือ
 قُوا أَنْفُسَكُمْ وَأَهْلِيكُمْ نَارًا "จงปกป้องตัวของพวกเจ้าและครอบครัวของพวกเจ้าให้พ้นจากไฟนรก" [อัตตะห์รีม 66:6]
@@ -220,16 +243,28 @@
 | Q15 | "อกตัญญูต่อพ่อแม่" และ "ดื่มสุราเป็นประจำ" | ไม่แก้ |
 | Q16 | อยู่ในแนวทางช่อง | ไม่แก้ |
 
+**เพิ่มตามคำขอของเจ้าของช่อง (ยังไม่ได้ตรวจ)**
+
+เพิ่มสองอย่าง: ระบุว่าดัยยูษเป็นคำเรียกผู้ชาย (ซีน 1, ซีน 3, แคปชัน) และเพิ่มซีน 5 ตัวอย่างการโชว์ภรรยาในโซเชียล ตัวอย่างนี้เขียนแบบมีคิลาฟ ตามคำตอบ Q3 ที่ว่าไม่คืนตัวอย่างแบบฟันธง
+
+ต้องตรวจก่อนเผยแพร่:
+
+- **V11** อันนูร 24:31 สระและรูปเขียนอิมลาอีของท่อน وَلَا يُبْدِينَ زِينَتَهُنَّ إِلَّا لِبُعُولَتِهِنَّ และคำแปล زِينَتَهُنَّ ว่า "ความงามของพวกนาง" (ตามตัวอักษรคือเครื่องประดับ)
+- **Q17** การนำ 24:31 มาใช้กับการโพสต์ภาพภรรยา เป็นการประยุกต์ของผู้เรียบเรียง ยังไม่มีฟัตวาที่เทียบแล้วมากำกับ ถ้ามีฟัตวาที่ระบุเรื่องนี้โดยตรง ควรอ้างในแคปชัน
+- **Q18** ขอบเขตของตัวอย่าง: คำว่า "นำความงามของภรรยาไปโชว์" ครอบคลุมแค่ไหน ภาพภรรยาที่แต่งกายปกปิดครบอยู่ในข่ายนี้ไหม ฉบับนี้ไม่ได้ระบุ
+- **Q19** ประโยค "ส่วนจะถึงขั้นดัยยูษหรือไม่ อุละมาอ์เห็นต่างกัน" และคำอธิบายสองทัศนะในแคปชัน สรุปจากคำตอบ Q3 ถ้อยคำถูกต้องไหม
+- **Q20** ข้อความ "คำที่ฮะดีษใช้เรียกผู้ชาย" และ "ผู้ชาย ต่อคนในความดูแลของเขา (ภรรยา บุตรสาว พี่น้องหญิง)" สรุปจากคำตอบ Q5 ถ้อยคำถูกต้องไหม
+
 **ส่วน P - ตรวจงานผลิต**
 
-- **P1** จับเวลาไฟล์เสียงจริง ต้องไม่เกิน 120 วินาที ถ้าเกิน ตัดประโยค "และสังเกตว่า อายะห์เริ่มที่ตัวเราเองก่อน" ในซีน 4 ก่อน อย่าเร่งสปีดเสียง
-- **P2** ซีน 5 มีข้อความบนจอมากที่สุด ให้ขึ้นทีละฝั่งตามเสียงพากย์
+- **P1** จับเวลาไฟล์เสียงจริง ฉบับนี้เพิ่มซีน 5 จึงยาวขึ้นเป็นประมาณ 130 วินาที ถ้าต้องการไม่เกิน 120 วินาที ตัดประโยค "และสังเกตว่า อายะห์เริ่มที่ตัวเราเองก่อน" ในซีน 4 ก่อน อย่าเร่งสปีดเสียง
+- **P2** ซีน 6 มีข้อความบนจอมากที่สุด ให้ขึ้นทีละฝั่งตามเสียงพากย์
 - **P3** ฟอนต์อาหรับแสดงสระครบ โดยเฉพาะ الدَّيُّوثُ และ تَبَارَكَ وَتَعَالَى
 - **P4** เสียงพากย์ออกเสียง "ดัยยูษ" ให้ตรงกันทุกครั้ง
-- **P5** ภาพมือถือในซีน 5 อยู่ฝั่ง "ไม่มีเหตุ" เท่านั้น และไม่มีภาพใดชี้ไปที่ผู้หญิงเป็นต้นเหตุ
+- **P5** ภาพมือถือในซีน 6 อยู่ฝั่ง "ไม่มีเหตุ" เท่านั้น และไม่มีภาพใดชี้ไปที่ผู้หญิงเป็นต้นเหตุ
 
 ---
 
 ## PROMPT FOR CLAUDE CODE
 
-Generate 9:16 reel, about 115s (max 120s), minimal healing beige #F5F1E8, 7 scenes as in the storyboard above. No ka/khrap in voiceover. Voice: Thai female, polite, friendly, natural, no slang, academic but gentle, not blaming, not judging. References appear on screen only, not read aloud. Show exact Arabic as written above: Musnad Ahmad 6113, the definition by Ibn al-Athir, At-Tahrim 66:6, the saying of Ali, Abu Dawud 2659, Muslim 2594a. All human figures are shown from behind or as silhouettes: no visible face. Any woman: hijab covering hair and neck, loose clothing, no body contours. Never show a woman in revealing clothing. Scene 1: the Thai word "ดัยยูษ" large on blank beige with a question mark fading in. Scene 2: Arabic fading in, the last phrase highlighted. Scene 3: a hand about to stick the word onto a silhouette, then stopping and putting the word back. Scene 4: family silhouettes from behind sitting in a circle learning together, soft light in the middle. Scene 5: split screen, warm side "jealousy with cause" vs muted side "jealousy without cause"; a hand checking a phone appears only on the "without cause" side. Scene 6: couple silhouettes from behind talking on a sofa with two cups of tea, numbers 1-3 appearing. Scene 7: couple silhouettes from behind walking side by side, husband on the road side, end on blank beige with final line held 2 seconds. Do not depict the Prophet or any companion.
+Generate 9:16 reel, about 130s (max 135s), minimal healing beige #F5F1E8, 8 scenes as in the storyboard above. No ka/khrap in voiceover. Voice: Thai female, polite, friendly, natural, no slang, academic but gentle, not blaming, not judging. References appear on screen only, not read aloud. Show exact Arabic as written above: Musnad Ahmad 6113, the definition by Ibn al-Athir, At-Tahrim 66:6, the saying of Ali, An-Nur 24:31 (excerpt), Abu Dawud 2659, Muslim 2594a. All human figures are shown from behind or as silhouettes: no visible face. Any woman: hijab covering hair and neck, loose clothing, no body contours. Never show a woman in revealing clothing. Scene 1: the Thai word "ดัยยูษ" large on blank beige with a question mark fading in. Scene 2: Arabic fading in, the last phrase highlighted. Scene 3: a hand about to stick the word onto a silhouette, then stopping and putting the word back. Scene 4: family silhouettes from behind sitting in a circle learning together, soft light in the middle. Scene 5: a phone screen showing a post as a blurred rectangle with no figure, a view counter rising, then a hand closing the post. Scene 6: split screen, warm side "jealousy with cause" vs muted side "jealousy without cause"; a hand checking a phone appears only on the "without cause" side. Scene 7: couple silhouettes from behind talking on a sofa with two cups of tea, numbers 1-3 appearing. Scene 8: couple silhouettes from behind walking side by side, husband on the road side, end on blank beige with final line held 2 seconds. Do not depict the Prophet or any companion.
