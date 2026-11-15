@@ -1,4 +1,4 @@
-REEL ~114s | ผู้รู้เห็นต่างกัน คนฟังอย่างเราควรวางตัวแบบไหน
+REEL ~128s | ผู้รู้เห็นต่างกัน คนฟังอย่างเราควรวางตัวแบบไหน
 
 แก่นเรื่อง: ถามผู้รู้ที่ไว้ใจได้ ไม่เลือกตามใจชอบ ไม่ดูหมิ่นใคร
 โทน: สุภาพ กันเอง นุ่ม ตรงข้อมูล ไม่ใส่ ค่ะ/ครับ ไม่ดุ ไม่เข้าข้างฝ่ายไหน ไม่ใช้คำว่า แอด
@@ -21,7 +21,7 @@ VO: ผู้รู้ท่านหนึ่งบอกแบบนี้ อ
 
 ────────────
 
-[8-30s] ซีน 2 - เห็นต่างมีมาตั้งแต่ยุคเศาะฮาบะห์
+[8-28s] ซีน 2 - เห็นต่างมีมาตั้งแต่ยุคเศาะฮาบะห์
 
 VISUAL: เส้นทางเส้นเดียวแยกเป็นสองเส้น แล้วทั้งสองเส้นไปบรรจบที่จุดหมายเดียวกัน (ไม่มีภาพคน)
 
@@ -32,11 +32,11 @@ TEXT:
 "... แล้วท่านไม่ได้ตำหนิผู้ใดในหมู่พวกเขาเลย"
 [อัลบุคอรี 946]
 
-VO: ความเห็นต่างมีมาตั้งแต่ยุคเศาะฮาบะห์ สหายของท่านนบี ท่านนบีสั่งว่า อย่าให้ผู้ใดละหมาดอัศร์ เว้นแต่ที่บะนีกุร็อยเซาะห์ พอถึงเวลาละหมาดระหว่างทาง บางท่านรอไปละหมาดที่นั่น บางท่านละหมาดเลย ผู้รู้อธิบายว่า ฝ่ายแรกยึดตามถ้อยคำ ฝ่ายหลังดูที่ความหมาย คือให้รีบ ท่านนบีไม่ตำหนิฝ่ายใดเลย
+VO: ความเห็นต่างมีมาตั้งแต่ยุคเศาะฮาบะห์ สหายของท่านนบี ท่านนบีสั่งว่า อย่าให้ผู้ใดละหมาดอัศร์ เว้นแต่ที่บะนีกุร็อยเซาะห์ พอถึงเวลาละหมาดระหว่างทาง บางท่านรอไปละหมาดที่นั่น บางท่านละหมาดเลย ท่านนบีไม่ตำหนิฝ่ายใดเลย
 
 ────────────
 
-[30-48s] ซีน 3 - แต่ไม่ใช่ทุกเรื่องที่เห็นต่างได้
+[28-48s] ซีน 3 - แต่ไม่ใช่ทุกเรื่องที่เห็นต่างได้
 
 VISUAL: แบ่งจอ 2 ฝั่ง ซ้ายโทนอุ่น ขวาโทนเข้มขึ้นเล็กน้อย
 
@@ -52,7 +52,7 @@ VO: แต่ไม่ใช่ทุกเรื่องที่เห็น�
 
 ────────────
 
-[48-68s] ซีน 4 - ชี้แจงความผิดพลาด ไม่ใช่เกลียดกัน
+[48-72s] ซีน 4 - ชี้แจงความผิดพลาด ไม่ใช่เกลียดกัน
 
 VISUAL: หนังสือสองเล่มเปิดหันเข้าหากัน มีเส้นบางๆ เชื่อมระหว่างหน้ากระดาษ
 
@@ -70,7 +70,7 @@ VO: การชี้แจงจึงไม่ใช่การเกลี�
 
 ────────────
 
-[68-100s] ซีน 5 - คนฟังอย่างเราควรทำอย่างไร
+[72-112s] ซีน 5 - คนฟังอย่างเราควรทำอย่างไร
 
 VISUAL: เลข 1-4 ขึ้นทีละข้อ แต่ละข้อมีไอคอนเรียบๆ (เครื่องหมายคำถาม / ตาชั่งที่นิ่ง / หนังสือปิด / ปุ่มแชร์ที่ถูกพักไว้)
 
@@ -95,7 +95,7 @@ VO: แล้วคนฟังอย่างเราทำอย่างไ�
 
 ────────────
 
-[100-114s] ซีน 6 - ปิด
+[112-128s] ซีน 6 - ปิด
 
 VISUAL: พื้นเบจว่าง อาหรับขึ้นก่อน แล้วบรรทัดสุดท้ายค้าง 2 วินาที
 
@@ -117,6 +117,7 @@ CAPTION
 
 🤍 เห็นต่างมีมาตั้งแต่ยุคเศาะฮาบะห์
 ท่านนบี ﷺ สั่งว่า "อย่าให้ผู้ใดละหมาดอัศร์ เว้นแต่ที่บะนีกุร็อยเซาะห์" บางท่านละหมาดระหว่างทาง บางท่านไปละหมาดที่นั่น ท่านไม่ได้ตำหนิผู้ใดเลย [อัลบุคอรี 946] ในสำนวนของมุสลิมระบุเป็นละหมาดซุฮ์ริ
+ผู้รู้อธิบายว่า ฝ่ายที่รอไปละหมาดที่นั่นยึดตามถ้อยคำ ฝ่ายที่ละหมาดระหว่างทางดูที่ความหมาย คือให้รีบ
 ภาพเส้นทางสองเส้น หมายถึงความเห็นต่างที่หลักฐานเปิดให้เข้าใจได้หลายทางเท่านั้น ไม่ได้หมายความว่าทุกความเห็นต่างถูกต้องทั้งหมด
 
 🤍 แต่ไม่ใช่ทุกเรื่องที่เห็นต่างได้
@@ -159,4 +160,4 @@ CAPTION
 ────────────
 
 PROMPT FOR CLAUDE CODE
-Generate 9:16 reel, about 114s (max 130s), minimal healing beige #F5F1E8, 6 scenes as in the storyboard above. No ka/khrap in voiceover, never use the word แอด, neutral general narration. Voice: Thai female, polite, friendly, natural, no slang, academic but gentle, not taking sides, not insulting any scholar. References appear on screen only, not read aloud. Show exact Arabic as written above: Bukhari 946, An-Nahl 16:116 (excerpt), Bukhari 7352, the saying attributed to Imam Malik, An-Nahl 16:43 (excerpt), the saying of Sulayman at-Taymi, the hadith from the introduction of Sahih Muslim, An-Nisa 4:59 (excerpt). No people in any scene, and no name, image or voice of any contemporary scholar. Scene 1: three chat-bubble lines appearing on blank beige. Scene 2: one path splitting into two, both arriving at the same destination. Scene 3: split screen, warm side and slightly deeper side, with the text of each kind. Scene 4: two open books facing each other with a thin line linking their pages. Scene 5: numbers 1-4 with simple icons (question mark, a still scale, a closed book, a paused share button). Scene 6: blank beige, Arabic first, then the final line held 2 seconds.
+Generate 9:16 reel, about 128s (max 140s), minimal healing beige #F5F1E8, 6 scenes as in the storyboard above. No ka/khrap in voiceover, never use the word แอด, neutral general narration. Voice: Thai female, polite, friendly, natural, no slang, academic but gentle, not taking sides, not insulting any scholar. References appear on screen only, not read aloud. Show exact Arabic as written above: Bukhari 946, An-Nahl 16:116 (excerpt), Bukhari 7352, the saying attributed to Imam Malik, An-Nahl 16:43 (excerpt), the saying of Sulayman at-Taymi, the hadith from the introduction of Sahih Muslim, An-Nisa 4:59 (excerpt). No people in any scene, and no name, image or voice of any contemporary scholar. Scene 1: three chat-bubble lines appearing on blank beige. Scene 2: one path splitting into two, both arriving at the same destination. Scene 3: split screen, warm side and slightly deeper side, with the text of each kind. Scene 4: two open books facing each other with a thin line linking their pages. Scene 5: numbers 1-4 with simple icons (question mark, a still scale, a closed book, a paused share button). Scene 6: blank beige, Arabic first, then the final line held 2 seconds.
