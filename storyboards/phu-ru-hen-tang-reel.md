@@ -1,9 +1,9 @@
-# REEL ~135s | ผู้รู้เห็นต่างกัน คนฟังอย่างเราควรวางตัวแบบไหน
+# REEL ~134s | ผู้รู้เห็นต่างกัน คนฟังอย่างเราควรวางตัวแบบไหน
 
 **แก่นเรื่อง:** ถามผู้รู้ที่ไว้ใจได้ ไม่เลือกตามใจชอบ ไม่ดูหมิ่นใคร
 **โทน:** สุภาพ กันเอง นุ่ม ตรงข้อมูล ไม่ใส่ ค่ะ/ครับ ไม่ดุ ไม่เข้าข้างฝ่ายไหน ไม่ใช้คำว่า แอด
 **สไตล์:** Minimal healing beige #F5F1E8 | 9:16 | 6 ซีน
-**หลักการ:** เลขอ้างอิงขึ้นบนจอเท่านั้น ไม่อ่านออกเสียง | อาหรับใช้อักขรวิธีอิมลาอีทั้งไฟล์ | เลขเศาะฮีห์มุสลิมตาม sunnah.com (รอเทียบอักษรต่อท้าย) | คำพูดของอุละมาอ์อ้างเฉพาะชื่อหนังสือ ใส่เล่มและหน้าเฉพาะที่เทียบแล้ว
+**หลักการ:** เลขอ้างอิงขึ้นบนจอเท่านั้น ไม่อ่านออกเสียง | อาหรับใช้อักขรวิธีอิมลาอีทั้งไฟล์ | เลขเศาะฮีห์มุสลิมตาม sunnah.com | คำพูดของอุละมาอ์อ้างเฉพาะชื่อหนังสือ ใส่เล่มและหน้าเฉพาะที่เทียบแล้ว
 **ภาพ:** ไม่มีภาพคน ใช้ภาพหนังสือ เส้นทาง และข้อความ | ไม่มีภาพหรือชื่อของผู้รู้ร่วมสมัยท่านใด
 
 ---
@@ -200,7 +200,7 @@
 | # | ผล | ผลในไฟล์ |
 |---|---|---|
 | V1 | ตัวบทตรง คำอธิบาย "ตามตัวอักษร / ดูที่ความหมาย" เป็นของอุละมาอ์ (เช่น อิบนุเราะญับ) ไม่ใช่ตัวบท สำนวนมุสลิมระบุซุฮ์ริ | เสียงพากย์เพิ่ม "อุละมาอ์อธิบายว่า" และแคปชันเพิ่มหมายเหตุสำนวนมุสลิมแล้ว |
-| V2 | ถ้อยคำตรง มุศหัฟอุษมานีมีชัดดะห์บนลามของ لِتَفْتَرُوا ซึ่งเป็นเครื่องหมายการอ่านต่อเนื่อง | ไม่แก้ คงรูปอิมลาอีตามหลักของไฟล์ (รอเจ้าของช่องยืนยัน) |
+| V2 | ถ้อยคำตรง มุศหัฟอุษมานีมีชัดดะห์บนลามของ لِتَفْتَرُوا ซึ่งเป็นเครื่องหมายการอ่านต่อเนื่อง | ไม่แก้ คงรูปอิมลาอีตามหลักของไฟล์ เจ้าของช่องยืนยันแล้ว |
 | V3 | ตัวบทตรง ไม่มี وَاحِدٌ เลขมุสลิมคือ 1716a | แก้เลขแล้ว |
 | V4 | ตรง | ไม่แก้ |
 | V5 | ตัวบทตรง เลขคือมุสลิม บทนำ 5 (อีกสำนวนในบทนำเป็นคำพูดของอุมัร ไม่ปนกัน) | เติมเลขแล้ว |
@@ -227,4 +227,4 @@
 
 ## PROMPT FOR CLAUDE CODE
 
-Generate 9:16 reel, about 135s (max 150s), minimal healing beige #F5F1E8, 6 scenes as in the storyboard above. No ka/khrap in voiceover, never use the word แอด, neutral general narration. Voice: Thai female, polite, friendly, natural, no slang, academic but gentle, not taking sides, not insulting any scholar. References appear on screen only, not read aloud. Show exact Arabic as written above: Bukhari 946, An-Nahl 16:116 (excerpt), Bukhari 7352, the saying attributed to Imam Malik, An-Nahl 16:43 (excerpt), the saying of Sulayman at-Taymi, the hadith from the introduction of Sahih Muslim, An-Nisa 4:59 (excerpt). No people in any scene, and no name, image or voice of any contemporary scholar. Scene 1: three chat-bubble lines appearing on blank beige. Scene 2: one path splitting into two, both arriving at the same destination. Scene 3: split screen, warm side and slightly deeper side, with the text of each kind. Scene 4: two open books facing each other with a thin line linking their pages. Scene 5: numbers 1-4 with simple icons (question mark, a still scale, a closed book, a paused share button). Scene 6: blank beige, Arabic first, then the final line held 2 seconds.
+Generate 9:16 reel, about 134s (max 150s), minimal healing beige #F5F1E8, 6 scenes as in the storyboard above. No ka/khrap in voiceover, never use the word แอด, neutral general narration. Voice: Thai female, polite, friendly, natural, no slang, academic but gentle, not taking sides, not insulting any scholar. References appear on screen only, not read aloud. Show exact Arabic as written above: Bukhari 946, An-Nahl 16:116 (excerpt), Bukhari 7352, the saying attributed to Imam Malik, An-Nahl 16:43 (excerpt), the saying of Sulayman at-Taymi, the hadith from the introduction of Sahih Muslim, An-Nisa 4:59 (excerpt). No people in any scene, and no name, image or voice of any contemporary scholar. Scene 1: three chat-bubble lines appearing on blank beige. Scene 2: one path splitting into two, both arriving at the same destination. Scene 3: split screen, warm side and slightly deeper side, with the text of each kind. Scene 4: two open books facing each other with a thin line linking their pages. Scene 5: numbers 1-4 with simple icons (question mark, a still scale, a closed book, a paused share button). Scene 6: blank beige, Arabic first, then the final line held 2 seconds.
